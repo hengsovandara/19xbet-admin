@@ -1,0 +1,64 @@
+::selection {
+  background: var(--primaryColor) !important;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  background: var(--backgroundColor);
+  min-height: 100%;
+  font-family: Helvetica, Arial, sans-serif;
+  color: red !important;
+}
+
+h1, h1.ant-typography,
+h2, h2.ant-typography,
+h3, h3.ant-typography,
+h4, h4.ant-typography,
+a, a:hover, a:active, a:focus,
+p, 
+.ant-typography,
+.ant-typography a,
+.ant-typography a:hover,
+.ant-typography a:active,
+.ant-typography a:focus {
+  color: var(--primaryColor);
+}
+
+p {
+  margin: 0;
+  padding: 0;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.ant-result-title {
+  color: var(--primaryColor);
+}
+
+.ant-btn, .ant-btn:active, .ant-btn:hover, .ant-btn:focus {
+  background: var(--backgroundColor);
+  border-color: var(--primaryColor);
+  color: var(--primaryColor);
+}
+
+.ant-btn-primary, .ant-btn-primary:active, .ant-btn-primary:hover, .ant-btn-primary:focus {
+  background: var(--primaryColor);
+  border-color: var(--primaryColor);
+  color: var(--backgroundColor);
+}
+
+/* .ant-modal-content {
+  background-color: var(--backgroundColor);
+} */
