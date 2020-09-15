@@ -26,7 +26,7 @@ input, button, select, option, textarea{font-size: 100%; font-family: inherit;}
 .c\:white{color:#fff;}
 .m\:auto{margin:auto;}
 .bg\:whitea95{background:rgba(255,255,255,0.95);}
-.c\:sec{color:#134168;}
+.c\:sec{color:#FCCD12;}
 .m-tb\:30px{margin-top:30px;margin-bottom:30px;}
 .p\:20px-30px{padding:20px 30px;}
 .br\:5px{border-radius:5px;}
@@ -41,7 +41,7 @@ input, button, select, option, textarea{font-size: 100%; font-family: inherit;}
 .m-t\:16px{margin-top:16px;}
 .c\:black{color:#111;}
 .m-t\:20px{margin-top:20px;}
-.c\:sec-\!{color:#134168 !important;}
+.c\:sec-\!{color:#FCCD12 !important;}
 .p\:20px{padding:20px;}
 .bg\:white{background:#fff;}
 .mxw\:500px{max-width:500px;}
@@ -188,7 +188,7 @@ input, button, select, option, textarea{font-size: 100%; font-family: inherit;}
 .h\:calc\(100vh-55px\){height:calc(100vh - 55px);}
 .b\,r\:0{bottom:0;right:0;}
 .trl\:100pc{transform:translate(100%);}
-.bg\:sec{background:#134168;}
+.bg\:sec{background:#FCCD12;}
 .fs\:80pc{font-size:80%;}
 .br\:2px{border-radius:2px;}
 .ws\:np{white-space:nowrap;}
@@ -376,7 +376,7 @@ input, button, select, option, textarea{font-size: 100%; font-family: inherit;}
 .c\:yellow700{color:#e0cc1c;}
 .c\:geen{color:geen;}
 .c\:red{color:#F44336;}
-.bg\:fffa9_c\:sec_br\:5px_fs\:90pc_p\:10px-20px_m-t\:15px_m-r\:10px_md-m-t\:0_w\:100pc_md-w\:auto_bd\:1px-sd-000a15_label label{background:rgba(255,255,255,0.9);color:#134168;border-radius:5px;font-size:90%;padding:10px 20px;margin-top:15px;margin-right:10px;margin-top:0;width:100%;width:auto;border:1px solid rgba(0,0,0,0.15);}
+.bg\:fffa9_c\:sec_br\:5px_fs\:90pc_p\:10px-20px_m-t\:15px_m-r\:10px_md-m-t\:0_w\:100pc_md-w\:auto_bd\:1px-sd-000a15_label label{background:rgba(255,255,255,0.9);color:#FCCD12;border-radius:5px;font-size:90%;padding:10px 20px;margin-top:15px;margin-right:10px;margin-top:0;width:100%;width:auto;border:1px solid rgba(0,0,0,0.15);}
 .hv-bs\:1_bd\:1px-sd-prim_c\:prim_label:hover label{box-shadow:0px 1px 2px rgba(0,0,0,0.10);border:1px solid #1fb5a7;color:#1fb5a7;}
 .p-b\:2px_svg svg{padding-bottom:2px;}
 .bg\:none_c\:prim_fs\:\.85em_p\:10px-15px_m-t\:15px_md-m-t\:0_w\:100pc_mnw\:80px_md-w\:auto_lh\:1\.25_bd\:0_mxw\:120px_ws\:normal_bd\:1px-dashed-prim_br\:0_label label{background:none;color:#1fb5a7;font-size:.85em;padding:10px 15px;margin-top:15px;margin-top:0;width:100%;min-width:80px;width:auto;line-height:1.25;border:0;max-width:120px;white-space:normal;border:1px dashed #1fb5a7;border-radius:0;}
@@ -559,7 +559,7 @@ input, button, select, option, textarea{font-size: 100%; font-family: inherit;}
 .bd\:1px-sld-grey200{border:1px solid #e0e0e0;}
 .w\,h\,lh\:20px{width:20px;height:20px;line-height:20px;}
 .hv-c\:grey:hover{color:#9E9E9E;}
-.bg-c\:sec{background-color:#134168;}
+.bg-c\:sec{background-color:#FCCD12;}
 .bd\:10px-sd-white{border:10px solid #fff;}
 .h\:150px{height:150px;}
 .bd\:5px-sld-sec600{border:5px solid #043259;}
@@ -568,7 +568,7 @@ input, button, select, option, textarea{font-size: 100%; font-family: inherit;}
 .p\:10px-20px_br\:5px_bg\:white_c\:prim_bs\:1_dp\:ib_m\:0-5px_m-t\:10px_button button{padding:10px 20px;border-radius:5px;background:#fff;color:#1fb5a7;box-shadow:0px 1px 2px rgba(0,0,0,0.10);display:inline-block;margin:0 5px;margin-top:10px;}
 .fs\:\.95em{font-size:.95em;}
 .mxh\:80vh{max-height:80vh;}
-.bd\:1px-sd-sec{border:1px solid #134168;}
+.bd\:1px-sd-sec{border:1px solid #FCCD12;}
 .r\:5px{right:5px;}
 .p\:9px{padding:9px;}
 .w\:0{width:0;}
@@ -622,7 +622,7 @@ input, button, select, option, textarea{font-size: 100%; font-family: inherit;}
 .fl\:l{float:left;}
 .ff\:inh{font-family:inherit;}
 .ls\:1px{letter-spacing:1px;}
-.bd\:1px-solid-sec{border:1px solid #134168;}
+.bd\:1px-solid-sec{border:1px solid #FCCD12;}
 .w\:25px{width:25px;}
 .w\:150pc{width:150%;}
 .p-rl\:5px{padding-right:5px;padding-left:5px;}
