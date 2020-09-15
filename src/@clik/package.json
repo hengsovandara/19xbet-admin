@@ -1,0 +1,5 @@
+{
+  "name": "clik",
+  "private": true,
+  "main": "./index.js"
+}

@@ -1,0 +1,1 @@
+export { MerchantsScreen as default } from '../src/screens';

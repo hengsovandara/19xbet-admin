@@ -1,1 +1,1 @@
-export { Dashboard as default } from '../src/screens/Dashboard';
+export { HomeScreen as default } from '../src/screens';

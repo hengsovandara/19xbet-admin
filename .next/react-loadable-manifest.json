@@ -1,10 +1,30 @@
 {
+  "./address": [
+    {
+      "id": "./src/screens/merchants/merchant/address.js",
+      "file": "static/chunks/2.js"
+    }
+  ],
   "./dev/noop": [
     {
       "id": "./node_modules/next/dist/client/dev/noop.js",
-      "name": "./node_modules/next/dist/client/dev/noop.js",
-      "file": "static/chunks/0.js",
-      "publicPath": "static/chunks/0.js"
+      "file": "static/chunks/0.js"
+    }
+  ],
+  "./information": [
+    {
+      "id": "./src/screens/merchants/merchant/information.js",
+      "file": "static/chunks/3.js"
+    }
+  ],
+  "./shareholders": [
+    {
+      "id": "./src/screens/merchants/merchant/shareholder.js",
+      "file": "static/chunks/1.js"
+    },
+    {
+      "id": "./src/screens/merchants/merchant/shareholders.js",
+      "file": "static/chunks/1.js"
     }
   ]
 }
