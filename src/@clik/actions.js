@@ -27,9 +27,10 @@ export default ({ config, act, route, store, cookies, handle }) => ({
 
   USER_FETCH: async (token = cookies.get('token')) => {
     const result = await act('GQL', {
-      query: `query { Users( where: { credential: { sessions: { token: {_eq: "${token}"}} }}) { id role name photo } }`
+      query: `query { Staffs( where: { credential: { sessions: { token: {_eq: "${token}"}} }}) { id role name phoneNumber email photo } }`
     })
-    const [user] = result.Users
+
+    const [user] = result.Staffs
     store.set({ user });
     return user
   },

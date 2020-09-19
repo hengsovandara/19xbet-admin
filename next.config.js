@@ -14,9 +14,7 @@ module.exports = withCSS(
       env: process.env.ENV,
       HASURA_URL: process.env.HASURA_URL,
       CRM_NODE_URL: process.env.CRM_NODE_URL,
-      EKYC_NODE_URL: process.env.EKYC_NODE_URL,
-      CLIK_URL: process.env.CLIK_URL,
-      MAP_KEY: process.env.MAP_KEY
+      EKYC_NODE_URL: process.env.EKYC_NODE_URL
     }
   })
 );
