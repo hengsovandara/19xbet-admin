@@ -18,8 +18,8 @@ const routes = getRoutes()
 const { publicRuntimeConfig } = getConfig()
 
 const theme = {
-  prim: '#20b5a7',
-  sec: '#134168',
+  prim: '#FCCD12',
+  sec: '#FCCD12',
   success: '#00d061',
   danger: '#f57167',
   grey: '#555',
@@ -43,7 +43,7 @@ const App = props => {
   return (
     <>
       <Head><title>Clik - Traffic light System</title></Head>
-      <main className="prim:37acb4 sec:134168 tert:1B598D txt:black200 ff:Nunito c:txt bg:fafafa">
+      <main className="prim:FCCD12 sec:FCCD12 tert:1B598D txt:black200 ff:Nunito c:txt bg:fafafa">
         <ThemeProvider theme={theme}>
           <Component {...pageProps} query={Router?.router?.query || {}} init={init} />
         </ThemeProvider>

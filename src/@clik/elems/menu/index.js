@@ -56,7 +56,7 @@ const MenuInner = styled.div`
 `
 
 const classNameMenuInner = active => fucss({
-  'dp:flx ai:c of:hd of-x:auto': true,
+  'dp:flx ai:c of:hd of-x:auto fw:400 fs:32px': true,
 })
 
 const classNameAmount = active => fucss({

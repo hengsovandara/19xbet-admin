@@ -134,6 +134,7 @@ const Bar = ({ value = 100, label = 'Label', total = 50, color = 'black' }) => {
 const actions = ({ act }) => ({
 	//returned: Consumers_aggregate(where: { status: { _eq: 2 }}){ aggregate{ count } }
 	STATS_TASKS: () => {
+    return []
 		return act('GQL', { query: `{
 		  total: Consumers_aggregate(where: { status: { _neq: 0 }}) { aggregate { count } }
 		  approved: Consumers_aggregate(where: { status: { _eq: 4 }}){ aggregate{ count } }
@@ -152,7 +153,7 @@ const actions = ({ act }) => ({
 		    { _not: {assignments: { finishedAt: { _is_null: true}}}}
 		  ]} ]}) { aggregate { count } }
 			rejected: Consumers_aggregate(where: { status: { _eq: 8 }}){ aggregate{ count } }
-		}`}).then(stats => Object.keys(stats).reduce((arr, key) => arr.concat({ key, label: key, value: stats[key].aggregate.count, color: colors[key]  }), []))
+		}`}).then(stats => Object.keys(stats).reduce((arr, key) => arr.concat({ key, label: key, value: stats[key].aggregate.count, color: colors[key]  }), [])).catch(err => [])
 	}
 })
 

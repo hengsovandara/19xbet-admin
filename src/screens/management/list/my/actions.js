@@ -18,22 +18,15 @@ export default ({ act, store, action, handle, cookies, route }) => ({
 
     const statusQuery = status ? `, consumer: { status: {_eq: ${status}} }` : ''
 
-    const condition = `where: {_and: {finishedAt: {_is_null: true}} ${statusQuery}, userId: {_eq: "${store.get('user').id}"} ${search}}`
+    // const condition = `where: {_and: {finishedAt: {_is_null: true}} ${statusQuery}, userId: {_eq: "${store.get('user').id}"} ${search}}`
+    const condition = ``
 
     return act('SUB', {
       id: 'assigned',
       query: `subscription {
-        Assignments(limit:${limit} offset:${offset} order_by:{ createdAt:desc } ${condition}) {
-          id userId createdAt updatedAt finishedAt type consumerId merchantId
-          user { id name role }
-          assigner { id name role }
-          consumer {
-            id index accountNumber givenName surname createdAt submittedAt updatedAt status
-            addresses(order_by: { createdAt: desc } limit: 1) {
-              commune district city houseNumber street postalCode country
-            }
-          }
-          merchant { id index accountNumber name companyName status }
+        Transactions(limit:${limit} offset:${offset} order_by:{ createdAt:desc } ${condition}) {
+          id type method imageUrl amount createdAt userId index
+          user{ id name email phoneNumber }
         }
       }`,
       action: data => act('ASSIGNMENTS_SET', data, condition)
@@ -41,19 +34,15 @@ export default ({ act, store, action, handle, cookies, route }) => ({
   },
 
   ASSIGNMENTS_SET: async (data, condition) => {
-    const assignedCount = await act('GQL', { query: `{ Assignments_aggregate(${condition}) { aggregate { count } } }` })
-      .then(({ Assignments_aggregate: { aggregate: { count }}}) => count)
-
+    const assignedCount = await act('GQL', { query: `{ Transactions_aggregate{ aggregate { count } } }` })
+      .then(({ Transactions_aggregate: { aggregate: { count }}}) => count)
     const assigned = data && data.map(item => ({
       ...item,
-      name: setName(item.consumer),
-      address: setAddress(item?.consumer?.addresses && item?.consumer?.addresses[0] || {}),
-      createdAt: setDate(item.consumer?.createdAt),
-      assignedAt: setDate(item.createdAt),
-      submittedAt: setDate(item.consumer?.submittedAt),
-      status: store.get('enums').statuses.find(status => status.value === item?.consumer?.status).text
+      createdAt: setDate(item?.createdAt),
+      assignedAt: new Date().toLocaleString(),
+      submittedAt: new Date().toLocaleString(),
+      status: "finish"
     }))
-
     return store.set({ assigned, assignedCount, loading: null })
   }
 })

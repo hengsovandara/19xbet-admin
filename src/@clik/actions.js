@@ -5,11 +5,11 @@ export default ({ config, act, route, store, cookies, handle }) => ({
   APP_COUNTRIES_FETCH: async data => {
     handle.loading(true)
 
-    const result = await act('GET', { endpoint: 'countries'})
+    // const result = await act('GET', { endpoint: 'countries'})
 
     handle.loading()
-    const countries = (result && result.data) || {}
-    return countries
+    // const countries = (result && result.data) || {}
+    return {}
   },
 
   APP_AREAS_FETCH: async data => {
@@ -36,18 +36,25 @@ export default ({ config, act, route, store, cookies, handle }) => ({
 
   USER_FETCH: async (token = cookies.get('token')) => {
     const result = token && await act('GQL', {
-      query: `query { Users( where: { credential: { sessions: { token: {_eq: "${token}"}} }}) { id role name photo credential {
-        corporation { apiKey rules { id tampering face liveness } }
-      } } }`
+      query: `query { Staffs( where: { credential: { sessions: { token: {_eq: "${token}"}} }}) { id role name photo phoneNumber email } }`
     })
-    const [user = {}] = result && result.Users || []
+    const [user = {}] = result && result.Staffs || []
     return user
   },
 
   ENUMS_FETCH: async () => {
-    // const businessTypes = await act('GET', { endpoint: 'business' }).then(({ data }) => data)
-    const enums = await act('GET', { url: endpoints.enums }).then(({ data }) => data)
-
+    const enums = await act('GQL', {
+      query: `query { 
+        transaction_types: enum_transaction_types{ id value description } 
+        transaction_methods: enum_transaction_methods{ id value description } 
+      }`
+    }) || {}
+    Object.keys(enums).map(enumKey => {
+      enums[enumKey] = {
+        byId: enums[enumKey].reduce((acc, value) => { acc[value.id] = value; return acc },{}),
+        byList: enums[enumKey]
+      }
+    })
     return enums
   },
 
@@ -66,16 +73,16 @@ export default ({ config, act, route, store, cookies, handle }) => ({
       handle.loading(true)
       return route.set('index', !route.get('login'))
         .then(() => act(['OPEN', 'USER_FETCH', 'ENUMS_FETCH', 'APP_COUNTRIES_FETCH'])
-        .then(async ([socket, user, enums, countries]) => {
+        .then(async ([socket, user, enums]) => {
+
           const users = await act('USERS_FETCH', user)
           const [counts, stats] = await act('STATS_FETCH', user)
-          const { corporation } = user?.credential
-          store.set({ socket, counts, user, enums, users, stats, corporation, countries, ready: true })
-          return act('STATS_SUB', user)
+          store.set({ socket, counts, user, users, enums, stats, ready: true })
+          // return act('STATS_SUB', user)
         })).catch(() => act('USER_TOKEN_SET'))
     }
 
-    act('STATS_UNSUB')
+    // act('STATS_UNSUB')
 
     if (!route.get('login'))
       return route.set('login').then(() => act('CLOSE').then(store.set))
@@ -93,8 +100,8 @@ export default ({ config, act, route, store, cookies, handle }) => ({
   },
 
   USERS_FETCH: user => act('GQL', {
-    query: `query { Users(where: { role: { _neq: "admin" } }) { id role name photo } }`
-  }).then(({ Users }) => Users),
+    query: `query { Staffs(where: { role: { _neq: "admin" } }) { id role name photo phoneNumber email } }`
+  }).then(({ Staffs }) => Staffs),
 
   USER_UPDATE: async function ({ file, id }) {
     const url = await act('APP_FILE_UPLOAD', file)
@@ -154,64 +161,90 @@ export default ({ config, act, route, store, cookies, handle }) => ({
     act('UNSUB', { id: 'processingAssignmentsCount' })
   ]),
 
-  STATS_FETCH: user => act('GQL', {
-    query: `
-      {
-        consumersOverall: Consumers_aggregate{ aggregate{ count } }
-        comsumersPending: Consumers_aggregate(where: { status: { _eq: 2}}){ aggregate{ count } }
-        comsumersActive: Consumers_aggregate(where: { status: { _eq: 1}}){ aggregate{ count } }
-        comsumersDeclined: Consumers_aggregate(where: { status: { _eq: 8}}){ aggregate{ count } }
+  STATS_FETCH: () => [{}, [
+    {
+      label: 'assignments',
+      total: 100,
+      pedingNumber: 10,
+      activatedNumber: 20,
+      declinedNumber: 70
+    },
+    {
+      label: 'consumers',
+      total: 100,
+      pendingNumber: 20,
+      activatedNumber: 30,
+      declinedNumber: 50,
+    },
+    {
+      label: 'merchants',
+      total: 100,
+      pendingNumber: 90,
+      activatedNumber: 8,
+      declinedNumber: 2
+    }
+  ]],
 
-        merchantsOverall: Merchants_aggregate{ aggregate{ count } }
-        merchantsPending: Merchants_aggregate(where: { status: { _eq: "2"}}){ aggregate{ count } }
-        merchantsActive: Merchants_aggregate(where: { status: { _eq: "1"}}){ aggregate{ count } }
-        merchantsDeclined: Merchants_aggregate(where: { status: { _eq: "8"}}){ aggregate{ count } }
+  // STATS_FETCH: user => act('GQL', {
+  //   query: `
+  //     {
+  //       consumersOverall: Consumers_aggregate{ aggregate{ count } }
+  //       comsumersPending: Consumers_aggregate(where: { status: { _eq: 2}}){ aggregate{ count } }
+  //       comsumersActive: Consumers_aggregate(where: { status: { _eq: 1}}){ aggregate{ count } }
+  //       comsumersDeclined: Consumers_aggregate(where: { status: { _eq: 8}}){ aggregate{ count } }
 
-        unassignedConsumers: Consumers_aggregate(where: { _and: [{ status: {_eq: 2} }, {_or: [
-          { _not: {assignments: {}}},
-          { _not: {assignments: { finishedAt: { _is_null: true}}}}
-        ]} ]}) { aggregate { count } }
-        requestedConsumers: Consumers_aggregate(where: { _and: [{ status: {_eq: 3} }, {_or: [
-          { _not: {assignments: {}}},
-          { _not: {assignments: { finishedAt: { _is_null: true}}}}
-        ]} ]}) { aggregate { count } }
-        assignedAssignments: Assignments_aggregate(where: { _and: [{finishedAt: {_is_null: true}}, { userId: {_eq: "${user.id}"}}, { consumer: { status: {_eq: 2} }} ]}) { aggregate { count } }
-        teamedAssignments: Assignments_aggregate(where: {userId: {_is_null: true}, role: {_eq: "${user.role}"}}) { aggregate { count } }
-        processingAssignments: Assignments_aggregate(where: { userId: {_is_null: false} finishedAt: {_is_null: true}}) { aggregate { count } }
-        unassignedMerchants: Merchants_aggregate(where: {_not: {assignments: {}}}) { aggregate { count } }
-      }
-    `
-  }).then(stats => {
-    const data = Object.keys(stats).reduce((obj, key) => ({ ...obj, [key]: stats[key].aggregate.count }), {})
+  //       merchantsOverall: Merchants_aggregate{ aggregate{ count } }
+  //       merchantsPending: Merchants_aggregate(where: { status: { _eq: "2"}}){ aggregate{ count } }
+  //       merchantsActive: Merchants_aggregate(where: { status: { _eq: "1"}}){ aggregate{ count } }
+  //       merchantsDeclined: Merchants_aggregate(where: { status: { _eq: "8"}}){ aggregate{ count } }
 
-    return [data, [
-      {
-        label: 'assignments',
-        total: data.unassignedConsumers,
-        pedingNumber: data.teamedAssignments,
-        activatedNumber: data.assignedAssignments,
-        declinedNumber: data.completedAssignments
-      },
-      {
-        label: 'consumers',
-        total: data.consumersOverall,
-        pendingNumber: data.comsumersPending,
-        activatedNumber: data.comsumersActive,
-        declinedNumber: data.comsumersDeclined,
-      },
-      {
-        label: 'merchants',
-        total: data.merchantsOverall,
-        pendingNumber: data.merchantsPending,
-        activatedNumber: data.merchantsActive,
-        declinedNumber: data.merchantsDeclined
-      }
-    ]]
-  }),
+  //       unassignedConsumers: Consumers_aggregate(where: { _and: [{ status: {_eq: 2} }, {_or: [
+  //         { _not: {assignments: {}}},
+  //         { _not: {assignments: { finishedAt: { _is_null: true}}}}
+  //       ]} ]}) { aggregate { count } }
+  //       requestedConsumers: Consumers_aggregate(where: { _and: [{ status: {_eq: 3} }, {_or: [
+  //         { _not: {assignments: {}}},
+  //         { _not: {assignments: { finishedAt: { _is_null: true}}}}
+  //       ]} ]}) { aggregate { count } }
+  //       assignedAssignments: Assignments_aggregate(where: { _and: [{finishedAt: {_is_null: true}}, { userId: {_eq: "${user.id}"}}, { consumer: { status: {_eq: 2} }} ]}) { aggregate { count } }
+  //       teamedAssignments: Assignments_aggregate(where: {userId: {_is_null: true}, role: {_eq: "${user.role}"}}) { aggregate { count } }
+  //       processingAssignments: Assignments_aggregate(where: { userId: {_is_null: false} finishedAt: {_is_null: true}}) { aggregate { count } }
+  //       unassignedMerchants: Merchants_aggregate(where: {_not: {assignments: {}}}) { aggregate { count } }
+  //     }
+  //   `
+  // }).then(stats => {
+  //   const data = Object.keys(stats).reduce((obj, key) => ({ ...obj, [key]: stats[key].aggregate.count }), {})
+
+  //   return [data, [
+  //     {
+  //       label: 'assignments',
+  //       total: data.unassignedConsumers,
+  //       pedingNumber: data.teamedAssignments,
+  //       activatedNumber: data.assignedAssignments,
+  //       declinedNumber: data.completedAssignments
+  //     },
+  //     {
+  //       label: 'consumers',
+  //       total: data.consumersOverall,
+  //       pendingNumber: data.comsumersPending,
+  //       activatedNumber: data.comsumersActive,
+  //       declinedNumber: data.comsumersDeclined,
+  //     },
+  //     {
+  //       label: 'merchants',
+  //       total: data.merchantsOverall,
+  //       pendingNumber: data.merchantsPending,
+  //       activatedNumber: data.merchantsActive,
+  //       declinedNumber: data.merchantsDeclined
+  //     }
+  //   ]]
+  // }),
 
   APP_INFO: async (data, type = 'error') => {
+    console.log({data})
     const message = data && data.message || data.payload && data.payload.error || data
-    const info = { message, type }
+    const info = { message: '', type }
+    console.log({info})
     // return store.set({ info: (store.get('info') || []).concat([error]), loading: false })
     return store.set({ info, loading: false })
   },

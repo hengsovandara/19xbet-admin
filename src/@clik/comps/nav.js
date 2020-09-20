@@ -41,7 +41,6 @@ const Navbar = ({ handleLogout, showNav, init, router, user, handleChangePicture
         <div className="ta:c">
           <div className={classNameUsername(showNav)}>
             <Button className="td:n c:fff" link action={() => router.push(`/staff?id=${user.id}`)} text={user && user.name || 'Unknown'}/>
-            {/* <p className="username">{user && user.name || 'Unknown'}</p> */}
           </div>
         </div>
       </div>
@@ -73,19 +72,18 @@ const Navbar = ({ handleLogout, showNav, init, router, user, handleChangePicture
 
 const Footer = ({ showNav, init }) => (
   <footer className={classNameFooter(showNav)}>
-    <div className="dp:flx ai:c">
-      <div style={{ backgroundImage: `url('static/imgs/logo-white.png')` }} className="w,h:40px bg-sz:cover bg-ps:c op:0.7" />
-      {!showNav && (
-        <div className="ta:l m-l:6px dp:n lg-dp:ib">
-          <p className="mxw:200px fs:70pc fw:400 c:grey300">
-            Clik Payment (Cambodia) Co. Ltd.
-          </p>
-          <strong className="fs:60pc bg:prim br:3px p:2px-7px">
-            v{init.version} {init.env || ''}
-          </strong>
+    {
+      !showNav && (
+        <div className="dp:flx ai:c">
+          <div style={{ backgroundImage: `url('static/imgs/casa.png')` }} className="w:150px h:40px bg-sz:cover bg-ps:c op:0.7" />
+          <div className="ta:l m-l:6px dp:n lg-dp:ib">
+            <strong className="fs:60pc bg:prim br:3px p:2px-7px c:black">
+              v{init.version} {init.env || ''}
+            </strong>
+          </div>
         </div>
-      )}
-    </div>
+      )
+    }
   </footer>
 );
 
@@ -99,7 +97,7 @@ const Nav = styled.nav`
 `
 
 const classNameNavigation = showNav => fucss({
-  'bg:1e1e1e ps:fx mnh:100vh z:6 w:70px ps:rl': true,
+  'bg:black ps:fx mnh:100vh z:6 w:70px ps:rl': true,
   'l:0': showNav,
   'l:70npx lg-l:0 lg-w:280px': !showNav,
 });
@@ -133,7 +131,7 @@ const classNameUsername = showNav => fucss({
 
 const classNameNavbar = active => fucss({
   'w:100pc hv-c:prim ts:all': true,
-  'bd-l:4px-sd-prim bg:272727': active,
+  'bd-l:4px-sd-prim bg:272727 c:prim': active,
   'bd-l:4px-sd-ts': !active,
 });
 

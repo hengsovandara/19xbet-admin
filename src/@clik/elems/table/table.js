@@ -129,7 +129,7 @@ function Item({ item, fields, i, light }) {
     return (
       <div key={key + '_tbody'} className={classNameData(!value ? {} : value, i % 2, light)}>
         <div className={"dp:flx" + (value.center ? ' jc:c' : '')}>
-          {value && getValue(value)}
+          <p className={(value.color ? `jc:${value.color}` : '')}>{value && getValue(value)}</p>
           {value && value.url &&
             <div className="br:50pc dp:flx jc:c ai:c w,h,mnw:40px ts:all m-r:16px">
               {value.url

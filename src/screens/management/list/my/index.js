@@ -6,7 +6,7 @@ import Router from 'next/router'
 
 const Assigned = ({ page, keywords, status }) => {
   const { act, store, action } = useActStore(actions, ['assigned'])
-  const { ready, assigned, assignedCount} = store.get('ready', 'assigned', 'assignedCount', 'user', 'enums')
+  const { ready, assigned, assignedCount, enums} = store.get('ready', 'assigned', 'assignedCount', 'user', 'enums')
   const pagination = getPagination(page, assignedCount)
 
   React.useEffect(() => {
@@ -21,8 +21,8 @@ const Assigned = ({ page, keywords, status }) => {
     handlePagination={page => Router.push(`/management?step=assigned&page=${page}${Boolean(keywords) ? `&keywords=${keywords}` : ''}${Boolean(status) ? `&status=${status}` : ''}`)}
     leftHead
     handleSearch={keywords => Router.push(`/management?step=assigned&keywords=${keywords}`)}
-    fields={['account number', 'name', 'account type', 'created at', 'submitted at', 'assigned at', 'assigned by']}
-    data={getData(assigned)}
+    fields={['id', 'name', 'account type', 'method', 'amount', 'submitted at', 'accepted at', 'accepted by']}
+    data={getData(assigned, enums)}
   />
 }
 
@@ -32,21 +32,25 @@ function getPagination(page, overall = 15){
   return { offset: (page ? (page - 1) : 0) * 15, limit: 15, overall }
 }
 
-function getData(items) {
-  const data = items?.map(({ user, address, name, type, createdAt, submittedAt, assignedAt, id, consumer, merchant, assigner }) => {
-    const objectId = consumer ? consumer.id : merchant.id
-    const accountNumber = consumer ? consumer?.accountNumber || consumer?.index : merchant?.accountNumber || merchant?.index
+function getData(items, enums = {}) {
+  const data = items?.map(({ user, amount, name, type, method, createdAt, submittedAt, assignedAt, id, index }) => {
+    const phoneNumber = user?.phoneNumber && "0" + user?.phoneNumber || 'N/A'
+    const { transaction_types = {} , transaction_methods}  = enums
+    const colors = {
+      cashOut: 'red',
+      cashIn: 'green'
+    }
+
     return {
-      'account number': { value: accountNumber, type: 'label', mobile: false },
-      name: { title: name, subValue: address, type: 'label', full: true },
-      'account type': { value: type, mobile: false },
-      'assigned to': { value: user?.name || 'N/A', mobile: false },
-      'created at': { subValue: createdAt.split(' ')[0], title: createdAt.split(' ')[1], type: 'label', mobile: false },
-      'submitted at': { subValue: submittedAt.split(' ')[0], title: submittedAt.split(' ')[1], type: 'label', mobile: false },
-      'assigned at': { subValue: assignedAt.split(' ')[0], title: assignedAt.split(' ')[1], type: 'label', mobile: false },
-      'assigned by': { value: assigner?.name || 'N/A' },
-      id,
-      _href: { pathname: '/management', query: { type, id: objectId } }
+      'id': { value: index, type: 'label', mobile: false },
+      name: { title: user?.name || "unknown", subValue: phoneNumber, type: 'label', full: true },
+      'account type': { value: transaction_types?.byId[type].value || type, mobile: false, color: colors[type] },
+      'method': { value: transaction_methods?.byId[method].value || method, mobile: false, color: colors[type] },
+      'amount': { value: amount && "$" + amount || 'N/A', mobile: false, color: colors[type] },
+      'submitted at': { subValue: createdAt.split(' ')[0], title: createdAt.split(' ')[1], type: 'label', mobile: false },
+      'accepted at': { subValue: assignedAt.split(' ')[0], title: assignedAt.split(' ')[1], type: 'label', mobile: false },
+      'accepted by': { value: user?.name || 'N/A' },
+      _href: { pathname: '/management', query: { type, id } }
     }
   }) || []
 
