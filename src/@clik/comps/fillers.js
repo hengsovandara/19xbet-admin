@@ -1,5 +1,5 @@
 import { fucss } from 'next-fucss/utils'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import Icon from '../elems/icon'
 import Button from '../elems/button'
 import Markdown from 'markdown-to-jsx'
 
@@ -104,14 +104,14 @@ const classNameProgressCircle = (size, invert) =>
 export const ElemPopup = ({ onClose, children, isFullscreen, isLoading, wrap, esc, low }) => {
   return (
     <div className={classNamePopupContainer({ low })}>
-      <div className="ps:rl w,h:100pc z:2 t,l:0 an:fadeIn-1s bg:blacka7" onClick={onClose} />
+      <div className="ps:rl w,h:100pc z:6 t,l:0 an:fadeIn-1s bg:blacka7" onClick={onClose} />
       {esc && (
-        <div className="ps:ab r,t:0 p:20px-30px hv-bg:sec600 ts:all crs:pt" onClick={onClose}>
-          <FontAwesomeIcon icon="times" size="2x" />
+        <div className="ps:ab r,t:0 hv-bg:sec600 ts:all crs:pt" onClick={onClose}>
+          <Icon icon="times" size="2x" />
           <div className="fs:75pc">esc</div>
         </div>
       )}
-      <div className={classNamePopup(isFullscreen)}>{!isLoading ? !wrap ? children : <div className="bg:white bs:2 p:40px-50px br:5px c:black bs:0-1px-5px-000a3">{children}</div> : <ElemLoading />}</div>
+      <div className={classNamePopup(isFullscreen)}>{!isLoading ? !wrap ? children : <div className="bg:white bs:2 p:24px br:8px c:black">{children}</div> : <ElemLoading />}</div>
     </div>
   )
 }
@@ -124,14 +124,14 @@ const classNamePopupContainer = props =>
   })
 
 export const ElemInfo = ({ onClose, info, isResponse, statusCode }) => {
+  const success = statusCode === 200 && isResponse || info?.type === 'success'
   return (
     <ElemPopup onClose={onClose}>
-      <div className="bg:white bs:2 p:40px-50px br:5px c:black bs:0-1px-5px-000a3">
-        <FontAwesomeIcon icon={statusCode === 200 && isResponse ? 'smile' : 'frown'} className={statusCode === 200 && isResponse ? 'c:prim' : 'c:red'} size="3x" />
-        <h2 className="fs:1.75em fw:400 m-t:10px m-b:5px">{statusCode === 200 && isResponse ? 'Success!' : 'Oh snap!'}</h2>
-        <Markdown className="fs:85pc fw:400">{(info && info.errorMessage) || info}</Markdown>
-        <br />
-        <Button text="Got It!" className="bg:prim c:white br:5px fs:.85em p:10px-15px m-t:25px w:100pc mnw:100px md-w:auto sh:0-1px-3px-000a2 bd:0" action={onClose} />
+      <div className="bg:white p:24px p-t:36px br:8px c:black200">
+        <Icon icon={success ? 'smile' : 'frown'} className={success ? 'c:prim' : 'c:red'} size="3x" />
+        <h2 className="fs:150pc m-tb:24px">{success ? 'Success!' : 'Oh snap!'}</h2>
+        <Markdown className="fs:85pc fw:400 m-b:36px">{info?.message || ''}</Markdown>
+        <div className="dp:flx ai:c jc:c"><Button bordered prim text="Got It!" action={onClose} /></div>
       </div>
     </ElemPopup>
   )
@@ -139,14 +139,14 @@ export const ElemInfo = ({ onClose, info, isResponse, statusCode }) => {
 
 const classNamePopup = isFullscreen =>
   fucss({
-    'ps:ab z:10 ts:all an:land-0.5s p:20px p-b:80px': true,
+    'ps:ab z:10 ts:all an:land-0.5s mnw:300px': true,
     'mxh:100vh mxw:1200px': isFullscreen,
     'mxw:600px': !isFullscreen
   })
 
 export const ElemPhoto = ({ url, photo, logo, size, action }) => (
   <span className={classNamePhoto(size, action)} onClick={action}>
-    {photo || logo || url ? <span style={{ backgroundImage: `url(${photo || logo || url})` }} className="bg-sz:cv bg-ps:c w,h:100pc br:50pc dp:bk" /> : <FontAwesomeIcon icon="user" size="lg" className="crs:pt op:0.8" />}
+    {photo || logo || url ? <span style={{ backgroundImage: `url(${photo || logo || url})` }} className="bg-sz:cv bg-ps:c w,h:100pc br:50pc dp:bk" /> : <Icon icon="user" size="lg" className="crs:pt op:0.8" />}
   </span>
 )
 
@@ -161,8 +161,8 @@ const classNamePhoto = (size, action) =>
 
 export const ElemSplash = ({ children, onClose }) => (
   <div className="ps:fx w:100pc mnh:100vh t,r:0 bg:sec z:10 dp:flx an:fadeIn-0.5s ai:c ta:c">
-    <span className="ps:ab r,t:0 p:20px-30px hv-bg:sec600 ts:all crs:pt" onClick={onClose}>
-      <FontAwesomeIcon icon="times" size="2x" />
+    <span className="ps:ab r,t:0 p:24px-32px hv-bg:sec600 ts:all crs:pt" onClick={onClose}>
+      <Icon icon="times" size="2x" />
       <div className="fs:75pc">esc</div>
     </span>
     <div className="of:auto">{children}</div>
@@ -172,17 +172,17 @@ export const ElemSplash = ({ children, onClose }) => (
 export const ElemConfirm = ({ action }) => {
   return (
     <ElemPopup onClose={e => action()}>
-      <div className="bg:white bs:2 p:40px-50px br:5px c:black bs:0-1px-5px-000a3">
-        <FontAwesomeIcon className="c:orange" icon="exclamation-triangle" size="3x" />
-        <h2 className="fs:1.75em fw:400 m-t:10px m-b:5px">Confirmation</h2>
-        <p className="fs:85pc m-b:10px fw:400 ta:c">
+      <div className="bg:white p:24px p-t:36px br:8px">
+        <Icon className="c:orange m-b:36px" icon="exclamation-circle" size="3x" />
+        <h2 className="m-b:24px c:black">Confirmation</h2>
+        <p className="m-b:24px ta:c m-b:36px c:black">
           Are you sure you want to
           <br />
           perform this action?
         </p>
-        <div className="dp:flx ai:c jc:c m-t:25px">
-          <Button text="No" className="bg:grey200 c:555 br:5px fs:.85em p:10px-15px m-t:15px md-m-t:0 w:100pc mnw:100px md-w:auto sh:0-1px-2px-000a1 bd:0 m-r:10px" small action={e => action()} />
-          <Button text="Yes" className="bg:prim c:white br:5px fs:.85em p:10px-15px m-t:15px md-m-t:0 w:100pc mnw:100px md-w:auto sh:0-1px-3px-000a2 bd:0" small action={e => action(true)} />
+        <div className="dp:flx ai:c jc:sb">
+          <Button text="Yes" className="w:calc(50pc-8px)" bordered prim action={e => action(true)} />
+          <Button text="No" className="w:calc(50pc-8px)" bordered alert action={e => action()} />
         </div>
       </div>
     </ElemPopup>
@@ -192,8 +192,8 @@ export const ElemConfirm = ({ action }) => {
 export const ElemMessage = () => (
   <div className="ps:fx t:0 w:100pc z:10 bg:white">
     <div>
-      <FontAwesomeIcon icon="check-circle" className="m-r:10px"/>
+      <Icon icon="check-circle" className="m-r:12px" />
       <p>This is a success message</p>
     </div>
   </div>
-);
+)

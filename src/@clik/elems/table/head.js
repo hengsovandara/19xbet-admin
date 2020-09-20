@@ -1,56 +1,58 @@
 import { fucss } from 'next-fucss/utils'
 import Button from '../button'
 import Filter from './filter'
-import Dropdown from '../select'
+import Select from '../select'
 import Search from './search'
-
-import { STATUS } from '../../data'
+import React from 'react'
 
 export default props => {
-  const { pagination, isSelected, results, onSelect, actions, selected, filters, filterFields } = props
+  const { pagination, isSelected, results, onSelect, actions, selected, filters, filterFields, noTableHead = false } = props
 
   return (
     <div>
-      <div className={classNameHead(isSelected || pagination)}>
-        {filterFields && <Filter filterFields={filterFields} filters={filters} action={props.action} />}
-        <div className="w:100pc dp:flx ai:c jc:sb">
-          <div className="fw:300 fs:80pc c:sec ws:np m-r:20px mdx-m-tb:10px w:20pc">
-            {!isSelected ? 'Results' : 'Selected'}:{' '}
-            <strong>
-              {results}
-              {(pagination && pagination.overall) || '0'}
-            </strong>
-          </div>
-          <Search onClick={props.handleSearch} name={props.query.name || ''} />
-          <div className="m-l:20px w:100pc mxw:150px">
-            <Dropdown placeholder="Pick a status"
-              options={STATUS}
-              value={props.status}
-              onClick={(value) => props.handleClick(value)}
-            />
+      { (!noTableHead && !isSelected) &&
+        <div className={classNameHead(isSelected || pagination)}>
+          {filterFields && <Filter filterFields={filterFields} filters={filters} action={props.action} />}
+          <div className="dp:flx ai:c">
+            <Search onClick={props.handleSearch} name={props.query?.name || props.query?.keywords || ''} />
+            {!!props.handleStatus && <div className="w:100pc mxw:150px m-l:16px">
+              <Select placeholder="Pick a status"
+                options={props.statusOptions}
+                value={props.status}
+                onClick={value => props.handleStatus(value)}
+              />
+            </div>}
+            {!!props.mainAction && <div className="m-l:16px">
+              {props.mainAction() }
+            </div>}
           </div>
         </div>
-      </div>
-      {actions && (
+      }
+      {actions && !!isSelected && 
         <div className={classNameActions(isSelected)}>
-          <Button key="cancel" name="Cancel" tiny color="sec" className="m-r:20px" link action={e => onSelect()} />
           {actions.map(action => (
-            <Button key={action.name} {...action} action={e => action.action(selected)} />
+            action.type === 'select' && <Select key={action.name} onClick={value => action.action(selected, value)} {...action} />
           ))}
+          <div className="dp:flx h:40px">
+            {actions.map(action => (
+              action.type != 'select' && <Button key={action.name} {...action} action={e => action.action(selected)} />
+            ))}
+            <Button key="cancel" name="Cancel" bordered className="m-l:16px w:auto bg:ts c:black" action={e => onSelect()} />
+          </div>
         </div>
-      )}
+      }
     </div>
   )
 }
 
-const classNameActions = isSelected =>
+const classNameActions = (isSelected) =>
   fucss({
-    'ta:r ts:all of:hd bg:grey100 dp:flx jc:fe ai:c': true,
+    'of:hd dp:flx ai:c bd-c:grey200': true,
     'h:0': !isSelected,
-    'p:15px bd-b:1px-sld-grey200 bs:1': isSelected
+    'p-tb:24px of:vs': isSelected
   })
 
-const classNameHead = isSelected =>
+const classNameHead = () =>
   fucss({
-    'bg:white ts:all jc:sb md-dp:flx ai:c p-b:20px md-p-tb:20px': true
+    'bg:white jc:sb md-dp:flx ai:c p-tb:24px': true
   })

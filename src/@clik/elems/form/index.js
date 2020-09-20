@@ -26,7 +26,7 @@ export default class extends Component {
 }
 
 const ElemEdit = ({ edit, action, done }) => (
-  <div key="edit" className="ps:fx b,r:0 p:20px z:10">
+  <div key="edit" className="ps:fx b,r:0 p:24px z:10">
     <Button href={done} small circle icon={!edit ? 'feather' : 'check'} color={edit && 'green'} action={(!done && action) || null} />
   </div>
 )

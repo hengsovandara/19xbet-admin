@@ -13,7 +13,6 @@ export default class MyCustomDocument extends Document {
     return (
       <html>
         <Head>
-          <title>Clik - Traffic light System</title>
           <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
           <meta name="description" content="We're working hard to fight fraudsters and improve ID security but we need your help. We're currently looking for people who can upload a photo of their Photo ID so we can accurately identify fakes." />
           <meta name="author" content="Clik - Traffic light System" />
@@ -27,7 +26,7 @@ export default class MyCustomDocument extends Document {
           <link font-src="https://fonts.googleapis.com/css?family=Nunito:200,300,400,600,700" href="https://fonts.googleapis.com/css?family=Nunito:200,300,400,600,700" rel="stylesheet" />
           {this.props.styleTags}
         </Head>
-        <body className="bg:black">
+        <body>
           <Main />
           <NextScript />
         </body>

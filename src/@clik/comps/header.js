@@ -1,38 +1,56 @@
-import React, { useState } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { fucss } from 'next-fucss/utils';
-import Message from '../../screens/message';
+import React from 'react'
+import Icon from '../elems/icon'
+import { fucss } from 'next-fucss/utils'
+import { toCapitalize } from '../libs'
+import { useRouter } from 'next/router'
 
-const Header = ({ showNav, title, onToggleNavigation }) => {
-  const [open, setOpen] = useState(false);
-  const [calling, setCalling] = useState(false);
+// broken image backup
+function brokenImageBackup(ev){
+  ev.target.src = 'https://i.imgur.com/Ut4LRBn.png'
+}
+
+const Header = ({ showNav, user, handleChangePicture, onToggleNavigation, title, ...props }) => {
+  const router = useRouter()
+  const onBack = props.onBack || router.back
 
   return (
     <header className={classNameContainer(showNav)}>
-      <div key="1">
-        <button 
+      <div>
+        <button
           className={`menu ${classNameButton()}`}
-          onClick={onToggleNavigation}
+          onClick={onBack}
         >
-          <FontAwesomeIcon icon="bars" />
+          <Icon icon="arrow-left" />
         </button>
       </div>
-      <div className="100pc">
-        <h3 className="mdx-fs:90pc fw:600 header-title">{title}</h3>
-      </div>
-      <div key="2" className="ps:rl">
-        <button 
-          className={`menu ${classNameButton(open)}`}
-          onClick={() => setOpen(!open)}
+      <div className="dp:flx ai,jc:c">
+        <div
+          className={classNameImage()}
+          onClick={handleChangePicture}
         >
-          <FontAwesomeIcon icon="envelope" />
-        </button>
-        <div className="bg:red ps:ab t:0px r:7px h,lh:16px p-rl:4px br:5px c:white fs:10px fw:600">
-          8
+          <div className="br:50pc dp:flx jc:c ai:c w,h:100pc ts:all profile-img bg:blacka06">
+            {user && user.photo
+              ? <img src={user.photo} onError={brokenImageBackup} className="br:50pc w,h:100pc" />
+              : <Icon icon="user" />
+            }
+          </div>
         </div>
-        <div className={classNameWrap(open)}>
-          {calling && <div id="callScreen" className="h:100vh ps:fx z:999 w:100pc t,l:0"></div>}
-          <Message setCalling={setCalling} />
+        <div className="ta:l">
+          <div className={classNameUsername()}>
+            <p className="username">{user && user.name || 'Unknown'}</p>
+          </div>
+          <div className={classNameRole()}>
+            <p className="role">{user && toCapitalize(user.role) || 'Unknown role'}</p>
+          </div>
+        </div>
+        <div className="bd-l:1px-sd-grey200 m-l:24px">
+          <button
+            className={classNameButton()}
+            onClick={null}
+            notification
+          >
+            <Icon icon="bell" />
+          </button>
         </div>
       </div>
     </header>
@@ -40,20 +58,28 @@ const Header = ({ showNav, title, onToggleNavigation }) => {
 };
 
 const classNameContainer = showNav => fucss({
-  'z:5 dp:flx jc:sb t,r:0 ai:c bg:fff bd-b:1px-sd-e5e5e5 ps:fx h:55px c:sec': true,
-  'w:100pc lg-w:calc(100pc-250px)': showNav,
+  'z:5 dp:flx t,r:0 ai:c bg:fff bd-b:1px-sd-e5e5e5 ps:fx h:70px c:black200 jc:sb': true,
+  'w:100pc lg-w:calc(100pc-280px) lgx-p-l:70px': showNav,
   'w:calc(100pc-70px)': !showNav,
 });
 
-const classNameButton = open => fucss({
-  'p:8px-15px br:5px bg:ts ts:bg hv-c:prim_ts:all_svg': true,
+const classNameButton = (open) => fucss({
+  'w,h:70px bg:ts ts:bg fs:24px hv-c:prim_ts:all_svg': true,
   'c:prim': open,
-  'c:sec': !open
+  'c:black': !open,
+  'h:50px': props => props.notification
 });
 
-const classNameWrap = open => fucss({
-  'ps:fx h:calc(100vh-55px) b,r:0 ts:all': true,
-  'trl:100pc': !open
+const classNameImage = () => fucss({
+  'w,h:40px dp:flx jc:c ai:c m-r:12px': true,
 });
 
-export default Header;
+const classNameUsername = () => fucss({
+  'c:black fw:600 fs:90pc': true,
+});
+
+const classNameRole = () => fucss({
+  'fs:80pc fw:400 c:black100': true,
+});
+
+export default Header

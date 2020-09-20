@@ -1,6 +1,10 @@
-import LoginScreen from './login/comps'
-import HomeScreen from './home/comps'
+import LoginScreen from './login'
+import DashboardScreen from './dashboard'
 import ConsumersScreen from './consumers'
 import MerchantsScreen from './merchants'
+import MachineLeaningScreen from './machine'
+import ManagementScreen from './management'
+import AccountsScreen from './accounts'
+import StaffScreen from './staff'
 
-export { LoginScreen, HomeScreen, ConsumersScreen, MerchantsScreen }
+export { AccountsScreen, LoginScreen, DashboardScreen, ConsumersScreen, MerchantsScreen, MachineLeaningScreen, ManagementScreen, StaffScreen }

@@ -4,17 +4,11 @@ export const actions = ({ act, store, action, handle }) => ({
   },
 
   MERCHANTS_COUNT_SUB: async ({ statusId, name }) => {
-
-    // if(store.get('merchantsCount'))
-    //   return console.log('why');
-
     const id = 'merchants_count'
     await act('UNSUB', { id })
 
-    // console.log({ statusId, name })
-
     const ALL_MERCHANTS = `
-      Merchant_aggregate {
+      Merchants_aggregate {
         aggregate {
           count
         }
@@ -22,7 +16,7 @@ export const actions = ({ act, store, action, handle }) => ({
     `
 
     const COUNT_BY_STATUS = `
-      Merchant_aggregate(where: {status: {_eq: "${statusId}"}}) {    
+      Merchants_aggregate(where: {status: {_eq: "${statusId}"}}) {
         aggregate {
           count
         }
@@ -30,7 +24,7 @@ export const actions = ({ act, store, action, handle }) => ({
     `
 
     const COUNT_BY_NAME = `
-      Merchant_aggregate(where: {name: {_ilike: "%${name}%"}}) {
+      Merchants_aggregate(where: {name: {_ilike: "%${name}%"}}) {
         aggregate {
           count
         }
@@ -56,9 +50,9 @@ export const actions = ({ act, store, action, handle }) => ({
 
     store.get('merchants') && await act('UNSUB', { id: 'merchants' })
 
-    const ALL_MERCHANTS = `Merchant(limit:${limit} offset:${offset} order_by:{ createdAt:desc })`
-    const SORT_BY_STATUS = `Merchant(limit:${limit} offset:${offset} order_by: {createdAt: desc} where: {status: {_eq: "${statusId}"}})`
-    const SORT_BY_NAME = `Merchant(limit:${limit} offset:${offset} order_by: {createdAt: desc}, where: {name: {_ilike: "%${name}%"}})`
+    const ALL_MERCHANTS = `Merchants(limit:${limit} offset:${offset} order_by:{ createdAt:desc })`
+    const SORT_BY_STATUS = `Merchants(limit:${limit} offset:${offset} order_by: {createdAt: desc} where: {status: {_eq: "${statusId}"}})`
+    const SORT_BY_NAME = `Merchants(limit:${limit} offset:${offset} order_by: {createdAt: desc}, where: {name: {_ilike: "%${name}%"}})`
 
     const MERCHANTS = ((statusId && statusId !== 10) || statusId == 0) ? SORT_BY_STATUS : name
       ? SORT_BY_NAME
@@ -69,17 +63,13 @@ export const actions = ({ act, store, action, handle }) => ({
     return act('SUB', {
       id: 'merchants',
       query: `subscription {
-        ${MERCHANTS} { 
-          id status name referenceId description createdAt
+        ${MERCHANTS} {
+          id status name description createdAt
           coverUrl logoUrl companyName
           openingHours
           facebookUrl websiteUrl flag
           addressName latitude longtitude hideAddress
           documents(order_by: { createdAt: asc }) { id name isChecked isValid url createdAt }
-          contactDetails { id description phoneNumber }
-          assignment {
-            id user { photo }
-          }
           addresses { city commune country district house }
         }
       }`,
@@ -93,15 +83,10 @@ export const actions = ({ act, store, action, handle }) => ({
         res &&
         resolve(
           res.map(item => {
-            // console.log(item)
-
             const { businessTypes, userStatus } = store.get('enums')
             let percentage = 0
 
             const str = item.addresses.length && item.addresses[0]
-
-            // const str = Object.values(item?.addresses[0]).join(", ")
-            // str.substring(0, str.length - 3)
 
             const data = {
               source: 'merchant',
@@ -134,8 +119,8 @@ export const actions = ({ act, store, action, handle }) => ({
 
             return {
               ...data,
-              status: userStatus[data.status],
-              name: data.name || data.companyName || 'N/A',
+              status: userStatus && userStatus[data.status],
+              name: data?.name || data?.companyName || 'N/A',
               stats,
               percentage,
               businessTypeDocuments,
@@ -156,5 +141,5 @@ export const actions = ({ act, store, action, handle }) => ({
             }
           })
         )
-    ).then(merchants => store.set({ merchants }))
+    ).then(merchants => store.set({ merchants, loading: false }))
 })

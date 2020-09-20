@@ -15,16 +15,57 @@ export const actions = ({ act, store, action, handle, cookies, route }) => ({
     return act('SUB', {
       id: 'merchant',
       query: `subscription {
-        Merchant(where: { id: { _eq: "${id}"}}) {
-          id status name referenceId description createdAt assignmentId
+        Merchants(where: { id: { _eq: "${id}"}}) {
+          id status name referenceId description createdAt
           coverUrl logoUrl openingHours
           facebookUrl websiteUrl flag
           addressName latitude longtitude hideAddress
           incorporationCountry registrationNumber businessActivities businessId companyName incorporationDate
           documents(order_by: { createdAt: asc }) { id name isChecked isValid url createdAt }
-          contactDetails { id description phoneNumber }
           activities(order_by: {createdAt: desc}){ id note createdAt data owner { name id }}
-          addresses { city commune country district house }
+          addresses { id type city commune country district house }
+          business { id name documents }
+          shareholders {
+            id merchantId shareholderMerchantId shareholderConsumerId type merchantData consumerData created_at updated_at
+            shareholderConsumer {
+              id status referenceId phoneNumber
+              firstName lastName fullName gender dateOfBirth nationality email flag
+              documentNumber documentExpiredDate identityDocumentType selectedCountry
+              liveness faceMatchPercentage isFaceMatch
+              isLiveVDO isFaceMatch
+              createdAt updatedAt
+              source note state
+              tamperingPhysical tamperingDigital
+              commune district city address industry jobTitle income
+              amazonS3IdDocument amazonS3FaceImage amazonS3FaceVideo
+              latitude longitude houseNumber street postalCode placeOfBirth countryCode documentIssueDate
+            }
+            shareholderMerchant {
+              id status name referenceId description createdAt type
+              coverUrl logoUrl
+              openingHours
+              facebookUrl websiteUrl flag
+              addressName latitude longtitude hideAddress
+              documents(order_by: {createdAt: asc}) { id name isChecked isValid url }
+              addresses { id country city commune district house street type merchantId postalCode }
+            }
+          }
+          directors {
+            id data consumerId createdAt merchantId updatedAt
+            consumer {
+              id status referenceId phoneNumber
+              firstName lastName fullName gender dateOfBirth nationality email flag
+              documentNumber documentExpiredDate identityDocumentType selectedCountry
+              liveness faceMatchPercentage isFaceMatch
+              isLiveVDO isFaceMatch
+              createdAt updatedAt
+              source note state
+              tamperingPhysical tamperingDigital
+              commune district city address industry jobTitle income
+              amazonS3IdDocument amazonS3FaceImage amazonS3FaceVideo
+              latitude longitude houseNumber street postalCode placeOfBirth countryCode documentIssueDate
+            }
+          }
         }
       }`,
       action: action('MERCHANT_SET')
@@ -125,9 +166,9 @@ export const actions = ({ act, store, action, handle, cookies, route }) => ({
   ADD_NEW_DOCUMENT: (merchantId, documentName, documentURL, isVerified, isChecked) => {
     if (!merchantId || !documentName || !documentURL) return console.log('Add new document failed!')
     const token = cookies.get('token')
-    // console.log(isVerified, isChecked)
+    console.log("q", queries.upsert('Documents', ['merchantId', 'name', 'url', 'isValid', 'isChecked']))
     const body = {
-      query: queries.upsert('Document', ['merchantId', 'name', 'url', 'isValid', 'isChecked']),
+      query: queries.upsert('Documents', ['merchantId', 'name', 'url', 'isValid', 'isChecked']),
       variables: {
         values: {
           name: documentName,
@@ -156,7 +197,7 @@ export const actions = ({ act, store, action, handle, cookies, route }) => ({
 
     const token = cookies.get('token')
     const body = {
-      query: queries.upsert('Document', arr, { id: documentId }),
+      query: queries.upsert('Documents', arr, { id: documentId }),
       variables
     }
 
@@ -187,7 +228,7 @@ export const actions = ({ act, store, action, handle, cookies, route }) => ({
     // const name = props.name
     const token = cookies.get('token')
     const body = {
-      query: queries.upsert('Document', ['name', 'url', 'merchantId']),
+      query: queries.upsert('Documents', ['name', 'url', 'merchantId']),
       variables: { values: { name: documentName, url: documentURL, merchantId } }
     }
 
@@ -204,7 +245,7 @@ export const actions = ({ act, store, action, handle, cookies, route }) => ({
     return act('GET', { endpoint: 'upload' }).then(({ data: { url } }) => {
       return act('PUT', { url, body: file }).then(() => {
         const body = {
-          query: queries.upsert('Document', ['name', 'url'], id),
+          query: queries.upsert('Documents', ['name', 'url'], id),
           variables: { values: { id, name, url } }
         }
 
@@ -218,7 +259,7 @@ export const actions = ({ act, store, action, handle, cookies, route }) => ({
 
     const token = cookies.get('token')
     const body = {
-      query: queries.upsert('Document', ['name', 'isChecked', 'isValid'], (id = documentId)),
+      query: queries.upsert('Documents', ['name', 'isChecked', 'isValid'], (id = documentId)),
       variables: { values: { isValid, isChecked: true, id: documentId, name } }
     }
 
@@ -260,19 +301,9 @@ export const actions = ({ act, store, action, handle, cookies, route }) => ({
   MERCHANT_ASSIGNMENT: async ({ merchantId }) => {
     const { id: userId } = store.get('user') || {}
     const finishedAt = new Date().toISOString().split('.')[0]
-
-    // console.log(merchantId, userId)
-    /*
-      update_Assignment(where: {_and: {userId: {_eq: "${userId}"}, finishedAt: {_is_null: true}}}, _set: {finishedAt: "${finishedAt}"}) {
-        returning { id } affected_rows
-      }
-      update_Merchant(where: {assignment: {userId: {_eq: "${userId}"}}}, _set: {assignmentId: null}) {
-          affected_rows
-        }
-    */
     const query = `
       mutation {
-        insert_Merchant(objects: {id: "${merchantId}", assignment: {data: {type: "merchant", userId: "${userId}"}}}, on_conflict: {constraint: Merchant_pkey, update_columns: assignmentId}) {
+        insert_Merchants(objects: {id: "${merchantId}", assignment: {data: {type: "merchant", userId: "${userId}"}}}, on_conflict: {constraint: Merchant_pkey, update_columns: assignmentId}) {
           returning {
             id
             assignment {
@@ -295,13 +326,13 @@ export const actions = ({ act, store, action, handle, cookies, route }) => ({
 
     const query = `
       mutation {
-        update_Merchant(where: {id: {_eq: "${merchantId}"}}, _set: {assignmentId: null}) {
+        update_Merchants(where: {id: {_eq: "${merchantId}"}}, _set: {assignmentId: null}) {
           returning {
             assignmentId
           }
         }
 
-        update_Assignment(where: {id: {_eq: "${assignmentId}"}}, _set: {finishedAt: "${finishedAt}"}) {
+        update_Assignments(where: {id: {_eq: "${assignmentId}"}}, _set: {finishedAt: "${finishedAt}"}) {
           returning {
             finishedAt
           }

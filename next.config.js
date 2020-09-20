@@ -1,20 +1,19 @@
-const { withFucss } = require('next-fucss');
-const withCSS   = require('@zeit/next-css');
-const withTranspileModules = require('next-transpile-modules'); 
+const { withFucss } = require('next-fucss')
+const withCSS   = require('@zeit/next-css')
+const withTranspileModules = require('next-transpile-modules')(['clik'])
+const { HASURA_URL, EKYC_NODE_URL, npm_package_version, ENV } = process.env
+const { version } = require('./package.json')
+
 
 module.exports = withCSS(
   withTranspileModules({
-    transpileModules: ['clik'],
+    env: { HASURA_URL, EKYC_NODE_URL, version, env: ENV },
+    publicRuntimeConfig: { version },
     webpack: (config, { dir, dev, isServer, defaultLoaders }) => {
       withFucss(config);
+      config.resolve.alias = {...(config.resolve.alias || {}), 'react-native$': 'react-native-web' }
+      config.resolve.extensions = [ '.web.js', ...config.resolve.extensions ]
       return config;
-    },
-    publicRuntimeConfig: {
-      version: process.env.npm_package_version,
-      env: process.env.ENV,
-      HASURA_URL: process.env.HASURA_URL,
-      CRM_NODE_URL: process.env.CRM_NODE_URL,
-      EKYC_NODE_URL: process.env.EKYC_NODE_URL
     }
   })
 );

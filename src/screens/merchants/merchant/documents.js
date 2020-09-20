@@ -23,8 +23,8 @@ const Documents = ({ merchant }) => {
 
   return (
     <>
-      <div className="p:20px">
-        <div className="dp:flx jc:sb ai:c p-b:20px bd-b:1px-sd-e8e8e8">
+      <div className="p:24px">
+        <div className="dp:flx jc:sb ai:c p-b:24px bd-b:1px-sd-e8e8e8">
           <button
             type="button"
             className="mnw:100px br:4px p:8px-24px fs:90pc bd:1px-sd-prim c:prim bg:white ts:all hv-try:2px"
@@ -64,15 +64,15 @@ const Documents = ({ merchant }) => {
 const Item = ({ documents, handleOpenDocument }) => {
 
   return (
-    <div className="dp:flx jc:fs p-l:10px mnh:500px" style={{ flexWrap: "wrap" }}>
+    <div className="dp:flx jc:fs p-l:12px mnh:500px" style={{ flexWrap: "wrap" }}>
       {documents.map((document, index) => (
-        <div key={document.id} className="w,h:190px m:10px ts:all hv-scl:1.05">
+        <div key={document.id} className="w,h:190px m:12px ts:all hv-scl:1.05">
           <div
             className="bg-c:e8e8e8 bg-ps:c bg-sz:cv bg-rp:nrp w:100pc h:180px bd:1px-sd-e8e8e8 hv-bs:2"
             style={{ backgroundImage: `url("${document.url}")` }}
             onClick={() => handleOpenDocument(document)}
           />
-          <p className="fs:85pc fw:700 ta:c of:hd ws:np p-tb:10px" style={{ textOverflow: 'ellipsis' }}>{document.name}</p>
+          <p className="fs:85pc fw:700 ta:c of:hd ws:np p-tb:12px" style={{ textOverflow: 'ellipsis' }}>{document.name}</p>
         </div>
       ))}
     </div>

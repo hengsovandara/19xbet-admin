@@ -1,14 +1,5 @@
 import styled from 'styled-components'
 
-// const theme = {
-//   prim: '#1fb5a7',
-//   sec: '#134168',
-//   success: '#00d061',
-//   danger: '#f57167',
-//   grey: '#555',
-//   lightgrey: '#e0e0e0'
-// }
-
 const Scrollable = styled.div`
   scrollbar-width: none; /* Firefox */
   -ms-overflow-style: none;  /* IE 10+ */
@@ -19,14 +10,14 @@ const Scrollable = styled.div`
 `
 
 const Button = styled.button`
-  padding: 10px 20px;
+  padding: 12px 24px;
   font-size: 14px;
   font-weight: 600;
   color: white;
+  min-height: 40px;
   background: ${props => props.theme.prim};
   border-radius: 5px;
-  /* border: 1px solid ${props => props.theme.prim}; */
-  transition: all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+  transition: all 0.5s
 
   &:hover {
     transform: translateY(1px);
@@ -40,19 +31,19 @@ const Button = styled.button`
     &:hover {
       color: ${props.theme.prim};
       border: 1px solid ${props.theme.prim};
-      box-shadow: 10px;
+      box-shadow: 12px;
     }
   `};
 
   ${props => props.link && `
     color: ${props.theme.grey};
-    padding: 10px 0;
+    padding: 12px 0;
     background: none;
     border: none;
     text-align: center;
 
     &:hover {
-      padding: 10px 5px;
+      padding: 12px 5px;
     }
   `};
 `
@@ -63,13 +54,19 @@ const Input = styled.input`
   justify-content: space-between;
   align-items: center;
   background:  white;
-  /* color: ${props => props.theme.sec}; */
   padding: 8px 12px;
   outline: none;
+  min-height: 40px;
   font-size: 14px;
   text-align: left;
-  border: 1px solid ${props => props.theme.lightgrey};
-  border-radius: 3px;
+  border: 1px solid rgba(0,0,0,0.12);
+  border-radius: 4px;
+  transition: all 0.5s;
+
+  &:hover {
+    box-shadow: 1px;
+    border: 1px solid ${props => props.theme.prim};
+  }
 
   &:focus {
     box-shadow: 1px;
@@ -78,7 +75,7 @@ const Input = styled.input`
 
   ${props => props.open && `
     border: 1px solid ${props.theme.prim};
-    border-bottom: 1px solid ${props.theme.lightgrey};
+    border-bottom: 1px solid ${props.theme.borderColor};
     border-radius: 3px 3px 0 0;
     box-shadow: 1px;
   `};
@@ -90,11 +87,10 @@ const Input = styled.input`
 
 const Paragraph = styled.p`
   font-size: 14px;
-  font-weight: bold;
   text-align: ${props => props.center ? 'center' : 'left'};
   line-height: 2.35;
-  ${props => props.label && `
-    color: rgba(0,0,0, 0.5);
+  ${props => props.label === 'true' && `
+    color: rgba(0,0,0, 0.75);
     font-size: 11px;
     font-weight: normal;
   `};
@@ -107,22 +103,35 @@ const Form = styled.form`
   justify-content: space-between;
   align-items: center;
   background:  white;
-  padding: 8px 12px;
   outline: none;
   font-size: 14px;
+  min-height: 40px;
   text-align: left;
-  border: 1px solid ${props => props.theme.lightgrey};
-  border-radius: 3px;
+  border: 1px solid ${props => props.theme.borderColor};
+  border-radius: 4px;
   cursor: pointer;
+
+  ${props => props.transparent && `
+    background: transparent;
+  `};
+
+  ${props => props.green && `
+    border: 1px solid #79cf78;
+  `};
 
   ${props => props.disabled && `
     cursor: not-allowed;
-    background: ${props.theme.lightgrey};
+    border: 1px solid transparent;
+    opacity: 0.8;
+    background: rgba(0,0,0,0.2);
+    &:hover{
+      border: 1px solid transparent;
+    }
   `};
 
   ${props => props.open && `
-    border: 1px solid ${props.theme.prim};
-    border-bottom: 1px solid ${props.theme.lightgrey};
+    border: 1px solid ${props.theme.borderColor};
+    border-bottom: 1px solid ${props.theme.borderColor};
     border-radius: 3px 3px 0 0;
     box-shadow: 1px;
   `};
@@ -130,7 +139,7 @@ const Form = styled.form`
 
 const Icon = styled.div`
   display: flex;
-  justify-content: flex-start; 
+  justify-content: flex-start;
   align-items: center;
   /* color: ${props => props.value ? '#00d061' : '#f57167'} */
 `

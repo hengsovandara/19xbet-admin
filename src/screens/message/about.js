@@ -6,30 +6,30 @@ import { Icon, Paragraph, Button } from '../../@clik/elems/styles';
 const AboutUser = ({ user, onCloseAbout }) => {
   return (
     <Fragment>
-      <div className="dp:flx ai:c p:20px">
+      <div className="dp:flx ai:c p:24px">
         <Icon className="" onClick={onCloseAbout}>
-          <FontAwesomeIcon icon="arrow-left" className="m-r:10px" />About
+          <FontAwesomeIcon icon="arrow-left" className="m-r:12px" />About
         </Icon>
         <div className="ta:c w:100pc">
           <Username>{user.name}</Username>
         </div>
       </div>
-      <div className="p:20px">
+      <div className="p:24px">
         <div>
           <img src={user.avatar || "static/imgs/profile-small.jpg"} width="64px" height="64px" className="br:50pc bs:1" />
         </div>
       </div>
       <div className="">
-        <div className="ta:l p:10px-20px">
+        <div className="ta:l p:12px-24px">
           <Paragraph label="true">Loyalty Plan</Paragraph>
           <p>Pink Pussy</p>
         </div>
-        <div className="ta:l p:10px-20px">
+        <div className="ta:l p:12px-24px">
           <Paragraph label="true">Member Since</Paragraph>
           <p>November 15, 2019</p>
         </div>
         
-        <Paragraph label="true" className="p:10px-20px">Privacy & Support</Paragraph>
+        <Paragraph label="true" className="p:12px-24px">Privacy & Support</Paragraph>
         <ItemList>
           <div className="w:100pc">
             <Paragraph className="fw:normal-!">Notification</Paragraph>
@@ -55,8 +55,8 @@ const AboutUser = ({ user, onCloseAbout }) => {
           </Icon>
         </ItemList>
       </div>
-      <div className="ta:l p:10px-20px">
-        <Paragraph label="true" className="p:10px-0">Notes</Paragraph>
+      <div className="ta:l p:12px-24px">
+        <Paragraph label="true" className="p:12px-0">Notes</Paragraph>
         <Button>Add Notes</Button>
       </div>
     </Fragment>
@@ -73,10 +73,10 @@ const ItemList = styled.div`
   display: flex;
   align-items: center;
   width: 100%;
-  padding: 10px 20px;
+  padding: 12px 24px;
 
   &:hover {
-    background: ${props => props.theme.lightgrey};
+    background: ${props => props.theme.borderColor};
   }
 `;
 

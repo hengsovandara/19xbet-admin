@@ -6,18 +6,18 @@ let timer
 let isSearching = false
 
 export default props => {
-  const { centered, label, focus, bordered, name, type, value, placeholder, className, classNameInput, confirmable, prefix, width, live, clearable } = props
+  const { altValue, centered, label, focus, bordered, name, type, value, placeholder, className, classNameInput, confirmable, prefix, width, live, clearable, disabled } = props
 
   let isNull = typeof document !== 'undefined' && typeof document.getElementsByName(name)[0] !== 'undefined' && document.getElementsByName(name)[0].value === ''
 
   if (bordered)
     return (
-      <span className={'dp:bk m-b:15px ' + className}>
+      <span className={'dp:bk m-b:16px ' + className}>
         <label htmlFor={name} className="c:grey200 dp:bk ta:l fw:600 fs:90pc m-b:3px">
           {label}
         </label>
         <form autoComplete="off">
-          <input defaultValue={value} name={name} id={name} placeholder={placeholder} type={type} className="c:white bg:ts br:5px p:10px m-tb:5px bd-c:silver600 bd-w:1px w:100pc fc-bs:1_bd-c:prim300_scl:1.02 ts:all" />
+          <input disabled={disabled} defaultValue={altValue || value} key={altValue || value} name={name} id={name} placeholder={placeholder} type={type} className="c:white bg:ts br:5px p:12px m-tb:5px bd-c:silver600 bd-w:1px w:100pc fc-bs:1_bd-c:prim300_scl:1.02 ts:all" />
         </form>
       </span>
     )
@@ -78,7 +78,7 @@ const doneTyping = (action, ms) => e => {
 
 const classNamePrefix = light =>
   fucss({
-    'br:5px c:white fw:600 p:10px ws:np lh:1 m-r:10px': true,
+    'br:5px c:white fw:600 p:12px ws:np lh:1 m-r:12px': true,
     'bg:sec300': !light,
     'bg:grey100 c:sec300 bd:1px-sld-grey200 bd-w-r:0': light
   })
@@ -100,10 +100,11 @@ const classNameClear = (isNull, light) =>
   })
 
 const Input = props => {
-  const { active, label, light, lightgray, underline, background, invalid, centered } = props;
+  const { active, label, light, lightgray, underline, background, invalid, centered, disabled } = props;
   return (
     <form autoComplete="off" className="w:100pc">
       <input
+        disabled={disabled}
         onKeyUp={(props.live && doneTyping(props.action, props.live || 1000)) || null}
         onKeyDown={e => {
           if (e.keyCode === 13) {
@@ -118,7 +119,8 @@ const Input = props => {
         onBlur={e => (props.handleFocus() && props.action(e)) || null}
         onChange={props.handleValueChange}
         size={props.size}
-        defaultValue={props.value}
+        defaultValue={props.altValue || props.value}
+        key={props.altValue || props.value}
         placeholder={props.placeholder}
         id={props.label}
         name={props.name}

@@ -1,18 +1,19 @@
 import { fucss } from 'next-fucss/utils'
 import Pagination from './pagination'
+import Icon from '../icon'
 
-export default ({ pagination, handlePagination }) => {
+export default ({ pagination, handlePagination, noTableFoot = false }) => {
+  if(noTableFoot) return null
   return (
     <div>
       <div className={classNameHead(true)}>
-        {pagination.overall >= 1
+        {pagination.overall > 15
         ? <Pagination {...pagination} handlePagination={handlePagination} />
-        : <div className="dp:flx fd:col jc:c w:100pc c:sec bg:white">
-            <div className="w:100pc dp:flx jc:c ai:c fs:200pc fw:500">
-              <div className="p-rl:20px m-r:40px">
-                <img src="static/imgs/empty.png"/>
-                <p className="fs:90pc fw:600">No Data</p>
-              </div>
+        : (pagination.overall === 0) && <div className="dp:flx fd:col jc:c w:100pc c:black300">
+            <div className="w,h:100pc dp:flx flxd:col jc:c ai:c p:40px">
+              <Icon className="m-b:36px w,h:80px" type="clik" icon="clipboard-check" />
+              <h2 className="m-b:16px">Empty Table</h2>
+              <p className="xw:400px">There are no data provided in this table or<br></br>clear the filter if one is applied.</p>
             </div>
           </div>
         }
@@ -24,5 +25,5 @@ export default ({ pagination, handlePagination }) => {
 const classNameHead = isSelected =>
   fucss({
     'bg:white ts:all jc:c dp:flx ai:c': true,
-    'p:20px-0 bd-b:1px-sld-grey200': isSelected
+    'p-t:24px': isSelected
   })

@@ -9,11 +9,11 @@ export const STATUS = [
 ]
 
 export const LOCK_ACCOUNT = [
-  { value: 'invalidDocuments', text: 'Invalid Documents' },
-  { value: 'faceNotMatch', text: 'Face Not Match' },
-  { value: 'liveness', text: 'Liveness' },
-  { value: 'tamperingPhysical', text: 'Tampering - Physical' },
-  { value: 'tamperingDigital', text: 'Tampering - Digital' }
+  { value: 'invalidDocuments', text: 'Invalid or blurry Document' },
+  { value: 'faceNotMatch', text: 'Face does not match the Document' },
+  { value: 'liveness', text: 'Invalid Liveness Video' },
+  { value: 'tamperingPhysical', text: 'Document was potentialy Tampered Physicaly' },
+  { value: 'tamperingDigital', text: 'Document was potentialy Tampered Digitaly' }
 ]
 
 export const UPDATE_ACCOUNT = [

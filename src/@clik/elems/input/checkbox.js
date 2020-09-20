@@ -53,7 +53,7 @@ const classNameCheckbox = (active, fields, wrap, width, light) =>
     'bg:sec300': active && fields && light,
     'bg:tert': !active && !light,
     'bg:white c:sec300': !active && light,
-    'w:calc(100pc-10px) m-r:5px-!': !width && active,
+    'w:calc(100pc-12px) m-r:5px-!': !width && active,
     'bd-b:1px-sld-tert600': !light
   })
 

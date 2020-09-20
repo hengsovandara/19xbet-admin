@@ -6,7 +6,7 @@ import AboutUser from './about'
 import { actions } from './hooks'
 
 const Message = ({ setCalling }) => {
-  const { act, handle, init, cookies, store } = useActStore(actions)
+  const { act, handle, init, cookies, store } = useActStore(actions, ['users', 'messages'])
   const { users, messages } = store.get('users', 'messages')
 
   const [showAbout, setShowAbout] = useState()
@@ -17,7 +17,7 @@ const Message = ({ setCalling }) => {
   const [incomingCall, setIncomingCall] = useState()
   const [outgoingCall, setOutgoingCall] = useState()
 
-  useEffect(() => { fetchData() }, [])
+  // useEffect(() => { fetchData() }, [])
 
   async function fetchData() {
     const me = await act('CONNECT_COMETCHAT')
@@ -25,7 +25,7 @@ const Message = ({ setCalling }) => {
     // await Promise.all([
     //   act('FETCH_ALL_MESSAGES')
     //     .then(messages => messages.reduce((obj, message) => addMessageToConversation(obj, message, me.cometchatUser.uid), {})),
-    //   act('FETCH_USERS')
+    //   act('MESSENGER_FETCH_USERS')
     // ]).then(([ messages, users]) => {
     //   const userIds = Object.keys(messages)
     //   users = users.filter(user => user.status === 'online' || userIds.includes(user.uid))
@@ -38,6 +38,8 @@ const Message = ({ setCalling }) => {
   useEffect(() => {
     act('RECEIVE_CALL_WITH_USER', { setReceivedCall, setOutgoingCall, setIncomingCall, setCalling })
   })
+
+  return null
 
   const addMessageToConversation = (conversations, message, userId) => {
     const iAmSender = userId ? userId === message.receiver : true
@@ -57,7 +59,7 @@ const Message = ({ setCalling }) => {
   }
 
   const showOutgoingCall = () => (
-    <div className="w:370px bg:white bs:1npx-1px-16px-e0e0e0 op:1 br:5px m-r:20px">
+    <div className="w:370px bg:white bs:1npx-1px-16px-e0e0e0 op:1 br:5px m-r:24px">
       <OutgoingCall recipient={user} onCancelCall={() => {
         act('REJECT_CALL', { call: sentCall, type: 'cancelled' })
         setOutgoingCall(false)
@@ -66,7 +68,7 @@ const Message = ({ setCalling }) => {
   )
 
   const showIncomingCall = () => (
-    <div className="w:370px bg:white bs:1npx-1px-16px-e0e0e0 op:1 br:5px m-r:20px">
+    <div className="w:370px bg:white bs:1npx-1px-16px-e0e0e0 op:1 br:5px m-r:24px">
       <IncomingCall
         sender={receivedCall.sender}
         onAcceptCall={() => {
@@ -102,9 +104,9 @@ const Message = ({ setCalling }) => {
 export default Message
 
 export const IncomingCall = ({ sender, onAcceptCall, onRejectCall }) => (
-  <div className="dp:flx w:100pc p:20px">
+  <div className="dp:flx w:100pc p:24px">
     <div className="w:100pc dp:flx">
-      <div className="ta:l m-r:20px">
+      <div className="ta:l m-r:24px">
         <img src={"static/imgs/profile-small.jpg"} width="48px" height="48px" className="br:50pc bs:1" />
       </div>
       <div>
@@ -113,7 +115,7 @@ export const IncomingCall = ({ sender, onAcceptCall, onRejectCall }) => (
       </div>
     </div>
     <div className="dp:flx jc:fe ai:c">
-      <button type="button" onClick={onAcceptCall} className="bg:00d061 m-r:10px c:white bd:1px-sd-white br:50pc bs:1 w,h:48px">
+      <button type="button" onClick={onAcceptCall} className="bg:00d061 m-r:12px c:white bd:1px-sd-white br:50pc bs:1 w,h:48px">
         <FontAwesomeIcon icon="phone-alt" />
       </button>
       <button type="button" onClick={onRejectCall} className="bg:f57167 c:white bd:1px-sd-white br:50pc bs:1 w,h:48px">
@@ -124,9 +126,9 @@ export const IncomingCall = ({ sender, onAcceptCall, onRejectCall }) => (
 )
 
 export const OutgoingCall = ({ recipient, onCancelCall }) => (
-  <div className="dp:flx w:100pc p:20px">
+  <div className="dp:flx w:100pc p:24px">
     <div className="w:100pc dp:flx">
-      <div className="ta:l m-r:20px">
+      <div className="ta:l m-r:24px">
         <img src={"/static/imgs/profile-small.jpg"} width="48px" height="48px" className="br:50pc bs:1" />
       </div>
       <div>

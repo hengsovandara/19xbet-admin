@@ -6,7 +6,7 @@ export default props => {
 
   let value = props.value
   value = (options && !!options.find(opt => opt === value || opt.value === value) && value) || false
-  // console.log(value, props.value);
+
   const hasValue = props.value && !value
 
   return (
@@ -47,7 +47,7 @@ export default props => {
 
 const classNameOption = (checked, light) =>
   fucss({
-    'p:7px-15px br:5px m:0-5px-5px-0 fw:600': true,
+    'p:7px-16px br:5px m:0-5px-5px-0 fw:600': true,
     'bg:tert': !light,
     'c:sec300': checked && light,
     'c:grey300': !checked && light,

@@ -28,7 +28,7 @@ const TextField = ({ label = '', name, placeholder, value, action }) => {
         type="text"
         name={name}
         placeholder={placeholder}
-        className="w:100pc fs:90pc p-rl:12px br:4px bd:1px-sd-e8e8e8 lh:2.35 fc-bd:1px-sd-prim"
+        className="w:100pc fs:90pc p-rl:12px br:4px bd:1px-sd-eb8e8e8 lh:2.35 fc-bd:1px-sd-prim"
         style={inputStyle}
         defaultValue={value}
         onKeyUp={handleKeyUp}

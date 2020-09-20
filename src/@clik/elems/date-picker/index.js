@@ -8,75 +8,35 @@ export default ({ showPicker, placeholder, value, onClick }) => {
   const [year, setYear] = useState()
 
   useEffect(() => {
-    const timestamp = setTimestamp(date)
-    const yyyy = new Date(timestamp).getFullYear()
-    const dd = '' + new Date(timestamp).getDate()
-    const mm = '' + (new Date(timestamp).getMonth() + 1)
+    const yyyy = new Date(date).getFullYear()
+    const dd = new Date(date).getDate()
+    const mm = new Date(date).getMonth() + 1
 
-    setDay(setDDMM(dd))
-    setMonth(setDDMM(mm))
+    setDay(dd)
+    setMonth(mm)
     setYear(yyyy)
-  }, [])
-
-  useEffect(() => {
-    const timestamp = setTimestamp(date)
-    const yyyy = '' + new Date(timestamp).getFullYear()
-    const dd = '' + new Date(timestamp).getDate()
-    const mm = '' + (new Date(timestamp).getMonth() + 1)
-
-    setDay(setDDMM(dd))
-    setMonth(setDDMM(mm))
-    setYear(yyyy)
+    setDate(`${yyyy}/${mm}/${dd}`)
   }, [date])
 
-  const setDDMM = (randomDDMM) => {
-    if (randomDDMM !== 'string') randomDDMM = randomDDMM + ''
-    if (randomDDMM.length < 2) return randomDDMM = '0' + randomDDMM
-    return randomDDMM
-  }
-
-  const setTimestamp = (randomdate) => {
-    if (!randomdate) {
-      return new Date().getTime()
-    };
-    const reverse = randomdate.split('/').reverse().join('/')  // '2019-12-30' be able to convert to timestamp
-    const timestamp = new Date(reverse).getTime()
-    return timestamp
-  }
-
   const handleMouseDown = ({ type, down }) => {
-    const timestamp = setTimestamp(date)
     switch (type) {
       case 'days':
-        const dd = down
-          ? new Date(new Date(timestamp).setDate(new Date(timestamp).getDate() - 1)).getDate()
-          : new Date(new Date(timestamp).setDate(new Date(timestamp).getDate() + 1)).getDate()
-        const dd_mm = down
-          ? new Date(new Date(timestamp).setDate(new Date(timestamp).getDate() - 1)).getMonth() + 1
-          : new Date(new Date(timestamp).setDate(new Date(timestamp).getDate() + 1)).getMonth() + 1
-        const dd_year = down
-          ? new Date(new Date(timestamp).setDate(new Date(timestamp).getDate() - 1)).getFullYear()
-          : new Date(new Date(timestamp).setDate(new Date(timestamp).getDate() + 1)).getFullYear()
-
-        setDate(Object.values({ day: setDDMM(dd), month: setDDMM(dd_mm), year: dd_year }).join('/'))
+        const getDate = new Date(date).getDate()
+        const dd = down ? getDate + 1 : getDate - 1
+        setDay(dd)
+        setDate(`${year}/${month}/${dd}`)
         break
       case 'months':
-        let mm = down
-          ? new Date(new Date(timestamp).setMonth(new Date(timestamp).getMonth() - 1)).getMonth() + 1
-          : new Date(new Date(timestamp).setMonth(new Date(timestamp).getMonth() + 1)).getMonth() + 1
-        const mm_year = down
-          ? new Date(new Date(timestamp).setMonth(new Date(timestamp).getMonth() - 1)).getFullYear()
-          : new Date(new Date(timestamp).setMonth(new Date(timestamp).getMonth() + 1)).getFullYear()
-        const mm_dd = down
-          ? new Date(new Date(timestamp).setMonth(new Date(timestamp).getMonth() - 1)).getDate()
-          : new Date(new Date(timestamp).setMonth(new Date(timestamp).getMonth() + 1)).getDate()
-
-        setDate(Object.values({ day: setDDMM(mm_dd), month: setDDMM(mm), year: mm_year }).join('/'))
+        const getMonth = new Date(date).getMonth() + 1
+        const mm = down ? getMonth + 1 : getMonth - 1
+        setMonth(mm)
+        setDate(`${year}/${mm}/${day}`)
         break
       case 'years':
-        const yyyy = down ? +year - 1 : +year + 1
-        // console.log(year)
-        setDate(Object.values({ day, month, year: yyyy }).join('/'))
+        const getYear = new Date(date).getFullYear()
+        const yy = down ? getYear + 1 : getYear - 1
+        setYear(yy)
+        setDate(`${yy}/${month}/${day}`)
         break
       default:
         break
@@ -85,7 +45,7 @@ export default ({ showPicker, placeholder, value, onClick }) => {
 
   const handleAdd = () => {
     if (!date) {
-      const new_date = Object.values({ day, month, year }).join('/')
+      const new_date = `${year}/${month}/${day}`
       setDate(new_date)
       return onClick(new_date)
     }

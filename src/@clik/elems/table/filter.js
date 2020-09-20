@@ -19,14 +19,14 @@ export default props => {
             showDropdown={showDropdown}
             header={
               (filtersLength && (
-                <div className="p:10px bd-b:1px-sld-grey200">
+                <div className="p:12px bd-b:1px-sld-grey200">
                   <Button link color="red" className="w:100pc ta:c" tiny text="Clear" action={() => (props.action(), setDropdown())} />
                 </div>
               )) ||
               null
             }
             footer={
-              <div className="p:10px bd-t:1px-sld-grey200">
+              <div className="p:12px bd-t:1px-sld-grey200">
                 <Button link className="w:100pc ta:c" tiny text="Done" action={() => setDropdown()} />
               </div>
             }>

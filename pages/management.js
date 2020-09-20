@@ -1,0 +1,1 @@
+export { ManagementScreen as default } from '../src/screens';

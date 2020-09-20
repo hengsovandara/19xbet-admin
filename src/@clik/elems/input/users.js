@@ -45,7 +45,7 @@ const ElemProfile = props => {
 
 const classNameWrapper = active =>
   fucss({
-    'p:3px p-r:15px-! br:30px m:3px crs:pt ts:bg': true,
+    'p:3px p-r:16px-! br:30px m:3px crs:pt ts:bg': true,
     'bg:sec600': !active,
     'bg:prim': active
   })

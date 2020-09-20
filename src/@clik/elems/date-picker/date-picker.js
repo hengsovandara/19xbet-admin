@@ -36,18 +36,16 @@ const DatePicker = ({ showPicker = false, placeholder = 'Select date', date, day
     setOpen(!open);
   }
 
-  // console.log(open);
-
   return (
     <Container ref={inputRef}>
       <Toggler open={open} onClick={() => setOpen(!open)}>
         {showPicker
-          ? <input 
-              className="w:100pc" 
-              style={{ color: date ? '#134168' : '#8d8d8d', fontWeight: date ? 'bold' : 'normal' }} 
-              placeholder={placeholder} 
-              value={date || ''} 
-              onChange={e => setDate(e.target.value)}
+          ? <input
+              className="w:100pc"
+              style={{ color: date ? '#134168' : '#8d8d8d', fontWeight: date ? 'bold' : 'normal' }}
+              placeholder={placeholder}
+              value={date || ''}
+              onChange={e => { setDate(e.target.value) }}
               onKeyDown={e => {
                 if (e.keyCode === 13) {
                   handleAddDate(e);
@@ -57,15 +55,15 @@ const DatePicker = ({ showPicker = false, placeholder = 'Select date', date, day
             />
           : <div className="w:100pc" style={{ color: date ? '#134168' : '#8d8d8d', fontWeight: date ? 'bold' : 'normal' }}>{date || placeholder}</div>
         }
-        <div className="w:20px ta:c c:ccc" style={{ color: open && '#1fb5a7' }}><FontAwesomeIcon icon="calendar-alt" /></div>
+        <div className="w:24px ta:c c:ccc" style={{ color: open && '#1fb5a7' }}><FontAwesomeIcon icon="calendar-alt" /></div>
       </Toggler>
       {open && (
         <Date>
           <DateItems>
             <DateItem>
-              <Icon onMouseDown={() => handleMouseDown({ type: 'days'})}><FontAwesomeIcon icon="plus" /></Icon>
-              <DateText>{day}</DateText>
-              <Icon down onMouseDown={() => handleMouseDown({ type: 'days', down: true })}><FontAwesomeIcon icon="minus" /></Icon>
+              <Icon onMouseDown={() => handleMouseDown({ type: 'years'})}><FontAwesomeIcon icon="plus" /></Icon>
+              <DateText>{year}</DateText>
+              <Icon down onMouseDown={() => handleMouseDown({ type: 'years', down: true})}><FontAwesomeIcon icon="minus" /></Icon>
             </DateItem>
             <DateItem>
               <Icon onMouseDown={() => handleMouseDown({ type: 'months'})}><FontAwesomeIcon icon="plus" /></Icon>
@@ -73,9 +71,9 @@ const DatePicker = ({ showPicker = false, placeholder = 'Select date', date, day
               <Icon down onMouseDown={() => handleMouseDown({ type: 'months', down: true })}><FontAwesomeIcon icon="minus" /></Icon>
             </DateItem>
             <DateItem>
-              <Icon onMouseDown={() => handleMouseDown({ type: 'years'})}><FontAwesomeIcon icon="plus" /></Icon>
-              <DateText>{year}</DateText>
-              <Icon down onMouseDown={() => handleMouseDown({ type: 'years', down: true})}><FontAwesomeIcon icon="minus" /></Icon>
+              <Icon onMouseDown={() => handleMouseDown({ type: 'days'})}><FontAwesomeIcon icon="plus" /></Icon>
+              <DateText>{day}</DateText>
+              <Icon down onMouseDown={() => handleMouseDown({ type: 'days', down: true })}><FontAwesomeIcon icon="minus" /></Icon>
             </DateItem>
           </DateItems>
           <div className="w:100pc dp:flx fd:row jc:sb ai:c m-t:8px m-rl:4px">
@@ -92,7 +90,7 @@ export default DatePicker;
 
 const Icon = styled.div`
   width: 100%;
-  padding: 8px 10px;
+  padding: 8px 12px;
   background: #f7f7f7;
   cursor: pointer;
   transition: transform 0.3s ease-in-out;
@@ -123,7 +121,7 @@ const Date = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 8px 10px;
+  padding: 8px 12px;
   background:  white; /* #f7f7f7 */
   position: absolute;
   z-index: 1;

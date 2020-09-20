@@ -48,7 +48,7 @@ export function useFilters(props) {
 }
 
 export function useSelect(props, data, pagination = {}) {
-  
+
   const { selectAll } = props;
   const [ selected, setSelected ] = useState(selectAll && data.map( item => item.id ) || []);
 
@@ -57,16 +57,16 @@ export function useSelect(props, data, pagination = {}) {
 
   let first = (pagination.offset + pagination.limit) > pagination.overall ? pagination.overall : pagination.offset + pagination.limit;
   first = first !== 0  && [pagination.offset + 1, first].join(' - ');
-  
+
   const isSelected = selected && selected.length && props.actions;
-  const results = (selected && selected.length 
+  const results = (selected && selected.length
     || first
-    // || pagination.overall 
+    // || pagination.overall
     || '0') + ' / ';
-    
+
   return { onSelect, selected, isSelected, results };
-  
-  
+
+
   // methods
   function onSelect(id, isChecked) {
     if (!id) return setSelected([])
@@ -85,8 +85,8 @@ export function usePagination(props) {
     setPagination(getPagesData(props.pagination || {}) || props.pagination)
   }, [props.pagination])
 
-  const from = pagination ? (props.data.length <= pagination.limit ? 0 : pagination.offset) : 0
-  const data = props.data && props.data.slice(from, from + (pagination.limit || 0))
+  const from = pagination ? (props.data.length <= pagination?.limit ? 0 : pagination?.offset) : 0
+  const data = props.data && props.data.slice(from, from + (pagination?.limit || 0))
 
   return { pagination, data, handlePagination }
 

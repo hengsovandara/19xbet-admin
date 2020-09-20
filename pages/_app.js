@@ -1,13 +1,13 @@
 import React, { useEffect } from 'react'
-import App, { Container } from 'next/app'
+import { Container } from 'next/app'
 import getConfig from 'next/config'
-//import { GlobalProvider } from 'actstore';
-//import useActStore from 'actstore';
-import { ActStore } from 'actstore'
+import useActStore, { ActStore } from 'actstore'
 import Router from 'next/router'
+import Head from 'next/head'
 import config, { getRoutes } from '../src/@clik/configs'
 import actions from '../src/@clik/actions'
 import '@fortawesome/fontawesome-svg-core/styles.css'
+import Cookies from 'js-cookie'
 
 import { ThemeProvider } from 'styled-components'
 
@@ -17,73 +17,48 @@ import '../static/style.css'
 const routes = getRoutes()
 const { publicRuntimeConfig } = getConfig()
 
-/*const ActStore = (props) => {
-  const actStore = useActStore(props);
-  const { act, cookies, store } = actStore;
-  console.log("actStore init", actStore);
-  return null
-};*/
-
 const theme = {
-  prim: '#FCCD12',
-  sec: '#FCCD12',
+  prim: '#20b5a7',
+  sec: '#134168',
   success: '#00d061',
   danger: '#f57167',
   grey: '#555',
   lightgrey: '#e0e0e0'
 }
 
-export default class extends App {
+const App = props => {
+  const { Component, pageProps, router = {}, init } = props
 
-  render() {
-    const { Component, pageProps, router = {}, init } = this.props
+  const { store: { token }, act } = useActStore({
+    init, config, actions, Cookies,
+    router: Router.router || {},
+    initialState: { token: Cookies.get('token') },
+    handlers: { loading: 'APP_LOADING', info: 'APP_INFO', confirm: 'APP_CONFIRM', clear: 'APP_CLEAR', image: 'APP_IMAGE' }
+  }, [])
 
-    const query = Router.router && Router.router.query && Object.keys(Router.router.query).length
-      ? Router.router.query
-      : this.state.query
-    // console.log("app", router.query, this.state.query, query)
-    return (
-      <>
-        <ActStore init={init} initialState={{ test: "test" }} config={config} router={Router.router || {}} actions={actions} />
-        {/*<GlobalProvider init={init} config={config} router={router} actions={actions}>*/}
-        <main className="prim:teal300 sec:134168 tert:1B598D txt:black200 ff:Nunito c:txt bg:black">
-          <ThemeProvider theme={theme}>
-            <Component {...pageProps} query={Router.router && Router.router.query || {}} init={init} />
-          </ThemeProvider>
-        </main>
-        {/*</GlobalProvider>*/}
-      </>
-    )
-  }
-
-  constructor(props) {
-    super(props)
-    this.state = {
-      query: {}
-    }
-  }
-
-  componentWillReceiveProps(nextProps) {
-    // console.log("receive", this.props, nextProps)
-    if (Object.keys(this.state.query).length && (nextProps.query !== this.props.query))
-      this.setState({ query: {} })
-  }
-
-  componentDidMount() {
-    const searchParams = new URLSearchParams(window.location.search.split(/\?/)[1])
-    const query = {}
-    for (const [key, value] of searchParams) {
-      query[key] = value
-    }
-    this.setState({ query })
-  }
-
-  static async getInitialProps({ Component, router, ctx }) {
-    const pageProps = Component.getInitialProps && await Component.getInitialProps(ctx) || {}
-    const { asPath } = ctx
-    const { version, env } = publicRuntimeConfig || {}
-
-    const { route, query } = router
-    return { pageProps, route, query, asPath, init: { version, env, routes }, }
-  }
+  useEffect(() => {
+    ((window?.location?.pathname || '/') !== (Router?.router?.route || '/')) && Router.push(Router.router.asPath)
+    act('APP_INIT')
+  }, [])
+  return (
+    <>
+      <Head><title>Clik - Traffic light System</title></Head>
+      <main className="prim:37acb4 sec:134168 tert:1B598D txt:black200 ff:Nunito c:txt bg:fafafa">
+        <ThemeProvider theme={theme}>
+          <Component {...pageProps} query={Router?.router?.query || {}} init={init} />
+        </ThemeProvider>
+      </main>
+    </>
+  )
 }
+
+App.getInitialProps = async ({ Component, router, ctx }) => {
+  const pageProps = Component.getInitialProps && await Component.getInitialProps(ctx) || {}
+  const { asPath } = ctx
+  const { version, env } = publicRuntimeConfig || {}
+
+  const { route, query } = router
+  return { pageProps, route, query, asPath, init: { version, env, routes }, }
+}
+
+export default App

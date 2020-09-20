@@ -3,6 +3,8 @@ import useActStore from 'actstore'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Paragraph } from '../../../@clik/elems/styles'
 import TextField from '../../../@clik/elems/textfield'
+import DatePicker from '../../../@clik/elems/date-picker'
+import Address from './address'
 import { actions } from './hooks'
 
 const Information = ({ merchant }) => {
@@ -17,8 +19,9 @@ const Information = ({ merchant }) => {
       },
       {
         label: 'Incorporate Date',
-        name: 'incorporateDate',
+        name: 'incorporationDate',
         value: merchant?.incorporationDate,
+        type: 'date',
       },
       {
         label: 'Country of Incorporation',
@@ -43,7 +46,7 @@ const Information = ({ merchant }) => {
   }
 
   return (
-    <div className="p:20px c:sec">
+    <div className="p:24px c:sec">
       <div className="dp:flx ai:c jc:fs">
         <div className="w:8pc" style={{ visibility: 'hidden' }}></div>
         <div className="w:100pc dp:flx">
@@ -56,7 +59,7 @@ const Information = ({ merchant }) => {
         </div>
       </div>
       {items.map(item => (
-        <div key={item.name} className="dp:flx ai:fe ta:l m-tb:10px">
+        <div key={item.name} className="dp:flx ai:fe ta:l m-tb:12px">
           <div className="w:8pc dp:flx ai:c jc:c">
             <div className="w:100pc m-b:8px">
               <FontAwesomeIcon
@@ -71,11 +74,19 @@ const Information = ({ merchant }) => {
               <p className="lh:2.35 fs:90pc fw:bold">{'N/A'}</p>
             </div>
             <div className="w:60pc">
-              <TextField placeholder={item.label} name={item.name} value={item.value} action={text => handleChange(item.name, text)} />
+              {item.type === 'date'
+                ? <DatePicker showPicker
+                  placeholder="DD/MM/YYYY"
+                  value={item.value}
+                  onClick={value => handleChange(item.name, value)} />
+                : <TextField placeholder={item.label} name={item.name} value={item.value} action={text => handleChange(item.name, text)} />
+              }
             </div>
           </div>
         </div>
       ))}
+
+      <Address merchant={merchant} />
     </div>
   )
 }

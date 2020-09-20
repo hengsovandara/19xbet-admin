@@ -40,7 +40,7 @@ function handleBlur(e, handleFocus, value) {
 
 const classNameConfirm = (value, light) =>
   fucss({
-    'crs:pt p:10px-5px br:50pc ws:np lh:1 ts:all w:25px': true,
+    'crs:pt p:12px-5px br:50pc ws:np lh:1 ts:all w:25px': true,
     'c:sec': light,
     'op:0 w:0': !value
   })

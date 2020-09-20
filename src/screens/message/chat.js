@@ -43,7 +43,7 @@ const Chat = ({ user, onCall, onOpenAbout, onClose }) => {
         <ChatHeader onClose={onClose} user={user} onCall={onCall} onOpenAbout={onOpenAbout} />
       </div>
       {loading && <Loading />}
-      <div className="of-y:scroll dp:flx flxd:col h:100pc p-t:10px">
+      <div className="of-y:scroll dp:flx flxd:col h:100pc p-t:12px">
         {!!conversations && conversations.map(message => (
           <Message key={message.id} mine={message.sender.uid !== user.uid}>
             {message.text || 'Missed Call'}
@@ -60,9 +60,9 @@ const Chat = ({ user, onCall, onOpenAbout, onClose }) => {
 export default Chat;
 
 const ChatHeader = ({ onClose, user, onCall, onOpenAbout }) => (
-  <div className="p:20px dp:flx ai:c bd-b:1px-sd-e0e0e0">
+  <div className="p:24px dp:flx ai:c bd-b:1px-sd-e0e0e0">
     <Icon icon="arrow-left" onClick={onClose} />
-    <div className="p-rl:10px">
+    <div className="p-rl:12px">
       <Avatar url={user.avatar} />
     </div>
     <div className="w:100pc">
@@ -86,8 +86,8 @@ const ChatTextArea = ({ onSubmit = console.log }) => {
   }
 
   return (
-    <div className="p:5px p-b:10px p-r:15px w:100pc">
-      <form className="w:100pc dp:flx ai:c js:sb" onSubmit={e => {
+    <div className="p:5px p-b:12px p-r:16px w:100pc">
+      <form className="dp:flx ai:c js:sb" onSubmit={e => {
         e.preventDefault();
         if (!messageText || messageText.match(/^ *$/)) return;
         onSubmit(messageText);
@@ -114,16 +114,16 @@ const ChatTextArea = ({ onSubmit = console.log }) => {
 
 const Message = styled.div`
   ${props => fustyle({ 
-    'p-rl:14px m-rl:15px lh:1.5 p-tb:7px m-b:4px': true,
+    'p-rl:14px m-rl:16px lh:1.5 p-tb:7px m-b:4px': true,
     'bg:6AC4BC c:white as:fs br:5px-5px-5px-0': !props.mine,
     'bg:e0e0e0 c:txt as:fe br:5px-5px-0-5px': props.mine
   })}
 `;
 
 const Textarea = styled.textarea`
-  ${fustyle('w:100pc dp:flx jc:sb ai:c bg:white p:8px-12px fs:90pc ta:l br:3px mxh:74px m-rl:10px of-y:auto')};
+  ${fustyle('w:100pc dp:flx jc:sb ai:c bg:white p:8px-12px fs:90pc ta:l br:3px mxh:74px m-rl:12px of-y:auto')};
   outline: none;
-  border: 1px solid ${props => props.theme.lightgrey};
+  border: 1px solid ${props => props.theme.borderColor};
 
   &:focus {
     box-shadow: 1px;

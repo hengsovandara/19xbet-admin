@@ -2,24 +2,24 @@ import { Component } from 'react'
 import Photo from './photo'
 import { ElemPopup } from '../../comps/fillers'
 
-export default class extends Component {
+export default class PhotoPicker extends Component {
   render() {
     const { cameraMode, isFullscreen, isLoading, show } = this.state
     const { popup, single, light, user } = this.props
 
     if (!show) return null
 
-    const elemPhoto = <Photo 
-      light={light} 
-      single={single} 
-      onClose={this.handleToggleShow.bind(this)} 
-      onFullscreen={this.handleFullscreen.bind(this)} 
-      cameraMode={cameraMode} 
-      handleCameraModeToggle={this.handleCameraModeToggle.bind(this)} 
-      dragEnterOver={this.dragEnterOver} 
-      handleDrop={this.handleDrop} 
-      handleClick={id => this.handleClick(id)} 
-      triggerUpload={id => this.triggerUpload(id)} 
+    const elemPhoto = <Photo
+      light={light}
+      single={single}
+      onClose={this.handleToggleShow.bind(this)}
+      onFullscreen={this.handleFullscreen.bind(this)}
+      cameraMode={cameraMode}
+      handleCameraModeToggle={this.handleCameraModeToggle.bind(this)}
+      dragEnterOver={this.dragEnterOver}
+      handleDrop={this.handleDrop}
+      handleClick={id => this.handleClick(id)}
+      triggerUpload={id => this.triggerUpload(id)}
       uploadImages={files => this.uploadImages(files)} />
 
     if (!popup) return elemPhoto

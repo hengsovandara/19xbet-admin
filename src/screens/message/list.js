@@ -8,9 +8,9 @@ import { Avatar, Icon } from './comps';
 export default ({ users, messages, setUser }) => {
   return (
     <Fragment>
-      <div className="dp:flx jc:c w:100pc p:20px">
-        <Paragraph className="fs:20px-! w:100pc">Messages</Paragraph>
-        <Icon className="c:sec hv-c:prim m-r:20px" icon="pen" />
+      <div className="dp:flx jc:c w:100pc p:24px">
+        <Paragraph className="fs:24px-! w:100pc">Messages</Paragraph>
+        <Icon className="c:sec hv-c:prim m-r:24px" icon="pen" />
         <Icon className="c:sec hv-c:prim" icon="ellipsis-v" />
       </div>
       <div className="dp:flx jc:c w:100pc">
@@ -21,10 +21,10 @@ export default ({ users, messages, setUser }) => {
           <Paragraph center>Client</Paragraph>
         </TabNavigation>
       </div>
-      <div className="p:20px">
+      <div className="p:24px">
         <Search />
       </div>
-      <div className="of-y:scroll h:100pc p:20px p-t:0">
+      <div className="of-y:scroll h:100pc p:24px p-t:0">
         {users && users.map(user => (
           <User 
             key={user.uid}
@@ -48,11 +48,11 @@ const User = ({uid, avatar, name, status, messages, onOpenChat}) => {
 
   return (
     <div className="bd-b:1px-sd-e0e0e0a5" onClick={onOpenChat}>
-      <div className="dp:flx p-tb:15px crs:pt">
+      <div className="dp:flx p-tb:16px crs:pt">
         <div className="ta:l">
           <Avatar url={avatar} status={status} />
         </div>
-        <div className="ta:l flxg:1 ai:c p-rl:10px as:c">
+        <div className="ta:l flxg:1 ai:c p-rl:12px as:c">
           <p className="fs:90pc fw:bold p-b:6px">{name}</p>
           {lastMessage && <p className="fs:90pc of:hidden">{smartTrim(lastMessage, 36, ' ...')}</p>}
         </div>

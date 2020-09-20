@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-export default class extends Component {
+export default class Camera extends Component {
   constructor(props) {
     super(props)
     this.state = { isFront: true }
@@ -18,12 +18,10 @@ export default class extends Component {
   }
 
   openCamera(constraints) {
-    // console.log({ navigator0: navigator.mediaDevices })
     if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
       navigator.mediaDevices
         .getUserMedia(constraints)
         .then(stream => {
-          // console.log({ video: this.video })
           this.video.srcObject = stream
           this.video.onloadedmetadata = e => {
             this.video.play()
@@ -38,8 +36,6 @@ export default class extends Component {
   handleCloseCamera = () => {
     this.video.pause()
     this.video.srcObject = '' || null
-
-    // console.log({ navigator1: navigator.mediaDevices })
 
     if (navigator.mediaDevices === undefined) {
       navigator.mediaDevices = {}
@@ -120,21 +116,21 @@ export default class extends Component {
             className="dp:n w:100pc"></canvas>
         </div>
         <div className="">
-          <button className="ps:ab t,l:0 bg:ts p:10px" type="button" onClick={this.handleCloseCamera}>
+          <button className="ps:ab t,l:0 bg:ts p:12px" type="button" onClick={this.handleCloseCamera}>
             <FontAwesomeIcon className="fa-2x c:white" icon="arrow-left" />
           </button>
-          <button className="z:2 ps:ab t,r:0 bg:ts p:10px" type="button" onClick={this.handleSwitchCamera.bind(this)}>
+          <button className="z:2 ps:ab t,r:0 bg:ts p:12px" type="button" onClick={this.handleSwitchCamera.bind(this)}>
             <FontAwesomeIcon className="fa-2x c:white" icon="sync" />
           </button>
           <button
-            className="z:1 ps:ab b,l:0 bg:ts p:10px"
+            className="z:1 ps:ab b,l:0 bg:ts p:12px"
             type="button"
             onClick={async event => {
               const photo = await this.captureBlobPhoto()
             }}>
             <FontAwesomeIcon className="fa-2x c:white" icon="camera" />
           </button>
-          <button className="ps:ab b,r:0 p:10px bg:ts" type="button" onClick={onFullscreen}>
+          <button className="ps:ab b,r:0 p:12px bg:ts" type="button" onClick={onFullscreen}>
             <FontAwesomeIcon className="fa-2x c:white" icon="expand" />
           </button>
         </div>

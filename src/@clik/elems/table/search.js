@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef, useCallback } from 'react'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import Icon from '../icon'
 import { fucss } from 'next-fucss/utils'
 
 let timeout = null
@@ -12,59 +12,47 @@ function Search({ name = '', onClick }) {
   const [typingTimeout, setTypingTimeout] = useState(0)
 
   useEffect(() => {
-    if (!name) setText('')
+    !name && setText('')
+    Boolean(name) && inputRef.current.focus()
   }, [name])
 
-  const updateText = e => {
-    if (typingTimeout) {
-      clearTimeout(typingTimeout)
-    }
-
-    const searchText = e.target.value
+  const updateText = (e, now) => {
+    typingTimeout && clearTimeout(typingTimeout)
+    const searchText = typeof e === 'string' ? e : e.target?.value
     setText(searchText)
-    setTypingTimeout(setTimeout(() => {
-      onClick(searchText)
-    }, 2000))
+
+    now
+      ? onClick(searchText)
+      : setTypingTimeout(setTimeout(() => { onClick(searchText) }, 2000))
   }
 
   return (
     <div className={classNameWrapper(focus)}>
       <form
         autoComplete="off"
-        className="w:100pc dp:flx jc:c ai:c"
+        className="w,h:100pc dp:flx jc:c ai:c"
         onSubmit={event => {
           event.preventDefault()
-          // if (!text) return;
-          // onClick(text);
         }}
       >
         <input
-          // id="search"
           ref={inputRef}
-          className="w:100pc p:7px-0-7px-12px c:sec"
+          className="w:100pc p-rl:12px mnh:40px c:black fs:90pc"
           placeholder="Search"
-          // defaultValue={name}
           value={text}
           onChange={updateText}
+          autofocus={true}
           onFocus={() => setFocus(true)}
           onBlur={() => setFocus(false)}
-        // onKeyDown={event => {
-        //   if (event.keyCode === 13) {
-        //     event.preventDefault();
-        //     onClick(text);
-        //   }
-        // }}
-        // onKeyUp={e => {
-        //   e.persist()
-        //   clearTimeout(timeout)
-        //   timeout = setTimeout(() => {
-        //     console.log("keyup", document.getElementById('search'))
-        //     // onClick(text)
-        //   }, 1500)
-        // }}
+          onKeyDown={event => {
+            if (event.keyCode === 13) {
+              event.preventDefault()
+              updateText(text, true)
+            }
+          }}
         />
-        <button className={classNameButton(focus)}>
-          <FontAwesomeIcon icon="search" />
+        <button onClick={() => updateText(Boolean(text) ? '' : text, true)} className={classNameButton(focus)}>
+          <Icon icon={Boolean(text) ? 'times' : 'search'} />
         </button>
       </form>
     </div>
@@ -72,14 +60,15 @@ function Search({ name = '', onClick }) {
 }
 
 const classNameWrapper = focus => fucss({
-  'w:100pc of:hd bd:1px-sd-e8e8e8 br:3px': true,
-  'bs:1 bd:1px-sd-prim': focus
+  'w:100pc md-mnw:240px md-mxw:400px of:hd br:4px h:40px hv-bd:1px-sd-prim': true,
+  'bs:1 bd:1px-sd-prim': focus,
+  'bd:1px-sd-blacka12': !focus
 })
 
 const classNameButton = focus => fucss({
-  'p:7px-14px crs:pt hv-c:white_bg:prim': true,
-  'bs:1 bd-l:1px-sd-prim bg:prim c:white': focus,
-  'bg:blacka1 bd:none c:sec': !focus
+  'p:8px-12px crs:pt bg:white': true,
+  'c:prim': focus,
+  'c:black400': !focus
 })
 
 export default Search

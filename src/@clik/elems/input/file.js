@@ -10,7 +10,7 @@ let previewMethods
 export default props => {
   const { value, edit, light, button, color = 'sec', icon = 'image', text } = props
 
-  if (button) return <Button {...props} className="mxw:100px m-t:10px" color={color} single text={text} icon={icon} type="file" action={props.action} />
+  if (button) return <Button {...props} color={color} single text={text} icon={icon} type="file" action={props.action} />
 
   return (
     <div className="mdx-ta:c">
@@ -39,8 +39,8 @@ export default props => {
 
 const classNameDesc = edit =>
   fucss({
-    'ps:ab b,l:0 w:calc(100pc-15px) z:1 bg:blacka5 m:5px p:10px-15px': !edit,
-    'dp:bk bg:sec600 p:10px w:calc(100pc-5px)': edit
+    'ps:ab b,l:0 w:calc(100pc-16px) z:1 bg:blacka5 m:5px p:12px-16px': !edit,
+    'dp:bk bg:sec600 p:12px w:calc(100pc-5px)': edit
   })
 
 const classNameUpload = light =>
@@ -59,7 +59,7 @@ const classNameImage = light =>
 
 const classNameDeleteImage = light =>
   fucss({
-    't,r:0 ps:ab bs:1 hv-scl:1.5 z:1 ts:all h,w,lh:20px p:2px br:50pc ta:c crs:pt': true,
+    't,r:0 ps:ab bs:1 hv-scl:1.5 z:1 ts:all h,w,lh:24px p:2px br:50pc ta:c crs:pt': true,
     'bg:sec600': !light,
     'bg:grey300 c:white': light
   })

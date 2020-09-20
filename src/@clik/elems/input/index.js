@@ -1,6 +1,5 @@
 import { fucss } from 'next-fucss/utils'
 import { Component } from 'react'
-import { Transition } from 'react-spring'
 import Select from './select'
 import Button from '../button'
 import Radio from './radio'
@@ -12,6 +11,7 @@ import Range from './range'
 import Dropdown from './dropdown'
 import Textfield from './textfield'
 import Label from './label'
+import NewSelect from '../select'
 
 export default class extends Component {
   render() {
@@ -100,7 +100,9 @@ function ElemInput(props) {
 
   switch (props.type) {
     case 'select':
-      return <Select {...props} action={extractValues(props)} classNameInput={classNameInput} filter={props.filter} />
+      return <Select {...props} full action={extractValues(props)} classNameInput={classNameInput} filter={props.filter} />
+      case 'newSelect':
+        return <NewSelect {...props} action={extractValues(props)} classNameInput={classNameInput} filter={props.filter} />
     case 'button':
       return <Button {...props} action={extractValues(props)} />
     case 'file':
@@ -154,7 +156,7 @@ function ElemPreview({ prefix, placeholder, sep, handleToggleEdit, value, type, 
             switch (key) {
               case 'label':
                 return (
-                  <label key={key} className="p:3px-10px fw:400 fs:90pc c:grey200 bd-w:1px br:5px m:5px">
+                  <label key={key} className="p:3px-12px fw:400 fs:90pc c:grey200 bd-w:1px br:5px m:5px">
                     {valueText}
                   </label>
                 )
@@ -190,23 +192,22 @@ function ElemPreview({ prefix, placeholder, sep, handleToggleEdit, value, type, 
   )
 }
 
-const classNamePreview = (valueText, isNested, light) =>
+const classNamePreview = () =>
   fucss({
-    'w:100pc p-tb:10px fw:500 bd-b:1px-sd-ccc c:black': true
+    'w:100pc mnh:40px bd-b:1px-sd-ccc c:black': true
   })
 
 const classNameInput = (underline = false, invalid = false, centered = false, background, lightgray) =>
   fucss({
-    'w:100pc p-tb:10px fw:500': true,
-    'bd-b:2px-sd-green': underline && !invalid,
-    'bd-b:2px-sd-red ': underline && invalid,
-    'bd-b:2px-sd-ccc': lightgray,
-    // 'bd-b-w:1px p:10px br:5px': underline,
+    'w:100pc mnh:40px p-rl:12px br:5px c:black fw:bold': true,
+    'bd:1px-sd-green': underline && !invalid,
+    'bd:1px-sd-red ': underline && invalid,
+    'bd:1px-sd-ccc': lightgray,
     'ta:c': centered,
     'bd:1px-sld-ccca5 c:txt-! br:5px': background
   })
 
-const classNameInputWrapper = (width, sep, edit, noWrapper, isCheckbox, noSpace) =>
+const classNameInputWrapper = (sep, edit, noWrapper, isCheckbox, noSpace) =>
   fucss({
     'ps:rl': true,
     '': !sep,

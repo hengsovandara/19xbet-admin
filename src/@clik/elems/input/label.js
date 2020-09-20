@@ -9,10 +9,8 @@ export default ({ type, edit, light, label, children, fields, space, tips, inval
 
 const classNameLabel = (isCheckbox, edit, light, fields, space, invalid) =>
   fucss({
-    'dp:bk': true,
+    'dp:bk ta:l c:black200': true,
     'c:red': invalid,
-    'fs:90pc c:inh': !light,
-    'c:sec300 fs:80pc fw:600': light,
     'm-l:5px': isCheckbox,
     'm-b:5px': (edit && !isCheckbox && !fields) || space,
     'w:100pc ta:l m-l:5px': fields

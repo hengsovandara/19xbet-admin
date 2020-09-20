@@ -1,1 +1,1 @@
-export { ConsumersScreen as default } from '../src/screens';
+export { ConsumersScreen as default } from '../src/screens'

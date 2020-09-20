@@ -6,7 +6,7 @@ export default class extends Component {
   render() {
     const { mode, value, stats, min = 0, max = 100, name } = this.props
     const { percentageLeft, percentageRight } = this.state
-    // console.log({ value, name, mode });
+
     return (
       <div className="ps:rl p:7px-0px w:100pc dp:bk">
         <div
@@ -17,16 +17,16 @@ export default class extends Component {
           }}>
           {mode === 'single' ? <div className="bg:tert w:30pc p:3px m:0 ts:w" style={{ width: percentageLeft + '%' }} /> : <div className="bg:tert w:30pc p:3px m:0 ts:all" style={{ width: percentageRight - percentageLeft + '%', marginLeft: percentageLeft + '%' }} />}
         </div>
-        <span draggable={true} onTouchStart={e => this.calcPercentage(e, e.touches[0].pageX, LEFT, false, mode, true)} onTouchMove={e => this.calcPercentage(e, e.touches[0].pageX, LEFT, false, mode, true)} onTouchEnd={e => this.calcPercentage(e, this.state.leftX, LEFT, true, mode, true)} onDragStart={e => e.dataTransfer.setDragImage(document.createElement('img'), 0, 0)} onDrag={e => this.calcPercentage(e, e.clientX, LEFT, false, mode)} onDragEnd={e => this.calcPercentage(e, e.clientX, LEFT, true, mode)} className="br:50pc bg:prim ps:ab t:0 trl:50npc ts:all bs:2 w,h,lh:25px ta:c fs:75pc fw:800" style={{ left: `calc(${percentageLeft > 90 ? '90' : percentageLeft}% + 10px)` }}>
+        <span draggable={true} onTouchStart={e => this.calcPercentage(e, e.touches[0].pageX, LEFT, false, mode, true)} onTouchMove={e => this.calcPercentage(e, e.touches[0].pageX, LEFT, false, mode, true)} onTouchEnd={e => this.calcPercentage(e, this.state.leftX, LEFT, true, mode, true)} onDragStart={e => e.dataTransfer.setDragImage(document.createElement('img'), 0, 0)} onDrag={e => this.calcPercentage(e, e.clientX, LEFT, false, mode)} onDragEnd={e => this.calcPercentage(e, e.clientX, LEFT, true, mode)} className="br:50pc bg:prim ps:ab t:0 trl:50npc ts:all bs:2 w,h,lh:25px ta:c fs:75pc fw:800" style={{ left: `calc(${percentageLeft > 90 ? '90' : percentageLeft}% + 12px)` }}>
           {this.state.value}
         </span>
         {mode === 'multiple' && (
-          <span draggable={true} onTouchStart={e => this.calcPercentage(e, e.touches[0].pageX, RIGHT, false, mode, true)} onTouchMove={e => this.calcPercentage(e, e.touches[0].pageX, RIGHT, false, mode, true)} onTouchEnd={e => this.calcPercentage(e, this.state.rightX, RIGHT, true, mode, true)} onDragStart={e => e.dataTransfer.setDragImage(document.createElement('img'), 0, 0)} onDrag={e => this.calcPercentage(e, e.clientX, RIGHT, false, mode)} onDragEnd={e => this.calcPercentage(e, e.clientX, RIGHT, true, mode)} className="br:50pc bg:prim ps:ab t:0 trl:50npc ts:all bs:2 w,h,lh:25px ta:c fs:75pc fw:800" style={{ left: `calc(${percentageRight}% - 10px)` }}>
+          <span draggable={true} onTouchStart={e => this.calcPercentage(e, e.touches[0].pageX, RIGHT, false, mode, true)} onTouchMove={e => this.calcPercentage(e, e.touches[0].pageX, RIGHT, false, mode, true)} onTouchEnd={e => this.calcPercentage(e, this.state.rightX, RIGHT, true, mode, true)} onDragStart={e => e.dataTransfer.setDragImage(document.createElement('img'), 0, 0)} onDrag={e => this.calcPercentage(e, e.clientX, RIGHT, false, mode)} onDragEnd={e => this.calcPercentage(e, e.clientX, RIGHT, true, mode)} className="br:50pc bg:prim ps:ab t:0 trl:50npc ts:all bs:2 w,h,lh:25px ta:c fs:75pc fw:800" style={{ left: `calc(${percentageRight}% - 12px)` }}>
             {value || percentageRight || max}
           </span>
         )}
         {stats && (
-          <div className="fs:80pc mrg-t:10px fw:900">
+          <div className="fs:80pc mrg-t:12px fw:900">
             {mode === 'multiple' && <span className="fl:l">{this.percentageToValue(percentageLeft)}</span>}
             <span className="fl:r">{mode === 'single' ? this.state.value : this.percentageToValue(percentageRight)}</span>
           </div>
@@ -73,7 +73,6 @@ export default class extends Component {
   }
 
   calcPercentage = (e, bubbleX, pos, callAction = false, mode = 'single', isTouch = false) => {
-    // console.log({ mode })
 
     //throttles the state changes by
     if (!isTouch)
@@ -86,7 +85,6 @@ export default class extends Component {
       ...this.state,
       delay: !isTouch && true
     }
-    // console.log(state.percentageLeft)
     let perc = pos === LEFT ? state.percentageLeft : state.percentageRight
 
     pos === LEFT ? (state.leftX = bubbleX) : (state.rightX = bubbleX)
@@ -113,12 +111,7 @@ export default class extends Component {
 
     this.setState(state)
 
-    // console.log(state.value)
-
     const value = mode === 'multiple' ? { min: state.percentageLeft, max: state.percentageRight } : this.percentageToValue(state.percentageLeft)
-
-    // console.log({ value });
-    // console.log(callAction)
     callAction && this.props.action && this.props.action(value, this.props)
   }
 }

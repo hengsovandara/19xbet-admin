@@ -39,21 +39,21 @@ const Upload = ({ merchantId, examples, document, setDocument, handleOpenUpload 
   })
 
   return (
-    <div style={{ padding: '0 20px 20px' }}>
-      <div className="bd-b:1px-sd-e8e8e8 p-b:20px">
+    <div style={{ padding: '0 24px 24px' }}>
+      <div className="bd-b:1px-sd-e8e8e8 p-b:24px">
         <div className="w:100pc dp:flx jc:sb">
           <div
-            className="w:100pc c:blacka5 m-r:10px" style={{ minHeight: 390 }}
-            onClick={() => sample.url && previewMethods.handleToggleShow(sample.url)}
+            className="w:100pc c:blacka5 m-r:12px" style={{ minHeight: 390 }}
+            onClick={() => sample?.url && previewMethods.handleToggleShow(sample?.url)}
           >
-            {sample.url
-              ? <img src={sample.url} className="md-w:90pc w:100pc mnw:200px bd:1px-sd-e8e8e8" />
-              : <p className="dp:flx jc,ai:c p:20px ta:c fs:90pc fw:800" style={{ height: '100%' }}>Please choose a type of documents to view the example document.</p>
+            {sample?.url
+              ? <img src={sample?.url} className="md-w:90pc w:100pc mnw:200px bd:1px-sd-e8e8e8" />
+              : <p className="dp:flx jc,ai:c p:24px ta:c fs:90pc fw:800" style={{ height: '100%' }}>Please choose a type of documents to view the example document.</p>
             }
           </div>
 
           <div
-            className="mh:390px w:100pc dp:flx fd:col jc,ai:c br:4px c:blacka5 m-l:10px p:20px"
+            className="mh:390px w:100pc dp:flx fd:col jc,ai:c br:4px c:blacka5 m-l:12px p:24px"
             style={{
               background: 'linear-gradient(to right, rgba(0,0,0,0.15) , #eaecf0)',
               boxShadow: '0 0 5px rgba(0, 0, 0, 0.15)',
@@ -72,7 +72,7 @@ const Upload = ({ merchantId, examples, document, setDocument, handleOpenUpload 
               </div>
             )}
             {document.name ? (
-              <div className="dp:flx jc,ai:c w:100pc p-t:20px ">
+              <div className="dp:flx jc,ai:c w:100pc p-t:24px ">
                 <Input button light
                   type="file"
                   icon="camera"
@@ -83,7 +83,7 @@ const Upload = ({ merchantId, examples, document, setDocument, handleOpenUpload 
                 {document.url &&
                   <>
                     <button
-                      className="m-r:10px mnw:50px p:10px-20px c:sec bs:1 br:4px bd:1px-sd-000a15 ts:all hv-c:prim_bd:1px-sd-prim_try:2px"
+                      className="m-r:12px mnw:50px p:12px-24px c:sec bs:1 br:4px bd:1px-sd-000a15 ts:all hv-c:prim_bd:1px-sd-prim_try:2px"
                       onClick={() => previewMethods.handleToggleShow(document.url)}
                     >
                       <FontAwesomeIcon icon="eye" />
@@ -91,7 +91,7 @@ const Upload = ({ merchantId, examples, document, setDocument, handleOpenUpload 
 
                     {document.id && (
                       <button
-                        className="mnw:5px p:10px-20px c:sec bs:1 br:4px bd:1px-sd-blacka15 ts:all hv-c:f57167_bd:1px-sd-f57167_try:2px"
+                        className="mnw:5px p:12px-24px c:sec bs:1 br:4px bd:1px-sd-blacka125 ts:all hv-c:f57167_bd:1px-sd-f57167_try:2px"
                         onClick={handleDelete}
                       >
                         <FontAwesomeIcon icon="trash-alt" />
@@ -105,7 +105,7 @@ const Upload = ({ merchantId, examples, document, setDocument, handleOpenUpload 
           </div>
         </div>
 
-        <div className="w:100pc dp:flx jc:fe ai:c m-t:20px">
+        <div className="w:100pc dp:flx jc:fe ai:c m-t:24px">
           <div className="dp:flx jc:sb">
             <button
               type="button"
@@ -129,7 +129,7 @@ const Upload = ({ merchantId, examples, document, setDocument, handleOpenUpload 
         </div>
       </div>
 
-      <div className="ta:r m-t:20px">
+      <div className="ta:r m-t:24px">
         <button
           // disabled={disabledSubmit}
           className="mnw:100px br:4px bd:1px-sd-prim p:8px-24px fs:90pc bg:prim c:white ts:all hv-try:2px"
@@ -145,11 +145,11 @@ const Upload = ({ merchantId, examples, document, setDocument, handleOpenUpload 
 }
 
 const classNameChangeBtn = () => fucss({
-  'bg:fffa9_c:sec_br:5px_fs:90pc_p:10px-20px_m-t:15px_m-r:10px_md-m-t:0_w:100pc_md-w:auto_bd:1px-sd-000a15_label hv-bs:1_bd:1px-sd-prim_c:prim_label p-b:2px_svg': true
+  'bg:fffa9_c:sec_br:5px_fs:90pc_p:12px-24px_m-t:16px_m-r:12px_md-m-t:0_w:100pc_md-w:auto_bd:1px-sd-000a15_label hv-bs:1_bd:1px-sd-prim_c:prim_label p-b:2px_svg': true
 })
 
 const classNameUploadBtn = () => fucss({
-  'bg:none_c:prim_fs:.85em_p:10px-15px_m-t:15px_md-m-t:0_w:100pc_mnw:80px_md-w:auto_lh:1.25_bd:0_mxw:120px_ws:normal_bd:1px-dashed-prim_br:0_label p-b:2px_svg': true
+  'bg:none_c:prim_fs:.85em_p:12px-16px_m-t:16px_md-m-t:0_w:100pc_mnw:80px_md-w:auto_lh:1.25_bd:0_mxw:124px_ws:normal_bd:1px-dashed-prim_br:0_label p-b:2px_svg': true
 })
 
 const classNameButtonOutline = (color, disabled = false) => fucss({

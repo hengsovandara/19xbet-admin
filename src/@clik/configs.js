@@ -1,48 +1,53 @@
-const CFG = typeof window === 'object' ? window.__NEXT_DATA__.runtimeConfig : process.env
-export const ENV = CFG.env
+const HASURA_URL = process.env.HASURA_URL || 'node-test.clik.asia/hasura-ekmc'
+const EKYC_NODE_URL = process.env.EKYC_NODE_URL || 'https://node-test.clik.asia/ekmc'
 
-const HASURA_URL = CFG.HASURA_URL || '247khmer.com'
-const API_URL = CFG.API_URL || 'http://192.168.0.51:8080/api'
+export const GQL_URL = 'https://' + HASURA_URL + '/v1alpha1/graphql'
+export const WSS_URL = 'wss://' + HASURA_URL + '/v1alpha1/graphql'
+export const GQL_MUTATION_URL = EKYC_NODE_URL + '/validation'
 
-export const GQL_URL = ENV === 'dev' ? 'http://' + HASURA_URL + '/v1alpha1/graphql' : 'https://' + HASURA_URL + '/v1alpha1/graphql'
-export const WSS_URL = ENV === 'dev' ? 'ws://' + HASURA_URL + '/v1alpha1/graphql' : 'wss://' + HASURA_URL + '/v1alpha1/graphql'
+export const LIVENESS_AI = 'https://liveliness201.clik.asia'
 
 // ENDPOINTS
 export const endpoints = {
-  areas: API_URL + '/areas/',
-  ekyc: API_URL + '/ekyc',
-  ekym: API_URL + '/ekym',
-  upload: API_URL + '/upload',
-  business: API_URL + '/business',
-  login: API_URL + '/auth/login',
-  qr: API_URL + '/qr',
-  session: API_URL + '/session',
-  enums: API_URL + '/enums'
+  areas: EKYC_NODE_URL + '/areas/',
+  countries: EKYC_NODE_URL + '/countries',
+  ekyc: EKYC_NODE_URL + '/ekyc',
+  ekym: EKYC_NODE_URL + '/ekym',
+  upload: EKYC_NODE_URL + '/upload',
+  business: EKYC_NODE_URL + '/business',
+  login: EKYC_NODE_URL + '/login',
+  qr: EKYC_NODE_URL + '/qr',
+  session: EKYC_NODE_URL + '/session',
+  enums: EKYC_NODE_URL + '/enums',
+  validations: EKYC_NODE_URL + '/validations',
+  image: EKYC_NODE_URL + '/image?path=',
+  userUpdate: EKYC_NODE_URL + '/users/update',
+  users: EKYC_NODE_URL + '/users',
+  userReset: EKYC_NODE_URL + '/users/reset',
 }
 
 export function getRoutes() {
   return {
     index: { link: '/', title: 'Dashboard', icon: 'home' },
-    consumers: { link: '/consumers', title: 'Consumers', icon: 'shopping-basket' },
-    // merchants: { link: '/merchants', title: 'Merchants', icon: 'store' },
+    // accounts: { link: '/accounts', title: 'Accounts', icon: 'users', roles: ['admin'] },
+    // alt: { link: '/alt', title: 'Alt', icon: 'home' },
+    management: { link: '/management', title: 'Management', icon: 'tasks' },
+    consumers: { link: '/consumers', title: 'Consumers', icon: 'shopping-basket', roles: ['admin', 'manager'] },
+    staff: { link: '/staff', title: 'Staff Managment', icon: 'users', roles: ['admin'] },
+    merchants: { link: '/merchants', title: 'Merchants', icon: 'store', roles: ['admin'] },
+    'AI / ML': { link: '/learning', title: 'AI/ML', icon: 'brain', roles: ['admin'] },
     login: { link: '/login', title: 'Sign In', hide: true }
   }
 }
 
-export const S3config = {
-  bucketName: 'web-clik-staging-files',
-  region: 'ap-southeast-1',
-  accessKeyId: 'AKIAJ4HP3T7VO2KOYAPQ',
-  secretAccessKey: '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'
-}
-
 export default {
-  ENV,
+  ENV: process.env,
   HASURA_URL,
-  API_URL,
+  EKYC_NODE_URL,
+  LIVENESS_AI,
   GQL_URL,
   WSS_URL,
+  GQL_MUTATION_URL,
   endpoints,
-  getRoutes,
-  S3config
+  getRoutes
 }

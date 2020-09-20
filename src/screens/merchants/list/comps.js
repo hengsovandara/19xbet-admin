@@ -11,19 +11,13 @@ import { ElemProgressCircle } from '../../../@clik/comps/fillers'
 import { actions } from './hooks'
 
 export default ({ query }) => {
-
   const { act, store, cookies, action } = useActStore(actions)
   const { socket, merchants, merchantsCount } = store.get('socket', 'merchants', 'merchantsCount')
 
   const [pagination, setPagination] = useState({ offset: 0, limit: 15, overall: 15 })
   const [statusName, setStatusName] = useState()
 
-  // console.log({ pagination })
-
-  // console.log({ socket })
-
   useEffect(() => {
-    // console.log('mount')
     let { status, name, page = 1 } = query
     const offset = merchantsCount && (page - 1) * pagination.limit
     const newPagination = merchantsCount ? { ...pagination, offset } : pagination
@@ -33,7 +27,6 @@ export default ({ query }) => {
   }, [socket])
 
   useEffect(() => {
-    // console.log({ merchantsCount })
     const { page = 1 } = query
 
     if (merchantsCount || merchantsCount == 0) {
@@ -43,10 +36,7 @@ export default ({ query }) => {
   }, [merchantsCount])
 
   useEffect(() => {
-    // console.log('mount 2')
-    // console.log('overall', {pagination})
     const { status, name, page = 1 } = query
-    // console.log({ ...pagination })
     const totalPage = Math.ceil(pagination.overall / pagination.limit) || 1
     let newPagination = pagination
 
@@ -82,23 +72,25 @@ export default ({ query }) => {
   }
 
   if (!merchants)
-    return <p className="c:black p:20px">Loading...</p>
+    return <p className="c:black p:24px">Loading...</p>
 
   // if(!merchants.length)
   //   return <h1 className="c:black">No Merchants!</h1>
 
   return (
     <Table
+      className="p:24px bg:white"
       light
+      leftHead
       query={query}
       pagination={pagination}
       handlePagination={handlePagination}
       status={statusName}
       handleClick={handleStatus}
       handleSearch={handleSearchName}
-      fields={['status', 'source', 'name', 'icons', 'completeness', 'created At']}
+      fields={['source', 'name', 'icons', 'completeness', 'created At']}
       data={merchants.map(({ status, source, name, address, percentage, createdAt, id, documents, assignment }) => ({
-        status: { component: Status, nospace: true, props: { title: status, assignment, id }, center: true },
+        // status: { component: Status, nospace: true, props: { title: status, assignment, id }, center: true },
         source: { component: Logo, props: { source }, center: true },
         name: { title: name, subValue: address, bold: true, full: true },
         icons: { component: Icons, props: { documents }, type: 'label', mobile: false, center: true },

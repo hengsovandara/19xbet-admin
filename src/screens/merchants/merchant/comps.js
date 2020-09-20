@@ -5,28 +5,27 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Particles from 'react-particles-js'
 import Markdown from 'markdown-to-jsx'
 import useActStore from 'actstore'
-import { Tabs, BusinessInformation, DocumentPreview } from './elems'
+import { Tabs, BusinessInformation } from './elems'
 import { actions } from './hooks'
-import { Button, Scrollable, } from '../../../@clik/elems/styles'
-import Menu from '../../../@clik/elems/menu'
+import { setDate } from 'clik/libs'
+import { Button, Scrollable, } from 'clik/elems/styles'
+import Menu from 'clik/elems/menu'
 import Documents from './documents'
 
 const Information = dynamic(() => import('./information'))
 const Shareholders = dynamic(() => import('./shareholders'))
-const Address = dynamic(() => import('./address'))
+const Directors = dynamic(() => import('./directors'))
 
-export default ({ query: { id, step } }) => {
+export default ({ query: { id, step, open } }) => {
   const { act, store, action, handle, route } = useActStore(actions)
   const { socket, merchant = {}, user } = store.get('socket', 'merchant', 'user')
   const { activities = [], type, stats = {}, documents = [], businessTypeDocuments: examples = [] } = merchant || {}
 
-  const [assignmentId, setAssignmentId] = useState(merchant && merchant.assignmentId)
+  // const [assignmentId, setAssignmentId] = useState(merchant && merchant.assignmentId)
   const [business, setBusiness] = useState({})
   const [focus, setFocus] = useState(false)
   const [toggle, setToggle] = useState(false)
   const [note, setNote] = useState('')
-
-  console.log(merchant)
 
   const items = React.useMemo(() => {
     return [
@@ -45,21 +44,21 @@ export default ({ query: { id, step } }) => {
         component: () => <Information merchant={merchant} />,
       },
       {
-        title: 'Addresses',
-        key: 'addresses',
-        active: step === 'addresses',
-        href: { query: { id, step: 'addresses' } },
-        component: () => <Address merchant={merchant} />,
-      },
-      {
         title: 'Shareholders',
         key: 'shareholders',
         active: step === 'shareholders',
         href: { query: { id, step: 'shareholders' } },
-        component: Shareholders,
+        component: () => <Shareholders open={open} merchant={merchant} />,
+      },
+      {
+        title: 'Directors',
+        key: 'directors',
+        active: step === 'directors',
+        href: { query: { id, step: 'directors' } },
+        component: () => <Directors open={open} merchant={merchant} />,
       },
     ]
-  }, [merchant, step])
+  }, [merchant, step, open])
 
   useEffect(() => {
     socket && id && act('MERCHANT_SUB', id)
@@ -78,7 +77,7 @@ export default ({ query: { id, step } }) => {
   return (
     <Fragment>
       <Tabs tab="merchant" merchant={merchant} />
-      <div className="md-dp:flx ai:fs md-p:20px">
+      <div className="md-dp:flx ai:fs md-p:24px">
         <div className={classNameWrap(toggle)}>
           <div className="ps:ab t,l:0 h:100pc w:100pc">
             <Particles
@@ -100,7 +99,7 @@ export default ({ query: { id, step } }) => {
               LOG<span className={classNameLogNot(toggle)}>{activities.length}</span>
             </button>
             {toggle && (
-              <div className="ps:rl m-rl:15px w:100pc">
+              <div className="ps:rl m-rl:16px w:100pc">
                 <form
                   onSubmit={e => {
                     e.preventDefault()
@@ -118,12 +117,12 @@ export default ({ query: { id, step } }) => {
             </button>
           </div>
           {toggle && (
-            <Scrollable className="w:100pc mxh:600px of-y:scroll m-t:20px ps:rl">
+            <Scrollable className="w:100pc mxh:600px of-y:scroll m-t:24px ps:rl">
               <div className="w:100pc c:black ta:c">
                 {merchant.activities.map((log, index) => (
                   <div key={index} className={classNameRow(index % 2)}>
-                    <Markdown className="ta:l fw:400 fs:85pc m-r:10px">{log.note || ''}</Markdown>
-                    <div className="dp:flx jc:sb c:prim fs:75pc m-tb:10px p-t:10px">
+                    <Markdown className="ta:l fw:400 fs:85pc m-r:12px">{log.note || ''}</Markdown>
+                    <div className="dp:flx jc:sb c:prim fs:75pc m-tb:12px p-t:12px">
                       <span>{log.owner ? log.owner.name : 'unidentified'}</span>
                       <span className="ta:r">{setDate(log.createdAt)}</span>
                     </div>
@@ -132,17 +131,20 @@ export default ({ query: { id, step } }) => {
               </div>
             </Scrollable>
           )}
-          {business && business.logo
-            ? <div className={classNameProfileImage(business.logo)} style={{ backgroundImage: `url(${business.logo})` }} />
+          <div className={classNameProfileImage(business?.logo || merchant?.logoUrl)} style={{ backgroundImage: `url(${business?.logo || merchant?.logoUrl})` }}>
+            { !(business?.logo || merchant?.logoUrl) && <FontAwesomeIcon icon="store" size="2x" /> }
+          </div>
+          {/* {business && business.logo
+            ? <div className={classNameProfileImage(business?.logo || merchant.logoUrl)} style={{ backgroundImage: `url(${business?.logo || merchant?.logoUrl})` }} />
             : <div className={classNameProfileImage()}><FontAwesomeIcon icon="store" size="2x" /></div>
-          }
+          } */}
           {!toggle && (
-            <div className="ps:rl dp:flx fd:col ai:c jc:sb flxw:wrap p:10px">
-              <div className="w:100pc p-rl:15px ta:l dp:flx flxw:wrap jc:c">
-                <BusinessInformation {...business} />
+            <div className="ps:rl dp:flx fd:col ai:c jc:sb flxw:wrap p:12px">
+              <div className="w:100pc p-rl:16px ta:l dp:flx flxw:wrap jc:c">
+                <BusinessInformation merchant={merchant} />
               </div>
 
-              <div className="dp:flx fd:col m-tb:20px ps:rl">
+              <div className="dp:flx fd:col m-tb:24px ps:rl">
                 <Button className="w:100pc bg:white-! c:prim-!"
                   style={{
                     opacity: merchant.status === 'Verified' ? '0.5' : '1',
@@ -153,7 +155,7 @@ export default ({ query: { id, step } }) => {
                 >
                   {merchant.status === 'Verified' ? `Verified` : `Verify`}
                 </Button>
-                <Button outline className="w:100pc mnw:150px m-t:8px c:white-! hv-bd:1px-sd-f57167-!_bg:f57167-!"
+                <Button outline className="w:100pc mnw:120px m-t:8px c:white-! hv-bd:1px-sd-f57167-!_bg:f57167-!"
                   style={{
                     opacity: merchant.status === 'Decline' ? '0.5' : '1',
                     cursor: merchant.status === 'Decline' ? 'not-allowed' : 'pointer'
@@ -166,10 +168,10 @@ export default ({ query: { id, step } }) => {
               </div>
 
 
-              <div className="w:100pc p-rl:15px dp:flx jc:fs ai:c ps:rl m-t:20px">
+              <div className="w:100pc p-rl:16px dp:flx jc:fs ai:c ps:rl m-t:24px">
                 <div>
                   <p className="fs:16px ta:l">Status</p>
-                  <h3 className="dp:flx ai:c p:5px m-b:15px fw:500">
+                  <h3 className="dp:flx ai:c p:5px m-b:16px">
                     <span className={classNameStatus(merchant && merchant.status)} />
                     {merchant && merchant.status}
                   </h3>
@@ -178,13 +180,13 @@ export default ({ query: { id, step } }) => {
             </div>
           )}
         </div>
-        <div className="w:100pc md-w:68pc dp:flx fd:col m-b:20px c:sec">
-          <div className="dp:flx jc:sb flxw:wrap lg-flxw:nowrap w:100pc br:5px bg:white ta:l p:20px m-b:10px bd:1px-sd-e8e8e8 fw:500">
-            <div className="p-r:10px m-b:10px lg-m-b:0">
+        <div className="w:100pc md-w:68pc dp:flx fd:col m-b:24px c:sec">
+          {/* <div className="dp:flx jc:sb flxw:wrap lg-flxw:nowrap w:100pc br:5px bg:white ta:l p:24px m-b:12px bd:1px-sd-e8e8e8 fw:500">
+            <div className="p-r:12px m-b:12px lg-m-b:0">
               <p className="m-b:5px fs:85pc">Business Type</p>
-              <h3 className="fw:600">{type}</h3>
+              <h3 className="fw:600">{merchant?.business?.name}</h3>
             </div>
-            <div className="p-r:10px m-b:10px lg-m-b:0">
+            <div className="p-r:12px m-b:12px lg-m-b:0">
               <p className="m-b:5px fs:85pc">Uploaded Documents</p>
               <h3 className="fw:600">
                 {stats.provided} / {stats.required}
@@ -198,7 +200,7 @@ export default ({ query: { id, step } }) => {
                 </span>
               </div>
             </div>
-          </div>
+          </div> */}
 
           <Menu items={items} />
 
@@ -210,21 +212,21 @@ export default ({ query: { id, step } }) => {
 
 const classNameWrap = active =>
   fucss({
-    'w:100pc md-w:30pc mnw:250px br:5px m-b:20px ps:rl md-od:2 md-m-l:2pc bd:1px-sd-prim': true,
-    'bg:white p:15px': active,
+    'w:100pc md-w:30pc mnw:250px br:5px m-b:24px ps:rl md-od:2 md-m-l:2pc bd:1px-sd-prim': true,
+    'bg:white p:16px': active,
     'bg:6BC4BC': !active
   })
 
 const classNameRow = isEven =>
   fucss({
-    'ta:l p:15px-10px mnh:60px': true,
+    'ta:l p:16px-12px mnh:60px': true,
     'bg:F8F9FC bd-t:1px-sd-f0f0f0_div': isEven,
     'bd-t:1px-sd-f5f5f5_div': !isEven
   })
 
 const classNameStatus = status =>
   fucss({
-    'dp:ib w,h:18px bd:2px-sd-white m-r:10px br:50pc': true,
+    'dp:ib w,h:18px bd:2px-sd-white m-r:12px br:50pc': true,
     'bg:white': status === 'Created',
     'bg:orange': status === 'Pending',
     'bg:00d061': status === 'Verified',
@@ -235,8 +237,8 @@ const classNameStatus = status =>
 
 const classNameLogWrap = active =>
   fucss({
-    'dp:flx jc:sb ai:c w:100pc ps:rl p:15px br:5px-10px-0-0': true,
-    'bg:white p:0 m-b:20px': active,
+    'dp:flx jc:sb ai:c w:100pc ps:rl p:16px br:5px-12px-0-0': true,
+    'bg:white p:0 m-b:24px': active,
     'bg:none': !active
   })
 
@@ -261,7 +263,7 @@ const classNameLogSendBtn = isFocused =>
   })
 
 const classNameProfileImage = (logo) => fucss({
-  'ps:rl br:50pc m-t:10px m-b:20px w,h:100px': true,
+  'ps:rl br:50pc m-t:12px m-b:24px w,h:100px': true,
   'bd:1px-sd-prim bg:white bg-sz:cv-! bg-ps:c m-rl:auto': logo,
   'bd:2px-sd-white bg:6BC4BC m-rl:auto c:white dp:flx jc:c ai:c': !logo
 })
@@ -288,3 +290,4 @@ const calcPercentage = (docs) => {
   }
 }
 
+``
