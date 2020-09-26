@@ -25,8 +25,9 @@ export default ({ act, store, action, handle, cookies, route }) => ({
       id: 'assigned',
       query: `subscription {
         Transactions(limit:${limit} offset:${offset} order_by:{ createdAt:desc } ${condition}) {
-          id type method imageUrl amount createdAt userId index
+          id type method imageUrl amount createdAt userId index status acceptedAt
           user{ id name email phoneNumber }
+          staff { id name }
         }
       }`,
       action: data => act('ASSIGNMENTS_SET', data, condition)

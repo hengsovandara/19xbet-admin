@@ -21,7 +21,7 @@ const Assigned = ({ page, keywords, status }) => {
     handlePagination={page => Router.push(`/management?step=assigned&page=${page}${Boolean(keywords) ? `&keywords=${keywords}` : ''}${Boolean(status) ? `&status=${status}` : ''}`)}
     leftHead
     handleSearch={keywords => Router.push(`/management?step=assigned&keywords=${keywords}`)}
-    fields={['id', 'name', 'account type', 'method', 'amount', 'submitted at', 'accepted at', 'accepted by']}
+    fields={['id', 'name', 'account type', 'method', 'amount', 'submitted at', 'accepted by', 'accepted at']}
     data={getData(assigned, enums)}
   />
 }
@@ -33,7 +33,7 @@ function getPagination(page, overall = 15){
 }
 
 function getData(items, enums = {}) {
-  const data = items?.map(({ user, amount, name, type, method, createdAt, submittedAt, assignedAt, id, index }) => {
+  const data = items?.map(({ user, amount, name, type, method, createdAt, acceptedAt, id, index, staff }) => {
     const phoneNumber = user?.phoneNumber && "0" + user?.phoneNumber || 'N/A'
     const { transaction_types = {} , transaction_methods}  = enums
     const colors = {
@@ -48,8 +48,9 @@ function getData(items, enums = {}) {
       'method': { value: transaction_methods?.byId[method].value || method, mobile: false, color: colors[type] },
       'amount': { value: amount && "$" + amount || 'N/A', mobile: false, color: colors[type] },
       'submitted at': { subValue: createdAt.split(' ')[0], title: createdAt.split(' ')[1], type: 'label', mobile: false },
-      'accepted at': { subValue: assignedAt.split(' ')[0], title: assignedAt.split(' ')[1], type: 'label', mobile: false },
-      'accepted by': { value: user?.name || 'N/A' },
+      'accepted at': { subValue: acceptedAt?.split(' ')[0], title: acceptedAt?.split(' ')[1], type: 'label', mobile: false },
+      'accepted by': { value: staff?.name || '',  type: 'select' },
+      'accepted': { value: staff?.name, type: 'label', mobile: false },
       _href: { pathname: '/management', query: { type, id } }
     }
   }) || []
