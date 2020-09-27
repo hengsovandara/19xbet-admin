@@ -7,7 +7,6 @@ export default ({ act, store, action, handle, cookies, route }) => ({
     await act('APP_SOCKET_CHECK')
     store.get('consumers') && await act('CONSUMERS_UNSUB')
 
-    // handle.loading(true)
     const search = Boolean(keywords) ? `{ _or: [
       ${keywords.split(' ').map(word => `
         { givenName: {_ilike: "%${word}%"}},
@@ -17,31 +16,13 @@ export default ({ act, store, action, handle, cookies, route }) => ({
       `).join('')}
     ]} ` : ''
 
-    const statusQuery = Boolean(status) ? `{ status: {_eq: ${status}} }` : ''
-
-    const condition = `where: { _and: [
-      ${statusQuery}
-      {_or: [
-        { _not: {assignments: {}}},
-        { _not: {assignments: { finishedAt: { _is_null: true}}}}
-      ]}
-      ${search}
-    ]}`
+    const condition = `where: { _and: [ ${search} ]}`
 
     return act('SUB', {
       id: 'consumers',
       query: `subscription {
-        Consumers(limit: ${limit} offset: ${offset} order_by: { updatedAt: desc } ${condition}) {
-          index id accountNumber status provisionId
-          givenName surname
-          createdAt updatedAt submittedAt
-          addresses(order_by: { createdAt: desc } limit: 1) {
-            commune district city houseNumber street postalCode country
-          }
-          contacts(order_by: { createdAt: desc } limit: 1) {
-            phoneNumber countryCode
-          }
-          faces{ id }
+        Users(limit: ${limit} offset: ${offset} order_by: { createdAt: desc } ${condition}) {
+          id name email phoneNumber createdAt
         }
       }`,
       action: data => act('CONSUMERS_SET', data, condition)
@@ -50,17 +31,15 @@ export default ({ act, store, action, handle, cookies, route }) => ({
 
   CONSUMERS_SET: async (data, condition) => {
     // !store.get('loading') && handle.loading(true)
-    const consumersCount = await act('GQL', { query: `{ Consumers_aggregate(${condition}) { aggregate { count } } }` })
-      .then(({ Consumers_aggregate: { aggregate: { count }}}) => count)
-
+    const consumersCount = data.length
+    console.log({data})
     const consumers = data && data.map(item => ({
       ...item,
-      name: setName({ ...item, ...(item?.contacts[0] || {})}),
-      address: setAddress(item?.addresses && item?.addresses[0] || {}),
+      name: item.name,
       isWarning: (!!item.faces?.length && !item?.provisionId) || false,
       createdAt: setDate(item.createdAt),
       submittedAt: setDate(item.submittedAt),
-      status: store.get('enums').statuses.find(status => status.value === item.status).text
+      status: 'approved'
     }))
 
     return store.set({ consumers, consumersCount, loading: null })

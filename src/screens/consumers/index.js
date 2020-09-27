@@ -11,7 +11,7 @@ const Consumers = ({ query: { page, keywords, status = null } }) => {
   const { act, store, action, cookies } = useActStore(actions, ['consumers', 'ready'])
   const { ready, consumers, consumersCount, user, enums, users } = store.get()
   const pagination = getPagination(page, consumersCount)
-
+  console.log({consumers})
   React.useEffect(() => {
     ready && act('CONSUMERS_SUB', getPagination(page), keywords, status)
     return action('CONSUMERS_UNSUB')
@@ -24,7 +24,7 @@ const Consumers = ({ query: { page, keywords, status = null } }) => {
       handlePagination={page => Router.push(`/consumers?page=${page}${Boolean(keywords) ? `&keywords=${keywords}` : ''}${Boolean(status) ? `&status=${status}` : ''}`)}
       status={status}
       leftHead
-      statusOptions={[ { value: null, text: 'All' }, ...enums.statuses]}
+      statusOptions={[ { value: null, text: 'All' }]}
       handleStatus={opt => Router.push(`/consumers?status=${opt.value}`)}
       onClickRow={['associate'].includes(user.role) && action('CONSUMERS_ASSIGN_SELF')}
       allowSelect={['manager'].includes(user.role)}
@@ -34,7 +34,7 @@ const Consumers = ({ query: { page, keywords, status = null } }) => {
         action: action('CONSUMERS_ASSIGN')
       }]}
       handleSearch={keywords => Router.push(`/consumers?keywords=${keywords}`)}
-      fields={['account number', 'name', 'created at', 'submitted at']}
+      fields={['account number', 'name', 'phone number', 'created at']}
       data={getData(consumers)}
     />}
   </Layout>
@@ -47,14 +47,14 @@ function getPagination(page, overall = 15){
 }
 
 function getData(items) {
-  const data = items?.map(({ status, name, address, createdAt, submittedAt, accountNumber, id, index, isWarning, photo }) => {
+  const data = items?.map(({ status, name, address, createdAt, phoneNumber, accountNumber, id, index, isWarning, photo }) => {
     const warningIcon = () => isWarning && <CustomIcon size='lg' className='w,h:0 m-l:12px' color='#ffcc66' noHover /> || null
     return {
       status: { component: Status, nospace: true, props: { title: status } },
-      'account number': { value: accountNumber || index, type: 'label', mobile: false },
+      'account number': { value: id.replace(/\-.*/, ''), type: 'label', mobile: false },
       name: { title: { name, component: warningIcon }, subValue: address, type: 'label', full: true },
+      'phone number': { value: "0" + phoneNumber, type: 'label', mobile: false },
       'created at': { subValue: createdAt.split(' ')[0], title: createdAt.split(' ')[1], type: 'label', mobile: false },
-      'submitted at': { subValue: submittedAt.split(' ')[0], title: submittedAt.split(' ')[1], type: 'label', mobile: false },
       id,
       _href: { pathname: '/management', query: { type: 'consumer', id } }
     }

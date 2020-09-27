@@ -25,7 +25,19 @@ export default ({ act, store, action, handle, cookies, route }) => ({
     if(!body.phoneNumber || !body.email || !body.role || !body.id || !body.name)
       return Promise.reject('Please input all fields.')
 
-    return act('POST', { endpoint: 'userUpdate', body })
+    delete body["createdAt"]
+    const query = `
+      mutation($values: [Staffs_insert_input!]!){
+        insert_Staffs(objects: $values on_conflict: {
+          constraint: Staff_pkey
+          update_columns: [name email photo role]
+        }){
+          returning{ role name email photo createdAt id phoneNumber }
+        }
+      }
+    `
+
+    return act('GQL', { query, variables: { values: body } })
   },
 
   USER_CHANGE_PIN: async ( body = {} ) => {

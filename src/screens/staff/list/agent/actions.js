@@ -36,9 +36,9 @@ export default ({ act, store, action, handle, cookies, route }) => ({
   },
 
   USER_CREATE: async body => {
-    // if(!body.role || !body.email || !body.phoneNumber || !body.name){
-    //   return Promise.reject('Please input all fields.')
-    // }
+    if(!body.role || !body.email || !body.phoneNumber || !body.name){
+      return Promise.reject('Please input all fields.')
+    }
     return act("GQL", {
       query: `
         mutation($values: [Staffs_insert_input!]!){
