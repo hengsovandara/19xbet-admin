@@ -9,7 +9,6 @@ import Router from 'next/router'
 const Staff = ({ page, keywords, status = null }) => {
   const { act, store, action, cookies } = useActStore(actions, ['staff', 'ready'])
   const { ready, staff, staffCount, user, enums } = store.get()
-
   const [isAdding, setIsAdding] = React.useState(false)
   const [formValues, setFormValues] = React.useState({})
   const pagination = getPagination(page, staffCount)
@@ -17,14 +16,13 @@ const Staff = ({ page, keywords, status = null }) => {
 
   React.useEffect(() => {
     ready && act('STAFF_SUB', getPagination(page), keywords, status)
-    return action('STAFF_UNSUB')
   }, [page, keywords, status, ready])
 
   const handleFormValues = (value, props) => setFormValues({...formValues, [props.name]: value})
 
   const submitUser = () => {
     act('USER_CREATE', formValues)
-      .then(() => { setIsAdding(false); setFormValues({}) })
+      .then(() => { console.log("Hi"); setIsAdding(false); setFormValues({}) })
   }
 
   return ready && <>

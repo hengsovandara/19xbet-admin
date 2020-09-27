@@ -15,13 +15,14 @@ const Header = ({ showNav, user, handleChangePicture, onToggleNavigation, title,
 
   return (
     <header className={classNameContainer(showNav)}>
-      <div>
+      <div className="dp:flx ai,jc:c">
         <button
           className={`menu ${classNameButton()}`}
           onClick={onBack}
         >
           <Icon icon="arrow-left" />
         </button>
+        {/* {!!title && <h2 className={classNamesTitle()}>{title}</h2>} */}
       </div>
       <div className="dp:flx ai,jc:c">
         <div
@@ -56,6 +57,10 @@ const Header = ({ showNav, user, handleChangePicture, onToggleNavigation, title,
     </header>
   )
 };
+
+const classNamesTitle = () => fucss({
+  'ta:l p:32px dp:flx ai:c jc:sb c:prim': true
+})
 
 const classNameContainer = showNav => fucss({
   'z:5 dp:flx t,r:0 ai:c bg:fff bd-b:1px-sd-e5e5e5 ps:fx h:70px c:black200 jc:sb': true,

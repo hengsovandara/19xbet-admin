@@ -8,7 +8,7 @@ const List = ({ query }) => {
 
   const items = React.useMemo(() => ([
     {
-      title: 'AGENT',
+      title: 'គ្រប់គ្រងបុគ្គលិក',
       key: 'agent',
       active: !step || step === 'agent',
       href: { query: { step: 'agent' } },

@@ -122,7 +122,6 @@ const classNamesTitle = (titleAlt) => fucss({
   'ta:l p:24px dp:flx ai:c jc:sb': true,
   'bg:white': !titleAlt,
   'bg:blacka06': titleAlt
-
 })
 
 const classNamesPageWrapper = (fullScreen, nospace, backgroundColor) => fucss({

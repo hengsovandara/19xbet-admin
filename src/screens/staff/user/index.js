@@ -23,13 +23,10 @@ export default ({ query }) => {
 
   React.useEffect(() => {
     id && act('USER_USER_FETCH', id).then(data => { setUser(data); setFormValues(data)})
-    id && act('USER_ASSIGNMENTS_FETCH', id).then(setAssignments)
   }, [])
 
-  const loginLevel = ready && enums.role.find(role => role.role === loginUser.role).level
-  const userLevel = ready && !!Object.keys(user).length &&  enums.role.find(role => role.role === user.role).level
   const isYourself = ready && !!Object.keys(user).length && loginUser.id === user.id || false
-  const isSuperior = ready && loginUser.role === 'compliance' ? false : loginLevel < userLevel
+  const isSuperior = ready && loginUser.role === 'admin'
 
   const isEditable = isYourself || isSuperior
   const isDeleteable = isSuperior
@@ -42,7 +39,6 @@ export default ({ query }) => {
     act('USER_UPDATE', formValues).then(() => {
       setIsEditing(false)
       act('USER_USER_FETCH', id).then(data => { setUser(data); setFormValues(data)})
-      act('USER_ASSIGNMENTS_FETCH', id).then(setAssignments)
     })
   }
 

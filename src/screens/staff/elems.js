@@ -26,8 +26,7 @@ export const UserForm = ({ type, title, action, data, onClose, onSubmit, loginUs
 
 function getFields(type, data, roles, loginUser) {
   if(type === 'user') {
-    const loginLevel = roles.find(role => role.role === loginUser.role).level
-    roles = roles.filter(role => role.level >= loginLevel).map(role => ({ ...role, value: role.role }))
+    roles = [{ value: "admin", value: "staff"}]
     const disabledRole = ['associate', 'compliance'].includes(loginUser.role)
     return [
       { disabled: disabledRole, name: 'role', altValue: data.role, allowEmpty: true, label: 'Role', placeholder: 'Select role', options: roles, type: 'select', lightgray: true, width: '100%', className: 'm-b:24px' },

@@ -2,11 +2,11 @@ import { setDate } from 'clik/libs'
 
 export default ({ act, store, action, handle, cookies, route }) => ({
   USER_USER_FETCH: async id => {
-    const query = `{ Users(where: { id: { _eq: "${id}"} archived: { _neq: true } }) {
+    const query = `{ Staffs(where: { id: { _eq: "${id}"} }) {
       id role name email photo createdAt phoneNumber
     } }`
 
-    const { Users: [user] } = await act('GQL', { query })
+    const { Staffs: [user] } = await act('GQL', { query })
 
     return !!Object.keys(user || {}).length && { ...user, createdAt: setDate(user.createdAt)} || {}
   },

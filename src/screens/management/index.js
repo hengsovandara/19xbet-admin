@@ -7,11 +7,6 @@ import useActStore from 'actstore'
 export default ({ query }) => {
   const { store: { ready } } = useActStore({}, ['ready'])
   return <Layout maxWidth>
-    {
-      ready ? !query.id ? <List query={query || {}} /> : query.type === 'consumer'
-        ? <Consumer query={query || {}} />
-        : <Consumer query={query || {}} />
-      : null
-    }
+    {!!ready && <List query={query || {}} />}
   </Layout>
 }
