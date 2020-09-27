@@ -1,5 +1,5 @@
 const HASURA_URL = process.env.HASURA_URL || '247khmer.com'
-const NODE_API = process.env.NODE_API || 'http://127.0.0.1:8080/api'
+const NODE_API = process.env.NODE_API || 'https://247khmer.com/api'
 
 export const GQL_URL = 'https://' + HASURA_URL + '/v1alpha1/graphql'
 export const WSS_URL = 'wss://' + HASURA_URL + '/v1alpha1/graphql'
