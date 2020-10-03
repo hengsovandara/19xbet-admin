@@ -221,10 +221,76 @@ input, button, select, option, textarea{font-size: 100%; font-family: inherit;}
 .m-rl\:8npx{margin-right:-8px;margin-left:-8px;}
 .flxg\:1{flex-grow:1;}
 .m\:8px{margin:8px;}
+.p\:40px-50px{padding:40px 50px;}
+.bs\:0-1px-5px-000a3{box-shadow:0 1px 5px rgba(0,0,0,0.3);}
+.w\:500px{width:500px;}
+.fw\:300{font-weight:300;}
+.bd-b\:grey200-sld-1px{border-bottom:#e0e0e0 solid 1px;}
+.p-b\:5px{padding-bottom:5px;}
+.hv-try\:2px:hover{transform:translateY(2px);}
+.w\,h\:50px{width:50px;height:50px;}
+.p-rl\:12px{padding-right:12px;padding-left:12px;}
+.m-l\:24px{margin-left:24px;}
+.p\:0-0-24px{padding:0 0 24px;}
+.bd-b\:1px-sd-e8e8e8{border-bottom:1px solid #e8e8e8;}
+.bg\:n{background:none;}
+.fs\:110pc{font-size:110%;}
+.p-r\:5px{padding-right:5px;}
+.dp\:n{display:none;}
+.p\:12px-16px{padding:12px 16px;}
+.c\:prim300{color:#ffec31;}
+.fw\:800{font-weight:800;}
+.m-b\:25px{margin-bottom:25px;}
+.c\:f5f5f5{color:#f5f5f5;}
+.fs\:115pc{font-size:115%;}
+.bd-b\:2px-sd-white{border-bottom:2px solid #fff;}
+.dp\:ib_ps\:ab_b\:3npx_h\:5px_br\:5px_bg\:prim_span span{display:inline-block;position:absolute;bottom:-3px;height:5px;border-radius:5px;background:#FCCD12;}
+.c\:prim400{color:#ffdc21;}
+.w\:50pc_l\:50pc_trx\:50npc_span span{width:50%;left:50%;transform:translateX(-50%);}
+.w\:0_l\:0_m-l\:0_span span{width:0;left:0;margin-left:0;}
+.mnw\:100px{min-width:100px;}
+.p\:8px-24px{padding:8px 24px;}
+.p-l\:12px{padding-left:12px;}
+.mnh\:500px{min-height:500px;}
+.w\,h\:190px{width:190px;height:190px;}
+.m\:12px{margin:12px;}
+.hv-scl\:1\.05:hover{transform:scale(1.05);}
+.bg-c\:e8e8e8{background-color:#e8e8e8;}
+.bg-rp\:nrp{background-repeat:no-repeat;}
+.h\:180px{height:180px;}
+.hv-bs\:2:hover{box-shadow:0px 2px 4px rgba(0,0,0,0.12);}
+.ws\:np{white-space:nowrap;}
+.p-tb\:12px{padding-top:12px;padding-bottom:12px;}
+.jc\,ai\:c{justify-content:center;align-items:center;}
+.w\:8pc{width:8%;}
+.w\:40pc{width:40%;}
+.m-r\:10npx{margin-right:-10px;}
+.w\:60pc{width:60%;}
+.c\:blacka5{color:rgba(17,17,17,0.5);}
+.lh\:2\.35{line-height:2.35;}
+.p-b\:10px{padding-bottom:10px;}
+.as\:fs{align-self:flex-start;}
+.h\:175px{height:175px;}
+.m\:5px-5px-0-0{margin:5px 5px 0 0;}
+.m-b\:10px{margin-bottom:10px;}
+.bd\:1px-sld-grey200{border:1px solid #e0e0e0;}
+.bd-l\:1px-sd-grey200{border-left:1px solid #e0e0e0;}
+.p\:32px{padding:32px;}
+.z\:5{z-index:5;}
+.t\,r\:0{top:0;right:0;}
+.bd-b\:1px-sd-e5e5e5{border-bottom:1px solid #e5e5e5;}
+.h\:70px{height:70px;}
+.w\:calc\(100pc-70px\){width:calc(100% - 70px);}
+.w\,h\:70px{width:70px;height:70px;}
+.bg\:ts{background:transparent;}
+.ts\:bg{transition:background .45s cubic-bezier(0.23, 1, 0.32, 1);}
+.fs\:24px{font-size:24px;}
+.hv-c\:prim_ts\:all_svg:hover svg{color:#FCCD12;transition:all .45s cubic-bezier(0.23, 1, 0.32, 1);}
+.h\:50px{height:50px;}
+.c\:black100{color:#6f6f6f;}
 .bg\:sec{background:#FCCD12;}
 .bs\:1{box-shadow:0px 1px 2px rgba(0,0,0,0.10);}
 .br\:2px{border-radius:2px;}
-.ws\:np{white-space:nowrap;}
 .mxh\:30px{max-height:30px;}
 .c\:inh{color:inherit;}
 .bg\:greena9{background:rgba(76,175,80,0.9);}
@@ -264,112 +330,13 @@ input, button, select, option, textarea{font-size: 100%; font-family: inherit;}
 .mxw\:600px{max-width:600px;}
 .op\:0\.8{opacity:0.8;}
 .m\:8px-0{margin:8px 0;}
-.hv-scl\:1\.05:hover{transform:scale(1.05);}
 .h\,w\,lh\:85px{height:85px;width:85px;line-height:85px;}
 .h\,w\,lh\:65px{height:65px;width:65px;line-height:65px;}
 .h\,w\,lh\:35px{height:35px;width:35px;line-height:35px;}
-.t\,r\:0{top:0;right:0;}
 .an\:fadeIn-0\.5s{animation:fadeIn 0.5s;}
 .p\:24px-32px{padding:24px 32px;}
 .c\:orange{color:#FF9800;}
 .w\:calc\(50pc-8px\){width:calc(50% - 8px);}
-.p\:40px-50px{padding:40px 50px;}
-.bs\:0-1px-5px-000a3{box-shadow:0 1px 5px rgba(0,0,0,0.3);}
-.w\:500px{width:500px;}
-.fw\:300{font-weight:300;}
-.bd-b\:grey200-sld-1px{border-bottom:#e0e0e0 solid 1px;}
-.p-b\:5px{padding-bottom:5px;}
-.hv-try\:2px:hover{transform:translateY(2px);}
-.w\,h\:50px{width:50px;height:50px;}
-.p-rl\:12px{padding-right:12px;padding-left:12px;}
-.m-l\:24px{margin-left:24px;}
-.p\:0-0-24px{padding:0 0 24px;}
-.bd-b\:1px-sd-e8e8e8{border-bottom:1px solid #e8e8e8;}
-.bg\:n{background:none;}
-.fs\:110pc{font-size:110%;}
-.p-r\:5px{padding-right:5px;}
-.dp\:n{display:none;}
-.p\:12px-16px{padding:12px 16px;}
-.c\:prim300{color:#ffec31;}
-.fw\:800{font-weight:800;}
-.m-b\:25px{margin-bottom:25px;}
-.c\:f5f5f5{color:#f5f5f5;}
-.fs\:115pc{font-size:115%;}
-.bd-b\:2px-sd-white{border-bottom:2px solid #fff;}
-.dp\:ib_ps\:ab_b\:3npx_h\:5px_br\:5px_bg\:prim_span span{display:inline-block;position:absolute;bottom:-3px;height:5px;border-radius:5px;background:#FCCD12;}
-.c\:prim400{color:#ffdc21;}
-.w\:50pc_l\:50pc_trx\:50npc_span span{width:50%;left:50%;transform:translateX(-50%);}
-.w\:0_l\:0_m-l\:0_span span{width:0;left:0;margin-left:0;}
-.mnw\:100px{min-width:100px;}
-.p\:8px-24px{padding:8px 24px;}
-.p-l\:12px{padding-left:12px;}
-.mnh\:500px{min-height:500px;}
-.w\,h\:190px{width:190px;height:190px;}
-.m\:12px{margin:12px;}
-.bg-c\:e8e8e8{background-color:#e8e8e8;}
-.bg-rp\:nrp{background-repeat:no-repeat;}
-.h\:180px{height:180px;}
-.hv-bs\:2:hover{box-shadow:0px 2px 4px rgba(0,0,0,0.12);}
-.p-tb\:12px{padding-top:12px;padding-bottom:12px;}
-.jc\,ai\:c{justify-content:center;align-items:center;}
-.w\:8pc{width:8%;}
-.w\:40pc{width:40%;}
-.m-r\:10npx{margin-right:-10px;}
-.w\:60pc{width:60%;}
-.c\:blacka5{color:rgba(17,17,17,0.5);}
-.lh\:2\.35{line-height:2.35;}
-.bd-l\:1px-sd-grey200{border-left:1px solid #e0e0e0;}
-.p\:32px{padding:32px;}
-.z\:5{z-index:5;}
-.bd-b\:1px-sd-e5e5e5{border-bottom:1px solid #e5e5e5;}
-.h\:70px{height:70px;}
-.w\:calc\(100pc-70px\){width:calc(100% - 70px);}
-.w\,h\:70px{width:70px;height:70px;}
-.bg\:ts{background:transparent;}
-.ts\:bg{transition:background .45s cubic-bezier(0.23, 1, 0.32, 1);}
-.fs\:24px{font-size:24px;}
-.hv-c\:prim_ts\:all_svg:hover svg{color:#FCCD12;transition:all .45s cubic-bezier(0.23, 1, 0.32, 1);}
-.h\:50px{height:50px;}
-.c\:black100{color:#6f6f6f;}
-.h\:calc\(100vh-140px\){height:calc(100vh - 140px);}
-.of-y\:auto{overflow-Y:auto;}
-.p-t\:75px{padding-top:75px;}
-.p-b\:40px{padding-bottom:40px;}
-.bg\:whitea05{background:rgba(255,255,255,0.05);}
-.td\:n{text-decoration:none;}
-.c\:fff{color:#fff;}
-.w\:150px{width:150px;}
-.bg-sz\:cover{background-size:cover;}
-.m-l\:6px{margin-left:6px;}
-.fs\:60pc{font-size:60%;}
-.br\:3px{border-radius:3px;}
-.p\:2px-7px{padding:2px 7px;}
-.w\:70px{width:70px;}
-.l\:0{left:0;}
-.l\:70npx{left:-70px;}
-.p\:24px-12px{padding:24px 12px;}
-.z\:1{z-index:1;}
-.hv-c\:prim:hover{color:#FCCD12;}
-.m-tb\:5px{margin-top:5px;margin-bottom:5px;}
-.bd-l\:4px-sd-prim{border-left:4px solid #FCCD12;}
-.bg\:272727{background:#272727;}
-.bd-l\:4px-sd-ts{border-left:4px solid transparent;}
-.p\:24px-5px{padding:24px 5px;}
-.p-l\:24px{padding-left:24px;}
-.bg-c\:grey{background-color:#9E9E9E;}
-.w\,h\:30px{width:30px;height:30px;}
-.hv-scl\:2\.75_l\:5px:hover{transform:scale(2.75);left:5px;}
-.m-l\:10npx{margin-left:-10px;}
-.t\,l\,b\:0{top:0;left:0;bottom:0;}
-.bd-l\:4px-sld-white{border-left:4px solid #fff;}
-.bd-l\:4px-sld-prim{border-left:4px solid #FCCD12;}
-.bd-l\:4px-sld-orange{border-left:4px solid #FF9800;}
-.bd-l\:4px-sld-00d061{border-left:4px solid #00d061;}
-.bd-l\:4px-sld-red{border-left:4px solid #F44336;}
-.bd-l\:4px-sld-black{border-left:4px solid #111;}
-.bg\:black300{background:#303030;}
-.va\:m{vertical-align:middle;}
-.m\:3px{margin:3px;}
 .h\,w\,mnw\,lh\:40px{height:40px;width:40px;min-width:40px;line-height:40px;}
 .m-r\:8px{margin-right:8px;}
 .m-l\:8px{margin-left:8px;}
@@ -395,11 +362,37 @@ input, button, select, option, textarea{font-size: 100%; font-family: inherit;}
 .bg\:blacka12-\!{background:rgba(17,17,17,0.12) !important;}
 .bd-c\:blacka12-\!{border-color:rgba(17,17,17,0.12) !important;}
 .crs\:default{cursor:default;}
+.h\:calc\(100vh-140px\){height:calc(100vh - 140px);}
+.of-y\:auto{overflow-Y:auto;}
+.p-t\:75px{padding-top:75px;}
+.p-b\:40px{padding-bottom:40px;}
+.bg\:whitea05{background:rgba(255,255,255,0.05);}
+.td\:n{text-decoration:none;}
+.c\:fff{color:#fff;}
+.w\:150px{width:150px;}
+.bg-sz\:cover{background-size:cover;}
+.m-l\:6px{margin-left:6px;}
+.fs\:60pc{font-size:60%;}
+.br\:3px{border-radius:3px;}
+.p\:2px-7px{padding:2px 7px;}
+.w\:70px{width:70px;}
+.l\:0{left:0;}
+.l\:70npx{left:-70px;}
+.p\:24px-12px{padding:24px 12px;}
+.z\:1{z-index:1;}
+.hv-c\:prim:hover{color:#FCCD12;}
+.m-tb\:5px{margin-top:5px;margin-bottom:5px;}
+.bd-l\:4px-sd-prim{border-left:4px solid #FCCD12;}
+.bg\:272727{background:#272727;}
+.bd-l\:4px-sd-ts{border-left:4px solid transparent;}
+.p\:24px-5px{padding:24px 5px;}
+.w\:400px{width:400px;}
 .mnw\:540px{min-width:540px;}
 .sh\:0-1px-2px-000a15{box-shadow:0 1px 2px rgba(0,0,0,0.15);}
 .w\:30pc{width:30%;}
 .m\:16px{margin:16px;}
-.w\:400px{width:400px;}
+.p-r\:0{padding-right:0;}
+.m-r\:15px{margin-right:15px;}
 .hv-bd\:1px-sd-prim:hover{border:1px solid #FCCD12;}
 .bg\:inherit{background:inherit;}
 .mnh\:38px{min-height:38px;}
@@ -423,16 +416,11 @@ input, button, select, option, textarea{font-size: 100%; font-family: inherit;}
 .bd-b\:1px-sd-prima15{border-bottom:1px solid rgba(252,205,18,0.15);}
 .crs\:not-allowed{cursor:0ot allowed;}
 .bg\:prima05{background:rgba(252,205,18,0.05);}
-.p-r\:0{padding-right:0;}
-.m-r\:15px{margin-right:15px;}
-.p-t\:24px{padding-top:24px;}
-.tt\:capitalize{text-transform:capitalize;}
-.w\:180px{width:180px;}
-.w\:395px{width:395px;}
 .c\:black400{color:#202020;}
 .mnw\:200px{min-width:200px;}
 .mh\:390px{min-height:390px;}
 .t\,r\:10npx{top:-10px;right:-10px;}
+.p-t\:24px{padding-top:24px;}
 .mnw\:50px{min-width:50px;}
 .p\:12px-24px{padding:12px 24px;}
 .bd\:1px-sd-000a15{border:1px solid rgba(0,0,0,0.15);}
@@ -450,6 +438,23 @@ input, button, select, option, textarea{font-size: 100%; font-family: inherit;}
 .bg\:e8e8e8{background:#e8e8e8;}
 .c\:00d061{color:#00d061;}
 .c\:ffd700{color:#ffd700;}
+.tt\:capitalize{text-transform:capitalize;}
+.w\:180px{width:180px;}
+.w\:395px{width:395px;}
+.p-t\:16px{padding-top:16px;}
+.dp\:ib_ps\:ab_b\:0_h\:4px_br\:4px_bg\:prim_span span{display:inline-block;position:absolute;bottom:0;height:4px;border-radius:4px;background:#FCCD12;}
+.first-m-l\:0:first-child{margin-left:0;}
+.last-m-r\:0:last-child{margin-right:0;}
+.hv-bg\:prim_c\:white_div:hover div{background:#FCCD12;color:#fff;}
+.ws\:nowrap{white-space:nowrap;}
+.w\:100pc_l\:50pc_trx\:50npc_span span{width:100%;left:50%;transform:translateX(-50%);}
+.c\:blacka8{color:rgba(17,17,17,0.8);}
+.of-x\:auto{overflow-X:auto;}
+.fs\:18px{font-size:18px;}
+.nw\:24px{min-width:24px;}
+.p-rl\:4px{padding-right:4px;padding-left:4px;}
+.m-l\:5px{margin-left:5px;}
+.bg\:black300{background:#303030;}
 .nw\:500px{min-width:500px;}
 .m-b\:30px{margin-bottom:30px;}
 .p\:12px-5px{padding:12px 5px;}
@@ -496,21 +501,9 @@ input, button, select, option, textarea{font-size: 100%; font-family: inherit;}
 .c\:7FB8ED{color:#7FB8ED;}
 .bg\:FCF1F1{background:#FCF1F1;}
 .c\:E57373{color:#E57373;}
-.p-t\:16px{padding-top:16px;}
-.dp\:ib_ps\:ab_b\:0_h\:4px_br\:4px_bg\:prim_span span{display:inline-block;position:absolute;bottom:0;height:4px;border-radius:4px;background:#FCCD12;}
-.first-m-l\:0:first-child{margin-left:0;}
-.last-m-r\:0:last-child{margin-right:0;}
-.hv-bg\:prim_c\:white_div:hover div{background:#FCCD12;color:#fff;}
-.ws\:nowrap{white-space:nowrap;}
-.w\:100pc_l\:50pc_trx\:50npc_span span{width:100%;left:50%;transform:translateX(-50%);}
-.c\:blacka8{color:rgba(17,17,17,0.8);}
-.of-x\:auto{overflow-X:auto;}
-.fs\:32px{font-size:32px;}
-.nw\:24px{min-width:24px;}
-.p-rl\:4px{padding-right:4px;padding-left:4px;}
-.m-l\:5px{margin-left:5px;}
 .b\,r\:0{bottom:0;right:0;}
 .dp\:td{display:table-cell;}
+.va\:m{vertical-align:middle;}
 .bz\:cbx{box-sizing:content-box;}
 .mxh\:calc\(100vh-300px\){max-height:calc(100vh - 300px);}
 .p-r\:27px{padding-right:27px;}
@@ -618,7 +611,6 @@ input, button, select, option, textarea{font-size: 100%; font-family: inherit;}
 .bd\:12px-sd-white{border:12px solid #fff;}
 .h\:150px{height:150px;}
 .bd\:5px-sld-sec600{border:5px solid #edbe03;}
-.m\:5px-5px-0-0{margin:5px 5px 0 0;}
 .b\:24px{bottom:24px;}
 .p\:12px-24px_br\:5px_bg\:white_c\:prim_bs\:1_dp\:ib_m\:0-5px_m-t\:12px_button button{padding:12px 24px;border-radius:5px;background:#fff;color:#FCCD12;box-shadow:0px 1px 2px rgba(0,0,0,0.10);display:inline-block;margin:0 5px;margin-top:12px;}
 .fs\:\.95em{font-size:.95em;}
@@ -640,7 +632,6 @@ input, button, select, option, textarea{font-size: 100%; font-family: inherit;}
 .bg\:tert{background:#1B598D;}
 .c\:sec300{color:#ffec31;}
 .bg\:grey100{background:#fcfcfc;}
-.bd\:1px-sld-grey200{border:1px solid #e0e0e0;}
 .w\,h\,lh\:11px{width:11px;height:11px;line-height:11px;}
 .bg\:sec600{background:#edbe03;}
 .bg\:grey300{background:#bdbdbd;}
@@ -669,7 +660,6 @@ input, button, select, option, textarea{font-size: 100%; font-family: inherit;}
 .h\,lh\:175px{height:175px;line-height:175px;}
 .w\:200px{width:200px;}
 .ts\:bs{transition:box-shadow .45s cubic-bezier(0.23, 1, 0.32, 1);}
-.h\:175px{height:175px;}
 .hv-scl\:1\.5:hover{transform:scale(1.5);}
 .w\,h\,lh\:26px{width:26px;height:26px;line-height:26px;}
 .bd\:1px-sld-sec700{border:1px solid #ddae00;}
@@ -677,6 +667,7 @@ input, button, select, option, textarea{font-size: 100%; font-family: inherit;}
 .c\:tert{color:#1B598D;}
 .p-r\:16px-\!{padding-right:16px !important;}
 .br\:30px{border-radius:30px;}
+.m\:3px{margin:3px;}
 .p\:7px-0px{padding:7px 0px;}
 .ts\:w{transition:width .45s cubic-bezier(0.23, 1, 0.32, 1);}
 .trl\:50npc{transform:translate(-50%);}
@@ -723,7 +714,7 @@ input, button, select, option, textarea{font-size: 100%; font-family: inherit;}
 .md-w\:calc\(70pc-24px\){width:calc(70% - 24px);}
 .md-p\:0-24px-24px{padding:0 24px 24px;}
 .md-dp\:ib{display:inline-block;}
-.md-p-rl\:24px{padding-right:24px;padding-left:24px;}
+.md-jc\:fs{justify-content:flex-start;}
 .md-mxw\:240px{max-width:240px;}
 .md-mxw\:100pc{max-width:100%;}
 .md-mnw\:240px{min-width:240px;}
@@ -735,7 +726,6 @@ input, button, select, option, textarea{font-size: 100%; font-family: inherit;}
 .md-bd-r\:1px-sd-whitea2{border-right:1px solid rgba(255,255,255,0.2);}
 .md-p-t\:16px{padding-top:16px;}
 .md-h\:250px{height:250px;}
-.md-jc\:fs{justify-content:flex-start;}
 .md-m-r\:0{margin-right:0;}
 }
 @media only screen and (min-width: 1024px) {
@@ -744,8 +734,8 @@ input, button, select, option, textarea{font-size: 100%; font-family: inherit;}
 .lg-m-b\:0{margin-bottom:0;}
 .lg-flxb\:33\.33pc{flex-basis:33.33%;}
 .lg-mxw\:200px{max-width:200px;}
-.lg-dp\:n{display:none;}
 .lg-w\:calc\(100pc-280px\){width:calc(100% - 280px);}
+.lg-dp\:n{display:none;}
 .lg-h\:calc\(100vh-80px\){height:calc(100vh - 80px);}
 .lg-dp\:ib{display:inline-block;}
 .lg-l\:0{left:0;}
@@ -800,4 +790,4 @@ input, button, select, option, textarea{font-size: 100%; font-family: inherit;}
 @keyframes dash{to { stroke-dashoffset: 0; }}
 @keyframes marquee{0% { transform: translateX(0); } 100% { transform: translateX(-50%); }}
 @keyframes bounce{0% { transform: scale(1,1) translateY(0); } 10% { transform: scale(1.1,.9) translateY(0); } 30% { transform: scale(.9,1.1) translateY(-100px); } 50% { transform: scale(1.05,.95) translateY(0); } 57% { transform: scale(1,1) translateY(-7px); } 64% { transform: scale(1,1) translateY(0); } 100% { transform: scale(1,1) translateY(0); }}
- /** Incorrect classes btn-login btn-login background && `url(${background w100pc background && `url(${background w100pc profile-img ${isResetable || isDeleteable && ${isDeleteable && ${isResetable && ${i % 2 === 0 && black200 profile-img ${isResetable || isDeleteable && ${isDeleteable && ${isResetable && ${i % 2 === 0 && black200 ' + className `linear-gradient(${primDeg !isLoading ? !wrap ? children <div className="bg:white c:black">{children photo || logo || url ? <span style={{ `url(${photo || logo || url profile-img ' + className `linear-gradient(${primDeg !isLoading ? !wrap ? children <div className="bg:white c:black">{children photo || logo || url ? <span style={{ `url(${photo || logo || url profile-img consumer-id profile-img profile-img consumer-id profile-img profile-img disabled ? placeholder text ${open && document.url ? classNameChangeBtn() classNameUploadBtn() disabled ? placeholder text ${open && document.url ? classNameChangeBtn() classNameUploadBtn() ${!noBorder && items.map((item, index) => { const value = item.amount && (data ? data[item.amount] item.amount) if (item.disabled) { return null data && "w:100pc bd-b:1px-sld-grey200" !props.noHead && props.fields && data.length > 0 && ( <div className="dp:tr bd-t:1px-sd-blacka12"> {props.allowSelect && ( <div key="selectBox" title="Select item to delete" className="fw:600 w:44px"> <Checkbox onSelect={e => props.onSelect(data.map(item => item.id), selected.length >= data.length * 0.8) true true (value.color ? ${!!index ${item.disabled && ${!!index ${item.disabled && data && "w:100pc bd-b:1px-sld-grey200" !props.noHead && props.fields && data.length > 0 && ( <div className="dp:tr bd-t:1px-sd-blacka12"> {props.allowSelect && ( <div key="selectBox" title="Select item to delete" className="fw:600 w:44px"> <Checkbox onSelect={e => props.onSelect(data.map(item => item.id), selected.length >= data.length * 0.8) true true (value.color ? !cameraMode ? ( <div className="p:24px"> <div className={classNameInner(light) "ta:c br:4px" isChecked && <Icon className="ps:ab c:white" icon="check" /> "ta:c br:4px" super(props) this.state = { true fa-2x fa-2x fa-2x fa-2x isChecked && <Icon className="ps:ab c:white" icon="check" /> !cameraMode ? ( <div className="p:24px"> <div className={classNameInner(light) ' + className ' + className super(props) this.state = { true fa-2x fa-2x fa-2x fa-2x */
+ /** Incorrect classes btn-login btn-login background && `url(${background w100pc background && `url(${background w100pc profile-img ${isResetable || isDeleteable && ${isDeleteable && ${isResetable && ${i % 2 === 0 && black200 profile-img ${isResetable || isDeleteable && ${isDeleteable && ${isResetable && ${i % 2 === 0 && black200 profile-img consumer-id profile-img profile-img ' + className `linear-gradient(${primDeg !isLoading ? !wrap ? children <div className="bg:white c:black">{children photo || logo || url ? <span style={{ `url(${photo || logo || url consumer-id profile-img profile-img ' + className `linear-gradient(${primDeg !isLoading ? !wrap ? children <div className="bg:white c:black">{children photo || logo || url ? <span style={{ `url(${photo || logo || url disabled ? placeholder text ${open && document.url ? classNameChangeBtn() classNameUploadBtn() disabled ? placeholder text ${open && ${!noBorder && items.map((item, index) => { const value = item.amount && (data ? data[item.amount] item.amount) if (item.disabled) { return null document.url ? classNameChangeBtn() classNameUploadBtn() ${!noBorder && items.map((item, index) => { const value = item.amount && (data ? data[item.amount] item.amount) if (item.disabled) { return null data && "w:100pc bd-b:1px-sld-grey200" !props.noHead && props.fields && data.length > 0 && ( <div className="dp:tr bd-t:1px-sd-blacka12"> {props.allowSelect && ( <div key="selectBox" title="Select item to delete" className="fw:600 w:44px"> <Checkbox onSelect={e => props.onSelect(data.map(item => item.id), selected.length >= data.length * 0.8) true true (value.color ? ${!!index ${item.disabled && ${!!index ${item.disabled && data && "w:100pc bd-b:1px-sld-grey200" !props.noHead && props.fields && data.length > 0 && ( <div className="dp:tr bd-t:1px-sd-blacka12"> {props.allowSelect && ( <div key="selectBox" title="Select item to delete" className="fw:600 w:44px"> <Checkbox onSelect={e => props.onSelect(data.map(item => item.id), selected.length >= data.length * 0.8) true true (value.color ? !cameraMode ? ( <div className="p:24px"> <div className={classNameInner(light) "ta:c br:4px" !cameraMode ? ( <div className="p:24px"> <div className={classNameInner(light) isChecked && <Icon className="ps:ab c:white" icon="check" /> "ta:c br:4px" super(props) this.state = { true fa-2x fa-2x fa-2x fa-2x isChecked && <Icon className="ps:ab c:white" icon="check" /> super(props) this.state = { true fa-2x fa-2x fa-2x fa-2x ' + className ' + className */

@@ -32,6 +32,7 @@ export function getRoutes() {
     management: { link: '/management', title: 'របាយការណ៍', icon: 'tasks' },
     consumers: { link: '/consumers', title: 'គ្រប់គ្រងអតិថិជន', icon: 'user-friends', roles: ['admin', 'manager'] },
     staff: { link: '/staff', title: 'គ្រប់គ្រងបុគ្គលិក', icon: 'users', roles: ['admin'] },
+    merchants: { link: '/merchants', title: 'គេហទំព័រ', icon: 'window-alt', roles: ['admin'] },
     login: { link: '/login', title: 'Sign In', hide: true }
   }
 }

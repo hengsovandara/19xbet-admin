@@ -22,7 +22,7 @@ const Staff = ({ page, keywords, status = null }) => {
 
   const submitUser = () => {
     act('USER_CREATE', formValues)
-      .then(() => { console.log("Hi"); setIsAdding(false); setFormValues({}) })
+      .then(() => { setIsAdding(false); setFormValues({}) })
   }
 
   return ready && <>
