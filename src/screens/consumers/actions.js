@@ -22,7 +22,7 @@ export default ({ act, store, action, handle, cookies, route }) => ({
       id: 'consumers',
       query: `subscription {
         Users(limit: ${limit} offset: ${offset} order_by: { createdAt: desc } ${condition}) {
-          id name email phoneNumber createdAt
+          id name email phoneNumber createdAt walletId
         }
       }`,
       action: data => act('CONSUMERS_SET', data, condition)
@@ -32,14 +32,14 @@ export default ({ act, store, action, handle, cookies, route }) => ({
   CONSUMERS_SET: async (data, condition) => {
     // !store.get('loading') && handle.loading(true)
     const consumersCount = data.length
-    console.log({data})
+
     const consumers = data && data.map(item => ({
       ...item,
       name: item.name,
       isWarning: (!!item.faces?.length && !item?.provisionId) || false,
       createdAt: setDate(item.createdAt),
       submittedAt: setDate(item.submittedAt),
-      status: 'approved'
+      status: 'approved',
     }))
 
     return store.set({ consumers, consumersCount, loading: null })

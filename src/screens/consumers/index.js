@@ -34,7 +34,7 @@ const Consumers = ({ query: { page, keywords, status = null } }) => {
         action: action('CONSUMERS_ASSIGN')
       }]}
       handleSearch={keywords => Router.push(`/consumers?keywords=${keywords}`)}
-      fields={['account number', 'name', 'phone number', 'created at']}
+      fields={['account number', 'name', 'phone number', 'created at', 'wallet id']}
       data={getData(consumers)}
     />}
   </Layout>
@@ -47,7 +47,7 @@ function getPagination(page, overall = 15){
 }
 
 function getData(items) {
-  const data = items?.map(({ status, name, address, createdAt, phoneNumber, accountNumber, id, index, isWarning, photo }) => {
+  const data = items?.map(({ status, name, address, createdAt, phoneNumber, accountNumber, id, index, isWarning, photo, walletId }) => {
     const warningIcon = () => isWarning && <CustomIcon size='lg' className='w,h:0 m-l:12px' color='#ffcc66' noHover /> || null
     return {
       status: { component: Status, nospace: true, props: { title: status } },
@@ -55,8 +55,9 @@ function getData(items) {
       name: { title: { name, component: warningIcon }, subValue: address, type: 'label', full: true },
       'phone number': { value: "0" + phoneNumber, type: 'label', mobile: false },
       'created at': { subValue: createdAt.split(' ')[0], title: createdAt.split(' ')[1], type: 'label', mobile: false },
+      'wallet id': { value: walletId, type: 'label', mobile: false },
       id,
-      _href: { pathname: '/management', query: { type: 'consumer', id } }
+      _href: { pathname: '/staff', query: { type: 'consumer', id } }
     }
   }) || []
 
