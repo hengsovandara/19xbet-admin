@@ -75,7 +75,7 @@ const Footer = ({ showNav, init }) => (
     {
       !showNav && (
         <div className="dp:flx ai:c">
-          <div style={{ backgroundImage: `url('static/imgs/casa.png')` }} className="w:150px h:40px bg-sz:cover bg-ps:c op:0.7" />
+          <div style={{ backgroundImage: `url('static/imgs/casa.png')` }} className="w:150px h:40px bg-sz:cover bg-ps:c" />
           <div className="ta:l m-l:6px dp:n lg-dp:ib">
             <strong className="fs:60pc bg:prim br:3px p:2px-7px c:black">
               v{init.version} {init.env || ''}

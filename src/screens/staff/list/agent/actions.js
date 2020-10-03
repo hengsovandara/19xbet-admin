@@ -39,15 +39,30 @@ export default ({ act, store, action, handle, cookies, route }) => ({
     if(!body.role || !body.email || !body.phoneNumber || !body.name){
       return Promise.reject('Please input all fields.')
     }
+
+    const values = {
+      password: body.pin,
+      phoneNumber: body.phoneNumber,
+      email: body.email,
+      staff: {
+        data: {
+          ...body,
+        }
+      }
+    }
+    delete values['staff']['data']['pin']
+
     return act("GQL", {
       query: `
-        mutation($values: [Staffs_insert_input!]!){
-          insert_Staffs(objects: $values){
+        mutation($values: [Credentials_insert_input!]!){
+          insert_Credentials(objects: $values){
             returning{ role name email photo createdAt id phoneNumber }
           }
         }
       `,
-      variables: { values: body }
+      variables: { values }
     })
   }
 })
+
+

@@ -40,10 +40,22 @@ export default ({ act, store, action, handle, cookies, route }) => ({
     const assigned = data && data.map(item => ({
       ...item,
       createdAt: setDate(item?.createdAt),
-      assignedAt: new Date().toLocaleString(),
-      submittedAt: new Date().toLocaleString(),
-      status: "finish"
+      acceptedAt: setDate(item?.acceptedAt)
     }))
     return store.set({ assigned, assignedCount, loading: null })
-  }
+  },
+  
+  TRANSACTIONS_UPDATE: async (data) => {
+    const query = `
+      mutation{
+        update_Transactions(where: {_and:[{ status: { _eq: "requested"}}, {id: { _eq: "${data.id}"}}]} _set: {
+          staffId: "${data.staffId}", status: "${data.status}" acceptedAt: "now()"
+        }){
+          affected_rows
+        }
+      }
+    `
+    await act("GQL", { query }).then(data).catch(err => alert(JSON.stringify(err, 0, 2)))
+    return
+  } 
 })

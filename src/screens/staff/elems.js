@@ -32,7 +32,8 @@ function getFields(type, data, roles, loginUser) {
       { disabled: disabledRole, name: 'role', altValue: data.role, allowEmpty: true, label: 'Role', placeholder: 'Select role', options: roles, type: 'select', lightgray: true, width: '100%', className: 'm-b:24px' },
       { name: 'name', altValue: data.name, allowEmpty: true, label: 'Name', placeholder: 'Enter name', type: 'text', lightgray: true, light: true, width: '100%', className: 'm-b:24px' },
       { name: 'email', altValue: data.email, allowEmpty: true, label: 'Email', placeholder: 'Enter email', type: 'text', lightgray: true, width: '100%', light: true, className: 'm-b:24px' },
-      { name: 'phoneNumber', altValue: data.phoneNumber, allowEmpty: true, label: 'Phone Number', placeholder: 'Enter phone number', type: 'text', lightgray: true, width: '100%',  light: true, className: 'm-b:24px' }
+      { name: 'phoneNumber', altValue: data.phoneNumber, allowEmpty: true, label: 'Phone Number', placeholder: 'Enter phone number', type: 'text', lightgray: true, width: '100%',  light: true, className: 'm-b:24px' },
+      { name: 'pin', label: 'Pin', allowEmpty: false, placeholder: 'Staf Pin', type: 'text', lightgray: true, width: '100%', light: true },
     ]
   } else if(type === 'changePin') {
     return [

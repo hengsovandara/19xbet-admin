@@ -90,7 +90,7 @@ const classNameText = () =>
     'ta:c w:100pc': true,
   })
 
-const classNameButton = ({ full, small, tiny, circle, disabled, icon, iconEnd, bordered, alert, prim, simple }) =>
+const classNameButton = ({ full, small, tiny, circle, disabled, icon, iconEnd, bordered, alert, prim, red, green, simple }) =>
   fucss({
     'dp:flx ai:c ta:c fw:600 ws:np crs:pt ts:all mnh:40px': true,
     'dp:flx ai:c': icon && !bordered,
@@ -107,7 +107,9 @@ const classNameButton = ({ full, small, tiny, circle, disabled, icon, iconEnd, b
     'bg:LightCoral c:white': alert,
     'bg:prim c:white': prim,
     'bd:1px-sd-blacka12 bg:ts c:black hv-bd-c:prim_c:prim_bg:prima2': bordered && !alert || bordered && !prim,
+    'bd:1px-sd-reda12 bg:ts c:red hv-bd-c:red_c:red_bg:reda2':bordered && red,
+    'bd:1px-sd-greena2 bg:ts c:green hv-bd-c:green_c:green_bg:greena2':bordered && green,
     'bd-c:LightCoral-! c:LightCoral-! bg:ts-! hv-bd-c:LightCoral_c:LightCoral_bg:reda2-!':  bordered && alert,
     'bd-c:prim-! c:prim-! bg:ts-! hv-bd-c:prim_c:prim_bg:prima2-!': bordered && prim,
-    'op:0.8 bg:blacka12-! bd-c:blacka12-! crs:default c:white-!': disabled
+    'op:0.8 bg:blacka12-! bd-c:blacka12-! crs:default c:white-!': disabled,
   })
