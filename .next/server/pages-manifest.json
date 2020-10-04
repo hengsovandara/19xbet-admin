@@ -1,12 +1,6 @@
 {
   "/_app": "pages/_app.js",
   "/_document": "pages/_document.js",
-  "/consumers": "pages/consumers.js",
-  "/": "pages/index.js",
-  "/learning": "pages/learning.js",
-  "/login": "pages/login.js",
-  "/management": "pages/management.js",
-  "/merchants": "pages/merchants.js",
-  "/staff": "pages/staff.js",
-  "/_error": "pages/_error.js"
+  "/_error": "pages/_error.js",
+  "/merchants": "pages/merchants.js"
 }

@@ -4,36 +4,76 @@ import Router from 'next/router'
 import useActStore from 'actstore'
 import Menu from 'clik/elems/menu'
 import Photo from 'clik/elems/photo'
+import Button from 'clik/elems/button'
 
 import { actions } from './hooks'
 
 export default ({ query }) => {
   const { act, store, cookies, action } = useActStore(actions)
   let photoMethods = useRef(null)
-  const { socket, merchants, categories, dashboards, informations } = store.get('socket', 'merchants', 'merchantsCount', 'dashboards', 'categories', 'informations')
+  const { socket, merchants, dashboards } = store.get('socket', 'merchants', 'merchantsCount', 'dashboards', 'categories', 'informations')
 
   useEffect(() => {
     cookies.get('token') && act('MERCHANTS_SUB')
   }, [socket])
 
-  if (!categories && !dashboards && !informations)
+  if (!dashboards)
     return <p className="c:black p:24px">Loading...</p>
 
   return (
     <div className="c:black200 p-tb:24px">
-      <Elems items={categories} title='Dashboards' />
+      <Elems items={dashboards} title='Dashboards' />
     </div>
   )
 }
 
 const Elems = ({items =[], title}) => {
+  const { act } = useActStore(actions)
+  let photoMethods = useRef(null)
+
+  const deleteBanner = async (banner) => {
+    await act('DASHBOARD_DELETE', banner)
+    // alert(JSON.stringify(banner, 0, 2))
+  } 
 
   return (
     <div className="p-b:10px">
-      <h2 className="as:fs" >{title}</h2>
+      <div className="dp:flex ai:c">
+        <h2 className="" >{title}</h2>
+        <Button
+          bordered
+          green
+          icon={'plus'}
+          action={() => photoMethods.current.handleToggleShow()}
+          className="p-r:0 m-rl:15px"
+        />
+      </div>
       {
-        (items).map(item => 
-          <img src={item.banner} className={classNameImage(false)} onClick={e => {}} />
+        (items).map((item, index) => 
+          <div>
+            <div className="dp:flex ai:c p-t:15px">
+              <h3 className="" >{'Banner ' + (index + 1)}</h3>
+              <div className="dp:flex">
+                <Button
+                  bordered
+                  green
+                  icon={'edit'}
+                  action={() => {}}
+                  className="p-r:0 m-rl:15px"
+                />
+                <Button
+                  bordered
+                  red
+                  icon={'trash'}
+                  action={() => deleteBanner(item)}
+                  className="p-r:0 m-rl:15px"
+                />
+              </div>
+            </div>
+            <div className="dp:flex ai:c">
+              <img src={item.banner} className={classNameImage(false)} onClick={e => {}} />
+            </div>
+          </div>
         )
       }
     </div>

@@ -18,7 +18,7 @@ const List = ({ query }) => {
       component: () => <Dashboard { ...query} />
     },
     {
-      title: 'category',
+      title: 'categories',
       key: 'categories',
       active: step === 'categories',
       href: { query: { step: 'categories' } },
