@@ -93,16 +93,16 @@ const Elems = ({items =[], type}) => {
     // alert(JSON.stringify(banner, 0, 2))
   } 
 
-  const createBanner = async () => {
-    await act('CATEGORIES_CREATE', type)
+  const createBanner = async (file) => {
+    await act('CATEGORIES_CREATE', {file, type})
   }
 
   return (
     <div className="p-b:10px">
       <div className="dp:flex ai:c p-t:15px">
         <h3 className="" >ADD NEW BANNER</h3>
-        <Button bordered green icon={'plus'}
-          action={() => createBanner()}
+        <Button bordered green icon={'plus'} type="file"
+          action={createBanner}
           className="p-r:0 m-rl:15px"
         />
       </div>
@@ -112,13 +112,13 @@ const Elems = ({items =[], type}) => {
             <div className="dp:flex ai:c p-t:15px">
               <h3 className="" >{'Banner ' + (index + 1)}</h3>
               <div className="dp:flex">
-                <Button
+                {/* <Button
                   bordered
                   green
                   icon={'edit'}
                   action={() => {}}
                   className="p-r:0 m-rl:15px"
-                />
+                /> */}
                 <Button
                   bordered
                   red

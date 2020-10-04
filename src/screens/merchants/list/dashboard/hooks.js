@@ -1,3 +1,5 @@
+import firebase from 'clik/hooks/firebase'
+
 export const actions = ({ act, store, handle }) => ({
   MERCHANTS_UNSUB: () => {
     Promise.all([act('UNSUB', { id: 'merchants' }), act('UNSUB', { id: 'merchants_count' }), act('UNSUB', { id: 'merchant' })])
@@ -44,6 +46,30 @@ export const actions = ({ act, store, handle }) => ({
         return act('MERCHANTS_SUB')
 
       return
+    })
+  },
+
+  DASHBOARD_CREATE: ({file, type}) => {
+    const storageRef = `images/${type}/`
+    const fileName = new Date().getTime().toString()
+    var storage = firebase.storage().ref(storageRef);
+    
+
+    var mountainImagesRef = storage.child(fileName);
+    return mountainImagesRef.put(file[0]).on('state_changed',sp => {}, (err) => {}, () => {
+      storage.child(fileName).getDownloadURL()
+        .then(async (url) => {
+          const query = `
+            mutation{ insert_Dashboards(objects: { banner: "${url}"}){ affected_rows } }
+          `
+
+          return act("GQL", { query }).then(({insert_Dashboards: { affected_rows }}) => {
+            if(affected_rows > 0)
+              return act('MERCHANTS_SUB')
+      
+            return
+          })
+        })
     })
   }
 })

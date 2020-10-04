@@ -1,3 +1,5 @@
+import firebase from 'clik/hooks/firebase'
+
 export const actions = ({ act, store, action, handle }) => ({
   MERCHANTS_UNSUB: () => {
     Promise.all([act('UNSUB', { id: 'merchants' }), act('UNSUB', { id: 'merchants_count' }), act('UNSUB', { id: 'merchant' })])
@@ -30,21 +32,6 @@ export const actions = ({ act, store, action, handle }) => ({
     return store.set({ categories, loading: null })
   },
 
-  CATEGORIES_CREATE: type => {
-    const query = `mutation{
-      insert_Categories(objects: {
-        name: "${type}"
-        banner: "https://firebasestorage.googleapis.com/v0/b/casa79-89856.appspot.com/o/promotion-banner.jpg?alt=media&token=9b7c5ff7-604e-4993-927d-d035a546b492"
-      }){ affected_rows }
-    }`
-    console.log(query)
-    return act("GQL", { query }).then(({insert_Categories: { affected_rows }}) => {
-      if(affected_rows > 0)
-        return act('CATEGORIES_FETCH')
-      return
-    }).catch(err => {console.log({err})})
-  },
-
   CATEGORIES_DELETE: data => {
     const query = `mutation{
       delete_Categories(where: { id: { _eq: "${data.id}"}}){ affected_rows }
@@ -54,6 +41,29 @@ export const actions = ({ act, store, action, handle }) => ({
       if(affected_rows > 0)
         return act('CATEGORIES_FETCH')
       return
+    })
+  },
+
+  CATEGORIES_CREATE: ({file, type}) => {
+    const storageRef = `images/${type}/`
+    const fileName = new Date().getTime().toString()
+    var storage = firebase.storage().ref(storageRef);
+
+    var mountainImagesRef = storage.child(fileName);
+    return mountainImagesRef.put(file[0]).on('state_changed',sp => {}, (err) => {}, () => {
+      storage.child(fileName).getDownloadURL()
+        .then(async (url) => {
+          const query = `
+            mutation{ insert_Categories(objects: { name: "${type}" banner: "${url}"}){ affected_rows } }
+          `
+
+          return act("GQL", { query }).then(({insert_Categories: { affected_rows }}) => {
+            if(affected_rows > 0)
+              return act('CATEGORIES_FETCH')
+      
+            return
+          })
+        })
     })
   }
 })

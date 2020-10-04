@@ -1,9 +1,6 @@
 import { useEffect, useState, useRef } from 'react'
 import { fucss } from 'next-fucss/utils'
-import Router from 'next/router'
 import useActStore from 'actstore'
-import Menu from 'clik/elems/menu'
-import Photo from 'clik/elems/photo'
 import Button from 'clik/elems/button'
 
 import { actions } from './hooks'
@@ -34,7 +31,11 @@ const Elems = ({items =[], title}) => {
   const deleteBanner = async (banner) => {
     await act('DASHBOARD_DELETE', banner)
     // alert(JSON.stringify(banner, 0, 2))
-  } 
+  }
+
+  const uploadImage = async(file) => {
+    await act('DASHBOARD_CREATE', {file, type: 'dashboard'})
+  }
 
   return (
     <div className="p-b:10px">
@@ -44,7 +45,8 @@ const Elems = ({items =[], title}) => {
           bordered
           green
           icon={'plus'}
-          action={() => photoMethods.current.handleToggleShow()}
+          type="file"
+          action={uploadImage}
           className="p-r:0 m-rl:15px"
         />
       </div>
@@ -54,13 +56,13 @@ const Elems = ({items =[], title}) => {
             <div className="dp:flex ai:c p-t:15px">
               <h3 className="" >{'Banner ' + (index + 1)}</h3>
               <div className="dp:flex">
-                <Button
+                {/* <Button
                   bordered
                   green
                   icon={'edit'}
                   action={() => {}}
                   className="p-r:0 m-rl:15px"
-                />
+                /> */}
                 <Button
                   bordered
                   red

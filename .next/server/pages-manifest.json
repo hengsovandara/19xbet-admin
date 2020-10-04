@@ -6,6 +6,5 @@
   "/next/dist/pages/_error": "pages/next/dist/pages/_error.js",
   "/staff": "pages/staff.js",
   "/consumers": "pages/consumers.js",
-  "/management": "pages/management.js",
-  "/": "pages/index.js"
+  "/management": "pages/management.js"
 }
