@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from 'react'
+import { useEffect, useState, useRef, useMemo } from 'react'
 import { fucss } from 'next-fucss/utils'
 import Router from 'next/router'
 import useActStore from 'actstore'
@@ -12,8 +12,13 @@ export default ({ step, subStep }) => {
   const { act, store, cookies, action } = useActStore(actions)
   let photoMethods = useRef(null)
   const { socket, merchants, categories } = store.get('socket', 'merchants', 'merchantsCount', 'categories')
-  console.log({step, subStep})
-  const items = React.useMemo(() => ([
+  const [isRefresh, setIsFresh] = useState(false)
+
+  // useEffect(() => {
+
+  // }, [])
+  
+  const items = useMemo(() => ([
     {
       title: 'News',
       key: 'news',
@@ -38,7 +43,7 @@ export default ({ step, subStep }) => {
     {
       title: 'Fish',
       key: 'fish',
-      active: !subStep || subStep === 'fish',
+      active: subStep === 'fish',
       href: { query: { step: 'categories', subStep: 'fish' } },
       component: () => <div />
     },
@@ -64,7 +69,7 @@ export default ({ step, subStep }) => {
       href: { query: { step: 'categories', subStep: 'promotion' } },
       component: () => <div />
     }
-  ].filter(i => i)), [step, subStep])
+  ]), [{subStep}])
 
   useEffect(() => {
     cookies.get('token') && act('CATEGORIES_SUB')
@@ -74,9 +79,8 @@ export default ({ step, subStep }) => {
     return <p className="c:black p:24px">Loading...</p>
 
   return (
-    <div className="c:black200 p-tb:24px">
-      <Menu noBorder items={items} />
-      {/* <Elems items={categories} title='Dashboards' /> */}
+    <div className="c:black200 p-tb:10px">
+      <Menu noBorder items={items} titleStyle={"fs:15px"}/>
     </div>
   )
 }

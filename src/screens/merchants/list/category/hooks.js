@@ -14,16 +14,17 @@ export const actions = ({ act, store, action, handle }) => ({
     }).then(data => act('CATEGORIES_SET', data))
   },
 
-  CATEGORIES_SET: (results = []) => {
+  CATEGORIES_SET: ({categories = []}) => {
     handle.loading(false)
-    results = results.reduce((obj, result) => {
+    categories = categories && categories.reduce((obj, result) => {
       if (obj[result.name] && !!obj[result.name].length )
         obj[result.name] << result
       else
         obj[result.name] = [result]
-    }, {})
-    console.log({results})
-    return store.set({ ...results, loading: null })
+
+      return obj
+    }, {}) || {}
+    return store.set({ ...categories, loading: null })
   },
 
   CATEGORIES_DELETE: data => {

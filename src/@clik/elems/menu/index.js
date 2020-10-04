@@ -3,11 +3,11 @@ import Link from 'next/link'
 import { fucss } from 'next-fucss/utils'
 import styled from "styled-components"
 
-const Menu = ({ items, data, noBorder = false, children }) => {
+const Menu = ({ items, data, noBorder = false, children, titleStyle }) => {
   const index = items.findIndex(item => item.active)
   return (
     <div className={`w:100pc br:5px ${!noBorder && 'bd:1px-sd-e8e8e8' }`}>
-      <MenuInner className={classNameMenuInner()}>
+      <MenuInner className={classNameMenuInner() + (titleStyle && titleStyle || '')}>
         {items.map((item, index) => {
           const value = item.amount && (data ? data[item.amount] : item.amount)
           if (item.disabled) {
