@@ -26,7 +26,7 @@ export const actions = ({ act, store, handle }) => ({
     if(!!results)
       results['categories'] = results['categories'] && results['categories'].reduce((obj, result) => {
         if (obj && obj[result.name] && !!obj[result.name].length )
-          obj[result.name] << result
+          obj[result.name] = obj[result.name].concat([result])
         else
           obj[result.name] = [result]
         return obj
@@ -35,7 +35,6 @@ export const actions = ({ act, store, handle }) => ({
   },
 
   DASHBOARD_DELETE: data => {
-    alert(JSON.stringify(data, 0, 2))
     const query = `mutation{
       delete_Dashboards(where: { id: { _eq: "${data.id}"}}){ affected_rows }
     }`

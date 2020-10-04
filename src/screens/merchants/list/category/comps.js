@@ -11,55 +11,54 @@ import { actions } from './hooks'
 export default ({ step, subStep }) => {
   const { act, store, cookies, action } = useActStore(actions)
   let photoMethods = useRef(null)
-  const { socket, merchants, categories } = store.get('socket', 'merchants', 'merchantsCount', 'categories')
-  const [isRefresh, setIsFresh] = useState(false)
+  const { socket, merchants, categories = {} } = store.get('socket', 'merchants', 'merchantsCount', 'categories')
 
-  // useEffect(() => {
+  useEffect(() => {
+    cookies.get('token') && act('CATEGORIES_FETCH')
+  }, [socket, subStep])
 
-  // }, [])
-  
-  const items = useMemo(() => ([
+  const items = React.useMemo(() => ([
     {
       title: 'News',
       key: 'news',
       active: !subStep || subStep === 'news',
       href: { query: { step: 'categories', subStep: 'news' } },
-      component: () => <div />
+      component: () => <Elems items={categories['news']} type="news"/>
     },
     {
       title: 'Sports',
       key: 'sports',
       active: subStep === 'sports',
       href: { query: { step: 'categories', subStep: 'sports' } },
-      component: () => <div />
+      component: () => <Elems items={categories['sports']} type="sports"/>
     },
     {
       title: 'Casino',
       key: 'casino',
       active: subStep === 'casino',
       href: { query: { step: 'categories', subStep: 'casino' } },
-      component: () => <div />
+      component: () => <Elems items={categories['casino']} type="casino"/>
     },
     {
       title: 'Fish',
       key: 'fish',
       active: subStep === 'fish',
       href: { query: { step: 'categories', subStep: 'fish' } },
-      component: () => <div />
+      component: () => <Elems items={categories['fish']} type="fish"/>
     },
     {
       title: 'Paper',
       key: 'paper',
       active: subStep === 'paper',
       href: { query: { step: 'categories', subStep: 'paper' } },
-      component: () => <div />
+      component: () => <Elems items={categories['paper']} type="paper"/>
     },
     {
       title: 'Roaster',
       key: 'roaster',
       active: subStep === 'roaster',
       href: { query: { step: 'categories', subStep: 'roaster' } },
-      component: () => <div />
+      component: () => <Elems items={categories['roaster']} type="roaster"/>
     }
     ,
     {
@@ -67,9 +66,9 @@ export default ({ step, subStep }) => {
       key: 'promotion',
       active: subStep === 'promotion',
       href: { query: { step: 'categories', subStep: 'promotion' } },
-      component: () => <div />
+      component: () => <Elems items={categories['promotion']} type="promotion"/>
     }
-  ]), [{subStep}])
+  ]), [subStep, categories])
 
   useEffect(() => {
     cookies.get('token') && act('CATEGORIES_SUB')
@@ -85,7 +84,7 @@ export default ({ step, subStep }) => {
   )
 }
 
-const Elems = ({items =[], title}) => {
+const Elems = ({items =[], type}) => {
   const { act } = useActStore(actions)
   let photoMethods = useRef(null)
 
@@ -94,15 +93,16 @@ const Elems = ({items =[], title}) => {
     // alert(JSON.stringify(banner, 0, 2))
   } 
 
+  const createBanner = async () => {
+    await act('CATEGORIES_CREATE', type)
+  }
+
   return (
     <div className="p-b:10px">
-      <div className="dp:flex ai:c">
-        <h2 className="" >{title}</h2>
-        <Button
-          bordered
-          green
-          icon={'plus'}
-          action={() => photoMethods.current.handleToggleShow()}
+      <div className="dp:flex ai:c p-t:15px">
+        <h3 className="" >ADD NEW BANNER</h3>
+        <Button bordered green icon={'plus'}
+          action={() => createBanner()}
           className="p-r:0 m-rl:15px"
         />
       </div>
@@ -110,7 +110,7 @@ const Elems = ({items =[], title}) => {
         (items).map((item, index) => 
           <div>
             <div className="dp:flex ai:c p-t:15px">
-              <h3 className="" >{`${item?.name?.toUpperCase()} ` + 'Banner ' + (index + 1)}</h3>
+              <h3 className="" >{'Banner ' + (index + 1)}</h3>
               <div className="dp:flex">
                 <Button
                   bordered

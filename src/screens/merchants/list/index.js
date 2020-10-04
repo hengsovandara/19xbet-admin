@@ -6,7 +6,7 @@ import Category from './category/comps'
 import Information from './information/comps'
 
 const List = ({ query }) => {
-  const { step, page, keywords, status } = query || {}
+  const { step, page, keywords, status, subStep } = query || {}
   const { store: { counts, user } } = useActStore({}, ['counts'])
 
   const items = React.useMemo(() => ([
@@ -31,7 +31,7 @@ const List = ({ query }) => {
       href: { query: { step: 'information' } },
       component: () => <Information { ...query} />
     }
-  ].filter(i => i)), [page, step, keywords, status])
+  ].filter(i => i)), [step, subStep])
 
   return <div className="p-rl:24px bg:white">
     <Menu noBorder data={counts} items={items} />
