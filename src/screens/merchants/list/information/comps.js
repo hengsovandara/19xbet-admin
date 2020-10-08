@@ -3,17 +3,17 @@ import { fucss } from 'next-fucss/utils'
 import Router from 'next/router'
 import useActStore from 'actstore'
 import Form from 'clik/elems/form'
-import Button from 'clik/elems/button'
+import Button from 'clik/elems/button'qqq
 
 import { actions } from './hooks'
 
-export default ({ query }) => {
+const Informations = ({ query }) => {
   const { act, store, cookies, action } = useActStore(actions)
 
   const { categories, dashboards, informations } = store.get('socket', 'merchants', 'merchantsCount', 'dashboards', 'categories', 'informations')
 
   useEffect(() => {
-    cookies.get('token') && act('MERCHANTS_SUB')
+    cookies.get('token') && act('INFORMATION_FETCH')
   }, [])
 
   const [formValues, setFormValues] = React.useState(informations && informations[0])
@@ -77,13 +77,9 @@ function getFields(data) {
 
 const classNameWrapper = ({ wrap, noSpace }) =>
   fucss({
-    'md-dp:flx w:100pc flxw:wrap ai:c': true,
+    'md-dp:flx w:100pc flxw:wrap ai:c m-t:30px': true,
     'md-jc:sb': wrap === 'space',
     'md-jc:fs': wrap === 'start'
   })
 
-const classNameImage = light =>
-  fucss({
-    'h:175px m:5px-5px-0-0 hv-bs:2 ts:all m-b:10px': true,
-    'bd:1px-sld-grey200': !light
-  })
+export default Informations

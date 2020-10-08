@@ -3,17 +3,17 @@ import { fucss } from 'next-fucss/utils'
 import Router from 'next/router'
 import useActStore from 'actstore'
 import Menu from 'clik/elems/menu'
-import Photo from 'clik/elems/photo'
 import Button from 'clik/elems/button'
 
 import { actions } from './hooks'
 
-export default ({ step, subStep }) => {
+const Categories = ({ step, subStep }) => {
   const { act, store, cookies, action } = useActStore(actions)
   let photoMethods = useRef(null)
   const { socket, merchants, categories = {} } = store.get('socket', 'merchants', 'merchantsCount', 'categories')
 
   useEffect(() => {
+    console.log("CATEGORIES_FETCH", act)
     cookies.get('token') && act('CATEGORIES_FETCH')
   }, [socket, subStep])
 
@@ -70,10 +70,6 @@ export default ({ step, subStep }) => {
     }
   ]), [subStep, categories])
 
-  useEffect(() => {
-    cookies.get('token') && act('CATEGORIES_SUB')
-  }, [socket])
-
   if (!categories)
     return <p className="c:black p:24px">Loading...</p>
 
@@ -86,11 +82,13 @@ export default ({ step, subStep }) => {
 
 const Elems = ({items =[], type}) => {
   const { act } = useActStore(actions)
-  let photoMethods = useRef(null)
 
   const deleteBanner = async (banner) => {
-    await act('CATEGORIES_DELETE', banner)
-    // alert(JSON.stringify(banner, 0, 2))
+    try {
+      await act('CATEGORIES_DELETE', banner)
+    } catch (error) {
+      console.log("CATEGORIES_DELETE",error)
+    }
   } 
 
   const createBanner = async (file) => {
@@ -143,3 +141,5 @@ const classNameImage = light =>
     'h:175px m:5px-5px-0-0 hv-bs:2 ts:all m-b:10px': true,
     'bd:1px-sld-grey200': !light
   })
+
+export default Categories

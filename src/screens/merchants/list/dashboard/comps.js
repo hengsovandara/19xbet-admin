@@ -5,14 +5,14 @@ import Button from 'clik/elems/button'
 
 import { actions } from './hooks'
 
-export default ({ query }) => {
+const Dashboard = ({ query }) => {
   const { act, store, cookies, action } = useActStore(actions)
-  let photoMethods = useRef(null)
-  const { socket, merchants, dashboards } = store.get('socket', 'merchants', 'merchantsCount', 'dashboards', 'categories', 'informations')
+  const { dashboards } = store.get('socket', 'merchants', 'merchantsCount', 'dashboards', 'categories', 'informations')
 
   useEffect(() => {
+    console.log("MERCHANTS_SUB", act)
     cookies.get('token') && act('MERCHANTS_SUB')
-  }, [socket])
+  }, [])
 
   if (!dashboards)
     return <p className="c:black p:24px">Loading...</p>
@@ -26,11 +26,8 @@ export default ({ query }) => {
 
 const Elems = ({items =[], title}) => {
   const { act } = useActStore(actions)
-  let photoMethods = useRef(null)
-
   const deleteBanner = async (banner) => {
     await act('DASHBOARD_DELETE', banner)
-    // alert(JSON.stringify(banner, 0, 2))
   }
 
   const uploadImage = async(file) => {
@@ -52,17 +49,10 @@ const Elems = ({items =[], title}) => {
       </div>
       {
         (items).map((item, index) => 
-          <div>
+          <div key={index.toString()}>
             <div className="dp:flex ai:c p-t:15px">
               <h3 className="" >{'Banner ' + (index + 1)}</h3>
               <div className="dp:flex">
-                {/* <Button
-                  bordered
-                  green
-                  icon={'edit'}
-                  action={() => {}}
-                  className="p-r:0 m-rl:15px"
-                /> */}
                 <Button
                   bordered
                   red
@@ -87,3 +77,5 @@ const classNameImage = light =>
     'h:175px m:5px-5px-0-0 hv-bs:2 ts:all m-b:10px': true,
     'bd:1px-sld-grey200': !light
   })
+
+export default Dashboard

@@ -7,14 +7,14 @@ export const actions = ({ act, store, action, handle }) => ({
 
   CATEGORIES_FETCH: async () => {
     handle.loading(true)
-
+    console.log("Hello")
     return act('GQL', {
       query: `{
         categories: Categories(order_by: { name: asc_nulls_last }){
           id banner name
         }
       }`
-    }).then(data => act('CATEGORIES_SET', data || {}))
+    }).then(data => act('CATEGORIES_SET', data || {})).catch(console.log)
   },
 
   CATEGORIES_SET: ({categories = []}) => {
@@ -32,11 +32,11 @@ export const actions = ({ act, store, action, handle }) => ({
     return store.set({ categories, loading: null })
   },
 
-  CATEGORIES_DELETE: data => {
+  CATEGORIES_DELETE: (data) => {
     const query = `mutation{
       delete_Categories(where: { id: { _eq: "${data.id}"}}){ affected_rows }
     }`
-
+    console.log({data})
     return act("GQL", { query }).then(({delete_Categories: { affected_rows }}) => {
       if(affected_rows > 0)
         return act('CATEGORIES_FETCH')

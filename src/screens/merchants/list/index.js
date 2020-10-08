@@ -6,9 +6,9 @@ import Category from './category/comps'
 import Information from './information/comps'
 
 const List = ({ query }) => {
-  const { step, page, keywords, status, subStep } = query || {}
+  const { step, subStep } = query || {}
   const { store: { counts, user } } = useActStore({}, ['counts'])
-
+  console.log({step})
   const items = React.useMemo(() => ([
     {
       title: 'Dashboard',

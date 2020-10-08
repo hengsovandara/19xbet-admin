@@ -1,5 +1,13 @@
 export const actions = ({ act, store, handle }) => ({
 
+  INFORMATION_FETCH: async () => {
+    console.log("INFORMATION_FETCH")
+    return act('GQL', {
+      query: `{ Informations{ id twitter email facebook phoneNumbers youtube  }
+      }`
+    }).then(({Informations }) => act('INFORMATION_SET', Informations))
+  },
+
   INFORMATION_UPDATE: async (data) => {
     handle.loading(true)
     return act('GQL', {
@@ -14,8 +22,8 @@ export const actions = ({ act, store, handle }) => ({
     }).then(({update_Informations: { returning }}) => act('INFORMATION_SET', returning))
   },
 
-  INFORMATION_SET: res => {
+  INFORMATION_SET: (informations = []) => {
     handle.loading(false)
-    return store.set({ informations: res, loading: null })
+    return store.set({ informations, loading: null })
   }
 })

@@ -41,7 +41,7 @@ function Search({ name = '', onClick }) {
           placeholder="Search"
           value={text}
           onChange={updateText}
-          autofocus={true}
+          autoFocus={true}
           onFocus={() => setFocus(true)}
           onBlur={() => setFocus(false)}
           onKeyDown={event => {
