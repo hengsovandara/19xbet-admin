@@ -3,7 +3,7 @@ import { fucss } from 'next-fucss/utils'
 import Router from 'next/router'
 import useActStore from 'actstore'
 import Form from 'clik/elems/form'
-import Button from 'clik/elems/button'qqq
+import Button from 'clik/elems/button'
 
 import { actions } from './hooks'
 
