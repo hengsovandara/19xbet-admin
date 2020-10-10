@@ -5,7 +5,7 @@ import useActStore from 'actstore'
 import Form from 'clik/elems/form'
 import Button from 'clik/elems/button'
 
-import { actions } from './hooks'
+import { actions } from '../hooks'
 
 const Informations = ({ query }) => {
   const { act, store, cookies, action } = useActStore(actions)

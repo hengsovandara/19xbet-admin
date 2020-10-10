@@ -42,7 +42,7 @@ export default ({ act, store, action, handle, cookies, route }) => ({
     })
   },
 
-  MERCHANTS_SUB: async ({ offset = 0, limit = 15, name = undefined }) => {
+  DASHBOARD_FETCH: async ({ offset = 0, limit = 15, name = undefined }) => {
     await act('TOTAL_COUNT_SUB', { name })
 
     store.get('merchants') && await act('MERCHANTS_UNSUB')
@@ -71,11 +71,11 @@ export default ({ act, store, action, handle, cookies, route }) => ({
           addresses { city commune country district house }
         }
       }`,
-      action: action('MERCHANTS_SET')
+      action: action('DASHBOARD_SET')
     })
   },
 
-  MERCHANTS_SET: data => {
+  DASHBOARD_SET: data => {
     return new Promise(
       resolve =>
         data &&

@@ -16,7 +16,7 @@ const Merchants = ({ query = {} }) => {
     const offset = totalCount && (page - 1) * pagination.limit
     const newPagination = totalCount ? { name, ...pagination, offset } : pagination
 
-    socket && act('MERCHANTS_SUB', { ...newPagination })
+    socket && act('DASHBOARD_FETCH', { ...newPagination })
     return action('MERCHANTS_UNSUB')
   }, [socket])
 
@@ -39,19 +39,19 @@ const Merchants = ({ query = {} }) => {
       Router.push('/management?step=merchants')
     }
 
-    socket && act('MERCHANTS_SUB', { name, ...newPagination })
+    socket && act('DASHBOARD_FETCH', { name, ...newPagination })
     return action('MERCHANTS_UNSUB')
   }, [pagination])
 
   // const handleStatus = ({ id, value }) => {
   //   setStatusName(value)
   //   id === undefined ? Router.push(`/management?step=merchants`) : Router.push(`/management?step=merchants&status=${id}`)
-  //   act('MERCHANTS_SUB', { statusId: id, token, ...pagination })
+  //   act('DASHBOARD_FETCH', { statusId: id, token, ...pagination })
   // }
 
   const handleSearchName = (name) => {
     Router.push(`/management?step=merchants&name=${name}`)
-    act('MERCHANTS_SUB', { name, token, ...pagination })
+    act('DASHBOARD_FETCH', { name, token, ...pagination })
   }
 
   const handlePagination = (page) => {
@@ -62,7 +62,7 @@ const Merchants = ({ query = {} }) => {
     // status && Router.push(`/management?step=merchants&status=${status}&page=${page}`)
     name && Router.push(`/management?step=merchants&name=${name}&page=${page}`)
     page && !name && Router.push(`/management?step=merchants&page=${page}`)
-    act('MERCHANTS_SUB', { name, ...newPagination })
+    act('DASHBOARD_FETCH', { name, ...newPagination })
   }
 
   return <Table light

@@ -5,7 +5,7 @@ import useActStore from 'actstore'
 import Menu from 'clik/elems/menu'
 import Button from 'clik/elems/button'
 
-import { actions } from './hooks'
+import { actions } from '../hooks'
 
 const Categories = ({ step, subStep }) => {
   const { act, store, cookies, action } = useActStore(actions)
@@ -13,7 +13,6 @@ const Categories = ({ step, subStep }) => {
   const { socket, merchants, categories = {} } = store.get('socket', 'merchants', 'merchantsCount', 'categories')
 
   useEffect(() => {
-    console.log("CATEGORIES_FETCH", act)
     cookies.get('token') && act('CATEGORIES_FETCH')
   }, [socket, subStep])
 

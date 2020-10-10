@@ -3,15 +3,14 @@ import { fucss } from 'next-fucss/utils'
 import useActStore from 'actstore'
 import Button from 'clik/elems/button'
 
-import { actions } from './hooks'
+import { actions } from '../hooks'
 
 const Dashboard = ({ query }) => {
   const { act, store, cookies, action } = useActStore(actions)
   const { dashboards } = store.get('socket', 'merchants', 'merchantsCount', 'dashboards', 'categories', 'informations')
 
   useEffect(() => {
-    console.log("MERCHANTS_SUB", act)
-    cookies.get('token') && act('MERCHANTS_SUB')
+    cookies.get('token') && act('DASHBOARD_FETCH')
   }, [])
 
   if (!dashboards)
