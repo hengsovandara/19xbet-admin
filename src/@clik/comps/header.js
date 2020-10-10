@@ -48,7 +48,7 @@ const Header = ({ showNav, user, handleChangePicture, onToggleNavigation, title,
           <button
             className={classNameButton()}
             onClick={null}
-            notification
+            notification={true}
           >
             <Icon icon="bell" />
           </button>

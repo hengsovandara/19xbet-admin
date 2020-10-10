@@ -8,11 +8,16 @@ import config, { getRoutes } from '../src/@clik/configs'
 import actions from '../src/@clik/actions'
 import '@fortawesome/fontawesome-svg-core/styles.css'
 import Cookies from 'js-cookie'
+import  'firebase/messaging';
+import firebase from  'firebase/app';
+import { ServiceWorker } from 'clik/hooks'
 
 import { ThemeProvider } from 'styled-components'
 
 import '../src/@clik/icons'
 import '../static/style.css'
+
+import { firebaseCloudMessaging } from 'clik/webPush' 
 
 const routes = getRoutes()
 const { publicRuntimeConfig } = getConfig()
@@ -40,11 +45,35 @@ const App = props => {
     ((window?.location?.pathname || '/') !== (Router?.router?.route || '/')) && Router.push(Router.router.asPath)
     act('APP_INIT')
   }, [])
+
+  useEffect(() => {
+    setToken();
+
+    async function setToken() {
+      try {
+        const token = await firebaseCloudMessaging.init();
+        console.log({token})
+        if(token) getMessage()
+      } catch (error) {
+        console.log("error")
+        console.log({error});
+      }
+    }
+
+    function getMessage() {
+      const messaging = firebase.messaging();
+      messaging.onMessage((message) => {
+        console.log({message})
+      })
+    }
+  }, [])
+
   return (
     <>
       <Head><title>Clik - Traffic light System</title></Head>
       <main className="prim:FCCD12 sec:FCCD12 tert:1B598D txt:black200 ff:Nunito c:txt bg:fafafa">
         <ThemeProvider theme={theme}>
+          <ServiceWorker />
           <Component {...pageProps} query={Router?.router?.query || {}} init={init} />
         </ThemeProvider>
       </main>
