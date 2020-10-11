@@ -6,7 +6,7 @@ import Button from 'clik/elems/button'
 import { UserForm, Confirmation } from '../elems'
 import { toCapitalize, timeSince } from 'clik/libs'
 
-export default ({ query }) => {
+const User = ({ query }) => {
   const { id } = query
   const { act, store, action } = useActStore(actions, [])
   const { user: loginUser, enums, ready } = store.get('ready', 'user', 'enums')
@@ -186,3 +186,5 @@ const Label = ({label, data, bold = false}) => {
     <p className={`${boldStyle}`}>{data}</p>
   </div>
 }
+
+export default User

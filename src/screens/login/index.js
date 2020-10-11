@@ -5,7 +5,7 @@ import Button from 'clik/elems/button'
 import actions from './actions'
 import useActStore from 'actstore'
 
-export default () => <Layout empty nospace backgroundColor background="/static/imgs/pattern.svg"><Inner /></Layout>
+const Login = () => <Layout empty nospace backgroundColor background="/static/imgs/pattern.svg"><Inner /></Layout>
 
 const Inner = () => {
   const { act, init } = useActStore({ actions }, [])
@@ -63,3 +63,5 @@ export const Logo = ({ version, env, slogan = 'Safer than cash', logo = 'static/
     <p className="tt:uc fs:80pc c:black">v{version} {env}</p>
   </div>
 )
+
+export default Login

@@ -12,7 +12,7 @@ import Button from '../../../@clik/elems/button'
 import Router from 'next/router'
 import Icon from '../../../@clik/elems/icon'
 
-export default ({ query }) => {
+const Consumer = ({ query }) => {
   const { id, step } = query
   const { act, store, action } = useActStore(actions, [])
   const { corporation, enums: { reasons, fields }, user } = store.get('corporation', 'enums', 'user')
@@ -133,6 +133,8 @@ export default ({ query }) => {
     </React.Fragment>
   )
 }
+
+export default Consumer
 
 const classNameProfile = (toggled) => fucss({
   'smx-w:280px w:320px xl-w:450px bg:f3f3f3 bd-l:1px-sd-blacka12 ps:fx b:0 t:70px z:2 ts:all': true,

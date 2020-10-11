@@ -1,17 +1,14 @@
+import firebase from 'firebase/app'
+import 'firebase/messaging'
 import { endpoints } from './configs'
 import { fetch } from 'fetchier'
 
-export default ({ config, act, route, store, cookies, handle }) => ({
+const Act = ({ config, act, route, store, cookies, handle }) => ({
   APP_COUNTRIES_FETCH: async data => {
     handle.loading(true)
-
-    // const result = await act('GET', { endpoint: 'countries'})
-
     handle.loading()
-    // const countries = (result && result.data) || {}
     return {}
   },
-
   APP_AREAS_FETCH: async data => {
     const {city, district, commune } = data || {}
 
@@ -27,13 +24,11 @@ export default ({ config, act, route, store, cookies, handle }) => ({
     return result?.data || {}
     // return store.set({ areas });
   },
-
   USER_TOKEN_SET: token => {
     token ? cookies.set('token', token) : cookies.remove('token')
     store.set({ token })
     return act('APP_INIT')
   },
-
   USER_FETCH: async (token = cookies.get('token')) => {
     const result = token && await act('GQL', {
       query: `query { Staffs( where: { credential: { sessions: { token: {_eq: "${token}"}} }}) { id role name photo phoneNumber email } }`
@@ -41,7 +36,6 @@ export default ({ config, act, route, store, cookies, handle }) => ({
     const [user = {}] = result && result.Staffs || []
     return user
   },
-
   ENUMS_FETCH: async () => {
     const enums = await act('GQL', {
       query: `query { 
@@ -57,14 +51,12 @@ export default ({ config, act, route, store, cookies, handle }) => ({
     })
     return enums
   },
-
   APP_SOCKET_CHECK: async () => {
     if(store.get().socket.readyState !== 1) {
       act('USER_TOKEN_SET')
       throw 'socket is closed'
     }
   },
-
   APP_INIT: async () => {
     const token = cookies.get('token')
     if(token && store.get('ready')) return
@@ -72,9 +64,9 @@ export default ({ config, act, route, store, cookies, handle }) => ({
     if(token){
       handle.loading(true)
       return route.set('index', !route.get('login'))
-        .then(() => act(['OPEN', 'USER_FETCH', 'ENUMS_FETCH', 'APP_COUNTRIES_FETCH'])
-        .then(async ([socket, user, enums]) => {
-
+        .then(() => act(['OPEN', 'USER_FETCH', 'ENUMS_FETCH', 'APP_NOTIFICATIONS'])
+        .then(async ([socket, user, enums, notification]) => {
+          console.log({notification})
           const users = await act('USERS_FETCH', user)
           const [counts, stats] = await act('STATS_FETCH', user)
           store.set({ socket, counts, user, users, enums, stats, ready: true })
@@ -88,7 +80,20 @@ export default ({ config, act, route, store, cookies, handle }) => ({
       return route.set('login').then(() => act('CLOSE').then(store.set))
     return act('CLOSE').then(store.set)
   },
+  APP_NOTIFICATIONS: async () => {
+    
+    !firebase.apps.length && await firebase.initializeApp(config.firebase)
 
+    if(!firebase.apps.length)
+      return
+
+    // const messaging = firebase.messaging()
+    // await window.SW.then(messaging.useServiceWorker).catch(console.log)
+    // messaging.onMessage(({ notification: { body, title } }) => act('APP_INFO', [title, body].join(': '), 'info'))
+    // return window.Notification.requestPermission()
+    //   .then(() => firebase.messaging().getToken())
+    //   .catch(err => act('APP_INFO', err, 'warning'))
+  },
   APP_FILE_UPLOAD: async body => {
     handle.loading(true)
     const result = await act('GET', { endpoint: 'upload' })
@@ -98,11 +103,9 @@ export default ({ config, act, route, store, cookies, handle }) => ({
     handle.loading()
     return url
   },
-
   USERS_FETCH: user => act('GQL', {
     query: `query { Staffs(where: { role: { _neq: "admin" } }) { id role name photo phoneNumber email } }`
   }).then(({ Staffs }) => Staffs),
-
   USER_UPDATE: async function ({ file, id }) {
     const url = await act('APP_FILE_UPLOAD', file)
     const { update_Users: { returning: [user] } } = await act('GQL', {
@@ -118,7 +121,6 @@ export default ({ config, act, route, store, cookies, handle }) => ({
 
     return user && store.set({ ...store.get('user'), ...user })
   },
-
   STATS_SUB: user => Promise.all([
     act('SUB', {
       id: 'unassignedConsumersCount',
@@ -152,7 +154,6 @@ export default ({ config, act, route, store, cookies, handle }) => ({
       action: ({ aggregate: { count } }) => store.get('counts').processingAssignments !== count && store.set({ counts: { ...store.get('counts'), processingAssignments: count }})
     })
   ]),
-
   STATS_UNSUB: () => Promise.all([
     act('UNSUB', { id: 'unassignedConsumersCount' }),
     act('UNSUB', { id: 'requestedConsumersCount' }),
@@ -160,7 +161,6 @@ export default ({ config, act, route, store, cookies, handle }) => ({
     act('UNSUB', { id: 'teamedAssignmentsCount' }),
     act('UNSUB', { id: 'processingAssignmentsCount' })
   ]),
-
   STATS_FETCH: () => [{}, [
     {
       label: 'assignments',
@@ -184,62 +184,6 @@ export default ({ config, act, route, store, cookies, handle }) => ({
       declinedNumber: 2
     }
   ]],
-
-  // STATS_FETCH: user => act('GQL', {
-  //   query: `
-  //     {
-  //       consumersOverall: Consumers_aggregate{ aggregate{ count } }
-  //       comsumersPending: Consumers_aggregate(where: { status: { _eq: 2}}){ aggregate{ count } }
-  //       comsumersActive: Consumers_aggregate(where: { status: { _eq: 1}}){ aggregate{ count } }
-  //       comsumersDeclined: Consumers_aggregate(where: { status: { _eq: 8}}){ aggregate{ count } }
-
-  //       merchantsOverall: Merchants_aggregate{ aggregate{ count } }
-  //       merchantsPending: Merchants_aggregate(where: { status: { _eq: "2"}}){ aggregate{ count } }
-  //       merchantsActive: Merchants_aggregate(where: { status: { _eq: "1"}}){ aggregate{ count } }
-  //       merchantsDeclined: Merchants_aggregate(where: { status: { _eq: "8"}}){ aggregate{ count } }
-
-  //       unassignedConsumers: Consumers_aggregate(where: { _and: [{ status: {_eq: 2} }, {_or: [
-  //         { _not: {assignments: {}}},
-  //         { _not: {assignments: { finishedAt: { _is_null: true}}}}
-  //       ]} ]}) { aggregate { count } }
-  //       requestedConsumers: Consumers_aggregate(where: { _and: [{ status: {_eq: 3} }, {_or: [
-  //         { _not: {assignments: {}}},
-  //         { _not: {assignments: { finishedAt: { _is_null: true}}}}
-  //       ]} ]}) { aggregate { count } }
-  //       assignedAssignments: Assignments_aggregate(where: { _and: [{finishedAt: {_is_null: true}}, { userId: {_eq: "${user.id}"}}, { consumer: { status: {_eq: 2} }} ]}) { aggregate { count } }
-  //       teamedAssignments: Assignments_aggregate(where: {userId: {_is_null: true}, role: {_eq: "${user.role}"}}) { aggregate { count } }
-  //       processingAssignments: Assignments_aggregate(where: { userId: {_is_null: false} finishedAt: {_is_null: true}}) { aggregate { count } }
-  //       unassignedMerchants: Merchants_aggregate(where: {_not: {assignments: {}}}) { aggregate { count } }
-  //     }
-  //   `
-  // }).then(stats => {
-  //   const data = Object.keys(stats).reduce((obj, key) => ({ ...obj, [key]: stats[key].aggregate.count }), {})
-
-  //   return [data, [
-  //     {
-  //       label: 'assignments',
-  //       total: data.unassignedConsumers,
-  //       pedingNumber: data.teamedAssignments,
-  //       activatedNumber: data.assignedAssignments,
-  //       declinedNumber: data.completedAssignments
-  //     },
-  //     {
-  //       label: 'consumers',
-  //       total: data.consumersOverall,
-  //       pendingNumber: data.comsumersPending,
-  //       activatedNumber: data.comsumersActive,
-  //       declinedNumber: data.comsumersDeclined,
-  //     },
-  //     {
-  //       label: 'merchants',
-  //       total: data.merchantsOverall,
-  //       pendingNumber: data.merchantsPending,
-  //       activatedNumber: data.merchantsActive,
-  //       declinedNumber: data.merchantsDeclined
-  //     }
-  //   ]]
-  // }),
-
   APP_INFO: async (data, type = 'error') => {
     console.log({data})
     const message = data && data.message || data.payload && data.payload.error || data
@@ -256,5 +200,6 @@ export default ({ config, act, route, store, cookies, handle }) => ({
     provider = provider || store.get('corporation').apiKey
     return url && provider ? config.endpoints.image + url + '&provider=' + provider + '&token=' + cookies.get('token') : ''
   }
-
 })
+
+export default Act

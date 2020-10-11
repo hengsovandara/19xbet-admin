@@ -1,14 +1,13 @@
 import { useEffect } from 'react'
+import  'firebase/messaging';
 
 export const useServiceWorker = () => {
   useEffect(() => {
     if (typeof document !== 'object') return
-    if ('serviceWorker' in window.navigator)
-      window.navigator.serviceWorker.register('./fbSw.js')
-        .then(
-          ({ scope }) => console.log('ServiceWorker registered ', scope),
-          err => console.log('ServiceWorker failed: ', err)
-        )
+    if ('serviceWorker' in window.navigator){
+      window.SW = window.navigator.serviceWorker.register('../firebase-messaging-sw.js')
+        .then((registration) => registration)
+    }
   }, [])
 }
 

@@ -4,8 +4,7 @@ import User from './user'
 import Router, { useRouter } from 'next/router'
 import useActStore from 'actstore'
 
-export default ({ query }) => {
-  console.log({query})
+const Staff = ({ query }) => {
   const { store: { ready } } = useActStore({}, ['ready'])
   const router = useRouter()
 
@@ -17,3 +16,5 @@ export default ({ query }) => {
       { ready ? <User query={query || {}} /> : null }
     </Layout>
 }
+
+export default Staff

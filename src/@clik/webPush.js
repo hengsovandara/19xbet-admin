@@ -1,4 +1,4 @@
-import  'firebase/messaging';
+import 'firebase/messaging';
 import firebase from  'firebase/app';
 import localforage from  'localforage';
 
@@ -19,24 +19,28 @@ const firebaseCloudMessaging = {
   },
   init: async function () {
     if (!firebase.apps.length) {
-      console.log("here")
       firebase.initializeApp(firebaseConfig);
     }
 
     try {
+      console.log("weh push 1")
       const messaging = firebase.messaging();
-      const tokenInLocalForage = await this.tokenInlocalforage();
-      if (tokenInLocalForage !== null) return tokenInLocalForage;
+      console.log("weh push 2")
+      // const tokenInLocalForage = await this.tokenInlocalforage();
+      // if (tokenInLocalForage !== null) return tokenInLocalForage;
       const status = await Notification.requestPermission();
       if (status && status ===  'granted') {
+        console.log("weh push 3", messaging)
         const fcm_token = await messaging.getToken();
+        console.log("weh push 4")
+        console.log({fcm_token})
         if (fcm_token) {
           localforage.setItem( 'fcm_token', fcm_token);
           return fcm_token;
         }
       }
     } catch (error) {
-      console.error(error);
+      console.error("error error error", error);
       return null;
     }
   }

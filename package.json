@@ -3,7 +3,6 @@
   "version": "0.1.3",
   "private": true,
   "dependencies": {
-    "@cometchat-pro/chat": "^1.8.14",
     "@fortawesome/fontawesome-pro": "^5.11.2",
     "@fortawesome/fontawesome-svg-core": "^1.2.26",
     "@fortawesome/free-brands-svg-icons": "^5.10.0",
@@ -32,12 +31,18 @@
   },
   "devDependencies": {
     "auto-changelog": "^1.14.1",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^8.1.0",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
     "next-transpile-modules": "^4.1.0",
     "prettier": "^1.18.2",
     "serve": "^11.1.0"
   },
   "scripts": {
     "start": "next -p 3000 -H 0.0.0.0",
+    "dev": "NODE_ENV=test node server.js -p 3000",
     "test": "nightwatch",
     "build": "next build && next export",
     "export": "next export && node src/@clik/hooks/useStaticIndexCleaner.js",

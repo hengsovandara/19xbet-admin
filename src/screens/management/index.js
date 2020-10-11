@@ -4,9 +4,11 @@ import Consumer from './consumer'
 import Router, { useRouter } from 'next/router'
 import useActStore from 'actstore'
 
-export default ({ query }) => {
+const Management = ({ query }) => {
   const { store: { ready } } = useActStore({}, ['ready'])
   return <Layout maxWidth>
     {!!ready && <List query={query || {}} />}
   </Layout>
 }
+
+export default Management
