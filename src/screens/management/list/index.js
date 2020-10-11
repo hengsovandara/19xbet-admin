@@ -9,11 +9,9 @@ const List = ({ query }) => {
 
   const items = React.useMemo(() => ([
     {
-      title: 'របាយការណ៍',
-      key: 'assigned',
-      active: !step || step === 'assigned',
-      href: { query: { step: 'assigned' } },
-      amount: 'assignedAssignments',
+      title: 'ការគ្រប់គ្រង',
+      key: 'all',
+      active: !step || step === 'all',
       component: () => <My { ...query} />
     }
   ].filter(i => i)), [page, step, keywords, status])

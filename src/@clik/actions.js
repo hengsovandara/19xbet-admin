@@ -64,9 +64,8 @@ const Act = ({ config, act, route, store, cookies, handle }) => ({
     if(token){
       handle.loading(true)
       return route.set('index', !route.get('login'))
-        .then(() => act(['OPEN', 'USER_FETCH', 'ENUMS_FETCH', 'APP_NOTIFICATIONS'])
-        .then(async ([socket, user, enums, notification]) => {
-          console.log({notification})
+        .then(() => act(['OPEN', 'USER_FETCH', 'ENUMS_FETCH'])
+        .then(async ([socket, user, enums]) => {
           const users = await act('USERS_FETCH', user)
           const [counts, stats] = await act('STATS_FETCH', user)
           store.set({ socket, counts, user, users, enums, stats, ready: true })
