@@ -6,13 +6,13 @@ import Router from 'next/router'
 import Button from 'clik/elems/button'
 
 const Assigned = ({ page, keywords, status }) => {
-  const { act, store, action } = useActStore(actions, ['assigned'])
-  const { ready, assigned, assignedCount, enums} = store.get('ready', 'assigned', 'assignedCount', 'user', 'enums')
-  const pagination = getPagination(page, assignedCount)
+  const { act, store, action } = useActStore(actions, ['reports'])
+  const { ready, reports = {}, enums} = store.get('ready', 'reports', 'assignedCount', 'user', 'enums')
+  const pagination = getPagination(page, 0)
+  const { data = [], totalAmount = 0 } = reports || {}
 
   React.useEffect(() => {
-    act('ASSIGNED_SUB', getPagination(page), keywords, status)
-    return action('ASSIGNED_UNSUB')
+    act('REPORTS_FETCH', getPagination(page), keywords, status)
   }, [page, keywords, status])
 
   return ready && <Table light
@@ -21,9 +21,9 @@ const Assigned = ({ page, keywords, status }) => {
     pagination={pagination}
     handlePagination={page => Router.push(`/management?step=assigned&page=${page}${Boolean(keywords) ? `&keywords=${keywords}` : ''}${Boolean(status) ? `&status=${status}` : ''}`)}
     leftHead
-    handleSearch={keywords => Router.push(`/management?step=assigned&keywords=${keywords}`)}
-    fields={['id', 'name', 'account type', 'method', 'amount', 'submitted at', 'accepted by', 'accepted at', 'action']}
-    data={getData(assigned, enums)}
+    handleSearch={keywords => {}}
+    fields={['id', 'name', 'account type', 'method', 'amount', 'submitted at', 'accepted by', 'accepted at']}
+    data={getData(data, enums)}
   />
 }
 
@@ -59,7 +59,7 @@ function getPagination(page, overall = 15){
   return { offset: (page ? (page - 1) : 0) * 15, limit: 15, overall }
 }
 
-function getData(items, enums = {}) {
+function getData(items = [], enums = {}) {
   const data = items?.map(({ user, amount, type, method, createdAt, acceptedAt, id, index, staff, status }) => {
     const phoneNumber = user?.phoneNumber && "0" + user?.phoneNumber || 'N/A'
     const { transaction_types = {} , transaction_methods}  = enums
@@ -79,9 +79,7 @@ function getData(items, enums = {}) {
       'submitted at': { subValue: createdAt.split(' ')[0], title: createdAt.split(' ')[1], type: 'label', mobile: false },
       'accepted at': { subValue: acceptedAt?.split(' ')[0], title: acceptedAt?.split(' ')[1], type: 'label', mobile: false },
       'accepted by': { value: staff?.name || '',  type: 'select' },
-      'accepted': { value: staff?.name, type: 'label', mobile: false },
-      _href: { pathname: '/management', query: { type, id } },
-      action: status !== 'requested' ? { value: status, color: colors[status], type: 'label', mobile: false } : { component: Buttons, props: { id, status } },
+      'accepted': { value: staff?.name, type: 'label', mobile: false }
     }
   }) || []
 

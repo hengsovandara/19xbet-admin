@@ -1,5 +1,6 @@
 import firebase from 'firebase/app'
 import 'firebase/messaging'
+import 'firebase/auth'
 import { endpoints } from './configs'
 import { fetch } from 'fetchier'
 
@@ -64,11 +65,13 @@ const Act = ({ config, act, route, store, cookies, handle }) => ({
     if(token){
       handle.loading(true)
       return route.set('index', !route.get('login'))
-        .then(() => act(['OPEN', 'USER_FETCH', 'ENUMS_FETCH'])
-        .then(async ([socket, user, enums]) => {
+        .then(() => act(['OPEN', 'USER_FETCH', 'ENUMS_FETCH', 'APP_NOTIFICATIONS'])
+        .then(async ([socket, user, enums, notification]) => {
           const users = await act('USERS_FETCH', user)
           const [counts, stats] = await act('STATS_FETCH', user)
+          console.log("notification notification", notification)
           store.set({ socket, counts, user, users, enums, stats, ready: true })
+          handle.loading(false)
           // return act('STATS_SUB', user)
         })).catch(() => act('USER_TOKEN_SET'))
     }
@@ -77,7 +80,8 @@ const Act = ({ config, act, route, store, cookies, handle }) => ({
 
     if (!route.get('login'))
       return route.set('login').then(() => act('CLOSE').then(store.set))
-    return act('CLOSE').then(store.set)
+    return store.set()
+    // return act('CLOSE').then(store.set)
   },
   APP_NOTIFICATIONS: async () => {
     
@@ -86,12 +90,16 @@ const Act = ({ config, act, route, store, cookies, handle }) => ({
     if(!firebase.apps.length)
       return
 
-    // const messaging = firebase.messaging()
-    // await window.SW.then(messaging.useServiceWorker).catch(console.log)
-    // messaging.onMessage(({ notification: { body, title } }) => act('APP_INFO', [title, body].join(': '), 'info'))
-    // return window.Notification.requestPermission()
-    //   .then(() => firebase.messaging().getToken())
-    //   .catch(err => act('APP_INFO', err, 'warning'))
+    const messaging = firebase.messaging()
+    messaging.onMessage(({ notification: { body, title } }) => {
+      navigator.serviceWorker.ready.then(registration => {
+        console.log({registration})
+        // registration.showNotification(title, body);
+      });
+    })
+    return window.Notification.requestPermission()
+      .then(() => firebase.messaging().getToken())
+      .catch(err => {console.log("APP_INFO", err); act('APP_INFO', err, 'warning')})
   },
   APP_FILE_UPLOAD: async body => {
     handle.loading(true)
@@ -184,7 +192,6 @@ const Act = ({ config, act, route, store, cookies, handle }) => ({
     }
   ]],
   APP_INFO: async (data, type = 'error') => {
-    console.log({data})
     const message = data && data.message || data.payload && data.payload.error || data
     const info = { message: '', type }
     console.log({info})

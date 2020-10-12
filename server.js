@@ -13,12 +13,11 @@ app.prepare().then(() => {
   createServer((req, res) => {
     const parsedUrl = parse(req.url, true);
     const { pathname } = parsedUrl;
-    console.log("Hi")
-    if(!pathname.includes('firebase-messaging-sw.js'))
+    if(!pathname.includes('sw.js'))
       return handle(req, res, parsedUrl);
     
     res.setHeader('content-type', 'text/javascript');
-    createReadStream('./public/firebase-messaging-sw.js').pipe(res);
+    createReadStream('./public/sw.js').pipe(res);
 
   }).listen(port, err => {
     if (err) throw err;
