@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import DatePicker from './date-picker'
 
-export default ({ showPicker, placeholder, value, onClick }) => {
+const DatePickerComp = ({ showPicker, placeholder, value, onClick }) => {
   const [date, setDate] = useState(value)
   const [day, setDay] = useState()
   const [month, setMonth] = useState()
@@ -21,22 +21,38 @@ export default ({ showPicker, placeholder, value, onClick }) => {
   const handleMouseDown = ({ type, down }) => {
     switch (type) {
       case 'days':
-        const getDate = new Date(date).getDate()
-        const dd = down ? getDate + 1 : getDate - 1
+        const currentDate = new Date(date)
+        const getDate = currentDate.getDate()
+        const newDate = new Date(currentDate.setDate(down ? getDate - 1 : getDate + 1))
+        let dd = newDate.getDate()
+        let newMonth = newDate.getMonth() + 1
         setDay(dd)
-        setDate(`${year}/${month}/${dd}`)
+        newMonth !== month && setMonth(newMonth)
+        setDate(`${newDate.getFullYear()}/${newMonth}/${dd}`)
+        onClick(`${newDate.getFullYear()}/${newMonth}/${dd}`)
         break
       case 'months':
         const getMonth = new Date(date).getMonth() + 1
-        const mm = down ? getMonth + 1 : getMonth - 1
+        let mm = down ? getMonth - 1 : getMonth + 1
+        let newYear = 0
+        if(mm < 1){
+          mm = 12; newYear -= 1;
+        }
+
+        if(mm > 12){
+          mm = 1; newYear += 1;
+        }
+
         setMonth(mm)
-        setDate(`${year}/${mm}/${day}`)
+        setDate(`${year + newYear}/${mm}/${day}`)
+        onClick(`${year + newYear}/${mm}/${day}`)
         break
       case 'years':
         const getYear = new Date(date).getFullYear()
-        const yy = down ? getYear + 1 : getYear - 1
+        const yy = down ? getYear - 1 : getYear + 1
         setYear(yy)
         setDate(`${yy}/${month}/${day}`)
+        onClick(`${year + newYear}/${mm}/${day}`)
         break
       default:
         break
@@ -64,3 +80,5 @@ export default ({ showPicker, placeholder, value, onClick }) => {
     />
   )
 }
+
+export default DatePickerComp

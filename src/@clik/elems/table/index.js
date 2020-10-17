@@ -12,7 +12,7 @@ export default props => {
     <div className={props.className}>
       { !props.noHead && <Head {...props} action={action} onSelect={onSelect} results={results} isSelected={isSelected} selected={selected} pagination={pagination} filtersQuery={filtersQuery} filters={filters} /> }
       <Table {...props} {...useFields(props)} onSelect={onSelect} selected={selected} action={action} sort={sort} data={data} />
-      <Foot {...props} pagination={pagination} handlePagination={handlePagination} filtersQuery={filtersQuery} />
+      <Foot totalAmount={props.totalAmount || 0} {...props} pagination={pagination} handlePagination={handlePagination} filtersQuery={filtersQuery} />
     </div>
   )
 }

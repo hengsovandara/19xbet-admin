@@ -41,7 +41,7 @@ const DatePicker = ({ showPicker = false, placeholder = 'Select date', date, day
       <Toggler open={open} onClick={() => setOpen(!open)}>
         {showPicker
           ? <input
-              className="w:100pc"
+              className="w:100pc p-rl:10px"
               style={{ color: date ? '#134168' : '#8d8d8d', fontWeight: date ? 'bold' : 'normal' }}
               placeholder={placeholder}
               value={date || ''}
@@ -53,9 +53,9 @@ const DatePicker = ({ showPicker = false, placeholder = 'Select date', date, day
                 }
               }}
             />
-          : <div className="w:100pc" style={{ color: date ? '#134168' : '#8d8d8d', fontWeight: date ? 'bold' : 'normal' }}>{date || placeholder}</div>
+          : <div className="w:100pc p-rl:10px" style={{ color: date ? '#134168' : '#8d8d8d', fontWeight: date ? 'bold' : 'normal' }}>{date || placeholder}</div>
         }
-        <div className="w:24px ta:c c:ccc" style={{ color: open && '#1fb5a7' }}><FontAwesomeIcon icon="calendar-alt" /></div>
+        <div className="w:24px ta:c c:ccc p-rl:10px" style={{ color: open && '#1fb5a7' }}><FontAwesomeIcon icon="calendar-alt" /></div>
       </Toggler>
       {open && (
         <Date>
@@ -76,10 +76,6 @@ const DatePicker = ({ showPicker = false, placeholder = 'Select date', date, day
               <Icon down onMouseDown={() => handleMouseDown({ type: 'days', down: true })}><FontAwesomeIcon icon="minus" /></Icon>
             </DateItem>
           </DateItems>
-          <div className="w:100pc dp:flx fd:row jc:sb ai:c m-t:8px m-rl:4px">
-            {/* <Button onClick={() => setOpen(false)}>tabindex="-1" to prevent tabbing</Button> */}
-            <Button outline tabIndex="-1" className="w:100pc" type="button" onClick={handleAddDate}>Add</Button>
-          </div>
         </Date>
       )}
     </Container>
@@ -105,7 +101,7 @@ const DateText = styled.div`
   width: 100%;
   padding: 8px 4px;
   background: #1fb5a7; /* prim */
-  color: white;
+  color: black;
 `;
 
 const Container = styled.div`

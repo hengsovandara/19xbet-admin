@@ -11,6 +11,7 @@ import Range from './range'
 import Dropdown from './dropdown'
 import Textfield from './textfield'
 import Label from './label'
+import Date from '../date';
 import NewSelect from '../select'
 
 export default class extends Component {
@@ -121,6 +122,13 @@ function ElemInput(props) {
     case 'textarea':
     case 'textfield':
       return <Textfield separator {...props} action={extractValues(props)} classNameInput={classNameInput} />
+    case 'date':
+    case 'datetime':
+    case 'calendar':
+    case 'time':
+      return <Dropdown {...props} className={classNameInput}>
+      {props.focus && <Date {...props} action={extractValues(props)} />}
+    </Dropdown>
     case 'range':
       return dropdown ? (
         <Dropdown {...props} className={classNameInput}>

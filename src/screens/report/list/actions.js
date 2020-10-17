@@ -1,22 +1,17 @@
 import { setDate, setName, setAddress } from 'clik/libs'
 
 export default ({ act, store, action, handle, cookies, route }) => ({
-  REPORTS_FETCH: async ({ offset = 0, limit = 15 }, keywords, status) => {
-    const search = Boolean(keywords) ? `{ _or: [
-      { consumer: { givenName: {_ilike: "%${name}%"}} },
-      { consumer: { surname: {_ilike: "%${name}%"}} },
-      { consumer: { accountNumber: {_ilike: "%${keywords}%"}} }
-      ${!!parseInt(keywords) ? `{ consumer: { contacts: {phoneNumber: {_eq: "${keywords}"}} } }` : ''}
-    ]} ` : ''
+  REPORTS_FETCH: async ({ startDate, endDate }) => {
 
-    const statusQuery = status ? `, consumer: { status: {_eq: ${status}} }` : ''
-
-    // const condition = `where: {_and: {finishedAt: {_is_null: true}} ${statusQuery}, userId: {_eq: "${store.get('user').id}"} ${search}}`
-    const condition = `where: { _and: [{ status: { _eq: "accepted"}}]}`
+    const condition = `where: { _and: [
+      { status: { _eq: "accepted"}},
+      {createdAt: { _lte: "${endDate}"}},
+      {createdAt: { _gte: "${startDate}"}}
+    ]}`
 
     return act('GQL', {
       query: `{
-        Transactions(limit:${limit} offset:${offset} order_by:{ createdAt: desc } ${condition}) {
+        Transactions(order_by:{ createdAt: desc } ${condition}) {
           id type method imageUrl amount createdAt userId index status acceptedAt
           user{ id name email phoneNumber }
           staff { id name }

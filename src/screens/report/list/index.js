@@ -4,56 +4,64 @@ import useActStore from 'actstore'
 import actions from './actions'
 import Router from 'next/router'
 import Button from 'clik/elems/button'
+import DatePicker from 'clik/elems/date-picker'
 
-const Assigned = ({ page, keywords, status }) => {
+const Report = ({ page, keywords, status }) => {
   const { act, store, action } = useActStore(actions, ['reports'])
   const { ready, reports = {}, enums} = store.get('ready', 'reports', 'assignedCount', 'user', 'enums')
   const pagination = getPagination(page, 0)
   const { data = [], totalAmount = 0 } = reports || {}
+  var date = new Date();
+
+  const [startDate, setStartDate] = React.useState(new Date(new Date().setMonth(date.getMonth() - 1)).toLocaleDateString())
+  const [endDate, setEndDate] = React.useState(new Date().toLocaleDateString())
 
   React.useEffect(() => {
-    act('REPORTS_FETCH', getPagination(page), keywords, status)
+    act('REPORTS_FETCH', { startDate, endDate})
   }, [page, keywords, status])
 
-  return ready && <Table light
-    key={new Date().getTime()}
-    query={{ page, keywords }}
-    pagination={pagination}
-    handlePagination={page => Router.push(`/management?step=assigned&page=${page}${Boolean(keywords) ? `&keywords=${keywords}` : ''}${Boolean(status) ? `&status=${status}` : ''}`)}
-    leftHead
-    handleSearch={keywords => {}}
-    fields={['id', 'name', 'account type', 'method', 'amount', 'submitted at', 'accepted by', 'accepted at']}
-    data={getData(data, enums)}
-  />
-}
-
-export default Assigned
-
-const Buttons = props => {
-  const { act, store } = useActStore(actions)
-  const { user } = store.get('ready', 'user')
-
-  const onSubmit = async (status) => {
-    await act('TRANSACTIONS_UPDATE', { status, staffId: user.id, id: props.id})
+  const onDateSelected = ({type, date}) => {
+    if(type === 'startDate')
+      setStartDate(date)
+    else
+      setEndDate(date)
   }
 
-  return <div className="dp:flx ai:c">
-    <Button
-      bordered
-      green
-      icon={'check-double'}
-      action={() => onSubmit('accepted')}
-      className="p-r:0 m-r:15px"
-    />
-    <Button
-      bordered
-      red
-      icon={'trash'}
-      action={() => onSubmit('rejected')}
-      className="p-r:0"
-    />
-  </div>
+  const onSearched = async () => {
+    await act('REPORTS_FETCH', { startDate, endDate})
+  }
+
+  return ready && 
+    <div>
+      <div className="dp:flx p-tb:15px w:100pc">
+        <div className="p-rl:10px w:200px">
+          <p>Start Date</p>
+          <DatePicker value={startDate} onClick={(date) => onDateSelected({date, type: "startDate"})}/>
+        </div>
+        <div className="p-rl:10px w:200px">
+          <p>End Date</p>
+          <DatePicker value={endDate} onClick={(date) => onDateSelected({date, type: "endDate"})}/>
+        </div>
+        <div className="p-rl:10px">
+          <p className="c:white">search</p>
+          <Button icon='search' text="Search" bordered prim action={onSearched} />
+        </div>
+      </div>
+      <Table light head noSearch noTableHead
+        key={new Date().getTime()}
+        query={{ page, keywords }}
+        pagination={pagination}
+        handlePagination={page => Router.push(`/reports?step=assigned&page=${page}${Boolean(keywords) ? `&keywords=${keywords}` : ''}${Boolean(status) ? `&status=${status}` : ''}`)}
+        leftHead
+        handleSearch={keywords => {}}
+        fields={['id', 'name', 'account type', 'method', 'amount', 'submitted at', 'accepted by', 'accepted at']}
+        data={getData(data, enums)}
+        totalAmount={totalAmount}
+      />
+    </div>
 }
+
+export default Report
 
 function getPagination(page, overall = 15){
   return { offset: (page ? (page - 1) : 0) * 15, limit: 15, overall }

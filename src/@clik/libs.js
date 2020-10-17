@@ -23,8 +23,9 @@ export function setDate(timestamp) {
 
   // date.setHours(date.getHours() + 14)
   let [date, time] = new Date(timestamp).toLocaleString('en-GB').split(', ')
+  // console.log({date, time})
   date = date.split('/')
-  return [[date[2], date[0], date[1]].join('-'), time].join(' ')
+  return [[date[2], date[1], date[0]].join('-'), time].join(' ')
 }
 
 export function formatGender(gender) {
