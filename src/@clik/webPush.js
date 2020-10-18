@@ -26,8 +26,6 @@ const firebaseCloudMessaging = {
       console.log("weh push 1")
       const messaging = firebase.messaging();
       console.log("weh push 2")
-      // const tokenInLocalForage = await this.tokenInlocalforage();
-      // if (tokenInLocalForage !== null) return tokenInLocalForage;
       const status = await Notification.requestPermission();
       if (status && status ===  'granted') {
         console.log("weh push 3", messaging)

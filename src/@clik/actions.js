@@ -69,7 +69,7 @@ const Act = ({ config, act, route, store, cookies, handle }) => ({
         .then(async ([socket, user, enums, notification]) => {
           const users = await act('USERS_FETCH', user)
           const [counts, stats] = await act('STATS_FETCH', user)
-          console.log("notification notification", notification)
+          // console.log("notification notification", notification)
           store.set({ socket, counts, user, users, enums, stats, ready: true })
           handle.loading(false)
           // return act('STATS_SUB', user)
@@ -84,22 +84,23 @@ const Act = ({ config, act, route, store, cookies, handle }) => ({
     // return act('CLOSE').then(store.set)
   },
   APP_NOTIFICATIONS: async () => {
-    
-    !firebase.apps.length && await firebase.initializeApp(config.firebase)
+    return null
+    // !firebase.apps.length && await firebase.initializeApp(config.firebase)
 
-    if(!firebase.apps.length)
-      return
+    // if(!firebase.apps.length)
+    //   return
 
-    const messaging = firebase.messaging()
-    messaging.onMessage(({ notification: { body, title } }) => {
-      navigator.serviceWorker.ready.then(registration => {
-        console.log({registration})
-        // registration.showNotification(title, body);
-      });
-    })
-    return window.Notification.requestPermission()
-      .then(() => firebase.messaging().getToken())
-      .catch(err => {console.log("APP_INFO", err); act('APP_INFO', err, 'warning')})
+    // const messaging = firebase.messaging()
+    // messaging.onMessage(({ notification: { body, title } }) => {
+    //   navigator.serviceWorker.ready.then(registration => {
+    //     console.log({registration})
+    //     registration.showNotification(title, body);
+    //   });
+    // })
+    // console.log(messaging.getToken())
+    // return window.Notification.requestPermission()
+    //   .then(() => messaging.getToken())
+    //   .catch(err => {console.log("APP_INFO", err); act('APP_INFO', err, 'warning')})
   },
   APP_FILE_UPLOAD: async body => {
     handle.loading(true)
