@@ -80,7 +80,7 @@ function getData(items, enums = {}) {
       'accepted at': { subValue: acceptedAt?.split(' ')[0], title: acceptedAt?.split(' ')[1], type: 'label', mobile: false },
       'accepted by': { value: staff?.name || '',  type: 'select' },
       'accepted': { value: staff?.name, type: 'label', mobile: false },
-      _href: { pathname: '/management', query: { type, id } },
+      // _href: { pathname: '/management', query: { type, id } },
       action: status !== 'requested' ? { value: status, color: colors[status], type: 'label', mobile: false } : { component: Buttons, props: { id, status } },
     }
   }) || []

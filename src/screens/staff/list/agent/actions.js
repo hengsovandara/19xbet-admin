@@ -6,9 +6,7 @@ export default ({ act, store, action, handle, cookies, route }) => ({
   STAFF_SUB: async ({ offset = 0, limit = 15 }, keywords, status = 2) => {
 
     const search = Boolean(keywords) ? `{ _or: [
-      { givenName: {_ilike: "%${keywords}%"}},
-      { surname: {_ilike: "%${keywords}%"}},
-      { accountNumber: {_ilike: "%${keywords}%"}}
+      { name: {_ilike: "%${keywords}%"}}
       ${!!parseInt(keywords) ? `{ contacts: {phoneNumber: {_eq: "${keywords}"}} }` : ''}
     ]} ` : ''
 

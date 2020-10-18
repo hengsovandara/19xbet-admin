@@ -11,14 +11,14 @@ const Consumers = ({ query: { page, keywords, status = null } }) => {
   const { act, store, action, cookies } = useActStore(actions, ['consumers', 'ready'])
   const { ready, consumers, consumersCount, user, enums, users } = store.get()
   const pagination = getPagination(page, consumersCount)
-  console.log({consumers})
+
   React.useEffect(() => {
     ready && act('CONSUMERS_SUB', getPagination(page), keywords, status)
     return action('CONSUMERS_UNSUB')
   }, [page, keywords, status, ready])
 
   return <Layout maxWidth title="Consumers">
-    {ready && <Table className="p:24px bg:white" light
+    {ready && <Table className="p:24px p-t:0 bg:white" light
       query={{ page, keywords }}
       pagination={pagination}
       handlePagination={page => Router.push(`/consumers?page=${page}${Boolean(keywords) ? `&keywords=${keywords}` : ''}${Boolean(status) ? `&status=${status}` : ''}`)}
@@ -56,8 +56,7 @@ function getData(items) {
       'phone number': { value: "0" + phoneNumber, type: 'label', mobile: false },
       'created at': { subValue: createdAt.split(' ')[0], title: createdAt.split(' ')[1], type: 'label', mobile: false },
       'wallet id': { value: walletId, type: 'label', mobile: false },
-      id,
-      _href: { pathname: '/staff', query: { type: 'consumer', id } }
+      id
     }
   }) || []
 

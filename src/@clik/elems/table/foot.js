@@ -18,7 +18,7 @@ export default ({ pagination, handlePagination, noTableFoot = false, totalAmount
               </div>
             </div> : 
             <div>
-              <p className="xw:400px fw:bold">Total Amount:&nbsp;&nbsp;${totalAmount}</p>
+              { !!totalAmount && <p className="xw:400px fw:bold">Total Amount:&nbsp;&nbsp;${totalAmount}</p>}
             </div>
           )
         }

@@ -9,10 +9,9 @@ export default ({ act, store, action, handle, cookies, route }) => ({
 
     const search = Boolean(keywords) ? `{ _or: [
       ${keywords.split(' ').map(word => `
-        { givenName: {_ilike: "%${word}%"}},
-        { surname: {_ilike: "%${word}%"}},
-        { accountNumber: {_ilike: "%${word}%"}}
-        ${!!parseInt(word) ? `{ contacts: {phoneNumber: {_eq: "${word}"}} }` : ''}
+        { name: {_ilike: "%${word}%"}},
+        { walletId: {_ilike: "%${word}%"}},
+        { phoneNumber: {_ilike: "%${word}%"}}
       `).join('')}
     ]} ` : ''
 
