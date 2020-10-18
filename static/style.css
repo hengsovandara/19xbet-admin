@@ -13,62 +13,54 @@ input, button, select, option, textarea{font-size: 100%; font-family: inherit;}
 .ff\:Nunito{font-family:"Nunito";}
 .c\:txt{color:#535353;}
 .bg\:fafafa{background:#fafafa;}
-.mxw\:360px{max-width:360px;}
-.w\:100pc{width:100%;}
-.c\:black{color:#111;}
-.m\:auto{margin:auto;}
 .p\:24px{padding:24px;}
-.bd\:1px-sd-blacka12{border:1px solid rgba(17,17,17,0.12);}
-.bg\:black{background:#111;}
-.br\:12px{border-radius:12px;}
-.p-b\:24px{padding-bottom:24px;}
-.m-b\:24px{margin-bottom:24px;}
-.bd-b\:1px-sld-blacka12{border-bottom:1px solid rgba(17,17,17,0.12);}
-.fs\:200pc{font-size:200%;}
-.m-b\:16px{margin-bottom:16px;}
-.c\:FCCD12{color:#FCCD12;}
-.ai\:c{align-items:center;}
-.jc\:sb{justify-content:space-between;}
-.m-t\:12px{margin-top:12px;}
-.w\:212px{width:212px;}
-.m-rl\:auto{margin-right:auto;margin-left:auto;}
-.fw\:400{font-weight:400;}
-.m-b\:12px{margin-bottom:12px;}
-.m-t\:36px{margin-top:36px;}
-.bg\:FCCD12{background:#FCCD12;}
-.jc\:c{justify-content:center;}
-.m-b\:36px{margin-bottom:36px;}
-.tt\:uc{text-transform:uppercase;}
-.fs\:80pc{font-size:80%;}
 .p-t\:0{padding-top:0;}
 .bg\:white{background:#fff;}
+.w\:100pc{width:100%;}
 .h\:calc\(100pc-80px\){height:calc(100% - 80px);}
 .dp\:flx{display:flex;}
 .ai\:fs{align-items:flex-start;}
 .bg\:blacka06{background:rgba(17,17,17,0.06);}
 .flxd\:col{flex-direction:column;}
+.bd\:1px-sd-blacka12{border:1px solid rgba(17,17,17,0.12);}
 .br\:8px{border-radius:8px;}
 .ta\:l{text-align:left;}
+.m-b\:24px{margin-bottom:24px;}
+.tt\:uc{text-transform:uppercase;}
 .h\:100pc{height:100%;}
 .ps\:rl{position:relative;}
 .p-t\:12px{padding-top:12px;}
 .fd\:col{flex-direction:column;}
 .p-b\:12px{padding-bottom:12px;}
+.m-b\:12px{margin-bottom:12px;}
+.m-b\:16px{margin-bottom:16px;}
 .jc\:fs{justify-content:flex-start;}
 .fs\:150pc{font-size:150%;}
+.ai\:c{align-items:center;}
+.m-t\:12px{margin-top:12px;}
+.m-b\:36px{margin-bottom:36px;}
 .last-m-b\:0:last-child{margin-bottom:0;}
+.jc\:sb{justify-content:space-between;}
 .m-b\:8px{margin-bottom:8px;}
 .tt\:cap{text-transform:capitalize;}
 .h\:8px{height:8px;}
 .of\:hd{overflow:hidden;}
-.mxw\:160px{max-width:160px;}
-.mnh\:calc\(100vh-70px\){min-height:calc(100vh - 70px);}
-.mxw\:100pc{max-width:100%;}
-.p-t\:70px{padding-top:70px;}
-.bg\:blacka08{background:rgba(17,17,17,0.08);}
-.bg\:fff{background:#fff;}
-.mnh\:100vh{min-height:100vh;}
-.p-l\:0{padding-left:0;}
+.mxw\:360px{max-width:360px;}
+.c\:black{color:#111;}
+.m\:auto{margin:auto;}
+.bg\:black{background:#111;}
+.br\:12px{border-radius:12px;}
+.p-b\:24px{padding-bottom:24px;}
+.bd-b\:1px-sld-blacka12{border-bottom:1px solid rgba(17,17,17,0.12);}
+.fs\:200pc{font-size:200%;}
+.c\:FCCD12{color:#FCCD12;}
+.w\:212px{width:212px;}
+.m-rl\:auto{margin-right:auto;margin-left:auto;}
+.fw\:400{font-weight:400;}
+.m-t\:36px{margin-top:36px;}
+.bg\:FCCD12{background:#FCCD12;}
+.jc\:c{justify-content:center;}
+.fs\:80pc{font-size:80%;}
 .w\,h\:40px{width:40px;height:40px;}
 .bg-sz\:cv{background-size:cover;}
 .bg-ps\:c{background-position:center;}
@@ -77,14 +69,45 @@ input, button, select, option, textarea{font-size: 100%; font-family: inherit;}
 .w\,h\:45px{width:45px;height:45px;}
 .ts\:all{transition:all .45s cubic-bezier(0.23, 1, 0.32, 1);}
 .w\,h\:100pc{width:100%;height:100%;}
+.mxw\:160px{max-width:160px;}
+.mnh\:calc\(100vh-70px\){min-height:calc(100vh - 70px);}
+.mxw\:100pc{max-width:100%;}
+.p-t\:70px{padding-top:70px;}
+.bg\:blacka08{background:rgba(17,17,17,0.08);}
+.bg\:fff{background:#fff;}
+.mnh\:100vh{min-height:100vh;}
+.p-l\:0{padding-left:0;}
 .p-rl\:24px{padding-right:24px;padding-left:24px;}
 .p-tb\:15px{padding-top:15px;padding-bottom:15px;}
 .p-rl\:10px{padding-right:10px;padding-left:10px;}
 .w\:200px{width:200px;}
 .c\:white{color:#fff;}
-.flxw\:wrap{flex-wrap:wrap;}
-.p\:12px-24px-0{padding:12px 24px 0;}
 .of\:auto{overflow:auto;}
+.p-t\:64px{padding-top:64px;}
+.w\:auto{width:auto;}
+.ps\:ab{position:absolute;}
+.t\,r\:24px{top:24px;right:24px;}
+.w\,h\:100px{width:100px;height:100px;}
+.fw\:600{font-weight:600;}
+.fs\:20px{font-size:20px;}
+.c\:grey{color:#9E9E9E;}
+.flxw\:wrap{flex-wrap:wrap;}
+.p-r\:24px{padding-right:24px;}
+.p\:16px{padding:16px;}
+.c\:grey400{color:#adadad;}
+.fs\:90pc{font-size:90%;}
+.h\:calc\(100pc-48px\){height:calc(100% - 48px);}
+.ai\,jc\:c{align-items:center;justify-content:center;}
+.w\,h\:80px{width:80px;height:80px;}
+.ta\:c{text-align:center;}
+.h\:40px{height:40px;}
+.w\:20px{width:20px;}
+.c\:blacka4{color:rgba(17,17,17,0.4);}
+.fs\:125pc{font-size:125%;}
+.m-l\:16px{margin-left:16px;}
+.m-b\:4px{margin-bottom:4px;}
+.fs\:70pc{font-size:70%;}
+.p\:12px-24px-0{padding:12px 24px 0;}
 .w\:320px{width:320px;}
 .bg\:f3f3f3{background:#f3f3f3;}
 .bd-l\:1px-sd-blacka12{border-left:1px solid rgba(17,17,17,0.12);}
@@ -94,41 +117,18 @@ input, button, select, option, textarea{font-size: 100%; font-family: inherit;}
 .z\:2{z-index:2;}
 .r\:0{right:0;}
 .r\:320npx{right:-320px;}
-.h\:40px{height:40px;}
 .w\:30px{width:30px;}
 .br\:4px-0-0-4px{border-radius:4px 0 0 4px;}
 .bg\:prim{background:#FCCD12;}
-.ps\:ab{position:absolute;}
 .t\:50pc{top:50%;}
 .try\:50npc{transform:translateY(-50%);}
 .l\:30npx{left:-30px;}
-.ai\,jc\:c{align-items:center;justify-content:center;}
 .crs\:pt{cursor:pointer;}
 .fs\:16px{font-size:16px;}
 .r\:360npx{right:-360px;}
 .m-rl\:8npx{margin-right:-8px;margin-left:-8px;}
 .flxg\:1{flex-grow:1;}
 .m\:8px{margin:8px;}
-.p-t\:64px{padding-top:64px;}
-.w\:auto{width:auto;}
-.t\,r\:24px{top:24px;right:24px;}
-.w\,h\:100px{width:100px;height:100px;}
-.fw\:600{font-weight:600;}
-.fs\:20px{font-size:20px;}
-.c\:grey{color:#9E9E9E;}
-.p-r\:24px{padding-right:24px;}
-.p\:16px{padding:16px;}
-.c\:grey400{color:#adadad;}
-.fs\:90pc{font-size:90%;}
-.h\:calc\(100pc-48px\){height:calc(100% - 48px);}
-.w\,h\:80px{width:80px;height:80px;}
-.ta\:c{text-align:center;}
-.w\:20px{width:20px;}
-.c\:blacka4{color:rgba(17,17,17,0.4);}
-.fs\:125pc{font-size:125%;}
-.m-l\:16px{margin-left:16px;}
-.m-b\:4px{margin-bottom:4px;}
-.fs\:70pc{font-size:70%;}
 .bs\:2{box-shadow:0px 2px 4px rgba(0,0,0,0.12);}
 .p\:40px-50px{padding:40px 50px;}
 .br\:5px{border-radius:5px;}
@@ -393,6 +393,14 @@ input, button, select, option, textarea{font-size: 100%; font-family: inherit;}
 .bg\:FCF1F1{background:#FCF1F1;}
 .c\:E57373{color:#E57373;}
 .b\,r\:0{bottom:0;right:0;}
+.mxw\:150px{max-width:150px;}
+.bd-c\:grey200{border-color:#e0e0e0;}
+.h\:0{height:0;}
+.of\:vs{overflow:visible;}
+.c\:black300{color:#303030;}
+.p\:40px{padding:40px;}
+.xw\:400px{max-width:400px;}
+.p-t\:24px{padding-top:24px;}
 .c\:title200{color:title200;}
 .mnw\:100pc{min-width:100%;}
 .va\:m{vertical-align:middle;}
@@ -440,7 +448,6 @@ input, button, select, option, textarea{font-size: 100%; font-family: inherit;}
 .dp\:tb{display:table;}
 .bd-clp\:clp{border-collapse:collapse;}
 .c\:whitea8{color:rgba(255,255,255,0.8);}
-.c\:black300{color:#303030;}
 .w\:44px{width:44px;}
 .bd-w\:1px{border-width:1px;}
 .bd-c\:blacka12{border-color:rgba(17,17,17,0.12);}
@@ -452,13 +459,6 @@ input, button, select, option, textarea{font-size: 100%; font-family: inherit;}
 .bd-b\:12px-solid-sec600{border-bottom:12px solid #edbe03;}
 .hv-bg\:prima05:hover{background:rgba(252,205,18,0.05);}
 .w\,h\,mnw\:40px{width:40px;height:40px;min-width:40px;}
-.mxw\:150px{max-width:150px;}
-.bd-c\:grey200{border-color:#e0e0e0;}
-.h\:0{height:0;}
-.of\:vs{overflow:visible;}
-.p\:40px{padding:40px;}
-.xw\:400px{max-width:400px;}
-.p-t\:24px{padding-top:24px;}
 .t\:12px{top:12px;}
 .r\:12px{right:12px;}
 .lh\:1{line-height:1;}
@@ -514,13 +514,13 @@ input, button, select, option, textarea{font-size: 100%; font-family: inherit;}
 .mnw\:100px{min-width:100px;}
 .bd-b\:1px-sld-grey200{border-bottom:1px solid #e0e0e0;}
 .bd-t\:1px-sld-grey200{border-top:1px solid #e0e0e0;}
+.c\:black400{color:#202020;}
 .t\,l\:4px{top:4px;left:4px;}
 .fs\:12px{font-size:12px;}
 .w\,h\,lh\:22px{width:22px;height:22px;line-height:22px;}
 .hv-c\:grey:hover{color:#9E9E9E;}
 .bd\:1px-sld-prim{border:1px solid #FCCD12;}
 .bd\:1px-sld-blacka12{border:1px solid rgba(17,17,17,0.12);}
-.c\:black400{color:#202020;}
 .b\,l\:0{bottom:0;left:0;}
 .c\:grey300{color:#bdbdbd;}
 .m\:5px{margin:5px;}
@@ -543,27 +543,27 @@ input, button, select, option, textarea{font-size: 100%; font-family: inherit;}
 .hv-bg\:prim:hover{background:#FCCD12;}
 .hv-c\:white:hover{color:#fff;}
 .fc-bs\:1_bd-c\:prim_scl\:1\.05:focus{box-shadow:0px 1px 2px rgba(0,0,0,0.10);border-color:#FCCD12;transform:scale(1.05);}
+.w\,h\:0{width:0;height:0;}
+.p\:7px-16px{padding:7px 16px;}
+.m\:0-5px-5px-0{margin:0 5px 5px 0;}
+.bg\:tert{background:#1B598D;}
+.c\:sec300{color:#ffec31;}
+.bg\:grey100{background:#fcfcfc;}
+.w\,h\,lh\:11px{width:11px;height:11px;line-height:11px;}
+.bg\:sec600{background:#edbe03;}
+.bg\:grey300{background:#bdbdbd;}
+.bg\:sec300{background:#ffec31;}
 .h\,w\:0{height:0;width:0;}
 .w\:100pc-\!{width:100% !important;}
-.bg\:sec600{background:#edbe03;}
 .bd\:1px-sld-sec400{border:1px solid #ffdc21;}
-.bg\:grey100{background:#fcfcfc;}
 .p\:7px-14px{padding:7px 14px;}
 .br\:5px-0-0-3px{border-radius:5px 0 0 3px;}
 .bd\:0{border:0;}
 .fl\:r{float:right;}
 .mnw\:150px{min-width:150px;}
-.bg\:sec300{background:#ffec31;}
-.bg\:tert{background:#1B598D;}
-.c\:sec300{color:#ffec31;}
 .w\:calc\(100pc-12px\){width:calc(100% - 12px);}
 .m-r\:5px-\!{margin-right:5px !important;}
 .bd-b\:1px-sld-tert600{border-bottom:1px solid #0c4a7e;}
-.w\,h\:0{width:0;height:0;}
-.p\:7px-16px{padding:7px 16px;}
-.m\:0-5px-5px-0{margin:0 5px 5px 0;}
-.w\,h\,lh\:11px{width:11px;height:11px;line-height:11px;}
-.bg\:grey300{background:#bdbdbd;}
 .m-b\:3px{margin-bottom:3px;}
 .bd-c\:silver600{border-color:#cecece;}
 .fc-bs\:1_bd-c\:prim300_scl\:1\.02:focus{box-shadow:0px 1px 2px rgba(0,0,0,0.10);border-color:#ffec31;transform:scale(1.02);}
@@ -621,15 +621,13 @@ input, button, select, option, textarea{font-size: 100%; font-family: inherit;}
 .fs\:\.95em{font-size:.95em;}
 .mxh\:80vh{max-height:80vh;}
 .crs\:n{cursor:none;}
+.h\:calc\(100vh-140px\){height:calc(100vh - 140px);}
+.p\:24px-12px{padding:24px 12px;}
+.h\:calc\(100vh\){height:calc(100vh);}
 @media only screen and (min-width: 400px) {
 .sm-h\:calc\(100pc-250px\){height:calc(100% - 250px);}
 }
 @media only screen and (min-width: 768px) {
-.md-dp\:flx{display:flex;}
-.md-p-r\:30px{padding-right:30px;}
-.md-fs\:85pc{font-size:85%;}
-.md-mxw\:150px{max-width:150px;}
-.md-w\:100pc{width:100%;}
 .md-w\:65pc{width:65%;}
 .md-ai\:c{align-items:center;}
 .md-jc\:sb{justify-content:space-between;}
@@ -638,6 +636,11 @@ input, button, select, option, textarea{font-size: 100%; font-family: inherit;}
 .md-m-r\:48px{margin-right:48px;}
 .md-w\:calc\(35pc-24px\){width:calc(35% - 24px);}
 .md-m-l\:24px{margin-left:24px;}
+.md-dp\:flx{display:flex;}
+.md-p-r\:30px{padding-right:30px;}
+.md-fs\:85pc{font-size:85%;}
+.md-mxw\:150px{max-width:150px;}
+.md-w\:100pc{width:100%;}
 .md-fs\:14px_lh\:1\.3{font-size:14px;line-height:1.3;}
 .md-p-l\:70px{padding-left:70px;}
 .md-p-l\:0{padding-left:0;}
@@ -674,22 +677,23 @@ input, button, select, option, textarea{font-size: 100%; font-family: inherit;}
 .lg-m-b\:0{margin-bottom:0;}
 .lg-w\:calc\(100pc-280px\){width:calc(100% - 280px);}
 .lg-dp\:n{display:none;}
+.lg-h\:calc\(100vh-80px\){height:calc(100vh - 80px);}
 }
 @media only screen and (min-width: 1280px) {
+.xl-w\:360px{width:360px;}
+.xl-w\:calc\(100pc-360px\){width:calc(100% - 360px);}
 .xl-w\:calc\(100pc-450px\){width:calc(100% - 450px);}
 .xl-w\:450px{width:450px;}
 .xl-r\:0{right:0;}
 .xl-dp\:n{display:none;}
 .xl-flxw\:nowrap{flex-wrap:nowrap;}
-.xl-w\:360px{width:360px;}
-.xl-w\:calc\(100pc-360px\){width:calc(100% - 360px);}
 .xl-mnh\:250px{min-height:250px;}
 }
 @media only screen and (max-width: 767px) {
-.mdx-m-t\:24px{margin-top:24px;}
 .mdx-flxd\:col{flex-direction:column;}
 .mdx-m-b\:24px{margin-bottom:24px;}
 .mdx-m-b\:48px{margin-bottom:48px;}
+.mdx-m-t\:24px{margin-top:24px;}
 .mdx-dp\:n{display:none;}
 .mdx-p-b\:0{padding-bottom:0;}
 .mdx-w\:100pc-\!{width:100% !important;}
@@ -714,4 +718,4 @@ input, button, select, option, textarea{font-size: 100%; font-family: inherit;}
 @keyframes dash{to { stroke-dashoffset: 0; }}
 @keyframes marquee{0% { transform: translateX(0); } 100% { transform: translateX(-50%); }}
 @keyframes bounce{0% { transform: scale(1,1) translateY(0); } 10% { transform: scale(1.1,.9) translateY(0); } 30% { transform: scale(.9,1.1) translateY(-100px); } 50% { transform: scale(1.05,.95) translateY(0); } 57% { transform: scale(1,1) translateY(-7px); } 64% { transform: scale(1,1) translateY(0); } 100% { transform: scale(1,1) translateY(0); }}
- /** Incorrect classes btn-login btn-login background && `url(${background background && `url(${background profile-img ${isResetable || isDeleteable && ${isDeleteable && ${isResetable && ${i % 2 === 0 && black200 profile-img ${isResetable || isDeleteable && ${isDeleteable && ${isResetable && ${i % 2 === 0 && black200 profile-img profile-img profile-img profile-img ' + className `linear-gradient(${primDeg !isLoading ? !wrap ? children <div className="bg:white c:black">{children photo || logo || url ? <span style={{ `url(${photo || logo || url profile-img ' + className `linear-gradient(${primDeg !isLoading ? !wrap ? children <div className="bg:white c:black">{children photo || logo || url ? <span style={{ `url(${photo || logo || url profile-img disabled ? placeholder text ${open && disabled ? placeholder text ${open && ${!noBorder && ${!noBorder && ${!!index ${item.disabled && data && "w:100pc bd-b:1px-sld-grey200" !props.noHead && props.fields && data.length > 0 && ( <div className="dp:tr bd-t:1px-sd-blacka12"> {props.allowSelect && ( <div key="selectBox" title="Select item to delete" className="fw:600 w:44px"> <Checkbox onSelect={e => props.onSelect(data.map(item => item.id), selected.length >= data.length * 0.8) true true (value.color ? ${!!index ${item.disabled && data && "w:100pc bd-b:1px-sld-grey200" !props.noHead && props.fields && data.length > 0 && ( <div className="dp:tr bd-t:1px-sd-blacka12"> {props.allowSelect && ( <div key="selectBox" title="Select item to delete" className="fw:600 w:44px"> <Checkbox onSelect={e => props.onSelect(data.map(item => item.id), selected.length >= data.length * 0.8) true true (value.color ? !cameraMode ? ( <div className="p:24px"> <div className={classNameInner(light) "ta:c br:4px" !cameraMode ? ( <div className="p:24px"> <div className={classNameInner(light) "ta:c br:4px" isChecked && <Icon className="ps:ab c:white" icon="check" /> super(props) this.state = { true fa-2x fa-2x fa-2x fa-2x isChecked && <Icon className="ps:ab c:white" icon="check" /> super(props) this.state = { true fa-2x fa-2x fa-2x fa-2x ' + className ' + className `calc(100% / 7)` `calc(100% / 7)` */
+ /** Incorrect classes btn-login background && `url(${background background && `url(${background profile-img ${isResetable || isDeleteable && ${isDeleteable && ${isResetable && ${i % 2 === 0 && black200 profile-img ${isResetable || isDeleteable && ${isDeleteable && ${isResetable && ${i % 2 === 0 && black200 profile-img profile-img profile-img profile-img ' + className `linear-gradient(${primDeg !isLoading ? !wrap ? children <div className="bg:white c:black">{children photo || logo || url ? <span style={{ `url(${photo || logo || url disabled ? placeholder text ${open && disabled ? placeholder text ${open && ${!noBorder && ' + className `linear-gradient(${primDeg !isLoading ? !wrap ? children <div className="bg:white c:black">{children photo || logo || url ? <span style={{ `url(${photo || logo || url profile-img profile-img ${!noBorder && ${!!index ${item.disabled && data && "w:100pc bd-b:1px-sld-grey200" !props.noHead && props.fields && data.length > 0 && ( <div className="dp:tr bd-t:1px-sd-blacka12"> {props.allowSelect && ( <div key="selectBox" title="Select item to delete" className="fw:600 w:44px"> <Checkbox onSelect={e => props.onSelect(data.map(item => item.id), selected.length >= data.length * 0.8) true true (value.color ? !cameraMode ? ( <div className="p:24px"> <div className={classNameInner(light) ${!!index ${item.disabled && "ta:c br:4px" "ta:c br:4px" isChecked && <Icon className="ps:ab c:white" icon="check" /> !cameraMode ? ( <div className="p:24px"> <div className={classNameInner(light) super(props) this.state = { true fa-2x fa-2x fa-2x fa-2x isChecked && <Icon className="ps:ab c:white" icon="check" /> super(props) this.state = { true fa-2x fa-2x fa-2x fa-2x ' + className ' + className `calc(100% / 7)` `calc(100% / 7)` background && `url(${background profile-img ${isResetable || isDeleteable && ${isDeleteable && ${isResetable && ${i % 2 === 0 && black200 profile-img ${!noBorder && ' + className `linear-gradient(${primDeg !isLoading ? !wrap ? children <div className="bg:white c:black">{children photo || logo || url ? <span style={{ `url(${photo || logo || url ${!!index ${item.disabled && profile-img profile-img disabled ? placeholder text ${open && data && "w:100pc bd-b:1px-sld-grey200" !props.noHead && props.fields && data.length > 0 && ( <div className="dp:tr bd-t:1px-sd-blacka12"> {props.allowSelect && ( <div key="selectBox" title="Select item to delete" className="fw:600 w:44px"> <Checkbox onSelect={e => props.onSelect(data.map(item => item.id), selected.length >= data.length * 0.8) true true (value.color ? "ta:c br:4px" !cameraMode ? ( <div className="p:24px"> <div className={classNameInner(light) isChecked && <Icon className="ps:ab c:white" icon="check" /> super(props) this.state = { true fa-2x fa-2x fa-2x fa-2x ' + className `calc(100% / 7)` btn-login background && `url(${background profile-img ${isResetable || isDeleteable && ${isDeleteable && ${isResetable && ${i % 2 === 0 && black200 profile-img ${!noBorder && ' + className `linear-gradient(${primDeg !isLoading ? !wrap ? children <div className="bg:white c:black">{children photo || logo || url ? <span style={{ `url(${photo || logo || url ${!!index ${item.disabled && profile-img profile-img disabled ? placeholder text ${open && data && "w:100pc bd-b:1px-sld-grey200" !props.noHead && props.fields && data.length > 0 && ( <div className="dp:tr bd-t:1px-sd-blacka12"> {props.allowSelect && ( <div key="selectBox" title="Select item to delete" className="fw:600 w:44px"> <Checkbox onSelect={e => props.onSelect(data.map(item => item.id), selected.length >= data.length * 0.8) true true (value.color ? "ta:c br:4px" !cameraMode ? ( <div className="p:24px"> <div className={classNameInner(light) isChecked && <Icon className="ps:ab c:white" icon="check" /> super(props) this.state = { true fa-2x fa-2x fa-2x fa-2x ' + className `calc(100% / 7)` profile-img profile-img profile-img profile-img profile-img profile-img profile-img profile-img profile-img profile-img profile-img profile-img profile-img profile-img */

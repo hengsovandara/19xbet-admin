@@ -5,12 +5,12 @@ export default props => {
   return (
     <Fragment>
       <Head>
-        <title>Clik - Customer Service System</title>
+        <title>Casa79 Admin System</title>
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
         <meta name="description" content="We're working hard to fight fraudsters and improve ID security but we need your help. We're currently looking for people who can upload a photo of their Photo ID so we can accurately identify fakes." />
-        <meta name="author" content="Clik - Customer Service System" />
-        <meta name="copyright" content="Clik - Customer Service System. All Rights Reserved." />
-        <meta name="application-name" content="Clik - Customer Service System" />
+        <meta name="author" content="Casa79 Admin System" />
+        <meta name="copyright" content="Casa79 Admin System. All Rights Reserved." />
+        <meta name="application-name" content="Casa79 Admin System" />
         <link rel="stylesheet" href="./static/style.css" />
         <link rel="shortcut icon" type="image/x-icon" href="./static/favicon.ico" />
         <link rel="icon" type="image/x-icon" href="./static/favicon.ico" />

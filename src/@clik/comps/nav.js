@@ -5,9 +5,7 @@ import Button from 'clik/elems/button'
 import { fucss } from 'next-fucss/utils';
 import styled from "styled-components"
 
-const ElemNav = (props) => {
-  console.log({props})
-  return(
+const ElemNav = (props) => (
   <div className={classNameNavigation(props.showNav)}>
     <div className={classNameLogout(props.showNav)}>
       <button className={classNameLogoutButton(props.showNav)} onClick={props.onToggleNavigation}>
@@ -15,9 +13,9 @@ const ElemNav = (props) => {
       </button>
     </div>
     <Navbar {...props} />
-    {!props.showNav && <Footer {...props} />}
   </div>
-)};
+);
+
 
 // broken image backup
 function brokenImageBackup(ev){
@@ -25,7 +23,7 @@ function brokenImageBackup(ev){
 }
 
 const Navbar = ({ handleLogout, showNav, init, router, user, handleChangePicture }) => (
-  <Nav className={classNavbar(showNav)}>
+  <Nav className="w:100pc c:white dp:flx fd:col h:calc(100vh) lg-h:calc(100vh-80px) of-y:auto ps:rl">
     <div className="w:100pc p-t:75px p-b:40px">
       <div className="dp:flx fd:col jc:c ai:c p-rl:12px">
         <div
@@ -73,14 +71,18 @@ const Navbar = ({ handleLogout, showNav, init, router, user, handleChangePicture
 
 const Footer = ({ showNav, init }) => (
   <footer className={classNameFooter(showNav)}>
-    <div className="dp:flx ai:c">
-      <div style={{ backgroundImage: `url('static/imgs/casa.png')` }} className="w:150px h:40px bg-sz:cover bg-ps:c lg-fs:100pc" />
-      <div className="ta:l m-l:6px dp:n lg-dp:ib">
-        <strong className="fs:60pc bg:prim br:3px p:2px-7px c:black">
-          v{init.version} {init.env || ''}
-        </strong>
-      </div>
-    </div>
+    {
+      !showNav && (
+        <div className="dp:flx ai:c">
+          <div style={{ backgroundImage: `url('static/imgs/casa.png')` }} className="w:150px h:40px bg-sz:cover bg-ps:c" />
+          <div className="ta:l m-l:6px dp:n lg-dp:ib">
+            <strong className="fs:60pc bg:prim br:3px p:2px-7px c:black">
+              v{init.version} {init.env || ''}
+            </strong>
+          </div>
+        </div>
+      )
+    }
   </footer>
 );
 
@@ -93,11 +95,6 @@ const Nav = styled.nav`
   }
 `
 
-const classNavbar = showNav => fucss({
-  'w:100pc c:white dp:flx fd:col of-y:auto ps:rl': true,
-  "lg-h:calc(100vh-80px)": !showNav
-})
-
 const classNameNavigation = showNav => fucss({
   'bg:black ps:fx mnh:100vh z:6 w:70px ps:rl': true,
   'l:0': showNav,
@@ -105,7 +102,7 @@ const classNameNavigation = showNav => fucss({
 });
 
 const classNameFooter = showNav => fucss({
-  'c:white jc:c ai:c p-l:15px': true,
+  'ps:fx b:0 c:white p:24px-12px dp:flx jc:c ai:c w:70px': true,
   'lg-w:280px': !showNav,
 });
 
