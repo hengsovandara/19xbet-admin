@@ -1,7 +1,7 @@
 import React from 'react';
 import Table from 'clik/elems/table'
 import useActStore from 'actstore'
-import actions from './actions'
+import actions from '../actions'
 import Router from 'next/router'
 
 const Report = ({ page, keywords, status }) => {
@@ -23,11 +23,11 @@ const Report = ({ page, keywords, status }) => {
 
   return ready && 
     <div>
-      <Table light head noSearch
+      <Table light head noSearch allowSelect
         key={new Date().getTime()}
         query={{ page, keywords }}
         pagination={pagination}
-        handlePagination={page => Router.push(`/reports?step=assigned&page=${page}${Boolean(keywords) ? `&keywords=${keywords}` : ''}${Boolean(status) ? `&status=${status}` : ''}`)}
+        handlePagination={page => Router.push(`/news?page=${page}${Boolean(keywords) ? `&keywords=${keywords}` : ''}${Boolean(status) ? `&status=${status}` : ''}`)}
         leftHead
         handleSearch={keywords => {}}
         fields={['id', 'title', 'image', 'content', 'created at', 'staff']}
@@ -44,14 +44,15 @@ function getPagination(page, overall = 15){
 
 function getData(items = []) {
   const data = items?.map(({ id, title, content, imageUrl, createdAt, staff }) => {
-    id = id && id.split("-")[0] || ''
+    // id = id && id.split("-")[0] || ''
     return {
       'id': { value: id, type: 'label', mobile: false },
       'title': { title: title || "unknown", type: 'label', full: true },
-      'image': { value: imageUrl || '', type: 'image', mobile: false },
-      'content': { value: content || '', mobile: false },
+      'image': { url: imageUrl || '', type: 'image', mobile: false },
+      'content': { value: content || '', numberOfLines: true, mobile: false },
       'created at': { subValue: createdAt.split(' ')[0], title: createdAt.split(' ')[1], type: 'label', mobile: false },
-      'staff': { value: staff?.name || 'N/A', mobile: false }
+      'staff': { value: staff?.name || 'N/A', mobile: false },
+      _href: { pathname: '/news', query: { id } }
     }
   }) || []
 

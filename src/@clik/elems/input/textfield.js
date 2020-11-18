@@ -5,7 +5,7 @@ export default props => {
   const action = props.addNote || props.action || props.handleFocus
   return (
     <div className={classNameContainer(props)}>
-      <textarea onClick={props.handleFocus} name={props.name} rows={props.row} placeholder={props.placeholder} className={classNameText(props)} onBlur={e => props.handleFocus(false) && action(e)} />
+      <textarea onClick={props.handleFocus} defaultValue={props?.altValue || props?.value} name={props.name} rows={props.row} placeholder={props.placeholder} className={classNameText(props)} onBlur={e => props.handleFocus(false) && action(e)} />
 
       {props.children
         ? props.children
@@ -20,7 +20,7 @@ export default props => {
 
 const classNameContainer = ({ light }) =>
   fucss({
-    'ps:rl p:5px br:5px': true,
+    'p:5px br:5px': true,
     'bg:sec': !light,
     'bg:white': light
   })

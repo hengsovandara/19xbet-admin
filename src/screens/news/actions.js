@@ -33,6 +33,16 @@ export default ({ act, store, action, handle, cookies, route }) => ({
     }))
     return store.set({ news, newsCount, loading: null })
   },
+
+  ARTICLE_FETCH: async({id}) => {
+    const data = await act('GQL', {
+      query: `query {
+        News_by_pk(id: "${id}"){ id title content imageUrl createdAt }
+      }`
+    }).then(({News_by_pk}) => News_by_pk)
+
+    return store.set({ article: data, ready: true })
+  },
   
   TRANSACTIONS_UPDATE: async (data) => {
     const query = `

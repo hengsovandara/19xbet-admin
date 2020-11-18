@@ -129,14 +129,19 @@ function Item({ item, fields, i, light }) {
     return (
       <div key={key + '_tbody'} className={classNameData(!value ? {} : value, i % 2, light)}>
         <div className={"dp:flx" + (value.center ? ' jc:c' : '')}>
-          <p className={(value.color ? `jc:${value.color}` : '')}>{value && getValue(value)}</p>
+          { value?.numberOfLines ? 
+            <p className={"h:60px lh:20px" + (value.color ? `jc:${value.color}` : '')} style={{overflow: 'hidden', maxHeight: 60, lineHeight: "20px"}}>{value && getValue(value)}</p> : 
+            <p className={(value.color ? `jc:${value.color}` : '')}>{value && getValue(value)}</p>
+          }
           {value && value.url &&
-            <div className="br:50pc dp:flx jc:c ai:c w,h,mnw:40px ts:all m-r:16px">
-              {value.url
-                ? <img src={value.url} onError={brokenImageBackup} className="br:50pc w,h:100pc" />
-                : <Icon icon="user" />
-              }
-            </div>
+            ( value.type === 'image' ? 
+              <div className="">
+                <img src={value.url} onError={brokenImageBackup} className="w:100px" />
+              </div> :
+              <div className="br:50pc dp:flx jc:c ai:c w,h,mnw:40px ts:all m-r:16px">
+                <Icon icon="user" />
+              </div>
+            )
           }
           <div>
             {value && value.title &&
