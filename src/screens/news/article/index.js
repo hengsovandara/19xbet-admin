@@ -7,7 +7,7 @@ import Router from 'next/router'
 import actions from '../actions'
 
 const Article = ({ id, page }) => {
-  const { act, store } = useActStore(actions, ['article', 'ready'])
+  const { act, store, handle } = useActStore(actions, ['article', 'ready'])
   const { ready, article = {}, loading } = store.get()
   const [ news, setNews] = React.useState(article || {})
   const [ imageFile, setImageFile] = React.useState()
@@ -26,7 +26,6 @@ const Article = ({ id, page }) => {
   const onImageSelect = (file) => {
     let reader = new FileReader();
     reader.onload = (e) => {
-      // this.setState({image: e.target.result});
       setNews(prev => ({...prev, "imageUrl": e.target.result}))
       setImageFile(file[0])
     };
@@ -39,6 +38,10 @@ const Article = ({ id, page }) => {
 
   const onSave = async () => {
     await act('ARTICLE_UPSERT', news, imageFile, onCancel )
+  }
+
+  const onDelete = async () => {
+    handle.confirm(() => act('ARTICLE_DELETE', { ids: [news.id], onDone: onCancel}))
   }
 
   return !!ready && <div>
@@ -58,9 +61,10 @@ const Article = ({ id, page }) => {
             className="p-r:0 m-rl:15px"
           />
       </div>
-      <div className="ta:r p-rl:12px dp:flx jc:fe ai:c">
+      <div className="ta:r p-rl:12px dp:flx jc:fe ai:c m-t:10px">
         <Button action={onCancel}>Cancel</Button>
         <Button prim action={onSave} className="m-l:24px">Save</Button>
+        <Button action={onDelete} className="m-l:24px bg:red400 c:white">Delete</Button>
       </div>
     </div>
 }

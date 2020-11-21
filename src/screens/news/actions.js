@@ -85,6 +85,27 @@ const actions = ({ act, store, action, handle, cookies, route }) => ({
         })
     })
   },
+
+  ARTICLE_DELETE: async (data) => {
+    handle.loading(true)
+    try {
+      const { ids = [], onDone = () => {} } = data
+    
+      data = await act('GQL', {
+        query: `mutation{
+          delete_News( where: { id: { _in: ${JSON.stringify(ids)}}}
+          ){ affected_rows }
+        }`
+      }).then(({delete_News: { affected_rows }}) => affected_rows)
+
+      handle.loading(false)
+      onDone()
+      return 
+    } catch (error) {
+      handle.loading(false)
+      console.log(error)
+    }
+  }
 })
 
 export default actions;

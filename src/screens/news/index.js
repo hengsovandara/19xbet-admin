@@ -5,9 +5,7 @@ import React from 'react'
 import useActStore from 'actstore'
 
 const News = ({ query }) => {
-  const { step, page, keywords, status, id  } = query || {}
-  const { store: { counts, user, ready } } = useActStore({}, ['counts'])
-
+  const { store: { ready } } = useActStore({}, ['counts'])
   return <Layout maxWidth title="News">
     {!!ready && <div className="p:24px p-t:0 bg:white">
       { query.id ? <Article { ...query }/> : <List { ...query} /> }

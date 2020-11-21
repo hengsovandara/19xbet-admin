@@ -111,7 +111,7 @@ const classNameButton = ({ full, small, tiny, circle, disabled, icon, iconEnd, b
     'fs:90pc': small,
     'fs:80pc': tiny,
     'bg:LightCoral c:white': alert,
-    'bg:prim c:white': prim,
+    'bg:prim c:black': prim,
     'bd:1px-sd-blacka12 bg:ts c:black hv-bd-c:prim_c:prim_bg:prima2': bordered && !alert || bordered && !prim,
     'bd:1px-sd-reda12 bg:ts c:red hv-bd-c:red_c:red_bg:reda2':bordered && red,
     'bd:1px-sd-greena2 bg:ts c:green hv-bd-c:green_c:green_bg:greena2':bordered && green,
