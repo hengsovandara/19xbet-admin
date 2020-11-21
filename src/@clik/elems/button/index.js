@@ -67,7 +67,7 @@ function ElemButton(props) {
 
 const classNameImage = light =>
   fucss({
-    'h:175px m:5px-5px-0-0 hv-bs:2 ts:all m-b:10px': true,
+    'h:175px m:5px-5px-0-0 hv-bs:2 ts:all m-b:10px w:500px h:auto': true,
     'bd:1px-sld-grey200': !light
   })
 

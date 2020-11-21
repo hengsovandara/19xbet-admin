@@ -10,7 +10,7 @@ const News = ({ query }) => {
 
   return <Layout maxWidth title="News">
     {!!ready && <div className="p:24px p-t:0 bg:white">
-      { query.id ? <Article id={query.id}/> : <List { ...query} /> }
+      { query.id ? <Article { ...query }/> : <List { ...query} /> }
     </div>}
   </Layout>
 }

@@ -1,6 +1,7 @@
-import { setDate, setName, setAddress } from 'clik/libs'
+import { setDate } from 'clik/libs'
+import firebase from 'clik/hooks/firebase'
 
-export default ({ act, store, action, handle, cookies, route }) => ({
+const actions = ({ act, store, action, handle, cookies, route }) => ({
   NEWS_FETCH: async ({ offset = 0, limit = 15 }, keywords) => {
 
     const search = Boolean(keywords) ? `{ _or: [
@@ -44,41 +45,46 @@ export default ({ act, store, action, handle, cookies, route }) => ({
     return store.set({ article: data, ready: true })
   },
 
-  ARTICLE_UPSERT: async(data) => {
-    console.log({data})
-    data = await act('GQL', {
-      query: `mutation($values: [News_insert_input!]!){
-        insert_News(
-          objects: $values
-          on_conflict: { constraint: News_pkey update_columns: [content imageUrl title]}
-        ){ returning { id title content imageUrl createdAt } }
-      }`,
-      variables: { values: data }
-    }).then(({insert_News: { returning }}) => returning)
-    return
+  ARTICLE_UPSERT: async (data, file, onDone = () => {}) => {
+    handle.loading(true)
+    try {
+      if(!!file){
+        const imageUrl = await act("UPLOAD", {file, type: "news", data, onDone})
+        return
+      }
+  
+      data = await act('GQL', {
+        query: `mutation($values: [News_insert_input!]!){
+          insert_News(
+            objects: $values
+            on_conflict: { constraint: News_pkey update_columns: [content imageUrl title]}
+          ){ returning { id title content imageUrl createdAt } }
+        }`,
+        variables: { values: data }
+      }).then(({insert_News: { returning }}) => returning)
+      handle.loading()
+      onDone()
+      return
+    } catch (error) {
+      handle.loading()
+      console.log(error)
+    }
   },
 
-  UPLOAD: ({file, type}) => {
+  UPLOAD: async ({file, type, data, onDone}) => {
     const storageRef = `images/${type}/`
     const fileName = new Date().getTime().toString()
     var storage = firebase.storage().ref(storageRef);
-    
 
     var mountainImagesRef = storage.child(fileName);
-    return mountainImagesRef.put(file[0]).on('state_changed',sp => {}, (err) => {}, () => {
-      storage.child(fileName).getDownloadURL()
-        .then(async (url) => {
-          const query = `
-            mutation{ insert_Dashboards(objects: { banner: "${url}"}){ affected_rows } }
-          `
-
-          return act("GQL", { query }).then(({insert_Dashboards: { affected_rows }}) => {
-            if(affected_rows > 0)
-              return act('DASHBOARD_FETCH')
-      
-            return
-          })
+    return await mountainImagesRef.put(file).on('state_changed',sp => {}, (err) => {}, async () => {
+      return await storage.child(fileName).getDownloadURL()
+        .then(url => {
+          data['imageUrl'] = url
+          return act('ARTICLE_UPSERT', data, null, onDone)
         })
     })
   },
 })
+
+export default actions;

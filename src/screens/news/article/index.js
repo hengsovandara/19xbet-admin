@@ -6,12 +6,12 @@ import Button from 'clik/elems/button'
 import Router from 'next/router'
 import actions from '../actions'
 
-const Article = ({ id }) => {
+const Article = ({ id, page }) => {
   const { act, store } = useActStore(actions, ['article', 'ready'])
   const { ready, article = {}, loading } = store.get()
   const [ news, setNews] = React.useState(article || {})
   const [ imageFile, setImageFile] = React.useState()
-  
+
   React.useEffect(() => {
     act("ARTICLE_FETCH", {id})
   }, [id])
@@ -27,23 +27,18 @@ const Article = ({ id }) => {
     let reader = new FileReader();
     reader.onload = (e) => {
       // this.setState({image: e.target.result});
-      console.log("dara", e.target.result)
+      setNews(prev => ({...prev, "imageUrl": e.target.result}))
+      setImageFile(file[0])
     };
-    reader.readAsDataURL(event.target.files[0]);
-
-    // console.log(window.URL.createObjectURL(file))
-    // setNews(prev => ({...prev, 'imageUrl': file}))
-    // setImageFile(file)
-    // await act('DASHBOARD_CREATE', {file, type: 'dashboard'})
+    reader.readAsDataURL(file[0]);
   }
 
   const onCancel = () => {
-    Router.push('/news')
+    Router.push(`/news?page=${page}`)
   }
 
   const onSave = async () => {
-    await act('ARTICLE_UPSERT', news)
-    onCancel()
+    await act('ARTICLE_UPSERT', news, imageFile, onCancel )
   }
 
   return !!ready && <div>
@@ -70,15 +65,9 @@ const Article = ({ id }) => {
     </div>
 }
 
-const classNameImage = light =>
-  fucss({
-    'h:175px m:5px-5px-0-0 hv-bs:2 ts:all m-b:10px': true,
-    'bd:1px-sld-grey200': !light
-  })
-
 export default Article
 
-function getFields(data, onImageSelect) {
+function getFields(data) {
   return [
     { name: 'title', altValue: data.title, allowEmpty: true, label: 'Title', placeholder: 'Enter Title', type: 'text', lightgray: true, width: '100%', className: 'm-b:24px' },
     { name: 'content', altValue: data.content, allowEmpty: true, label: 'Content', placeholder: 'Enter Content', type: 'textfield', lightgray: true, light: true, deep: true, width: '100%', className: 'm-b:24px', row: 15 },

@@ -4,7 +4,7 @@ import useActStore from 'actstore'
 import actions from '../actions'
 import Router from 'next/router'
 
-const Report = ({ page, keywords, status }) => {
+const Report = ({ page = 1, keywords, status }) => {
   const { act, store } = useActStore(actions, ['news', 'ready'])
   const { ready, news = [], newsCount } = store.get()
   const pagination = getPagination(page, newsCount)
@@ -24,7 +24,7 @@ const Report = ({ page, keywords, status }) => {
         leftHead
         handleSearch={keywords => {}}
         fields={['id', 'title', 'image', 'content', 'created at', 'staff']}
-        data={getData(news, {})}
+        data={getData(news, {page})}
       />
     </div>
 }
@@ -35,7 +35,8 @@ function getPagination(page, overall = 15){
   return { offset: (page ? (page - 1) : 0) * 15, limit: 15, overall }
 }
 
-function getData(items = []) {
+function getData(items = [], extra) {
+  const { page = 1 } = extra || {}
   const data = items?.map(({ id, title, content, imageUrl, createdAt, staff }) => {
     return {
       'id': { value: id, type: 'label', mobile: false },
@@ -44,7 +45,7 @@ function getData(items = []) {
       'content': { value: content || '', numberOfLines: true, mobile: false },
       'created at': { subValue: createdAt.split(' ')[0], title: createdAt.split(' ')[1], type: 'label', mobile: false },
       'staff': { value: staff?.name || 'N/A', mobile: false },
-      _href: { pathname: '/news', query: { id } }
+      _href: { pathname: '/news', query: { id, page } }
     }
   }) || []
 
