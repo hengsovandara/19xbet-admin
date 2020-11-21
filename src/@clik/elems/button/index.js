@@ -19,10 +19,11 @@ export default props => {
 }
 
 function ElemInput(props) {
-  const { name, icon, className, action, text, disabled, children, iconEnd, single, accept } = props
+  const { name, icon, className, action, text, disabled, children, iconEnd, single, accept, url } = props
   return (
     <label className={classNameButton(props) + ' ' + className}>
-      {!iconEnd && icon && <span className={classNameIcon(props)}>
+      {!!url && <img src={url} className={classNameImage(false)} />}
+      {!url && !iconEnd && icon && <span className={classNameIcon(props)}>
         <Icon icon={icon} />
       </span>}
       <span className={classNameText()}>{text || name || children}</span>
@@ -63,6 +64,12 @@ function ElemButton(props) {
     </button>
   )
 }
+
+const classNameImage = light =>
+  fucss({
+    'h:175px m:5px-5px-0-0 hv-bs:2 ts:all m-b:10px': true,
+    'bd:1px-sld-grey200': !light
+  })
 
 const classNameIcon = ({ text, name, children, bordered, iconEnd, tiny, small, spinIcon }) =>
   fucss({

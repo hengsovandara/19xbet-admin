@@ -61,14 +61,6 @@ input, button, select, option, textarea{font-size: 100%; font-family: inherit;}
 .bg\:FCCD12{background:#FCCD12;}
 .jc\:c{justify-content:center;}
 .fs\:80pc{font-size:80%;}
-.mxw\:160px{max-width:160px;}
-.mnh\:calc\(100vh-70px\){min-height:calc(100vh - 70px);}
-.mxw\:100pc{max-width:100%;}
-.p-t\:70px{padding-top:70px;}
-.bg\:blacka08{background:rgba(17,17,17,0.08);}
-.bg\:fff{background:#fff;}
-.mnh\:100vh{min-height:100vh;}
-.p-l\:0{padding-left:0;}
 .w\,h\:40px{width:40px;height:40px;}
 .bg-sz\:cv{background-size:cover;}
 .bg-ps\:c{background-position:center;}
@@ -77,10 +69,56 @@ input, button, select, option, textarea{font-size: 100%; font-family: inherit;}
 .w\,h\:45px{width:45px;height:45px;}
 .ts\:all{transition:all .45s cubic-bezier(0.23, 1, 0.32, 1);}
 .w\,h\:100pc{width:100%;height:100%;}
+.mxw\:160px{max-width:160px;}
+.mnh\:calc\(100vh-70px\){min-height:calc(100vh - 70px);}
+.mxw\:100pc{max-width:100%;}
+.p-t\:70px{padding-top:70px;}
+.bg\:blacka08{background:rgba(17,17,17,0.08);}
+.bg\:fff{background:#fff;}
+.mnh\:100vh{min-height:100vh;}
+.p-l\:0{padding-left:0;}
 .p-rl\:24px{padding-right:24px;padding-left:24px;}
-.flxw\:wrap{flex-wrap:wrap;}
-.p\:12px-24px-0{padding:12px 24px 0;}
+.ta\:r{text-align:right;}
+.p-rl\:12px{padding-right:12px;padding-left:12px;}
+.p-r\:0{padding-right:0;}
+.m-rl\:15px{margin-right:15px;margin-left:15px;}
+.jc\:fe{justify-content:flex-end;}
+.m-l\:24px{margin-left:24px;}
+.h\:175px{height:175px;}
+.m\:5px-5px-0-0{margin:5px 5px 0 0;}
+.hv-bs\:2:hover{box-shadow:0px 2px 4px rgba(0,0,0,0.12);}
+.m-b\:10px{margin-bottom:10px;}
+.bd\:1px-sld-grey200{border:1px solid #e0e0e0;}
+.p-tb\:15px{padding-top:15px;padding-bottom:15px;}
+.p-rl\:10px{padding-right:10px;padding-left:10px;}
+.w\:200px{width:200px;}
+.c\:white{color:#fff;}
 .of\:auto{overflow:auto;}
+.p-t\:64px{padding-top:64px;}
+.w\:auto{width:auto;}
+.ps\:ab{position:absolute;}
+.t\,r\:24px{top:24px;right:24px;}
+.w\,h\:100px{width:100px;height:100px;}
+.fw\:600{font-weight:600;}
+.fs\:20px{font-size:20px;}
+.c\:grey{color:#9E9E9E;}
+.flxw\:wrap{flex-wrap:wrap;}
+.p-r\:24px{padding-right:24px;}
+.p\:16px{padding:16px;}
+.c\:grey400{color:#adadad;}
+.fs\:90pc{font-size:90%;}
+.h\:calc\(100pc-48px\){height:calc(100% - 48px);}
+.ai\,jc\:c{align-items:center;justify-content:center;}
+.w\,h\:80px{width:80px;height:80px;}
+.ta\:c{text-align:center;}
+.h\:40px{height:40px;}
+.w\:20px{width:20px;}
+.c\:blacka4{color:rgba(17,17,17,0.4);}
+.fs\:125pc{font-size:125%;}
+.m-l\:16px{margin-left:16px;}
+.m-b\:4px{margin-bottom:4px;}
+.fs\:70pc{font-size:70%;}
+.p\:12px-24px-0{padding:12px 24px 0;}
 .w\:320px{width:320px;}
 .bg\:f3f3f3{background:#f3f3f3;}
 .bd-l\:1px-sd-blacka12{border-left:1px solid rgba(17,17,17,0.12);}
@@ -90,45 +128,18 @@ input, button, select, option, textarea{font-size: 100%; font-family: inherit;}
 .z\:2{z-index:2;}
 .r\:0{right:0;}
 .r\:320npx{right:-320px;}
-.h\:40px{height:40px;}
 .w\:30px{width:30px;}
 .br\:4px-0-0-4px{border-radius:4px 0 0 4px;}
 .bg\:prim{background:#FCCD12;}
-.ps\:ab{position:absolute;}
 .t\:50pc{top:50%;}
 .try\:50npc{transform:translateY(-50%);}
 .l\:30npx{left:-30px;}
-.ai\,jc\:c{align-items:center;justify-content:center;}
-.c\:white{color:#fff;}
 .crs\:pt{cursor:pointer;}
 .fs\:16px{font-size:16px;}
 .r\:360npx{right:-360px;}
 .m-rl\:8npx{margin-right:-8px;margin-left:-8px;}
 .flxg\:1{flex-grow:1;}
 .m\:8px{margin:8px;}
-.p-tb\:15px{padding-top:15px;padding-bottom:15px;}
-.p-rl\:10px{padding-right:10px;padding-left:10px;}
-.w\:200px{width:200px;}
-.p-t\:64px{padding-top:64px;}
-.w\:auto{width:auto;}
-.t\,r\:24px{top:24px;right:24px;}
-.w\,h\:100px{width:100px;height:100px;}
-.fw\:600{font-weight:600;}
-.fs\:20px{font-size:20px;}
-.c\:grey{color:#9E9E9E;}
-.p-r\:24px{padding-right:24px;}
-.p\:16px{padding:16px;}
-.c\:grey400{color:#adadad;}
-.fs\:90pc{font-size:90%;}
-.h\:calc\(100pc-48px\){height:calc(100% - 48px);}
-.w\,h\:80px{width:80px;height:80px;}
-.ta\:c{text-align:center;}
-.w\:20px{width:20px;}
-.c\:blacka4{color:rgba(17,17,17,0.4);}
-.fs\:125pc{font-size:125%;}
-.m-l\:16px{margin-left:16px;}
-.m-b\:4px{margin-bottom:4px;}
-.fs\:70pc{font-size:70%;}
 .bs\:2{box-shadow:0px 2px 4px rgba(0,0,0,0.12);}
 .p\:40px-50px{padding:40px 50px;}
 .br\:5px{border-radius:5px;}
@@ -140,10 +151,13 @@ input, button, select, option, textarea{font-size: 100%; font-family: inherit;}
 .bd\:1px-sd-prim{border:1px solid #FCCD12;}
 .hv-try\:2px:hover{transform:translateY(2px);}
 .w\,h\:50px{width:50px;height:50px;}
-.ta\:r{text-align:right;}
-.p-rl\:12px{padding-right:12px;padding-left:12px;}
-.jc\:fe{justify-content:flex-end;}
-.m-l\:24px{margin-left:24px;}
+.c\:black200{color:#535353;}
+.p-tb\:10px{padding-top:10px;padding-bottom:10px;}
+.p-b\:10px{padding-bottom:10px;}
+.dp\:flex{display:flex;}
+.p-t\:15px{padding-top:15px;}
+.p-tb\:24px{padding-top:24px;padding-bottom:24px;}
+.m-t\:30px{margin-top:30px;}
 .h\:calc\(100vh\){height:calc(100vh);}
 .of-y\:auto{overflow-Y:auto;}
 .p-t\:75px{padding-top:75px;}
@@ -182,7 +196,6 @@ input, button, select, option, textarea{font-size: 100%; font-family: inherit;}
 .t\,r\:0{top:0;right:0;}
 .bd-b\:1px-sd-e5e5e5{border-bottom:1px solid #e5e5e5;}
 .h\:70px{height:70px;}
-.c\:black200{color:#535353;}
 .w\:calc\(100pc-70px\){width:calc(100% - 70px);}
 .ts\:bg{transition:background .45s cubic-bezier(0.23, 1, 0.32, 1);}
 .hv-c\:prim_ts\:all_svg:hover svg{color:#FCCD12;transition:all .45s cubic-bezier(0.23, 1, 0.32, 1);}
@@ -247,19 +260,6 @@ input, button, select, option, textarea{font-size: 100%; font-family: inherit;}
 .p\:24px-32px{padding:24px 32px;}
 .c\:orange{color:#FF9800;}
 .w\:calc\(50pc-8px\){width:calc(50% - 8px);}
-.m-t\:30px{margin-top:30px;}
-.p-tb\:10px{padding-top:10px;padding-bottom:10px;}
-.p-b\:10px{padding-bottom:10px;}
-.dp\:flex{display:flex;}
-.p-t\:15px{padding-top:15px;}
-.p-r\:0{padding-right:0;}
-.m-rl\:15px{margin-right:15px;margin-left:15px;}
-.h\:175px{height:175px;}
-.m\:5px-5px-0-0{margin:5px 5px 0 0;}
-.hv-bs\:2:hover{box-shadow:0px 2px 4px rgba(0,0,0,0.12);}
-.m-b\:10px{margin-bottom:10px;}
-.bd\:1px-sld-grey200{border:1px solid #e0e0e0;}
-.p-tb\:24px{padding-top:24px;padding-bottom:24px;}
 .h\,w\,mnw\,lh\:40px{height:40px;width:40px;min-width:40px;line-height:40px;}
 .m-r\:8px{margin-right:8px;}
 .m-l\:8px{margin-left:8px;}
@@ -323,24 +323,6 @@ input, button, select, option, textarea{font-size: 100%; font-family: inherit;}
 .bd-b\:1px-sd-prima15{border-bottom:1px solid rgba(252,205,18,0.15);}
 .crs\:not-allowed{cursor:0ot allowed;}
 .bg\:prima05{background:rgba(252,205,18,0.05);}
-.bg\:n{background:none;}
-.p-t\:16px{padding-top:16px;}
-.dp\:ib_ps\:ab_b\:0_h\:4px_br\:4px_bg\:prim_span span{display:inline-block;position:absolute;bottom:0;height:4px;border-radius:4px;background:#FCCD12;}
-.m-rl\:16px{margin-right:16px;margin-left:16px;}
-.first-m-l\:0:first-child{margin-left:0;}
-.last-m-r\:0:last-child{margin-right:0;}
-.hv-bg\:prim_c\:white_div:hover div{background:#FCCD12;color:#fff;}
-.ws\:nowrap{white-space:nowrap;}
-.w\:100pc_l\:50pc_trx\:50npc_span span{width:100%;left:50%;transform:translateX(-50%);}
-.c\:blacka8{color:rgba(17,17,17,0.8);}
-.of-x\:auto{overflow-X:auto;}
-.fs\:18px{font-size:18px;}
-.nw\:24px{min-width:24px;}
-.h\:20px{height:20px;}
-.p-rl\:4px{padding-right:4px;padding-left:4px;}
-.p-t\:1px{padding-top:1px;}
-.m-l\:5px{margin-left:5px;}
-.bg\:black300{background:#303030;}
 .sh\:0-1px-2px-000a15{box-shadow:0 1px 2px rgba(0,0,0,0.15);}
 .nw\:500px{min-width:500px;}
 .m-b\:30px{margin-bottom:30px;}
@@ -393,6 +375,24 @@ input, button, select, option, textarea{font-size: 100%; font-family: inherit;}
 .c\:7FB8ED{color:#7FB8ED;}
 .bg\:FCF1F1{background:#FCF1F1;}
 .c\:E57373{color:#E57373;}
+.bg\:n{background:none;}
+.p-t\:16px{padding-top:16px;}
+.dp\:ib_ps\:ab_b\:0_h\:4px_br\:4px_bg\:prim_span span{display:inline-block;position:absolute;bottom:0;height:4px;border-radius:4px;background:#FCCD12;}
+.m-rl\:16px{margin-right:16px;margin-left:16px;}
+.first-m-l\:0:first-child{margin-left:0;}
+.last-m-r\:0:last-child{margin-right:0;}
+.hv-bg\:prim_c\:white_div:hover div{background:#FCCD12;color:#fff;}
+.ws\:nowrap{white-space:nowrap;}
+.w\:100pc_l\:50pc_trx\:50npc_span span{width:100%;left:50%;transform:translateX(-50%);}
+.c\:blacka8{color:rgba(17,17,17,0.8);}
+.of-x\:auto{overflow-X:auto;}
+.fs\:18px{font-size:18px;}
+.nw\:24px{min-width:24px;}
+.h\:20px{height:20px;}
+.p-rl\:4px{padding-right:4px;padding-left:4px;}
+.p-t\:1px{padding-top:1px;}
+.m-l\:5px{margin-left:5px;}
+.bg\:black300{background:#303030;}
 .b\,r\:0{bottom:0;right:0;}
 .p\:12px{padding:12px;}
 .dp\:td{display:table-cell;}
@@ -418,6 +418,13 @@ input, button, select, option, textarea{font-size: 100%; font-family: inherit;}
 .hv-bg\:prima05:hover{background:rgba(252,205,18,0.05);}
 .w\:100px{width:100px;}
 .w\,h\,mnw\:40px{width:40px;height:40px;min-width:40px;}
+.mxw\:150px{max-width:150px;}
+.bd-c\:grey200{border-color:#e0e0e0;}
+.h\:0{height:0;}
+.of\:vs{overflow:visible;}
+.p\:40px{padding:40px;}
+.xw\:400px{max-width:400px;}
+.p-t\:24px{padding-top:24px;}
 .c\:title200{color:title200;}
 .mnw\:100pc{min-width:100%;}
 .bd-tb\:1px-sd-blacka12{border-top:1px solid rgba(17,17,17,0.12);border-bottom:1px solid rgba(17,17,17,0.12);}
@@ -454,13 +461,6 @@ input, button, select, option, textarea{font-size: 100%; font-family: inherit;}
 .hv-bg\:FCF1F1:hover{background:#FCF1F1;}
 .op\:0\.5{opacity:0.5;}
 .gs\:0\.3{filter:grayscale(0.3);}
-.mxw\:150px{max-width:150px;}
-.bd-c\:grey200{border-color:#e0e0e0;}
-.h\:0{height:0;}
-.of\:vs{overflow:visible;}
-.p\:40px{padding:40px;}
-.xw\:400px{max-width:400px;}
-.p-t\:24px{padding-top:24px;}
 .t\:12px{top:12px;}
 .r\:12px{right:12px;}
 .lh\:1{line-height:1;}
@@ -679,13 +679,13 @@ input, button, select, option, textarea{font-size: 100%; font-family: inherit;}
 .lg-dp\:n{display:none;}
 }
 @media only screen and (min-width: 1280px) {
+.xl-w\:360px{width:360px;}
+.xl-w\:calc\(100pc-360px\){width:calc(100% - 360px);}
 .xl-w\:calc\(100pc-450px\){width:calc(100% - 450px);}
 .xl-w\:450px{width:450px;}
 .xl-r\:0{right:0;}
 .xl-dp\:n{display:none;}
 .xl-flxw\:nowrap{flex-wrap:nowrap;}
-.xl-w\:360px{width:360px;}
-.xl-w\:calc\(100pc-360px\){width:calc(100% - 360px);}
 .xl-mnh\:250px{min-height:250px;}
 }
 @media only screen and (max-width: 767px) {
@@ -717,4 +717,4 @@ input, button, select, option, textarea{font-size: 100%; font-family: inherit;}
 @keyframes dash{to { stroke-dashoffset: 0; }}
 @keyframes marquee{0% { transform: translateX(0); } 100% { transform: translateX(-50%); }}
 @keyframes bounce{0% { transform: scale(1,1) translateY(0); } 10% { transform: scale(1.1,.9) translateY(0); } 30% { transform: scale(.9,1.1) translateY(-100px); } 50% { transform: scale(1.05,.95) translateY(0); } 57% { transform: scale(1,1) translateY(-7px); } 64% { transform: scale(1,1) translateY(0); } 100% { transform: scale(1,1) translateY(0); }}
- /** Incorrect classes btn-login btn-login background && `url(${background background && `url(${background profile-img ${isResetable || isDeleteable && ${isDeleteable && ${isResetable && ${i % 2 === 0 && black200 profile-img ${isResetable || isDeleteable && ${isDeleteable && ${isResetable && ${i % 2 === 0 && black200 profile-img profile-img profile-img profile-img ' + className `linear-gradient(${primDeg !isLoading ? !wrap ? children <div className="bg:white c:black">{children photo || logo || url ? <span style={{ `url(${photo || logo || url profile-img profile-img ' + className `linear-gradient(${primDeg !isLoading ? !wrap ? children <div className="bg:white c:black">{children photo || logo || url ? <span style={{ `url(${photo || logo || url disabled ? placeholder text ${open && ${!noBorder && disabled ? placeholder text ${open && ${!noBorder && data && "w:100pc bd-b:1px-sld-grey200" !props.noHead && props.fields && data.length > 0 && ( <div className="dp:tr bd-t:1px-sd-blacka12"> {props.allowSelect && ( <div key="selectBox" title="Select item to delete" className="fw:600 w:44px"> <Checkbox onSelect={e => props.onSelect(data.map(item => item.id), selected.length >= data.length * 0.8) true true "m:60px lh:20px" + (value.color ? (value.color ? ${!!index ${item.disabled && ${!!index ${item.disabled && !cameraMode ? ( <div className="p:24px"> <div className={classNameInner(light) data && "w:100pc bd-b:1px-sld-grey200" !props.noHead && props.fields && data.length > 0 && ( <div className="dp:tr bd-t:1px-sd-blacka12"> {props.allowSelect && ( <div key="selectBox" title="Select item to delete" className="fw:600 w:44px"> <Checkbox onSelect={e => props.onSelect(data.map(item => item.id), selected.length >= data.length * 0.8) true true "m:60px lh:20px" + (value.color ? (value.color ? !cameraMode ? ( <div className="p:24px"> <div className={classNameInner(light) "ta:c br:4px" isChecked && <Icon className="ps:ab c:white" icon="check" /> "ta:c br:4px" super(props) this.state = { true fa-2x fa-2x fa-2x fa-2x super(props) this.state = { true fa-2x fa-2x fa-2x fa-2x isChecked && <Icon className="ps:ab c:white" icon="check" /> ' + className ' + className `calc(100% / 7)` `calc(100% / 7)` */
+ /** Incorrect classes btn-login btn-login background && `url(${background background && `url(${background profile-img ${isResetable || isDeleteable && ${isDeleteable && ${isResetable && ${i % 2 === 0 && black200 profile-img ${isResetable || isDeleteable && ${isDeleteable && ${isResetable && ${i % 2 === 0 && black200 profile-img profile-img profile-img profile-img ' + className `linear-gradient(${primDeg !isLoading ? !wrap ? children <div className="bg:white c:black">{children photo || logo || url ? <span style={{ `url(${photo || logo || url profile-img profile-img ' + className `linear-gradient(${primDeg !isLoading ? !wrap ? children <div className="bg:white c:black">{children photo || logo || url ? <span style={{ `url(${photo || logo || url disabled ? placeholder text ${open && disabled ? placeholder text ${open && ${!noBorder && data && "w:100pc bd-b:1px-sld-grey200" !props.noHead && props.fields && data.length > 0 && ( <div className="dp:tr bd-t:1px-sd-blacka12"> {props.allowSelect && ( <div key="selectBox" title="Select item to delete" className="fw:600 w:44px"> <Checkbox onSelect={e => props.onSelect(data.map(item => item.id), selected.length >= data.length * 0.8) true true "h:60px lh:20px" + (value.color ? (value.color ? ${!!index ${item.disabled && ${!!index ${item.disabled && data && "w:100pc bd-b:1px-sld-grey200" !props.noHead && props.fields && data.length > 0 && ( <div className="dp:tr bd-t:1px-sd-blacka12"> {props.allowSelect && ( <div key="selectBox" title="Select item to delete" className="fw:600 w:44px"> <Checkbox onSelect={e => props.onSelect(data.map(item => item.id), selected.length >= data.length * 0.8) true true "h:60px lh:20px" + (value.color ? (value.color ? !cameraMode ? ( <div className="p:24px"> <div className={classNameInner(light) !cameraMode ? ( <div className="p:24px"> <div className={classNameInner(light) "ta:c br:4px" isChecked && <Icon className="ps:ab c:white" icon="check" /> "ta:c br:4px" super(props) this.state = { true fa-2x fa-2x fa-2x fa-2x isChecked && <Icon className="ps:ab c:white" icon="check" /> super(props) this.state = { true fa-2x fa-2x fa-2x fa-2x ' + className ' + className `calc(100% / 7)` `calc(100% / 7)` btn-login background && `url(${background profile-img ${isResetable || isDeleteable && ${isDeleteable && ${isResetable && ${i % 2 === 0 && black200 profile-img ${!noBorder && ' + className `linear-gradient(${primDeg !isLoading ? !wrap ? children <div className="bg:white c:black">{children photo || logo || url ? <span style={{ `url(${photo || logo || url profile-img profile-img disabled ? placeholder text ${open && ${!!index ${item.disabled && data && "w:100pc bd-b:1px-sld-grey200" !props.noHead && props.fields && data.length > 0 && ( <div className="dp:tr bd-t:1px-sd-blacka12"> {props.allowSelect && ( <div key="selectBox" title="Select item to delete" className="fw:600 w:44px"> <Checkbox onSelect={e => props.onSelect(data.map(item => item.id), selected.length >= data.length * 0.8) true true "h:60px lh:20px" + (value.color ? (value.color ? !cameraMode ? ( <div className="p:24px"> <div className={classNameInner(light) "ta:c br:4px" isChecked && <Icon className="ps:ab c:white" icon="check" /> super(props) this.state = { true fa-2x fa-2x fa-2x fa-2x ' + className `calc(100% / 7)` */

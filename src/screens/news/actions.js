@@ -43,18 +43,42 @@ export default ({ act, store, action, handle, cookies, route }) => ({
 
     return store.set({ article: data, ready: true })
   },
-  
-  TRANSACTIONS_UPDATE: async (data) => {
-    const query = `
-      mutation{
-        update_Transactions(where: {_and:[{ status: { _eq: "requested"}}, {id: { _eq: "${data.id}"}}]} _set: {
-          staffId: "${data.staffId}", status: "${data.status}" acceptedAt: "now()"
-        }){
-          affected_rows
-        }
-      }
-    `
-    await act("GQL", { query }).then(data).catch(err => alert(JSON.stringify(err, 0, 2)))
+
+  ARTICLE_UPSERT: async(data) => {
+    console.log({data})
+    data = await act('GQL', {
+      query: `mutation($values: [News_insert_input!]!){
+        insert_News(
+          objects: $values
+          on_conflict: { constraint: News_pkey update_columns: [content imageUrl title]}
+        ){ returning { id title content imageUrl createdAt } }
+      }`,
+      variables: { values: data }
+    }).then(({insert_News: { returning }}) => returning)
     return
-  } 
+  },
+
+  UPLOAD: ({file, type}) => {
+    const storageRef = `images/${type}/`
+    const fileName = new Date().getTime().toString()
+    var storage = firebase.storage().ref(storageRef);
+    
+
+    var mountainImagesRef = storage.child(fileName);
+    return mountainImagesRef.put(file[0]).on('state_changed',sp => {}, (err) => {}, () => {
+      storage.child(fileName).getDownloadURL()
+        .then(async (url) => {
+          const query = `
+            mutation{ insert_Dashboards(objects: { banner: "${url}"}){ affected_rows } }
+          `
+
+          return act("GQL", { query }).then(({insert_Dashboards: { affected_rows }}) => {
+            if(affected_rows > 0)
+              return act('DASHBOARD_FETCH')
+      
+            return
+          })
+        })
+    })
+  },
 })

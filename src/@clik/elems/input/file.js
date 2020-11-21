@@ -9,9 +9,7 @@ let previewMethods
 
 export default props => {
   const { value, edit, light, button, color = 'sec', icon = 'image', text } = props
-
   if (button) return <Button {...props} color={color} single text={text} icon={icon} type="file" action={props.action} />
-
   return (
     <div className="mdx-ta:c">
       {edit && (
@@ -31,7 +29,7 @@ export default props => {
             {img.description && <span className={classNameDesc()}>{img.description}</span>}
           </span>
         ))}
-      <Photo popup getMethods={methods => (photoMethods = methods)} action={props.action} />
+      <Photo popup getMethods={methods => (photoMethods = methods)} action={props.action} handleUserProfile={props.handleUserProfile}/>
       <Preview getMethods={methods => (previewMethods = methods)} />
     </div>
   )

@@ -10,16 +10,9 @@ const Report = ({ page, keywords, status }) => {
   const pagination = getPagination(page, newsCount)
   var date = new Date();
 
-  const [startDate, setStartDate] = React.useState(new Date(new Date().setMonth(date.getMonth() - 1)).toLocaleDateString())
-  const [endDate, setEndDate] = React.useState(new Date().toLocaleDateString())
-
   React.useEffect(() => {
     act('NEWS_FETCH', getPagination(page, newsCount))
   }, [page, keywords, status, ready])
-
-  const onSearched = async () => {
-    await act('REPORTS_FETCH', { startDate, endDate})
-  }
 
   return ready && 
     <div>
@@ -44,10 +37,9 @@ function getPagination(page, overall = 15){
 
 function getData(items = []) {
   const data = items?.map(({ id, title, content, imageUrl, createdAt, staff }) => {
-    // id = id && id.split("-")[0] || ''
     return {
       'id': { value: id, type: 'label', mobile: false },
-      'title': { title: title || "unknown", type: 'label', full: true },
+      'title': { value: title || "unknown", type: 'label', full: true, numberOfLines: true },
       'image': { url: imageUrl || '', type: 'image', mobile: false },
       'content': { value: content || '', numberOfLines: true, mobile: false },
       'created at': { subValue: createdAt.split(' ')[0], title: createdAt.split(' ')[1], type: 'label', mobile: false },
