@@ -43,8 +43,8 @@ const Report = ({ page, keywords, status }) => {
           <DatePicker value={endDate} onClick={(date) => onDateSelected({date, type: "endDate"})}/>
         </div>
         <div className="p-rl:10px">
-          <p className="c:white">search</p>
-          <Button icon='search' text="Search" bordered prim action={onSearched} />
+          <p className="c:white p-r:24px">search</p>
+          <Button className="p-r:24px" icon='search' text="Search" bordered prim action={onSearched} />
         </div>
       </div>
       <Table light head noSearch noTableHead
