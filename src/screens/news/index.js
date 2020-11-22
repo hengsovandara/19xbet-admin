@@ -8,7 +8,7 @@ const News = ({ query }) => {
   const { store: { ready } } = useActStore({}, ['counts'])
   return <Layout maxWidth title="News">
     {!!ready && <div className="p:24px p-t:0 bg:white">
-      { query.id ? <Article { ...query }/> : <List { ...query} /> }
+      { (query.id || query.create) ? <Article { ...query }/> : <List { ...query} /> }
     </div>}
   </Layout>
 }

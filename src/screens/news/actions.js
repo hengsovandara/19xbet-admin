@@ -36,6 +36,9 @@ const actions = ({ act, store, action, handle, cookies, route }) => ({
   },
 
   ARTICLE_FETCH: async({id}) => {
+    if(!id)
+      return store.set({ article: {}, ready: true })
+
     const data = await act('GQL', {
       query: `query {
         News_by_pk(id: "${id}"){ id title content imageUrl createdAt }

@@ -6,7 +6,7 @@ import Button from 'clik/elems/button'
 import Router from 'next/router'
 import actions from '../actions'
 
-const Article = ({ id, page }) => {
+const Article = ({ id, page = 1, create }) => {
   const { act, store, handle } = useActStore(actions, ['article', 'ready'])
   const { ready, article = {}, loading } = store.get()
   const [ news, setNews] = React.useState(article || {})
@@ -46,7 +46,7 @@ const Article = ({ id, page }) => {
 
   return !!ready && <div>
       <Form 
-        fields={getFields(article, onImageSelect)}
+        fields={getFields(news)}
         action={onChange}
         handleUserProfile={() => {}}
       />
@@ -54,7 +54,7 @@ const Article = ({ id, page }) => {
       <div className="ta:r p-rl:12px dp:flx jc:c ai:c">
         <Button
             bordered={!news.imageUrl}
-            url={news.imageUrl}
+            url={news.imageUrl || ''}
             icon={'plus'}
             type="file"
             action={onImageSelect}
@@ -63,8 +63,8 @@ const Article = ({ id, page }) => {
       </div>
       <div className="ta:r p-rl:12px dp:flx jc:fe ai:c m-t:10px">
         <Button action={onCancel}>Cancel</Button>
-        <Button prim action={onSave} className="m-l:24px">Save</Button>
-        <Button action={onDelete} className="m-l:24px bg:red400 c:white">Delete</Button>
+        <Button disabled={(!news.name && !news.content && !news.imageUrl )} prim action={onSave} className="m-l:24px">Save</Button>
+        {!!id && <Button action={onDelete} className="m-l:24px bg:red400 c:white">Delete</Button>}
       </div>
     </div>
 }

@@ -24,7 +24,7 @@ const Report = ({ page = 1, keywords, status }) => {
         leftHead
         handleSearch={keywords => {}}
         onSelect={(data) => alert(data)}
-        mainAction={() => <Button prim action={() => {}} text="Create new" />}
+        mainAction={() => <Button prim action={() => Router.push(`/news?create=true`)} text="Create new" />}
         fields={['id', 'title', 'image', 'content', 'created at', 'staff', 'action']}
         data={getData(news, {page})}
       />
