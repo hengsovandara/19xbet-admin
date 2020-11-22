@@ -45,7 +45,7 @@
     "start": "next -p 3000 -H 0.0.0.0",
     "dev": "NODE_ENV=test node server.js -p 3000",
     "test": "nightwatch",
-    "build": "next build && next export",
+    "build": "next build && rm -rf out/ && next export",
     "export": "next export && node src/@clik/hooks/useStaticIndexCleaner.js",
     "serve": "next serve",
     "lint": "prettier --tab-width 2 --jsx-bracket-same-line true --single-quote --print-width 100 true --semi false --write \"src/**/*.js\"",
