@@ -8,7 +8,7 @@ import actions from '../actions'
 
 const Article = ({ id, page = 1, create }) => {
   const { act, store, handle } = useActStore(actions, ['article', 'ready'])
-  const { ready, article = {}, loading } = store.get()
+  const { ready, article = {}, loading, user } = store.get()
   const [ news, setNews] = React.useState(article || {})
   const [ imageFile, setImageFile] = React.useState()
 
@@ -63,7 +63,7 @@ const Article = ({ id, page = 1, create }) => {
       </div>
       <div className="ta:r p-rl:12px dp:flx jc:fe ai:c m-t:10px">
         <Button action={onCancel}>Cancel</Button>
-        <Button disabled={(!news.name && !news.content && !news.imageUrl )} prim action={onSave} className="m-l:24px">Save</Button>
+        <Button disabled={((!news.title || !news.content) && !news.imageUrl )} prim action={onSave} className="m-l:24px">Save</Button>
         {!!id && <Button action={onDelete} className="m-l:24px bg:red400 c:white">Delete</Button>}
       </div>
     </div>

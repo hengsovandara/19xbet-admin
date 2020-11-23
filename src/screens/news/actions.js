@@ -51,19 +51,23 @@ const actions = ({ act, store, action, handle, cookies, route }) => ({
   ARTICLE_UPSERT: async (data, file, onDone = () => {}) => {
     handle.loading(true)
     try {
+      const { user = {} } = store.get()
+      if(!user.id)
+        return
+
       if(!!file){
         const imageUrl = await act("UPLOAD", {file, type: "news", data, onDone})
         return
       }
-  
+      
       data = await act('GQL', {
         query: `mutation($values: [News_insert_input!]!){
           insert_News(
             objects: $values
-            on_conflict: { constraint: News_pkey update_columns: [content imageUrl title]}
+            on_conflict: { constraint: News_pkey update_columns: [content imageUrl title staffId]}
           ){ returning { id title content imageUrl createdAt } }
         }`,
-        variables: { values: data }
+        variables: { values: {...data, staffId: user.id} }
       }).then(({insert_News: { returning }}) => returning)
       handle.loading()
       onDone()

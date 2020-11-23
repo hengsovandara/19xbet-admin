@@ -6,7 +6,7 @@ import Router from 'next/router'
 import Button from 'clik/elems/button'
 
 const Report = ({ page = 1, keywords, status }) => {
-  const { act, store } = useActStore(actions, ['news', 'ready'])
+  const { act, store, action, handle } = useActStore(actions, ['news', 'ready'])
   const { ready, news = [], newsCount } = store.get()
   const pagination = getPagination(page, newsCount)
 
@@ -14,19 +14,26 @@ const Report = ({ page = 1, keywords, status }) => {
     act('NEWS_FETCH', getPagination(page, newsCount))
   }, [page, keywords, status, ready])
 
+  const onDeleteAll = (selected = []) => {
+    handle.confirm(() => act('ARTICLE_DELETE', { ids: selected.map(s=>s.value), onDone: () => act('NEWS_FETCH', getPagination(page, newsCount))}))
+  }
+
   return ready && 
     <div>
-      <Table light head noSearch allowSelect
+      <Table light head allowSelect
         key={new Date().getTime()}
         query={{ page, keywords }}
         pagination={pagination}
         handlePagination={page => Router.push(`/news?page=${page}${Boolean(keywords) ? `&keywords=${keywords}` : ''}${Boolean(status) ? `&status=${status}` : ''}`)}
         leftHead
         handleSearch={keywords => {}}
-        onSelect={(data) => alert(data)}
+        actions={news && [{
+          type: 'button', bordered: true, red: true, icon: 'trash',
+          action: (selected) => onDeleteAll(selected)
+        }]}
         mainAction={() => <Button prim action={() => Router.push(`/news?create=true`)} text="Create new" />}
-        fields={['id', 'title', 'image', 'content', 'created at', 'staff', 'action']}
-        data={getData(news, {page})}
+        fields={['id', 'title', 'image', 'content', 'created at', 'staff']}
+        data={getData(news, {page, newsCount})}
       />
     </div>
 }
@@ -38,25 +45,24 @@ function getPagination(page, overall = 15){
 }
 
 const DeleteButton = props => {
-  const { act, store } = useActStore(actions)
-  const { user } = store.get('ready', 'user')
+  const { act, store, handle } = useActStore(actions)
+  const { id, page, newsCount } = props
 
-  const onSubmit = async (status) => {
-    alert("status")
-    // await act('TRANSACTIONS_UPDATE', { status, staffId: user.id, id: props.id})
+  const onSubmit = () => {
+    handle.confirm(() => act('ARTICLE_DELETE', { ids: [id], onDone: () => act('NEWS_FETCH', getPagination(page, newsCount))}))
   }
 
   return <Button
       bordered
       red 
       icon={'trash'}
-      action={() => onSubmit('rejected')}
+      action={onSubmit}
       className="p-r:0"
     />
 }
 
 function getData(items = [], extra) {
-  const { page = 1 } = extra || {}
+  const { page = 1, newsCount } = extra || {}
   const data = items?.map(({ id, title, content, imageUrl, createdAt, staff }) => {
     return {
       'id': { value: id, type: 'label', mobile: false },
@@ -66,7 +72,7 @@ function getData(items = [], extra) {
       'created at': { subValue: createdAt.split(' ')[0], title: createdAt.split(' ')[1], type: 'label', mobile: false },
       'staff': { value: staff?.name || 'N/A', mobile: false },
       _href: { pathname: '/news', query: { id, page } },
-      action: { component: DeleteButton, props: { id, status } },
+      // action: { component: DeleteButton, props: { id, page, newsCount } },
     }
   }) || []
 
