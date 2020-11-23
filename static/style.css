@@ -40,13 +40,13 @@ input, button, select, option, textarea{font-size: 100%; font-family: inherit;}
 .m-b\:36px{margin-bottom:36px;}
 .tt\:uc{text-transform:uppercase;}
 .fs\:80pc{font-size:80%;}
-.p-t\:0{padding-top:0;}
-.bg\:white{background:#fff;}
 .h\:calc\(100pc-80px\){height:calc(100% - 80px);}
 .dp\:flx{display:flex;}
 .ai\:fs{align-items:flex-start;}
+.p-t\:0{padding-top:0;}
 .bg\:blacka06{background:rgba(17,17,17,0.06);}
 .flxd\:col{flex-direction:column;}
+.bg\:white{background:#fff;}
 .br\:8px{border-radius:8px;}
 .ta\:l{text-align:left;}
 .h\:100pc{height:100%;}
@@ -61,14 +61,6 @@ input, button, select, option, textarea{font-size: 100%; font-family: inherit;}
 .tt\:cap{text-transform:capitalize;}
 .h\:8px{height:8px;}
 .of\:hd{overflow:hidden;}
-.w\,h\:40px{width:40px;height:40px;}
-.bg-sz\:cv{background-size:cover;}
-.bg-ps\:c{background-position:center;}
-.br\:50pc{border-radius:50%;}
-.dp\:bk{display:block;}
-.w\,h\:45px{width:45px;height:45px;}
-.ts\:all{transition:all .45s cubic-bezier(0.23, 1, 0.32, 1);}
-.w\,h\:100pc{width:100%;height:100%;}
 .mxw\:160px{max-width:160px;}
 .mnh\:calc\(100vh-70px\){min-height:calc(100vh - 70px);}
 .mxw\:100pc{max-width:100%;}
@@ -77,7 +69,14 @@ input, button, select, option, textarea{font-size: 100%; font-family: inherit;}
 .bg\:fff{background:#fff;}
 .mnh\:100vh{min-height:100vh;}
 .p-l\:0{padding-left:0;}
-.p-r\:0{padding-right:0;}
+.w\,h\:40px{width:40px;height:40px;}
+.bg-sz\:cv{background-size:cover;}
+.bg-ps\:c{background-position:center;}
+.br\:50pc{border-radius:50%;}
+.dp\:bk{display:block;}
+.w\,h\:45px{width:45px;height:45px;}
+.ts\:all{transition:all .45s cubic-bezier(0.23, 1, 0.32, 1);}
+.w\,h\:100pc{width:100%;height:100%;}
 .p-rl\:24px{padding-right:24px;padding-left:24px;}
 .of\:auto{overflow:auto;}
 .p-t\:64px{padding-top:64px;}
@@ -130,6 +129,7 @@ input, button, select, option, textarea{font-size: 100%; font-family: inherit;}
 .m-rl\:8npx{margin-right:-8px;margin-left:-8px;}
 .flxg\:1{flex-grow:1;}
 .m\:8px{margin:8px;}
+.p-r\:0{padding-right:0;}
 .ta\:r{text-align:right;}
 .p-rl\:12px{padding-right:12px;padding-left:12px;}
 .m-rl\:15px{margin-right:15px;margin-left:15px;}
@@ -148,30 +148,47 @@ input, button, select, option, textarea{font-size: 100%; font-family: inherit;}
 .bd\:1px-sd-prim{border:1px solid #FCCD12;}
 .hv-try\:2px:hover{transform:translateY(2px);}
 .w\,h\:50px{width:50px;height:50px;}
-.c\:black200{color:#535353;}
-.p-tb\:24px{padding-top:24px;padding-bottom:24px;}
-.p-b\:10px{padding-bottom:10px;}
-.dp\:flex{display:flex;}
-.p-t\:15px{padding-top:15px;}
-.h\:175px{height:175px;}
-.m\:5px-5px-0-0{margin:5px 5px 0 0;}
-.hv-bs\:2:hover{box-shadow:0px 2px 4px rgba(0,0,0,0.12);}
-.m-b\:10px{margin-bottom:10px;}
-.bd\:1px-sld-grey200{border:1px solid #e0e0e0;}
-.m-t\:30px{margin-top:30px;}
-.p-tb\:10px{padding-top:10px;padding-bottom:10px;}
+.h\:calc\(100vh\){height:calc(100vh);}
+.of-y\:auto{overflow-Y:auto;}
+.p-t\:75px{padding-top:75px;}
+.p-b\:40px{padding-bottom:40px;}
+.bg\:whitea05{background:rgba(255,255,255,0.05);}
+.td\:n{text-decoration:none;}
+.c\:fff{color:#fff;}
+.w\:150px{width:150px;}
+.bg-sz\:cover{background-size:cover;}
+.m-l\:6px{margin-left:6px;}
+.dp\:n{display:none;}
+.fs\:60pc{font-size:60%;}
+.br\:3px{border-radius:3px;}
+.p\:2px-7px{padding:2px 7px;}
+.z\:6{z-index:6;}
+.w\:70px{width:70px;}
+.l\:0{left:0;}
+.l\:70npx{left:-70px;}
+.p\:24px-12px{padding:24px 12px;}
+.z\:1{z-index:1;}
+.t\:0{top:0;}
+.w\,h\:70px{width:70px;height:70px;}
+.bg\:ts{background:transparent;}
+.fs\:24px{font-size:24px;}
+.hv-c\:prim:hover{color:#FCCD12;}
+.c\:prim{color:#FCCD12;}
+.m-tb\:5px{margin-top:5px;margin-bottom:5px;}
+.bd-l\:4px-sd-prim{border-left:4px solid #FCCD12;}
+.bg\:272727{background:#272727;}
+.bd-l\:4px-sd-ts{border-left:4px solid transparent;}
+.p\:24px-5px{padding:24px 5px;}
+.m-b\:5px{margin-bottom:5px;}
 .bd-l\:1px-sd-grey200{border-left:1px solid #e0e0e0;}
 .p\:32px{padding:32px;}
-.c\:prim{color:#FCCD12;}
 .z\:5{z-index:5;}
 .t\,r\:0{top:0;right:0;}
 .bd-b\:1px-sd-e5e5e5{border-bottom:1px solid #e5e5e5;}
 .h\:70px{height:70px;}
+.c\:black200{color:#535353;}
 .w\:calc\(100pc-70px\){width:calc(100% - 70px);}
-.w\,h\:70px{width:70px;height:70px;}
-.bg\:ts{background:transparent;}
 .ts\:bg{transition:background .45s cubic-bezier(0.23, 1, 0.32, 1);}
-.fs\:24px{font-size:24px;}
 .hv-c\:prim_ts\:all_svg:hover svg{color:#FCCD12;transition:all .45s cubic-bezier(0.23, 1, 0.32, 1);}
 .h\:50px{height:50px;}
 .m-r\:12px{margin-right:12px;}
@@ -188,7 +205,6 @@ input, button, select, option, textarea{font-size: 100%; font-family: inherit;}
 .bg\:orange{background:#FF9800;}
 .bg\:reda8{background:rgba(244,67,54,0.8);}
 .h\:85pc{height:85%;}
-.t\:0{top:0;}
 .br\:100pc{border-radius:100%;}
 .bg-c\:prim{background-color:#FCCD12;}
 .an\:scaler-1s-inf-eio{animation:scaler 1s infinite ease-in-out;}
@@ -207,7 +223,6 @@ input, button, select, option, textarea{font-size: 100%; font-family: inherit;}
 .fs\:140pc{font-size:140%;}
 .w\,h\,lh\:100px{width:100px;height:100px;line-height:100px;}
 .fs\:160pc{font-size:160%;}
-.z\:6{z-index:6;}
 .t\,l\:0{top:0;left:0;}
 .an\:fadeIn-1s{animation:fadeIn 1s;}
 .bg\:blacka7{background:rgba(17,17,17,0.7);}
@@ -236,32 +251,17 @@ input, button, select, option, textarea{font-size: 100%; font-family: inherit;}
 .p\:24px-32px{padding:24px 32px;}
 .c\:orange{color:#FF9800;}
 .w\:calc\(50pc-8px\){width:calc(50% - 8px);}
-.h\:calc\(100vh\){height:calc(100vh);}
-.of-y\:auto{overflow-Y:auto;}
-.p-t\:75px{padding-top:75px;}
-.p-b\:40px{padding-bottom:40px;}
-.bg\:whitea05{background:rgba(255,255,255,0.05);}
-.td\:n{text-decoration:none;}
-.c\:fff{color:#fff;}
-.w\:150px{width:150px;}
-.bg-sz\:cover{background-size:cover;}
-.m-l\:6px{margin-left:6px;}
-.dp\:n{display:none;}
-.fs\:60pc{font-size:60%;}
-.br\:3px{border-radius:3px;}
-.p\:2px-7px{padding:2px 7px;}
-.w\:70px{width:70px;}
-.l\:0{left:0;}
-.l\:70npx{left:-70px;}
-.p\:24px-12px{padding:24px 12px;}
-.z\:1{z-index:1;}
-.hv-c\:prim:hover{color:#FCCD12;}
-.m-tb\:5px{margin-top:5px;margin-bottom:5px;}
-.bd-l\:4px-sd-prim{border-left:4px solid #FCCD12;}
-.bg\:272727{background:#272727;}
-.bd-l\:4px-sd-ts{border-left:4px solid transparent;}
-.p\:24px-5px{padding:24px 5px;}
-.m-b\:5px{margin-bottom:5px;}
+.m-t\:30px{margin-top:30px;}
+.p-tb\:10px{padding-top:10px;padding-bottom:10px;}
+.p-b\:10px{padding-bottom:10px;}
+.dp\:flex{display:flex;}
+.p-t\:15px{padding-top:15px;}
+.h\:175px{height:175px;}
+.m\:5px-5px-0-0{margin:5px 5px 0 0;}
+.hv-bs\:2:hover{box-shadow:0px 2px 4px rgba(0,0,0,0.12);}
+.m-b\:10px{margin-bottom:10px;}
+.bd\:1px-sld-grey200{border:1px solid #e0e0e0;}
+.p-tb\:24px{padding-top:24px;padding-bottom:24px;}
 .h\:auto{height:auto;}
 .h\,w\,mnw\,lh\:40px{height:40px;width:40px;min-width:40px;line-height:40px;}
 .m-r\:8px{margin-right:8px;}
@@ -295,7 +295,6 @@ input, button, select, option, textarea{font-size: 100%; font-family: inherit;}
 .crs\:default{cursor:default;}
 .c\:white-\!{color:#fff !important;}
 .w\:400px{width:400px;}
-.m-r\:15px{margin-right:15px;}
 .hv-bd\:1px-sd-prim:hover{border:1px solid #FCCD12;}
 .bg\:inherit{background:inherit;}
 .mnh\:38px{min-height:38px;}
@@ -326,6 +325,7 @@ input, button, select, option, textarea{font-size: 100%; font-family: inherit;}
 .bd-b\:1px-sd-prima15{border-bottom:1px solid rgba(252,205,18,0.15);}
 .crs\:not-allowed{cursor:0ot allowed;}
 .bg\:prima05{background:rgba(252,205,18,0.05);}
+.m-r\:15px{margin-right:15px;}
 .bg\:n{background:none;}
 .p-t\:16px{padding-top:16px;}
 .dp\:ib_ps\:ab_b\:0_h\:4px_br\:4px_bg\:prim_span span{display:inline-block;position:absolute;bottom:0;height:4px;border-radius:4px;background:#FCCD12;}
@@ -395,43 +395,14 @@ input, button, select, option, textarea{font-size: 100%; font-family: inherit;}
 .c\:7FB8ED{color:#7FB8ED;}
 .bg\:FCF1F1{background:#FCF1F1;}
 .c\:E57373{color:#E57373;}
-.b\,r\:0{bottom:0;right:0;}
-.p\:12px{padding:12px;}
-.dp\:td{display:table-cell;}
-.va\:m{vertical-align:middle;}
-.c\:blacka5{color:rgba(17,17,17,0.5);}
-.bz\:cbx{box-sizing:content-box;}
-.mxh\:calc\(100vh-300px\){max-height:calc(100vh - 300px);}
-.p-r\:27px{padding-right:27px;}
-.dp\:tb{display:table;}
-.bd-clp\:clp{border-collapse:collapse;}
-.c\:whitea8{color:rgba(255,255,255,0.8);}
-.c\:black300{color:#303030;}
-.w\:44px{width:44px;}
-.mnw\:120px{min-width:120px;}
-.bd-w\:1px{border-width:1px;}
-.bd-c\:blacka12{border-color:rgba(17,17,17,0.12);}
-.bd-t-w\:1px{border-top-width:1px;}
-.bd-c\:greya2{border-color:rgba(158,158,158,0.2);}
-.p\:16px-12px{padding:16px 12px;}
-.fs\:100pc{font-size:100%;}
-.dp\:tr{display:table-row;}
-.bd-b\:12px-solid-sec600{border-bottom:12px solid #edbe03;}
-.hv-bg\:prima05:hover{background:rgba(252,205,18,0.05);}
-.w\:100px{width:100px;}
-.w\,h\,mnw\:40px{width:40px;height:40px;min-width:40px;}
-.mxw\:150px{max-width:150px;}
-.bd-c\:grey200{border-color:#e0e0e0;}
-.h\:0{height:0;}
-.of\:vs{overflow:visible;}
-.p\:40px{padding:40px;}
-.xw\:400px{max-width:400px;}
-.p-t\:24px{padding-top:24px;}
 .c\:title200{color:title200;}
 .mnw\:100pc{min-width:100%;}
+.va\:m{vertical-align:middle;}
 .bd-tb\:1px-sd-blacka12{border-top:1px solid rgba(17,17,17,0.12);border-bottom:1px solid rgba(17,17,17,0.12);}
 .flxb\:24pc{flex-basis:24%;}
+.mnw\:120px{min-width:120px;}
 .m-rl\:8px{margin-right:8px;margin-left:8px;}
+.c\:blacka5{color:rgba(17,17,17,0.5);}
 .last-flxb\:28pc_mnw\:300px:last-child{flex-basis:28%;min-width:300px;}
 .bd-t\:1px-sd-blacka08{border-top:1px solid rgba(17,17,17,0.08);}
 .p-b\:20px{padding-bottom:20px;}
@@ -442,6 +413,7 @@ input, button, select, option, textarea{font-size: 100%; font-family: inherit;}
 .fd\:row{flex-direction:row;}
 .p-tb\:12px{padding-top:12px;padding-bottom:12px;}
 .w\:60pc{width:60%;}
+.p\:12px{padding:12px;}
 .p-l\:12px{padding-left:12px;}
 .flxb\:40pc{flex-basis:40%;}
 .mnw\:160px{min-width:160px;}
@@ -463,6 +435,34 @@ input, button, select, option, textarea{font-size: 100%; font-family: inherit;}
 .hv-bg\:FCF1F1:hover{background:#FCF1F1;}
 .op\:0\.5{opacity:0.5;}
 .gs\:0\.3{filter:grayscale(0.3);}
+.b\,r\:0{bottom:0;right:0;}
+.dp\:td{display:table-cell;}
+.bz\:cbx{box-sizing:content-box;}
+.mxh\:calc\(100vh-300px\){max-height:calc(100vh - 300px);}
+.p-r\:27px{padding-right:27px;}
+.dp\:tb{display:table;}
+.bd-clp\:clp{border-collapse:collapse;}
+.c\:whitea8{color:rgba(255,255,255,0.8);}
+.c\:black300{color:#303030;}
+.w\:44px{width:44px;}
+.bd-w\:1px{border-width:1px;}
+.bd-c\:blacka12{border-color:rgba(17,17,17,0.12);}
+.bd-t-w\:1px{border-top-width:1px;}
+.bd-c\:greya2{border-color:rgba(158,158,158,0.2);}
+.p\:16px-12px{padding:16px 12px;}
+.fs\:100pc{font-size:100%;}
+.dp\:tr{display:table-row;}
+.bd-b\:12px-solid-sec600{border-bottom:12px solid #edbe03;}
+.hv-bg\:prima05:hover{background:rgba(252,205,18,0.05);}
+.w\:100px{width:100px;}
+.w\,h\,mnw\:40px{width:40px;height:40px;min-width:40px;}
+.p\:40px{padding:40px;}
+.xw\:400px{max-width:400px;}
+.p-t\:24px{padding-top:24px;}
+.mxw\:150px{max-width:150px;}
+.bd-c\:grey200{border-color:#e0e0e0;}
+.h\:0{height:0;}
+.of\:vs{overflow:visible;}
 .t\:12px{top:12px;}
 .r\:12px{right:12px;}
 .lh\:1{line-height:1;}
@@ -606,17 +606,17 @@ input, button, select, option, textarea{font-size: 100%; font-family: inherit;}
 .ff\:inh{font-family:inherit;}
 .ls\:1px{letter-spacing:1px;}
 .bd\:1px-solid-sec{border:1px solid #FCCD12;}
-.mxw\:400px{max-width:400px;}
-.p\:10px{padding:10px;}
-.ls\:2px{letter-spacing:2px;}
-.bg\:seca5{background:rgba(252,205,18,0.5);}
-.h\:195px{height:195px;}
 .l\,b\:0{left:0;bottom:0;}
 .ac-scl\:1\.3:active{transform:scale(1.3);}
 .bg\:grey200{background:#e0e0e0;}
 .m-tb\:6px{margin-top:6px;margin-bottom:6px;}
 .fs\:115pc{font-size:115%;}
 .p\:7px{padding:7px;}
+.mxw\:400px{max-width:400px;}
+.p\:10px{padding:10px;}
+.ls\:2px{letter-spacing:2px;}
+.bg\:seca5{background:rgba(252,205,18,0.5);}
+.h\:195px{height:195px;}
 .bg-c\:sec{background-color:#FCCD12;}
 .bd\:12px-sd-white{border:12px solid #fff;}
 .h\:150px{height:150px;}
@@ -664,8 +664,6 @@ input, button, select, option, textarea{font-size: 100%; font-family: inherit;}
 }
 @media only screen and (min-width: 1024px) {
 .lg-p-l\:280px{padding-left:280px;}
-.lg-w\:calc\(100pc-280px\){width:calc(100% - 280px);}
-.lg-dp\:n{display:none;}
 .lg-h\:calc\(100vh-80px\){height:calc(100vh - 80px);}
 .lg-dp\:ib{display:inline-block;}
 .lg-l\:0{left:0;}
@@ -679,6 +677,8 @@ input, button, select, option, textarea{font-size: 100%; font-family: inherit;}
 .lg-m-r\:12px{margin-right:12px;}
 .lg-m-b\:0{margin-bottom:0;}
 .lg-fs\:100pc{font-size:100%;}
+.lg-w\:calc\(100pc-280px\){width:calc(100% - 280px);}
+.lg-dp\:n{display:none;}
 }
 @media only screen and (min-width: 1280px) {
 .xl-w\:360px{width:360px;}
@@ -706,9 +706,9 @@ input, button, select, option, textarea{font-size: 100%; font-family: inherit;}
 .smx-r\:280npx{right:-280px;}
 }
 @media only screen and (max-width: 1023px) {
-.lgx-p-l\:70px{padding-left:70px;}
 .lgx-l\:70px{left:70px;}
 .lgx-l\:0px{left:0px;}
+.lgx-p-l\:70px{padding-left:70px;}
 }
 @keyframes spin{to { transform: rotate(360deg); }}
 @keyframes fadeIn{from { opacity: 0.2; } to { opacity: 1; }}
@@ -719,4 +719,4 @@ input, button, select, option, textarea{font-size: 100%; font-family: inherit;}
 @keyframes dash{to { stroke-dashoffset: 0; }}
 @keyframes marquee{0% { transform: translateX(0); } 100% { transform: translateX(-50%); }}
 @keyframes bounce{0% { transform: scale(1,1) translateY(0); } 10% { transform: scale(1.1,.9) translateY(0); } 30% { transform: scale(.9,1.1) translateY(-100px); } 50% { transform: scale(1.05,.95) translateY(0); } 57% { transform: scale(1,1) translateY(-7px); } 64% { transform: scale(1,1) translateY(0); } 100% { transform: scale(1,1) translateY(0); }}
- /** Incorrect classes btn-login btn-login background && `url(${background background && `url(${background profile-img ${isResetable || isDeleteable && ${isDeleteable && ${isResetable && ${i % 2 === 0 && black200 profile-img ${isResetable || isDeleteable && ${isDeleteable && ${isResetable && ${i % 2 === 0 && black200 profile-img profile-img profile-img ' + className `linear-gradient(${primDeg !isLoading ? !wrap ? children <div className="bg:white c:black">{children photo || logo || url ? <span style={{ `url(${photo || logo || url profile-img profile-img profile-img ' + className `linear-gradient(${primDeg !isLoading ? !wrap ? children <div className="bg:white c:black">{children photo || logo || url ? <span style={{ `url(${photo || logo || url disabled ? placeholder text ${open && ${!noBorder && disabled ? placeholder text ${open && ${!noBorder && data && "w:100pc bd-b:1px-sld-grey200" !props.noHead && props.fields && data.length > 0 && ( <div className="dp:tr bd-t:1px-sd-blacka12"> {props.allowSelect && ( <div key="selectBox" title="Select item to delete" className="fw:600 w:44px"> <Checkbox onSelect={e => props.onSelect(data.map(item => item.id), selected.length >= data.length * 0.8) true true "h:60px lh:20px" + (value.color ? (value.color ? ${!!index ${item.disabled && ${!!index ${item.disabled && data && "w:100pc bd-b:1px-sld-grey200" !props.noHead && props.fields && data.length > 0 && ( <div className="dp:tr bd-t:1px-sd-blacka12"> {props.allowSelect && ( <div key="selectBox" title="Select item to delete" className="fw:600 w:44px"> <Checkbox onSelect={e => props.onSelect(data.map(item => item.id), selected.length >= data.length * 0.8) true true "h:60px lh:20px" + (value.color ? (value.color ? !cameraMode ? ( <div className="p:24px"> <div className={classNameInner(light) "ta:c br:4px" isChecked && <Icon className="ps:ab c:white" icon="check" /> !cameraMode ? ( <div className="p:24px"> <div className={classNameInner(light) "ta:c br:4px" super(props) this.state = { true fa-2x fa-2x fa-2x fa-2x isChecked && <Icon className="ps:ab c:white" icon="check" /> super(props) this.state = { true fa-2x fa-2x fa-2x fa-2x ' + className ' + className `calc(100% / 7)` `calc(100% / 7)` */
+ /** Incorrect classes btn-login background && `url(${background profile-img ${isResetable || isDeleteable && ${isDeleteable && ${isResetable && ${i % 2 === 0 && black200 btn-login profile-img profile-img profile-img ' + className `linear-gradient(${primDeg !isLoading ? !wrap ? children <div className="bg:white c:black">{children photo || logo || url ? <span style={{ `url(${photo || logo || url background && `url(${background disabled ? placeholder text ${open && profile-img ${isResetable || isDeleteable && ${isDeleteable && ${isResetable && ${i % 2 === 0 && black200 ${!noBorder && ${!!index ${item.disabled && profile-img data && "w:100pc bd-b:1px-sld-grey200" !props.noHead && props.fields && data.length > 0 && ( <div className="dp:tr bd-t:1px-sd-blacka12"> {props.allowSelect && ( <div key="selectBox" title="Select item to delete" className="fw:600 w:44px"> <Checkbox onSelect={e => props.onSelect(data.map(item => item.id), selected.length >= data.length * 0.8) true true "h:60px lh:20px" + (value.color ? (value.color ? profile-img profile-img ' + className `linear-gradient(${primDeg !isLoading ? !wrap ? children <div className="bg:white c:black">{children photo || logo || url ? <span style={{ `url(${photo || logo || url !cameraMode ? ( <div className="p:24px"> <div className={classNameInner(light) disabled ? placeholder text ${open && ${!noBorder && "ta:c br:4px" isChecked && <Icon className="ps:ab c:white" icon="check" /> super(props) this.state = { true fa-2x fa-2x fa-2x fa-2x ${!!index ${item.disabled && data && "w:100pc bd-b:1px-sld-grey200" !props.noHead && props.fields && data.length > 0 && ( <div className="dp:tr bd-t:1px-sd-blacka12"> {props.allowSelect && ( <div key="selectBox" title="Select item to delete" className="fw:600 w:44px"> <Checkbox onSelect={e => props.onSelect(data.map(item => item.id), selected.length >= data.length * 0.8) true true "h:60px lh:20px" + (value.color ? (value.color ? !cameraMode ? ( <div className="p:24px"> <div className={classNameInner(light) "ta:c br:4px" isChecked && <Icon className="ps:ab c:white" icon="check" /> super(props) this.state = { true fa-2x fa-2x fa-2x fa-2x ' + className `calc(100% / 7)` ' + className */
