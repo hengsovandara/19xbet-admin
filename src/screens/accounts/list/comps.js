@@ -7,7 +7,7 @@ import Form from '../form/comps'
 import Button from '../../../@clik/elems/button'
 import Router from 'next/router'
 
-export default props => {
+const ListComps = props => {
   const { act, action, store } = useActStore(actions);
   const { query } = props;
   const [pagination, setPagination] = useState({ offset: 0, limit: 10 })
@@ -30,15 +30,9 @@ export default props => {
   }, [socket, query.page])
 
   const handlePagination = pageNum => {
-    // const qs = Object
-    //                 .keys(query)
-    //                 .filter(key => key && key !== 'page')
-    //                 .map(key => `${key}=${query[key]}`)
-    //                 .concat(`page=${pageNum}`)
-    //                 .join('&')
     Router.push(['/accounts', `page=${pageNum}`].join('?'))
   }
-  // console.log(accounts, corporations, overall)
+
   return (
     <>
       { query.id && <Form { ...props } /> }
@@ -54,6 +48,8 @@ export default props => {
     </>
   )
 }
+
+export default ListComps
 
 function renderItem(items, query) {
   const data = items.map(obj => {
@@ -75,20 +71,12 @@ function renderItem(items, query) {
 
 const Corporation = ({ id, name = '', logo, isProfile = false }) => {
   return (
-  // <div className="dp:flx ai:c jc:c">
-  //   {
-  //     isProfile
-  //     ? <span className="w,h:40px bg-sz:cv bg-ps:c br:50pc dp:bk" style={{ backgroundImage: `url(${logo})` }}>
-  //     </span>
-  //     : <img src={logo} alt={name + '\'s logo'} width="50" height="50" />
-  //   }
-  // </div>
-  <div className="dp:flx ai:c jc:c">
-    <div className="br:50pc dp:flx jc:c ai:c w,h:45px ts:all">
-      {logo && logo !== null
-        ? <img src={logo} className="br:50pc w,h:100pc" />
-        : <FontAwesomeIcon icon="user" />
-      }
+    <div className="dp:flx ai:c jc:c">
+      <div className="br:50pc dp:flx jc:c ai:c w,h:45px ts:all">
+        {logo && logo !== null
+          ? <img src={logo} className="br:50pc w,h:100pc" />
+          : <FontAwesomeIcon icon="user" />
+        }
+      </div>
     </div>
-  </div>
 )}

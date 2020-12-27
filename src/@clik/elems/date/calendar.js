@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { fucss } from 'next-fucss/utils';
 
-export default (props) => {
+const Calendar = (props) => {
   const { month, year, daysInMonth, firstDay, selectedDays } = props;
 
   const mm = new Date().getMonth();
@@ -60,6 +60,8 @@ export default (props) => {
     </div>
   )
 }
+
+export default Calendar
 
 const classNameToday = (isActive) => fucss({
   'db:ib p-tb:10px ta:c ta:l crs:pt ': true,

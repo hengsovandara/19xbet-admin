@@ -19,7 +19,7 @@ const alt = [
   { x: 5, y: 6 },
 ]
 
-export default props => {
+const Dashboard = props => {
 	const { act } = useActStore({ actions }, ['ready'])
 	const [stats, setStats] = React.useState([])
 
@@ -118,6 +118,8 @@ export default props => {
 	)
 }
 
+export default Dashboard
+
 const Bar = ({ value = 100, label = 'Label', total = 50, color = 'black' }) => {
 	const percentage = (value / total) * 100
 	return <div className="m-b:36px last-m-b:0">
@@ -132,53 +134,5 @@ const Bar = ({ value = 100, label = 'Label', total = 50, color = 'black' }) => {
 }
 
 const actions = ({ act }) => ({
-	//returned: Consumers_aggregate(where: { status: { _eq: 2 }}){ aggregate{ count } }
-	STATS_TASKS: () => {
-    return []
-		return act('GQL', { query: `{
-		  total: Consumers_aggregate(where: { status: { _neq: 0 }}) { aggregate { count } }
-		  approved: Consumers_aggregate(where: { status: { _eq: 4 }}){ aggregate{ count } }
-
-		  assigned: Consumers_aggregate(where: { _and: [{ status: {_in: [2, 3]} }, {_or: [
-		    {assignments: { finishedAt: { _is_null: true}}}
-		  ]} ]}) { aggregate { count } }
-
-		  outstanding: Consumers_aggregate(where: { _and: [{ status: {_eq: 2} }, {_or: [
-		    { _not: {assignments: {}}},
-		    { _not: {assignments: { finishedAt: { _is_null: true}}}}
-		  ]} ]}) { aggregate { count } }
-
-		  returned: Consumers_aggregate(where: { _and: [{ status: {_eq: 3} }, {_or: [
-		    { _not: {assignments: {}}},
-		    { _not: {assignments: { finishedAt: { _is_null: true}}}}
-		  ]} ]}) { aggregate { count } }
-			rejected: Consumers_aggregate(where: { status: { _eq: 8 }}){ aggregate{ count } }
-		}`}).then(stats => Object.keys(stats).reduce((arr, key) => arr.concat({ key, label: key, value: stats[key].aggregate.count, color: colors[key]  }), [])).catch(err => [])
-	}
+	STATS_TASKS: () => []
 })
-
-// const Comp = () => {
-//   return (
-//     <Comps.Layout empty={false} loading={false}>
-//       <Elems.Wrap fucss="dp:flx ai,jc:c fd:col mnh:calc(100vh-124px) mxw:600px m-rl:auto">
-//         <Styled.Title>{`${I18n.t('info')} ${I18n.t('dashboard')}`}</Styled.Title>
-//         <Styled.Subtitle>{I18n.t('dashboardMsg')}</Styled.Subtitle>
-//         <VictoryChart theme={VictoryTheme.material} domainPadding={20}>
-//           <VictoryBar x="quarter" y="earnings" data={[
-//             {quarter: 1, earnings: 13000},
-//             {quarter: 2, earnings: 16500},
-//             {quarter: 3, earnings: 14250},
-//             {quarter: 4, earnings: 19000}
-//           ]} />
-//         </VictoryChart>
-//       </Elems.Wrap>
-//     </Comps.Layout>
-//   )
-// }
-//
-// export default Comp
-//
-// const Styled = Actheme.create({
-//   Title: ['Text', 'fs:s10 c:white'],
-//   Subtitle: ['Text', 'fs:s4 c:white xw:s100 mt:15 ta:c mh:auto']
-// })

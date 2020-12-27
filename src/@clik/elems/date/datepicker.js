@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { fucss } from 'next-fucss/utils';
 
-export default (props) => {
+const DatePicker = (props) => {
   const { date, time } = props;
 
   return (
@@ -88,6 +88,8 @@ export default (props) => {
       }
     </div>)
 }
+
+export default DatePicker
 
 const classNameContainer = () => fucss({
   // 'bg:tert ta:c dp:flx jc:sb w:100pc': true,

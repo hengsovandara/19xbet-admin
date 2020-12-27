@@ -2,7 +2,7 @@ import { fucss } from 'next-fucss/utils'
 import Pagination from './pagination'
 import Icon from '../icon'
 
-export default ({ pagination, handlePagination, noTableFoot = false, totalAmount = 0 }) => {
+const TableFoot = ({ pagination, handlePagination, noTableFoot = false, totalAmount = 0 }) => {
   if(noTableFoot) return null
   return (
     <div>
@@ -26,6 +26,8 @@ export default ({ pagination, handlePagination, noTableFoot = false, totalAmount
     </div>
   )
 }
+
+export default TableFoot
 
 const classNameHead = (isSelected, totalAmount) =>
   fucss({

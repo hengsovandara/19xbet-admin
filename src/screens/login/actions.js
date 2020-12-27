@@ -1,4 +1,4 @@
-export default ({ store, act, handle }) => ({
+const actions = ({ store, act, handle }) => ({
   USER_LOGIN: async body => {
     handle.loading(true)
     const result = await act('POST', { token: null, endpoint: 'login', body })
@@ -15,3 +15,5 @@ export default ({ store, act, handle }) => ({
     return token && act('USER_TOKEN_SET', token)
   }
 })
+
+export default actions

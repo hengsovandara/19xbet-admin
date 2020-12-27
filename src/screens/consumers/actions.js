@@ -1,6 +1,7 @@
+
 import { setDate, setAddress, setName } from 'clik/libs'
 
-export default ({ act, store, action, handle, cookies, route }) => ({
+const actions = ({ act, store, action, handle, cookies, route }) => ({
   CONSUMERS_UNSUB: async () => act('UNSUB', { id: 'consumers' }),
 
   CONSUMERS_SUB: async ({ offset = 0, limit = 15 }, keywords, status = 2) => {
@@ -76,3 +77,5 @@ export default ({ act, store, action, handle, cookies, route }) => ({
     })
   }
 })
+
+export default actions

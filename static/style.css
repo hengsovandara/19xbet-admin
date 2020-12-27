@@ -69,15 +69,16 @@ input, button, select, option, textarea{font-size: 100%; font-family: inherit;}
 .bg\:fff{background:#fff;}
 .mnh\:100vh{min-height:100vh;}
 .p-l\:0{padding-left:0;}
-.w\,h\:40px{width:40px;height:40px;}
-.bg-sz\:cv{background-size:cover;}
-.bg-ps\:c{background-position:center;}
 .br\:50pc{border-radius:50%;}
-.dp\:bk{display:block;}
 .w\,h\:45px{width:45px;height:45px;}
 .ts\:all{transition:all .45s cubic-bezier(0.23, 1, 0.32, 1);}
 .w\,h\:100pc{width:100%;height:100%;}
 .p-rl\:24px{padding-right:24px;padding-left:24px;}
+.p-tb\:15px{padding-top:15px;padding-bottom:15px;}
+.p-rl\:10px{padding-right:10px;padding-left:10px;}
+.w\:200px{width:200px;}
+.c\:white{color:#fff;}
+.p-r\:24px{padding-right:24px;}
 .of\:auto{overflow:auto;}
 .p-t\:64px{padding-top:64px;}
 .w\:auto{width:auto;}
@@ -88,7 +89,6 @@ input, button, select, option, textarea{font-size: 100%; font-family: inherit;}
 .fs\:20px{font-size:20px;}
 .c\:grey{color:#9E9E9E;}
 .flxw\:wrap{flex-wrap:wrap;}
-.p-r\:24px{padding-right:24px;}
 .p\:16px{padding:16px;}
 .c\:grey400{color:#adadad;}
 .fs\:90pc{font-size:90%;}
@@ -103,10 +103,6 @@ input, button, select, option, textarea{font-size: 100%; font-family: inherit;}
 .m-l\:16px{margin-left:16px;}
 .m-b\:4px{margin-bottom:4px;}
 .fs\:70pc{font-size:70%;}
-.p-tb\:15px{padding-top:15px;padding-bottom:15px;}
-.p-rl\:10px{padding-right:10px;padding-left:10px;}
-.w\:200px{width:200px;}
-.c\:white{color:#fff;}
 .p\:12px-24px-0{padding:12px 24px 0;}
 .w\:320px{width:320px;}
 .bg\:f3f3f3{background:#f3f3f3;}
@@ -157,6 +153,7 @@ input, button, select, option, textarea{font-size: 100%; font-family: inherit;}
 .c\:fff{color:#fff;}
 .w\:150px{width:150px;}
 .bg-sz\:cover{background-size:cover;}
+.bg-ps\:c{background-position:center;}
 .m-l\:6px{margin-left:6px;}
 .dp\:n{display:none;}
 .fs\:60pc{font-size:60%;}
@@ -180,19 +177,6 @@ input, button, select, option, textarea{font-size: 100%; font-family: inherit;}
 .bd-l\:4px-sd-ts{border-left:4px solid transparent;}
 .p\:24px-5px{padding:24px 5px;}
 .m-b\:5px{margin-bottom:5px;}
-.bd-l\:1px-sd-grey200{border-left:1px solid #e0e0e0;}
-.p\:32px{padding:32px;}
-.z\:5{z-index:5;}
-.t\,r\:0{top:0;right:0;}
-.bd-b\:1px-sd-e5e5e5{border-bottom:1px solid #e5e5e5;}
-.h\:70px{height:70px;}
-.c\:black200{color:#535353;}
-.w\:calc\(100pc-70px\){width:calc(100% - 70px);}
-.ts\:bg{transition:background .45s cubic-bezier(0.23, 1, 0.32, 1);}
-.hv-c\:prim_ts\:all_svg:hover svg{color:#FCCD12;transition:all .45s cubic-bezier(0.23, 1, 0.32, 1);}
-.h\:50px{height:50px;}
-.m-r\:12px{margin-right:12px;}
-.c\:black100{color:#6f6f6f;}
 .bg\:sec{background:#FCCD12;}
 .c\:sec{color:#FCCD12;}
 .bs\:1{box-shadow:0px 1px 2px rgba(0,0,0,0.10);}
@@ -206,6 +190,7 @@ input, button, select, option, textarea{font-size: 100%; font-family: inherit;}
 .bg\:reda8{background:rgba(244,67,54,0.8);}
 .h\:85pc{height:85%;}
 .br\:100pc{border-radius:100%;}
+.w\,h\:40px{width:40px;height:40px;}
 .bg-c\:prim{background-color:#FCCD12;}
 .an\:scaler-1s-inf-eio{animation:scaler 1s infinite ease-in-out;}
 .bg\:blacka5{background:rgba(17,17,17,0.5);}
@@ -234,6 +219,7 @@ input, button, select, option, textarea{font-size: 100%; font-family: inherit;}
 .z\:20{z-index:20;}
 .z\:15{z-index:15;}
 .p-t\:36px{padding-top:36px;}
+.c\:black200{color:#535353;}
 .m-tb\:24px{margin-top:24px;margin-bottom:24px;}
 .fs\:85pc{font-size:85%;}
 .an\:land-0\.5s{animation:land 0.5s;}
@@ -241,18 +227,32 @@ input, button, select, option, textarea{font-size: 100%; font-family: inherit;}
 .mxh\:100vh{max-height:100vh;}
 .mxw\:1200px{max-width:1200px;}
 .mxw\:600px{max-width:600px;}
+.bg-sz\:cv{background-size:cover;}
+.dp\:bk{display:block;}
 .op\:0\.8{opacity:0.8;}
 .m\:8px-0{margin:8px 0;}
 .hv-scl\:1\.05:hover{transform:scale(1.05);}
 .h\,w\,lh\:85px{height:85px;width:85px;line-height:85px;}
 .h\,w\,lh\:65px{height:65px;width:65px;line-height:65px;}
 .h\,w\,lh\:35px{height:35px;width:35px;line-height:35px;}
+.t\,r\:0{top:0;right:0;}
 .an\:fadeIn-0\.5s{animation:fadeIn 0.5s;}
 .p\:24px-32px{padding:24px 32px;}
 .c\:orange{color:#FF9800;}
 .w\:calc\(50pc-8px\){width:calc(50% - 8px);}
+.m-r\:12px{margin-right:12px;}
+.bd-l\:1px-sd-grey200{border-left:1px solid #e0e0e0;}
+.p\:32px{padding:32px;}
+.z\:5{z-index:5;}
+.bd-b\:1px-sd-e5e5e5{border-bottom:1px solid #e5e5e5;}
+.h\:70px{height:70px;}
+.w\:calc\(100pc-70px\){width:calc(100% - 70px);}
+.ts\:bg{transition:background .45s cubic-bezier(0.23, 1, 0.32, 1);}
+.hv-c\:prim_ts\:all_svg:hover svg{color:#FCCD12;transition:all .45s cubic-bezier(0.23, 1, 0.32, 1);}
+.h\:50px{height:50px;}
+.c\:black100{color:#6f6f6f;}
 .m-t\:30px{margin-top:30px;}
-.p-tb\:10px{padding-top:10px;padding-bottom:10px;}
+.p-tb\:24px{padding-top:24px;padding-bottom:24px;}
 .p-b\:10px{padding-bottom:10px;}
 .dp\:flex{display:flex;}
 .p-t\:15px{padding-top:15px;}
@@ -261,7 +261,7 @@ input, button, select, option, textarea{font-size: 100%; font-family: inherit;}
 .hv-bs\:2:hover{box-shadow:0px 2px 4px rgba(0,0,0,0.12);}
 .m-b\:10px{margin-bottom:10px;}
 .bd\:1px-sld-grey200{border:1px solid #e0e0e0;}
-.p-tb\:24px{padding-top:24px;padding-bottom:24px;}
+.p-tb\:10px{padding-top:10px;padding-bottom:10px;}
 .h\:auto{height:auto;}
 .h\,w\,mnw\,lh\:40px{height:40px;width:40px;min-width:40px;line-height:40px;}
 .m-r\:8px{margin-right:8px;}
@@ -295,6 +295,7 @@ input, button, select, option, textarea{font-size: 100%; font-family: inherit;}
 .crs\:default{cursor:default;}
 .c\:white-\!{color:#fff !important;}
 .w\:400px{width:400px;}
+.m-r\:15px{margin-right:15px;}
 .hv-bd\:1px-sd-prim:hover{border:1px solid #FCCD12;}
 .bg\:inherit{background:inherit;}
 .mnh\:38px{min-height:38px;}
@@ -325,7 +326,6 @@ input, button, select, option, textarea{font-size: 100%; font-family: inherit;}
 .bd-b\:1px-sd-prima15{border-bottom:1px solid rgba(252,205,18,0.15);}
 .crs\:not-allowed{cursor:0ot allowed;}
 .bg\:prima05{background:rgba(252,205,18,0.05);}
-.m-r\:15px{margin-right:15px;}
 .bg\:n{background:none;}
 .p-t\:16px{padding-top:16px;}
 .dp\:ib_ps\:ab_b\:0_h\:4px_br\:4px_bg\:prim_span span{display:inline-block;position:absolute;bottom:0;height:4px;border-radius:4px;background:#FCCD12;}
@@ -456,13 +456,13 @@ input, button, select, option, textarea{font-size: 100%; font-family: inherit;}
 .hv-bg\:prima05:hover{background:rgba(252,205,18,0.05);}
 .w\:100px{width:100px;}
 .w\,h\,mnw\:40px{width:40px;height:40px;min-width:40px;}
-.p\:40px{padding:40px;}
-.xw\:400px{max-width:400px;}
-.p-t\:24px{padding-top:24px;}
 .mxw\:150px{max-width:150px;}
 .bd-c\:grey200{border-color:#e0e0e0;}
 .h\:0{height:0;}
 .of\:vs{overflow:visible;}
+.p\:40px{padding:40px;}
+.xw\:400px{max-width:400px;}
+.p-t\:24px{padding-top:24px;}
 .t\:12px{top:12px;}
 .r\:12px{right:12px;}
 .lh\:1{line-height:1;}
@@ -537,17 +537,8 @@ input, button, select, option, textarea{font-size: 100%; font-family: inherit;}
 .p\:12px-27px-12px-12px{padding:12px 27px 12px 12px;}
 .idx\:1{z-index:1;}
 .h\:400px{height:400px;}
-.r\:5px{right:5px;}
-.p\:9px{padding:9px;}
-.op\:0{opacity:0;}
-.w\:0{width:0;}
-.mxh\:0{max-height:0;}
-.mxh\:180px{max-height:180px;}
-.p\:4px-12px{padding:4px 12px;}
-.hv-bg\:prim:hover{background:#FCCD12;}
-.hv-c\:white:hover{color:#fff;}
-.fc-bs\:1_bd-c\:prim_scl\:1\.05:focus{box-shadow:0px 1px 2px rgba(0,0,0,0.10);border-color:#FCCD12;transform:scale(1.05);}
 .w\,h\:0{width:0;height:0;}
+.op\:0{opacity:0;}
 .p\:7px-16px{padding:7px 16px;}
 .m\:0-5px-5px-0{margin:0 5px 5px 0;}
 .bg\:tert{background:#1B598D;}
@@ -557,6 +548,15 @@ input, button, select, option, textarea{font-size: 100%; font-family: inherit;}
 .bg\:sec600{background:#edbe03;}
 .bg\:grey300{background:#bdbdbd;}
 .bg\:sec300{background:#ffec31;}
+.r\:5px{right:5px;}
+.p\:9px{padding:9px;}
+.w\:0{width:0;}
+.mxh\:0{max-height:0;}
+.mxh\:180px{max-height:180px;}
+.p\:4px-12px{padding:4px 12px;}
+.hv-bg\:prim:hover{background:#FCCD12;}
+.hv-c\:white:hover{color:#fff;}
+.fc-bs\:1_bd-c\:prim_scl\:1\.05:focus{box-shadow:0px 1px 2px rgba(0,0,0,0.10);border-color:#FCCD12;transform:scale(1.05);}
 .h\,w\:0{height:0;width:0;}
 .w\:100pc-\!{width:100% !important;}
 .bd\:1px-sld-sec400{border:1px solid #ffdc21;}
@@ -590,6 +590,11 @@ input, button, select, option, textarea{font-size: 100%; font-family: inherit;}
 .p-r\:16px-\!{padding-right:16px !important;}
 .br\:30px{border-radius:30px;}
 .m\:3px{margin:3px;}
+.w\:25px{width:25px;}
+.m-t\:1npx{margin-top:-1px;}
+.sh\:0-1px-3px-000a15{box-shadow:0 1px 3px rgba(0,0,0,0.15);}
+.w\:150pc{width:150%;}
+.bd-t\:1px-sd-ccc{border-top:1px solid #ccc;}
 .p\:7px-0px{padding:7px 0px;}
 .w\:30pc{width:30%;}
 .ts\:w{transition:width .45s cubic-bezier(0.23, 1, 0.32, 1);}
@@ -598,11 +603,6 @@ input, button, select, option, textarea{font-size: 100%; font-family: inherit;}
 .mrg-t\:12px{margin-top:12px;}
 .fw\:900{font-weight:900;}
 .fl\:l{float:left;}
-.w\:25px{width:25px;}
-.m-t\:1npx{margin-top:-1px;}
-.sh\:0-1px-3px-000a15{box-shadow:0 1px 3px rgba(0,0,0,0.15);}
-.w\:150pc{width:150%;}
-.bd-t\:1px-sd-ccc{border-top:1px solid #ccc;}
 .ff\:inh{font-family:inherit;}
 .ls\:1px{letter-spacing:1px;}
 .bd\:1px-solid-sec{border:1px solid #FCCD12;}
@@ -677,8 +677,8 @@ input, button, select, option, textarea{font-size: 100%; font-family: inherit;}
 .lg-m-r\:12px{margin-right:12px;}
 .lg-m-b\:0{margin-bottom:0;}
 .lg-fs\:100pc{font-size:100%;}
-.lg-w\:calc\(100pc-280px\){width:calc(100% - 280px);}
 .lg-dp\:n{display:none;}
+.lg-w\:calc\(100pc-280px\){width:calc(100% - 280px);}
 }
 @media only screen and (min-width: 1280px) {
 .xl-w\:360px{width:360px;}
@@ -719,4 +719,4 @@ input, button, select, option, textarea{font-size: 100%; font-family: inherit;}
 @keyframes dash{to { stroke-dashoffset: 0; }}
 @keyframes marquee{0% { transform: translateX(0); } 100% { transform: translateX(-50%); }}
 @keyframes bounce{0% { transform: scale(1,1) translateY(0); } 10% { transform: scale(1.1,.9) translateY(0); } 30% { transform: scale(.9,1.1) translateY(-100px); } 50% { transform: scale(1.05,.95) translateY(0); } 57% { transform: scale(1,1) translateY(-7px); } 64% { transform: scale(1,1) translateY(0); } 100% { transform: scale(1,1) translateY(0); }}
- /** Incorrect classes btn-login background && `url(${background profile-img ${isResetable || isDeleteable && ${isDeleteable && ${isResetable && ${i % 2 === 0 && black200 btn-login profile-img profile-img profile-img ' + className `linear-gradient(${primDeg !isLoading ? !wrap ? children <div className="bg:white c:black">{children photo || logo || url ? <span style={{ `url(${photo || logo || url background && `url(${background disabled ? placeholder text ${open && profile-img ${isResetable || isDeleteable && ${isDeleteable && ${isResetable && ${i % 2 === 0 && black200 ${!noBorder && ${!!index ${item.disabled && profile-img data && "w:100pc bd-b:1px-sld-grey200" !props.noHead && props.fields && data.length > 0 && ( <div className="dp:tr bd-t:1px-sd-blacka12"> {props.allowSelect && ( <div key="selectBox" title="Select item to delete" className="fw:600 w:44px"> <Checkbox onSelect={e => props.onSelect(data.map(item => item.id), selected.length >= data.length * 0.8) true true "h:60px lh:20px" + (value.color ? (value.color ? profile-img profile-img ' + className `linear-gradient(${primDeg !isLoading ? !wrap ? children <div className="bg:white c:black">{children photo || logo || url ? <span style={{ `url(${photo || logo || url !cameraMode ? ( <div className="p:24px"> <div className={classNameInner(light) disabled ? placeholder text ${open && ${!noBorder && "ta:c br:4px" isChecked && <Icon className="ps:ab c:white" icon="check" /> super(props) this.state = { true fa-2x fa-2x fa-2x fa-2x ${!!index ${item.disabled && data && "w:100pc bd-b:1px-sld-grey200" !props.noHead && props.fields && data.length > 0 && ( <div className="dp:tr bd-t:1px-sd-blacka12"> {props.allowSelect && ( <div key="selectBox" title="Select item to delete" className="fw:600 w:44px"> <Checkbox onSelect={e => props.onSelect(data.map(item => item.id), selected.length >= data.length * 0.8) true true "h:60px lh:20px" + (value.color ? (value.color ? !cameraMode ? ( <div className="p:24px"> <div className={classNameInner(light) "ta:c br:4px" isChecked && <Icon className="ps:ab c:white" icon="check" /> super(props) this.state = { true fa-2x fa-2x fa-2x fa-2x ' + className `calc(100% / 7)` ' + className */
+ /** Incorrect classes btn-login btn-login background && `url(${background background && `url(${background profile-img ${isResetable || isDeleteable && ${isDeleteable && ${isResetable && ${i % 2 === 0 && black200 profile-img ${isResetable || isDeleteable && ${isDeleteable && ${isResetable && ${i % 2 === 0 && black200 profile-img profile-img profile-img ' + className `linear-gradient(${primDeg !isLoading ? !wrap ? children <div className="bg:white c:black">{children photo || logo || url ? <span style={{ `url(${photo || logo || url profile-img profile-img profile-img ' + className `linear-gradient(${primDeg !isLoading ? !wrap ? children <div className="bg:white c:black">{children photo || logo || url ? <span style={{ `url(${photo || logo || url disabled ? placeholder text ${open && disabled ? placeholder text ${open && ${!noBorder && ${!noBorder && ${!!index ${item.disabled && data && "w:100pc bd-b:1px-sld-grey200" !props.noHead && props.fields && data.length > 0 && ( <div className="dp:tr bd-t:1px-sd-blacka12"> {props.allowSelect && ( <div key="selectBox" title="Select item to delete" className="fw:600 w:44px"> <Checkbox onSelect={e => props.onSelect(data.map(item => item.id), selected.length >= data.length * 0.8) true true "h:60px lh:20px" + (value.color ? (value.color ? ${!!index ${item.disabled && data && "w:100pc bd-b:1px-sld-grey200" !props.noHead && props.fields && data.length > 0 && ( <div className="dp:tr bd-t:1px-sd-blacka12"> {props.allowSelect && ( <div key="selectBox" title="Select item to delete" className="fw:600 w:44px"> <Checkbox onSelect={e => props.onSelect(data.map(item => item.id), selected.length >= data.length * 0.8) true true "h:60px lh:20px" + (value.color ? (value.color ? !cameraMode ? ( <div className="p:24px"> <div className={classNameInner(light) "ta:c br:4px" !cameraMode ? ( <div className="p:24px"> <div className={classNameInner(light) "ta:c br:4px" isChecked && <Icon className="ps:ab c:white" icon="check" /> super(props) this.state = { true fa-2x fa-2x fa-2x fa-2x isChecked && <Icon className="ps:ab c:white" icon="check" /> super(props) this.state = { true fa-2x fa-2x fa-2x fa-2x ' + className `calc(100% / 7)` `calc(100% / 7)` */

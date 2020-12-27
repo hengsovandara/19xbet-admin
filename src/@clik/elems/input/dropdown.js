@@ -3,7 +3,7 @@ import { fucss } from 'next-fucss/utils'
 
 let timer
 
-export default props => {
+const DropDown = props => {
   const { date, focus, confirmable, clearable, noWrapper, classNameInput, underline, invalid } = props
   const value = props.val || props.value
 
@@ -31,6 +31,8 @@ export default props => {
     )
   ]
 }
+
+export default DropDown
 
 function handleBlur(e, handleFocus, value) {
   timer = setTimeout(() => {

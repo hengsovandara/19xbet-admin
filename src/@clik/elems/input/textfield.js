@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { fucss } from 'next-fucss/utils'
 
-export default props => {
+const TextField = props => {
   const action = props.addNote || props.action || props.handleFocus
   return (
     <div className={classNameContainer(props)}>
@@ -17,6 +17,8 @@ export default props => {
     </div>
   )
 }
+
+export default TextField
 
 const classNameContainer = ({ light }) =>
   fucss({
