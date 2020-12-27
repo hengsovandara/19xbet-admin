@@ -1,6 +1,6 @@
 import { setDate } from 'clik/libs'
 
-export default ({ act, store, action, handle, cookies, route }) => ({
+const actions = ({ act, store, action, handle, cookies, route }) => ({
   USER_USER_FETCH: async id => {
     const query = `{ Staffs(where: { id: { _eq: "${id}"} }) {
       id role name email photo createdAt phoneNumber
@@ -61,3 +61,5 @@ export default ({ act, store, action, handle, cookies, route }) => ({
     return act('POST', { endpoint: 'userReset', body: { id: userId } }).then(() => route.set('/staff'))
   }
 })
+
+export default actions
