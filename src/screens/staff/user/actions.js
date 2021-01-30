@@ -11,21 +11,15 @@ const actions = ({ act, store, action, handle, cookies, route }) => ({
     return !!Object.keys(user || {}).length && { ...user, createdAt: setDate(user.createdAt)} || {}
   },
 
-  USER_ASSIGNMENTS_FETCH: async userId => {
-    const query = `{ Assignments(where: { userId: { _eq: "${userId}"} user: { archived: { _neq: true} } type: { _eq: "consumer" } }) {
-      id createdAt finishedAt finished
-      user { name }
-      consumer { id givenName surname }
-    } }`
-
-    return await act('GQL', { query }).then(({ Assignments }) => (Assignments))
-  },
-
   USER_UPDATE: async ( body = {} ) => {
     if(!body.phoneNumber || !body.email || !body.role || !body.id || !body.name)
       return Promise.reject('Please input all fields.')
 
     delete body["createdAt"]
+    if(!!body.pin)
+      act("USER_CHANGE_PIN", body)
+
+    delete body["pin"]
     const query = `
       mutation($values: [Staffs_insert_input!]!){
         insert_Staffs(objects: $values on_conflict: {
@@ -41,17 +35,26 @@ const actions = ({ act, store, action, handle, cookies, route }) => ({
   },
 
   USER_CHANGE_PIN: async ( body = {} ) => {
-    if(!body.newPin || !body.oldPin)
-      return Promise.reject('Please input all fields.')
+    const query = `
+      mutation{
+        update_Credentials(where:{ staffId: { _eq: "${body.id}"}} _set: { password: "${body.pin}"}){
+          affected_rows
+        }
+      }
+    `
 
-    return act('POST', { endpoint: 'userReset', body })
+    return act('GQL', { query })
   },
 
   USER_DELETE: async userId => {
     if(!userId)
       return Promise.reject('Missing User ID.')
 
-    return act('DELETE', { endpoint: 'users', body: { id: userId } }).then(() => route.set('/staff'))
+    const query = `
+      mutation{ delete_Staffs(where: { id: { _eq: "${userId}"}}){ affected_rows } }
+    `
+
+    return act('GQL', { query }).then(() => route.set('/staff'))
   },
 
   USER_RESET_PIN: async userId => {

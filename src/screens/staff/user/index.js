@@ -77,7 +77,6 @@ const User = ({ query }) => {
         actions={{
           onEdit: () => { setIsEditing(!isEditing); setFormType('user') },
           onChangePin: () => { setIsEditing(!isEditing); setFormType('changePin') },
-          onResetPin: () => { setIsDeleting(true); setConfirmationType('resetPin') },
           onDelete: () => { setIsDeleting(true); setConfirmationType('delete') }
         }}
       />
@@ -121,20 +120,12 @@ const LeftComp = ({ user = {}, actions, permissions }) => {
       </div>
 
       <div className="dp:flx flxw:wrap jc:sb m-b:24px">
-        { isChangePinable && <Button
-            action={onChangePin}
+        { isEditable && <Button
+            action={onEdit}
             bordered
-            icon="edit"
-            className={`w:100pc ${isResetable || isDeleteable && 'm-b:16px'}`}
-            text="Change PIN"
-          />
-        }
-        { isResetable && <Button
-            action={onResetPin}
-            bordered
-            icon="undo"
+            icon="pen"
             className={`w:100pc ${isDeleteable && 'w:calc(50pc-8px)'}`}
-            text="Reset PIN"
+            text="Edit"
           />
         }
         { isDeleteable && <Button
@@ -142,7 +133,7 @@ const LeftComp = ({ user = {}, actions, permissions }) => {
             bordered
             alert
             icon="trash-alt"
-            className={`w:100pc ${isResetable && 'w:calc(50pc-8px)'}`}
+            className={`w:100pc ${isEditable && 'w:calc(50pc-8px)'}`}
             text="Delete"
           />
         }

@@ -48,18 +48,19 @@ export default ({ act, store, action, handle, cookies, route }) => ({
         }
       }
     }
+
     delete values['staff']['data']['pin']
 
     return act("GQL", {
       query: `
         mutation($values: [Credentials_insert_input!]!){
           insert_Credentials(objects: $values){
-            returning{ role name email photo createdAt id phoneNumber }
+            returning{ staff {role name email photo createdAt id phoneNumber} }
           }
         }
       `,
       variables: { values }
-    })
+    }).then(() => route.set('/staff'))
   }
 })
 

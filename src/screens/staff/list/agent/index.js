@@ -22,7 +22,7 @@ const Staff = ({ page, keywords, status = null }) => {
 
   const submitUser = () => {
     act('USER_CREATE', formValues)
-      .then(() => { setIsAdding(false); setFormValues({}) })
+      .then(() => { setIsAdding(false); setFormValues({}); act('STAFF_SUB', getPagination(page), keywords, status) })
   }
 
   return ready && <>
