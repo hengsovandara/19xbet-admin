@@ -125,12 +125,13 @@ const classNamePopupContainer = props =>
 
 export const ElemInfo = ({ onClose, info, isResponse, statusCode }) => {
   const success = statusCode === 200 && isResponse || info?.type === 'success'
+  console.log({info})
   return (
     <ElemPopup onClose={onClose}>
       <div className="bg:white p:24px p-t:36px br:8px c:black200">
         <Icon icon={success ? 'smile' : 'frown'} className={success ? 'c:prim' : 'c:red'} size="3x" />
         <h2 className="fs:150pc m-tb:24px">{success ? 'Success!' : 'Oh snap!'}</h2>
-        <Markdown className="fs:85pc fw:400 m-b:36px">{info?.message || ''}</Markdown>
+        <Markdown className="fs:85pc fw:400 m-b:36px">{(typeof info === 'object' ? info?.message : info) || ''}</Markdown>
         <div className="dp:flx ai:c jc:c"><Button bordered prim text="Got It!" action={onClose} /></div>
       </div>
     </ElemPopup>

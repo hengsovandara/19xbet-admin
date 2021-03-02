@@ -19,9 +19,9 @@ const Assigned = ({ page, keywords, status }) => {
     key={new Date().getTime()}
     query={{ page, keywords }}
     pagination={pagination}
-    handlePagination={page => Router.push(`/management?step=assigned&page=${page}${Boolean(keywords) ? `&keywords=${keywords}` : ''}${Boolean(status) ? `&status=${status}` : ''}`)}
+    handlePagination={page => Router.push(`/management?page=${page}${Boolean(keywords) ? `&keywords=${keywords}` : ''}${Boolean(status) ? `&status=${status}` : ''}`)}
     leftHead
-    handleSearch={keywords => Router.push(`/management?step=assigned&keywords=${keywords}`)}
+    handleSearch={keywords => Router.push(`/management?keywords=${keywords}`)}
     fields={['id', 'name', 'account type', 'method', 'amount', 'submitted at', 'accepted by', 'accepted at', 'action']}
     data={getData(assigned, enums)}
   />

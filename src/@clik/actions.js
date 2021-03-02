@@ -193,11 +193,10 @@ const Act = ({ config, act, route, store, cookies, handle }) => ({
     }
   ]],
   APP_INFO: async (data, type = 'error') => {
-    const message = data && data.message || data.payload && data.payload.error || data
-    const info = { message: '', type }
-    console.log({info})
-    // return store.set({ info: (store.get('info') || []).concat([error]), loading: false })
-    return store.set({ info, loading: false })
+    const message = data && data?.message || data?.payload && data?.payload?.error || data
+    // const info = { message: '', type }
+    return store.set({ info: message, loading: false })
+    // return store.set({ info, loading: false })
   },
   APP_CONFIRM: async confirm => confirm === true ? (store.get('confirm')(), store.set({ confirm: null })) : store.set({ confirm }),
   APP_POPUP: async (children, props = {}) => store.set({ popup: children ? { children, ...props } : null }),
