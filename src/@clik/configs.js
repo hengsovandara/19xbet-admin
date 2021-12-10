@@ -1,11 +1,8 @@
-const HASURA_URL = process.env.HASURA_URL || '247khmer.com'
-const NODE_API = process.env.NODE_API || 'https://247khmer.com/api'
+const HASURA_URL = process.env.HASURA_URL || '139.59.108.49'
+const NODE_API = process.env.NODE_API || 'http://139.59.108.49/api'
 
-export const GQL_URL = 'https://' + HASURA_URL + '/v1alpha1/graphql'
-export const WSS_URL = 'wss://' + HASURA_URL + '/v1alpha1/graphql'
-export const GQL_MUTATION_URL = NODE_API + '/validation'
-
-export const LIVENESS_AI = 'https://liveliness201.clik.asia'
+export const GQL_URL = 'http://' + HASURA_URL + '/graphql/v1alpha1/graphql'
+export const WSS_URL = 'ws://' + HASURA_URL + '/graphql/v1alpha1/graphql'
 
 // ENDPOINTS
 export const endpoints = {
@@ -27,14 +24,13 @@ export const endpoints = {
 }
 
 export const firebase = {
-  projectId: "casa79-admin",
-  apiKey: 'AIzaSyBcYDVBNMP0ZZeQPO7XKmMcXQ5qffVXEoU',
-  messagingSenderId: '511327533280',
-  authDomain: "casa79-admin.firebaseapp.com",
-  databaseURL: "https://casa79-admin.firebaseio.com",
-  storageBucket: "casa79-admin.appspot.com",
-  appId: "1:511327533280:web:84c11632cb6c42c0e1b885",
-  measurementId: "G-BR2R8J5LF3"
+  // databaseURL: "https://casa79-admin.firebaseio.com",
+  apiKey: "AIzaSyCc6odlmpDKvfocsPfsGVkYNmfUoJAprXc",
+  authDomain: "mwin-admin-a60ad.firebaseapp.com",
+  projectId: "mwin-admin-a60ad",
+  storageBucket: "mwin-admin-a60ad.appspot.com",
+  messagingSenderId: "572080238922",
+  // measurementId: "G-BR2R8J5LF3"
 }
 
 export function getRoutes() {
@@ -44,6 +40,7 @@ export function getRoutes() {
     consumers: { link: '/consumers', title: 'គ្រប់គ្រងអតិថិជន', icon: 'user-friends', roles: ['admin', 'manager'] },
     staff: { link: '/staff', title: 'គ្រប់គ្រងបុគ្គលិក', icon: 'users', roles: ['admin', 'manager'] },
     website: { link: '/website', title: 'គេហទំព័រ', icon: 'window-alt', roles: ['admin', 'manager'] },
+    promotions: { link: '/promotions', title: 'ប្រម៉ូសិន', icon: 'ad', roles: ['admin', 'manager'] },
     news: { link: '/news', title: 'ព័តមាន', icon: 'futbol', roles: ['admin', 'manager'] },
     reports: { link: '/reports', title: 'របាយការណ៍', icon: 'file-invoice-dollar', roles: ['admin'] },
     login: { link: '/login', title: 'Sign In', hide: true }
@@ -54,10 +51,8 @@ export default {
   ENV: process.env,
   HASURA_URL,
   NODE_API,
-  LIVENESS_AI,
   GQL_URL,
   WSS_URL,
-  GQL_MUTATION_URL,
   endpoints,
   getRoutes,
   firebase

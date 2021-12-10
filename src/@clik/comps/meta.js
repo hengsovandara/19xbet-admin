@@ -5,7 +5,7 @@ export default props => {
   return (
     <Fragment>
       <Head>
-        <title>Casa79 Admin System</title>
+        <title>2MWIN Admin System</title>
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
         <meta name="description" content="We're working hard to fight fraudsters and improve ID security but we need your help. We're currently looking for people who can upload a photo of their Photo ID so we can accurately identify fakes." />
         <meta name="author" content="Casa79 Admin System" />

@@ -2,7 +2,7 @@ import { setDate } from 'clik/libs'
 import firebase from 'clik/hooks/firebase'
 
 const actions = ({ act, store, action, handle, cookies, route }) => ({
-  NEWS_FETCH: async ({ offset = 0, limit = 15 }, keywords) => {
+  PROMOTIONS_FETCH: async ({}, keywords) => {
 
     const search = Boolean(keywords) ? `{ _or: [
       ${keywords.split(' ').map(word => `
@@ -16,40 +16,28 @@ const actions = ({ act, store, action, handle, cookies, route }) => ({
 
     const data = await act('GQL', {
       query: `query {
-        News(limit: ${limit} offset: ${offset} order_by: { createdAt: desc } ${condition}) {
-          id title content imageUrl createdAt staff { id name photo }
+        Promotions(order_by: { createdAt: desc } ${condition}) {
+          id title content imageUrl createdAt
         }
       }`
-    }).then(({News}) => News)
-
-    return act('NEWS_SET', data, condition)
+    }).then(({Promotions}) => Promotions)
+    return store.set({ promotions: data, loading: null })
   },
 
-  NEWS_SET: async (data, condition) => {
-    const newsCount = await act('GQL', { query: `{ News_aggregate(${condition}) { aggregate { count } } }` })
-    .then(({ News_aggregate: { aggregate: { count }}}) => count)
-
-    const news = data && data.map(item => ({
-      ...item,
-      createdAt: setDate(item.createdAt)
-    }))
-    return store.set({ news, newsCount, loading: null })
-  },
-
-  ARTICLE_FETCH: async({id}) => {
+  PROMOTION_FETCH: async({id}) => {
     if(!id)
-      return store.set({ article: {}, ready: true })
+      return store.set({ promotion: {}, ready: true })
 
     const data = await act('GQL', {
       query: `query {
-        News_by_pk(id: "${id}"){ id title content imageUrl createdAt }
+        Promotions_by_pk(id: "${id}"){ id title content imageUrl createdAt }
       }`
-    }).then(({News_by_pk}) => News_by_pk)
+    }).then(({Promotions_by_pk}) => Promotions_by_pk)
 
-    return store.set({ article: data, ready: true })
+    return store.set({ promotion: data, ready: true })
   },
 
-  ARTICLE_UPSERT: async (data, file, onDone = () => {}) => {
+  PROMOTION_UPSERT: async (data, file, onDone = () => {}) => {
     handle.loading(true)
     try {
       const { user = {} } = store.get()
@@ -62,14 +50,14 @@ const actions = ({ act, store, action, handle, cookies, route }) => ({
       }
       
       data = await act('GQL', {
-        query: `mutation($values: [News_insert_input!]!){
-          insert_News(
+        query: `mutation($values: [Promotions_insert_input!]!){
+          insert_Promotions(
             objects: $values
-            on_conflict: { constraint: News_pkey update_columns: [content imageUrl title staffId]}
+            on_conflict: { constraint: Promotions_pkey update_columns: [content imageUrl title staffId]}
           ){ returning { id title content imageUrl createdAt } }
         }`,
         variables: { values: {...data, staffId: user.id} }
-      }).then(({insert_News: { returning }}) => returning)
+      }).then(({insert_Promotions: { returning }}) => returning)
       handle.loading()
       onDone()
       return
@@ -89,22 +77,22 @@ const actions = ({ act, store, action, handle, cookies, route }) => ({
       return await storage.child(fileName).getDownloadURL()
         .then(url => {
           data['imageUrl'] = url
-          return act('ARTICLE_UPSERT', data, null, onDone)
+          return act('PROMOTION_UPSERT', data, null, onDone)
         })
     })
   },
 
-  ARTICLE_DELETE: async (data) => {
+  PROMOTION_DELETE: async (data) => {
     handle.loading(true)
     try {
       const { ids = [], onDone = () => {} } = data
     
       data = await act('GQL', {
         query: `mutation{
-          delete_News( where: { id: { _in: ${JSON.stringify(ids)}}}
+          delete_Promotions( where: { id: { _in: ${JSON.stringify(ids)}}}
           ){ affected_rows }
         }`
-      }).then(({delete_News: { affected_rows }}) => affected_rows)
+      }).then(({delete_Promotions: { affected_rows }}) => affected_rows)
 
       handle.loading(false)
       onDone()

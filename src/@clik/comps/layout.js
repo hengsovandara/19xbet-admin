@@ -18,7 +18,7 @@ const Layout = props => {
 
   const { store } = useActStore({ actions: () => ({}) }, ['user']) || {}
   const { user } = store
-
+  console.log({user})
   function handleToggleNavigation() {
     setState({ ...state, showNav: !showNav })
   }

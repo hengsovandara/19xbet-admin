@@ -55,8 +55,7 @@ export const actions = ({ act, store, handle }) => ({
     const storageRef = `images/${type}/`
     const fileName = new Date().getTime().toString()
     var storage = firebase.storage().ref(storageRef);
-    
-
+  
     var mountainImagesRef = storage.child(fileName);
     return mountainImagesRef.put(file[0]).on('state_changed',sp => {}, (err) => {}, () => {
       storage.child(fileName).getDownloadURL()

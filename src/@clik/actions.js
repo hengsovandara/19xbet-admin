@@ -113,7 +113,7 @@ const Act = ({ config, act, route, store, cookies, handle }) => ({
   },
   USERS_FETCH: user => act('GQL', {
     query: `query { Staffs(where: { role: { _neq: "admin" } }) { id role name photo phoneNumber email } }`
-  }).then(({ Staffs }) => Staffs),
+  }).then(({ Staffs }) => { console.log({Staffs}); return Staffs}),
   USER_UPDATE: async function ({ file, id }) {
     const url = await act('APP_FILE_UPLOAD', file)
     const { update_Users: { returning: [user] } } = await act('GQL', {

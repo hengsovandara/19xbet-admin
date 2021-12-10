@@ -7,5 +7,6 @@ import AccountsScreen from './accounts'
 import StaffScreen from './staff'
 import ReportScreen from './report'
 import NewsScreen from './news'
+import PromotionsScreen from './promotions'
 
-export { AccountsScreen, LoginScreen, DashboardScreen, ConsumersScreen, WebsiteScreen, ManagementScreen, StaffScreen, ReportScreen, NewsScreen }
+export { AccountsScreen, LoginScreen, DashboardScreen, ConsumersScreen, WebsiteScreen, ManagementScreen, StaffScreen, ReportScreen, NewsScreen, PromotionsScreen}
