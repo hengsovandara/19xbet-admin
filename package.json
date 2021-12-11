@@ -43,6 +43,7 @@
   },
   "scripts": {
     "start": "next -p 3001 -H 0.0.0.0",
+    "prod": "next start",
     "dev": "next -p 3000",
     "dev1": "NODE_ENV=test node server.js -p 3000",
     "test": "nightwatch",

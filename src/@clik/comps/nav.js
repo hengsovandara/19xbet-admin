@@ -46,7 +46,7 @@ const Navbar = ({ handleLogout, showNav, init, router, user, handleChangePicture
     </div>
 
     <div className="w:100pc">
-      {Object.values(init.routes).map(({ link, title, roles, icon, hide }) => {
+      {Object.values(init?.routes || {}).map(({ link, title, roles, icon, hide }) => {
         if (hide || (roles && !roles.includes(user?.role))) return null
         return (
           <div key={icon} className={classNameNavbar(router.pathname === link)}>
