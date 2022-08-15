@@ -4,9 +4,6 @@
   "private": true,
   "dependencies": {
     "@babel/polyfill": "^7.11.5",
-    "@fortawesome/fontawesome-pro": "^5.11.2",
-    "@fortawesome/pro-light-svg-icons": "^5.11.2",
-    "@fortawesome/pro-solid-svg-icons": "^5.11.2",
     "@fortawesome/fontawesome-svg-core": "^1.2.26",
     "@fortawesome/free-brands-svg-icons": "^5.10.0",
     "@fortawesome/free-solid-svg-icons": "^5.12.0",

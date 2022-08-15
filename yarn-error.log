@@ -1,30 +1,30 @@
 Arguments: 
-  /Users/hengsovandara/.nvm/versions/node/v10.21.0/bin/node /usr/local/Cellar/yarn/1.22.1/libexec/bin/yarn.js add @fortawesome/fontawesome-svg-core
+  /Users/hengsovandara/.nvm/versions/node/v14.17.0/bin/node /usr/local/Cellar/yarn/1.22.17_2/libexec/bin/yarn.js
 
 PATH: 
-  /Users/hengsovandara/.nvm/versions/node/v10.21.0/bin:/Users/hengsovandara/Android/sdk/tools:/Users/hengsovandara/Android/sdk/tools/bin:/Users/hengsovandara/Android/sdk/platform-tools:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/Apple/usr/bin:/Users/hengsovandara/Library/Android/sdk/platform-tools/
+  /Users/hengsovandara/.nvm/versions/node/v14.17.0/bin:/Users/hengsovandara/Android/sdk/tools:/Users/hengsovandara/Android/sdk/tools/bin:/Users/hengsovandara/Android/sdk/platform-tools:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Applications/VMware Fusion.app/Contents/Public:/Library/Apple/usr/bin:/Users/hengsovandara/Library/Android/sdk/platform-tools/
 
 Yarn version: 
-  1.22.1
+  1.22.17
 
 Node version: 
-  10.21.0
+  14.17.0
 
 Platform: 
   darwin x64
 
 Trace: 
-  Error: https://npm.fontawesome.com/@fortawesome%2freact-fontawesome: authentication required
-      at Request.params.callback [as _callback] (/usr/local/Cellar/yarn/1.22.1/libexec/lib/cli.js:66982:18)
-      at Request.self.callback (/usr/local/Cellar/yarn/1.22.1/libexec/lib/cli.js:140743:22)
-      at Request.emit (events.js:198:13)
-      at Request.<anonymous> (/usr/local/Cellar/yarn/1.22.1/libexec/lib/cli.js:141715:10)
-      at Request.emit (events.js:198:13)
-      at IncomingMessage.<anonymous> (/usr/local/Cellar/yarn/1.22.1/libexec/lib/cli.js:141637:12)
-      at Object.onceWrapper (events.js:286:20)
-      at IncomingMessage.emit (events.js:203:15)
-      at endReadableNT (_stream_readable.js:1145:12)
-      at process._tickCallback (internal/process/next_tick.js:63:19)
+  Error: https://registry.yarnpkg.com/@fortawesome%2ffontawesome-pro: Not found
+      at Request.params.callback [as _callback] (/usr/local/Cellar/yarn/1.22.17_2/libexec/lib/cli.js:67029:18)
+      at Request.self.callback (/usr/local/Cellar/yarn/1.22.17_2/libexec/lib/cli.js:140883:22)
+      at Request.emit (events.js:376:20)
+      at Request.<anonymous> (/usr/local/Cellar/yarn/1.22.17_2/libexec/lib/cli.js:141855:10)
+      at Request.emit (events.js:376:20)
+      at IncomingMessage.<anonymous> (/usr/local/Cellar/yarn/1.22.17_2/libexec/lib/cli.js:141777:12)
+      at Object.onceWrapper (events.js:482:28)
+      at IncomingMessage.emit (events.js:388:22)
+      at endReadableNT (internal/streams/readable.js:1336:12)
+      at processTicksAndRejections (internal/process/task_queues.js:82:21)
 
 npm manifest: 
   {
@@ -32,14 +32,22 @@ npm manifest:
     "version": "0.1.3",
     "private": true,
     "dependencies": {
-      "@cometchat-pro/chat": "^1.8.14",
+      "@babel/polyfill": "^7.11.5",
+      "@fortawesome/fontawesome-pro": "^5.11.2",
+      "@fortawesome/pro-light-svg-icons": "^5.11.2",
+      "@fortawesome/pro-solid-svg-icons": "^5.11.2",
+      "@fortawesome/fontawesome-svg-core": "^1.2.26",
+      "@fortawesome/free-brands-svg-icons": "^5.10.0",
+      "@fortawesome/free-solid-svg-icons": "^5.12.0",
       "@fortawesome/react-fontawesome": "^0.1.8",
       "@zeit/next-css": "^1.0.1",
       "actheme": "0.0.30",
       "actstore": "0.0.34",
       "clik": "file:./src/@clik",
       "fetchier": "0.0.31",
+      "firebase": "^7.22.0",
       "js-cookie": "^2.2.1",
+      "localforage": "^1.9.0",
       "markdown-to-jsx": "^6.9.1",
       "next": "^9.5.2",
       "next-fucss": "^0.1.11",
@@ -53,16 +61,24 @@ npm manifest:
     },
     "devDependencies": {
       "auto-changelog": "^1.14.1",
+      "babel-core": "^6.26.3",
+      "babel-loader": "^8.1.0",
+      "babel-polyfill": "^6.26.0",
+      "babel-preset-es2015": "^6.24.1",
+      "babel-preset-stage-0": "^6.24.1",
       "next-transpile-modules": "^4.1.0",
       "prettier": "^1.18.2",
       "serve": "^11.1.0"
     },
     "scripts": {
-      "start": "next -p 8080 -H 0.0.0.0",
+      "start": "next -p 3001 -H 0.0.0.0",
+      "prod": "next start",
+      "dev": "next -p 3000",
+      "dev1": "NODE_ENV=test node server.js -p 3000",
       "test": "nightwatch",
-      "build": "next build",
+      "build": "next build && rm -rf out/ && next export",
       "export": "next export && node src/@clik/hooks/useStaticIndexCleaner.js",
-      "serve": "rm -rf out && npm run build && npm run export && cd out && serve",
+      "serve": "next serve",
       "lint": "prettier --tab-width 2 --jsx-bracket-same-line true --single-quote --print-width 100 true --semi false --write \"src/**/*.js\"",
       "logs": "auto-changelog --ignore-commit-pattern '^(?!docs:)(?!test:)(?!fix:)(?!feat:)(?!style:)' -l false --sort-commits date-desc -p -o ./CHANGELOG.md && git add ./CHANGELOG.md"
     }
