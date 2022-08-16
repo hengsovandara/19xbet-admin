@@ -2,6 +2,7 @@ import { useEffect, useState, useRef } from 'react'
 import { fucss } from 'next-fucss/utils'
 import useActStore from 'actstore'
 import Button from 'clik/elems/button'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 import { actions } from '../hooks'
 

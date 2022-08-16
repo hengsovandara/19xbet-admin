@@ -21,7 +21,7 @@ const Inner = () => {
     <div className="c:black p:24px bd:1px-sd-blacka12 bg:black br:12px">
       <div className="p-b:24px m-b:24px bd-b:1px-sld-blacka12">
         <h2 className="fs:200pc m-b:16px c:FCCD12">កំណត់ចូល</h2>
-        <p className="c:FCCD12">MWIN Management Dashboard</p>
+        <p className="c:FCCD12">19xBet Management Dashboard</p>
       </div>
 
       <div className="md-dp:flx ai:c jc:sb">

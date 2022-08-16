@@ -19,8 +19,8 @@ const routes = getRoutes()
 const { publicRuntimeConfig } = getConfig()
 
 const theme = {
-  prim: '#FCCD12',
-  sec: '#FCCD12',
+  prim: '#6B1FA6',
+  sec: '#6B1FA6',
   success: '#00d061',
   danger: '#f57167',
   grey: '#555',

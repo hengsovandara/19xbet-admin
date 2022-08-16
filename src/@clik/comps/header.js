@@ -45,13 +45,6 @@ const Header = ({ showNav, user, handleChangePicture, onToggleNavigation, title,
           </div>
         </div>
         <div className="bd-l:1px-sd-grey200 m-l:24px">
-          <button
-            className={classNameButton()}
-            onClick={null}
-            notification='true'
-          >
-            <Icon icon="bell" />
-          </button>
         </div>
       </div>
     </header>

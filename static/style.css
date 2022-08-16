@@ -13,51 +13,51 @@ input, button, select, option, textarea{font-size: 100%; font-family: inherit;}
 .ff\:Nunito{font-family:"Nunito";}
 .c\:txt{color:#535353;}
 .bg\:fafafa{background:#fafafa;}
-.p\:24px{padding:24px;}
-.p-t\:0{padding-top:0;}
-.bg\:white{background:#fff;}
+.mxw\:360px{max-width:360px;}
 .w\:100pc{width:100%;}
+.c\:black{color:#111;}
+.m\:auto{margin:auto;}
+.p\:24px{padding:24px;}
+.bd\:1px-sd-blacka12{border:1px solid rgba(17,17,17,0.12);}
+.bg\:black{background:#111;}
+.br\:12px{border-radius:12px;}
+.p-b\:24px{padding-bottom:24px;}
+.m-b\:24px{margin-bottom:24px;}
+.bd-b\:1px-sld-blacka12{border-bottom:1px solid rgba(17,17,17,0.12);}
+.fs\:200pc{font-size:200%;}
+.m-b\:16px{margin-bottom:16px;}
+.c\:FCCD12{color:#FCCD12;}
+.ai\:c{align-items:center;}
+.jc\:sb{justify-content:space-between;}
+.m-b\:12px{margin-bottom:12px;}
+.m-t\:36px{margin-top:36px;}
+.bg\:FCCD12{background:#FCCD12;}
+.jc\:c{justify-content:center;}
+.m-b\:36px{margin-bottom:36px;}
+.tt\:uc{text-transform:uppercase;}
+.fs\:80pc{font-size:80%;}
 .h\:calc\(100pc-80px\){height:calc(100% - 80px);}
 .dp\:flx{display:flex;}
 .ai\:fs{align-items:flex-start;}
+.p-t\:0{padding-top:0;}
 .bg\:blacka06{background:rgba(17,17,17,0.06);}
 .flxd\:col{flex-direction:column;}
-.bd\:1px-sd-blacka12{border:1px solid rgba(17,17,17,0.12);}
+.bg\:white{background:#fff;}
 .br\:8px{border-radius:8px;}
 .ta\:l{text-align:left;}
-.m-b\:24px{margin-bottom:24px;}
-.tt\:uc{text-transform:uppercase;}
 .h\:100pc{height:100%;}
 .ps\:rl{position:relative;}
 .p-t\:12px{padding-top:12px;}
 .fd\:col{flex-direction:column;}
 .p-b\:12px{padding-bottom:12px;}
-.m-b\:12px{margin-bottom:12px;}
-.m-b\:16px{margin-bottom:16px;}
 .jc\:fs{justify-content:flex-start;}
 .fs\:150pc{font-size:150%;}
-.ai\:c{align-items:center;}
 .m-t\:12px{margin-top:12px;}
-.m-b\:36px{margin-bottom:36px;}
 .last-m-b\:0:last-child{margin-bottom:0;}
-.jc\:sb{justify-content:space-between;}
 .m-b\:8px{margin-bottom:8px;}
 .tt\:cap{text-transform:capitalize;}
 .h\:8px{height:8px;}
 .of\:hd{overflow:hidden;}
-.mxw\:360px{max-width:360px;}
-.c\:black{color:#111;}
-.m\:auto{margin:auto;}
-.bg\:black{background:#111;}
-.br\:12px{border-radius:12px;}
-.p-b\:24px{padding-bottom:24px;}
-.bd-b\:1px-sld-blacka12{border-bottom:1px solid rgba(17,17,17,0.12);}
-.fs\:200pc{font-size:200%;}
-.c\:FCCD12{color:#FCCD12;}
-.m-t\:36px{margin-top:36px;}
-.bg\:FCCD12{background:#FCCD12;}
-.jc\:c{justify-content:center;}
-.fs\:80pc{font-size:80%;}
 .mxw\:160px{max-width:160px;}
 .m-rl\:auto{margin-right:auto;margin-left:auto;}
 .mnh\:calc\(100vh-70px\){min-height:calc(100vh - 70px);}
@@ -71,19 +71,6 @@ input, button, select, option, textarea{font-size: 100%; font-family: inherit;}
 .w\,h\:45px{width:45px;height:45px;}
 .ts\:all{transition:all .45s cubic-bezier(0.23, 1, 0.32, 1);}
 .w\,h\:100pc{width:100%;height:100%;}
-.p-r\:0{padding-right:0;}
-.p-tb\:15px{padding-top:15px;padding-bottom:15px;}
-.p-rl\:10px{padding-right:10px;padding-left:10px;}
-.w\:200px{width:200px;}
-.c\:white{color:#fff;}
-.p-r\:24px{padding-right:24px;}
-.ta\:r{text-align:right;}
-.p-rl\:12px{padding-right:12px;padding-left:12px;}
-.m-rl\:15px{margin-right:15px;margin-left:15px;}
-.jc\:fe{justify-content:flex-end;}
-.m-t\:10px{margin-top:10px;}
-.m-l\:24px{margin-left:24px;}
-.bg\:red400{background:#ff5245;}
 .of\:auto{overflow:auto;}
 .p-rl\:24px{padding-right:24px;padding-left:24px;}
 .p-t\:64px{padding-top:64px;}
@@ -95,6 +82,7 @@ input, button, select, option, textarea{font-size: 100%; font-family: inherit;}
 .fs\:20px{font-size:20px;}
 .c\:grey{color:#9E9E9E;}
 .flxw\:wrap{flex-wrap:wrap;}
+.p-r\:24px{padding-right:24px;}
 .p\:16px{padding:16px;}
 .c\:grey400{color:#adadad;}
 .fs\:90pc{font-size:90%;}
@@ -125,12 +113,24 @@ input, button, select, option, textarea{font-size: 100%; font-family: inherit;}
 .t\:50pc{top:50%;}
 .try\:50npc{transform:translateY(-50%);}
 .l\:30npx{left:-30px;}
+.c\:white{color:#fff;}
 .crs\:pt{cursor:pointer;}
 .fs\:16px{font-size:16px;}
 .r\:360npx{right:-360px;}
 .m-rl\:8npx{margin-right:-8px;margin-left:-8px;}
 .flxg\:1{flex-grow:1;}
 .m\:8px{margin:8px;}
+.p-tb\:15px{padding-top:15px;padding-bottom:15px;}
+.p-rl\:10px{padding-right:10px;padding-left:10px;}
+.w\:200px{width:200px;}
+.ta\:r{text-align:right;}
+.p-rl\:12px{padding-right:12px;padding-left:12px;}
+.p-r\:0{padding-right:0;}
+.m-rl\:15px{margin-right:15px;margin-left:15px;}
+.jc\:fe{justify-content:flex-end;}
+.m-t\:10px{margin-top:10px;}
+.m-l\:24px{margin-left:24px;}
+.bg\:red400{background:#ff5245;}
 .bs\:2{box-shadow:0px 2px 4px rgba(0,0,0,0.12);}
 .p\:40px-50px{padding:40px 50px;}
 .br\:5px{border-radius:5px;}
@@ -142,6 +142,25 @@ input, button, select, option, textarea{font-size: 100%; font-family: inherit;}
 .bd\:1px-sd-prim{border:1px solid #FCCD12;}
 .hv-try\:2px:hover{transform:translateY(2px);}
 .w\,h\:50px{width:50px;height:50px;}
+.bd-l\:1px-sd-grey200{border-left:1px solid #e0e0e0;}
+.p\:32px{padding:32px;}
+.c\:prim{color:#FCCD12;}
+.z\:5{z-index:5;}
+.t\,r\:0{top:0;right:0;}
+.bd-b\:1px-sd-e5e5e5{border-bottom:1px solid #e5e5e5;}
+.h\:70px{height:70px;}
+.c\:black200{color:#535353;}
+.w\:calc\(100pc-70px\){width:calc(100% - 70px);}
+.w\,h\:70px{width:70px;height:70px;}
+.bg\:ts{background:transparent;}
+.ts\:bg{transition:background .45s cubic-bezier(0.23, 1, 0.32, 1);}
+.fs\:24px{font-size:24px;}
+.hv-c\:prim_ts\:all_svg:hover svg{color:#FCCD12;transition:all .45s cubic-bezier(0.23, 1, 0.32, 1);}
+.h\:50px{height:50px;}
+.w\,h\:40px{width:40px;height:40px;}
+.m-r\:12px{margin-right:12px;}
+.fw\:400{font-weight:400;}
+.c\:black100{color:#6f6f6f;}
 .h\:calc\(100vh\){height:calc(100vh);}
 .of-y\:auto{overflow-Y:auto;}
 .p-t\:75px{padding-top:75px;}
@@ -164,11 +183,7 @@ input, button, select, option, textarea{font-size: 100%; font-family: inherit;}
 .p\:24px-12px{padding:24px 12px;}
 .z\:1{z-index:1;}
 .t\:0{top:0;}
-.w\,h\:70px{width:70px;height:70px;}
-.bg\:ts{background:transparent;}
-.fs\:24px{font-size:24px;}
 .hv-c\:prim:hover{color:#FCCD12;}
-.c\:prim{color:#FCCD12;}
 .m-tb\:5px{margin-top:5px;margin-bottom:5px;}
 .bd-l\:4px-sd-prim{border-left:4px solid #FCCD12;}
 .bg\:272727{background:#272727;}
@@ -188,7 +203,6 @@ input, button, select, option, textarea{font-size: 100%; font-family: inherit;}
 .bg\:reda8{background:rgba(244,67,54,0.8);}
 .h\:85pc{height:85%;}
 .br\:100pc{border-radius:100%;}
-.w\,h\:40px{width:40px;height:40px;}
 .bg-c\:prim{background-color:#FCCD12;}
 .an\:scaler-1s-inf-eio{animation:scaler 1s infinite ease-in-out;}
 .bg\:blacka5{background:rgba(17,17,17,0.5);}
@@ -217,10 +231,8 @@ input, button, select, option, textarea{font-size: 100%; font-family: inherit;}
 .z\:20{z-index:20;}
 .z\:15{z-index:15;}
 .p-t\:36px{padding-top:36px;}
-.c\:black200{color:#535353;}
 .m-tb\:24px{margin-top:24px;margin-bottom:24px;}
 .fs\:85pc{font-size:85%;}
-.fw\:400{font-weight:400;}
 .an\:land-0\.5s{animation:land 0.5s;}
 .mnw\:300px{min-width:300px;}
 .mxh\:100vh{max-height:100vh;}
@@ -234,25 +246,10 @@ input, button, select, option, textarea{font-size: 100%; font-family: inherit;}
 .h\,w\,lh\:85px{height:85px;width:85px;line-height:85px;}
 .h\,w\,lh\:65px{height:65px;width:65px;line-height:65px;}
 .h\,w\,lh\:35px{height:35px;width:35px;line-height:35px;}
-.t\,r\:0{top:0;right:0;}
 .an\:fadeIn-0\.5s{animation:fadeIn 0.5s;}
 .p\:24px-32px{padding:24px 32px;}
 .c\:orange{color:#FF9800;}
 .w\:calc\(50pc-8px\){width:calc(50% - 8px);}
-.m-r\:12px{margin-right:12px;}
-.bd-l\:1px-sd-grey200{border-left:1px solid #e0e0e0;}
-.p\:32px{padding:32px;}
-.z\:5{z-index:5;}
-.bd-b\:1px-sd-e5e5e5{border-bottom:1px solid #e5e5e5;}
-.h\:70px{height:70px;}
-.w\:calc\(100pc-70px\){width:calc(100% - 70px);}
-.ts\:bg{transition:background .45s cubic-bezier(0.23, 1, 0.32, 1);}
-.hv-c\:prim_ts\:all_svg:hover svg{color:#FCCD12;transition:all .45s cubic-bezier(0.23, 1, 0.32, 1);}
-.h\:50px{height:50px;}
-.c\:black100{color:#6f6f6f;}
-.w\:400px{width:400px;}
-.m-r\:8px{margin-right:8px;}
-.m-l\:8px{margin-left:8px;}
 .h\:175px{height:175px;}
 .m\:5px-5px-0-0{margin:5px 5px 0 0;}
 .hv-bs\:2:hover{box-shadow:0px 2px 4px rgba(0,0,0,0.12);}
@@ -260,6 +257,8 @@ input, button, select, option, textarea{font-size: 100%; font-family: inherit;}
 .h\:auto{height:auto;}
 .bd\:1px-sld-grey200{border:1px solid #e0e0e0;}
 .h\,w\,mnw\,lh\:40px{height:40px;width:40px;min-width:40px;line-height:40px;}
+.m-r\:8px{margin-right:8px;}
+.m-l\:8px{margin-left:8px;}
 .h\,w\,lh\:24px{height:24px;width:24px;line-height:24px;}
 .an\:spin-2s-linear-infinite{animation:spin 2s linear infinite;}
 .td\:ul{text-decoration:underline;}
@@ -288,12 +287,13 @@ input, button, select, option, textarea{font-size: 100%; font-family: inherit;}
 .bd-c\:blacka12-\!{border-color:rgba(17,17,17,0.12) !important;}
 .crs\:default{cursor:default;}
 .c\:white-\!{color:#fff !important;}
-.p-tb\:24px{padding-top:24px;padding-bottom:24px;}
+.p-tb\:10px{padding-top:10px;padding-bottom:10px;}
 .p-b\:10px{padding-bottom:10px;}
 .dp\:flex{display:flex;}
 .p-t\:15px{padding-top:15px;}
-.p-tb\:10px{padding-top:10px;padding-bottom:10px;}
+.p-tb\:24px{padding-top:24px;padding-bottom:24px;}
 .m-t\:30px{margin-top:30px;}
+.w\:400px{width:400px;}
 .hv-bd\:1px-sd-prim:hover{border:1px solid #FCCD12;}
 .bg\:inherit{background:inherit;}
 .mnh\:38px{min-height:38px;}
@@ -325,6 +325,24 @@ input, button, select, option, textarea{font-size: 100%; font-family: inherit;}
 .crs\:not-allowed{cursor:0ot allowed;}
 .bg\:prima05{background:rgba(252,205,18,0.05);}
 .m-r\:15px{margin-right:15px;}
+.bg\:n{background:none;}
+.p-t\:16px{padding-top:16px;}
+.dp\:ib_ps\:ab_b\:0_h\:4px_br\:4px_bg\:prim_span span{display:inline-block;position:absolute;bottom:0;height:4px;border-radius:4px;background:#FCCD12;}
+.m-rl\:16px{margin-right:16px;margin-left:16px;}
+.first-m-l\:0:first-child{margin-left:0;}
+.last-m-r\:0:last-child{margin-right:0;}
+.hv-bg\:prim_c\:white_div:hover div{background:#FCCD12;color:#fff;}
+.ws\:nowrap{white-space:nowrap;}
+.w\:100pc_l\:50pc_trx\:50npc_span span{width:100%;left:50%;transform:translateX(-50%);}
+.c\:blacka8{color:rgba(17,17,17,0.8);}
+.of-x\:auto{overflow-X:auto;}
+.fs\:18px{font-size:18px;}
+.nw\:24px{min-width:24px;}
+.h\:20px{height:20px;}
+.p-rl\:4px{padding-right:4px;padding-left:4px;}
+.p-t\:1px{padding-top:1px;}
+.m-l\:5px{margin-left:5px;}
+.bg\:black300{background:#303030;}
 .mnh\:180px{min-height:180px;}
 .flxb\:50pc{flex-basis:50%;}
 .m-t\:24px{margin-top:24px;}
@@ -376,24 +394,6 @@ input, button, select, option, textarea{font-size: 100%; font-family: inherit;}
 .m-r\:16px{margin-right:16px;}
 .bd\:1px-sd-ccc{border:1px solid #ccc;}
 .m-tb\:12px{margin-top:12px;margin-bottom:12px;}
-.bg\:n{background:none;}
-.p-t\:16px{padding-top:16px;}
-.dp\:ib_ps\:ab_b\:0_h\:4px_br\:4px_bg\:prim_span span{display:inline-block;position:absolute;bottom:0;height:4px;border-radius:4px;background:#FCCD12;}
-.m-rl\:16px{margin-right:16px;margin-left:16px;}
-.first-m-l\:0:first-child{margin-left:0;}
-.last-m-r\:0:last-child{margin-right:0;}
-.hv-bg\:prim_c\:white_div:hover div{background:#FCCD12;color:#fff;}
-.ws\:nowrap{white-space:nowrap;}
-.w\:100pc_l\:50pc_trx\:50npc_span span{width:100%;left:50%;transform:translateX(-50%);}
-.c\:blacka8{color:rgba(17,17,17,0.8);}
-.of-x\:auto{overflow-X:auto;}
-.fs\:18px{font-size:18px;}
-.nw\:24px{min-width:24px;}
-.h\:20px{height:20px;}
-.p-rl\:4px{padding-right:4px;padding-left:4px;}
-.p-t\:1px{padding-top:1px;}
-.m-l\:5px{margin-left:5px;}
-.bg\:black300{background:#303030;}
 .c\:title200{color:title200;}
 .mnw\:100pc{min-width:100%;}
 .va\:m{vertical-align:middle;}
@@ -509,21 +509,21 @@ input, button, select, option, textarea{font-size: 100%; font-family: inherit;}
 .bg\:282828{background:#282828;}
 .p-t\:25px{padding-top:25px;}
 .bd-b\:1px-sd-whitea4{border-bottom:1px solid rgba(255,255,255,0.4);}
-.w\,h\:35px{width:35px;height:35px;}
-.bd\:1px-sd-grey200{border:1px solid #e0e0e0;}
-.hv-bd-c\:prim:hover{border-color:#FCCD12;}
-.h\:35px{height:35px;}
-.c\:black400{color:#202020;}
 .m-t\:5px{margin-top:5px;}
 .mnw\:100px{min-width:100px;}
 .bd-b\:1px-sld-grey200{border-bottom:1px solid #e0e0e0;}
 .bd-t\:1px-sld-grey200{border-top:1px solid #e0e0e0;}
+.c\:black400{color:#202020;}
 .t\,l\:4px{top:4px;left:4px;}
 .fs\:12px{font-size:12px;}
 .w\,h\,lh\:22px{width:22px;height:22px;line-height:22px;}
 .hv-c\:grey:hover{color:#9E9E9E;}
 .bd\:1px-sld-prim{border:1px solid #FCCD12;}
 .bd\:1px-sld-blacka12{border:1px solid rgba(17,17,17,0.12);}
+.w\,h\:35px{width:35px;height:35px;}
+.bd\:1px-sd-grey200{border:1px solid #e0e0e0;}
+.hv-bd-c\:prim:hover{border-color:#FCCD12;}
+.h\:35px{height:35px;}
 .b\,l\:0{bottom:0;left:0;}
 .c\:grey300{color:#bdbdbd;}
 .m\:5px{margin:5px;}
@@ -553,28 +553,20 @@ input, button, select, option, textarea{font-size: 100%; font-family: inherit;}
 .w\:calc\(100pc-12px\){width:calc(100% - 12px);}
 .m-r\:5px-\!{margin-right:5px !important;}
 .bd-b\:1px-sld-tert600{border-bottom:1px solid #0c4a7e;}
+.r\:5px{right:5px;}
+.p\:9px{padding:9px;}
+.w\:0{width:0;}
+.mxh\:0{max-height:0;}
+.mxh\:180px{max-height:180px;}
+.p\:4px-12px{padding:4px 12px;}
+.hv-bg\:prim:hover{background:#FCCD12;}
+.hv-c\:white:hover{color:#fff;}
+.fc-bs\:1_bd-c\:prim_scl\:1\.05:focus{box-shadow:0px 1px 2px rgba(0,0,0,0.10);border-color:#FCCD12;transform:scale(1.05);}
 .w\,h\:0{width:0;height:0;}
 .p\:7px-16px{padding:7px 16px;}
 .m\:0-5px-5px-0{margin:0 5px 5px 0;}
 .w\,h\,lh\:11px{width:11px;height:11px;line-height:11px;}
 .bg\:grey300{background:#bdbdbd;}
-.m-b\:3px{margin-bottom:3px;}
-.bd-c\:silver600{border-color:#cecece;}
-.fc-bs\:1_bd-c\:prim300_scl\:1\.02:focus{box-shadow:0px 1px 2px rgba(0,0,0,0.10);border-color:#ffec31;transform:scale(1.02);}
-.bd-w-r\:0{border-width-right:0;}
-.p\:8px{padding:8px;}
-.w\:0{width:0;}
-.r\:3px{right:3px;}
-.r\:25px{right:25px;}
-.r\:6px{right:6px;}
-.p\:9px{padding:9px;}
-.w\:calc\(100pc-16px\){width:calc(100% - 16px);}
-.p\:12px-16px{padding:12px 16px;}
-.w\:calc\(100pc-5px\){width:calc(100% - 5px);}
-.h\,lh\:175px{height:175px;line-height:175px;}
-.ts\:bs{transition:box-shadow .45s cubic-bezier(0.23, 1, 0.32, 1);}
-.bd\:5px-sld-sec600{border:5px solid #edbe03;}
-.hv-scl\:1\.5:hover{transform:scale(1.5);}
 .w\,h\,lh\:26px{width:26px;height:26px;line-height:26px;}
 .bd\:1px-sld-sec700{border:1px solid #ddae00;}
 .p\:1px{padding:1px;}
@@ -582,12 +574,6 @@ input, button, select, option, textarea{font-size: 100%; font-family: inherit;}
 .p-r\:16px-\!{padding-right:16px !important;}
 .br\:30px{border-radius:30px;}
 .m\:3px{margin:3px;}
-.w\:25px{width:25px;}
-.mxh\:0{max-height:0;}
-.m-t\:1npx{margin-top:-1px;}
-.sh\:0-1px-3px-000a15{box-shadow:0 1px 3px rgba(0,0,0,0.15);}
-.w\:150pc{width:150%;}
-.bd-t\:1px-sd-ccc{border-top:1px solid #ccc;}
 .p\:7px-0px{padding:7px 0px;}
 .w\:30pc{width:30%;}
 .ts\:w{transition:width .45s cubic-bezier(0.23, 1, 0.32, 1);}
@@ -596,15 +582,29 @@ input, button, select, option, textarea{font-size: 100%; font-family: inherit;}
 .mrg-t\:12px{margin-top:12px;}
 .fw\:900{font-weight:900;}
 .fl\:l{float:left;}
+.m-b\:3px{margin-bottom:3px;}
+.bd-c\:silver600{border-color:#cecece;}
+.fc-bs\:1_bd-c\:prim300_scl\:1\.02:focus{box-shadow:0px 1px 2px rgba(0,0,0,0.10);border-color:#ffec31;transform:scale(1.02);}
+.bd-w-r\:0{border-width-right:0;}
+.p\:8px{padding:8px;}
+.r\:3px{right:3px;}
+.r\:25px{right:25px;}
+.r\:6px{right:6px;}
+.p\:12px-16px{padding:12px 16px;}
 .ff\:inh{font-family:inherit;}
 .ls\:1px{letter-spacing:1px;}
 .bd\:1px-solid-sec{border:1px solid #FCCD12;}
-.r\:5px{right:5px;}
-.mxh\:180px{max-height:180px;}
-.p\:4px-12px{padding:4px 12px;}
-.hv-bg\:prim:hover{background:#FCCD12;}
-.hv-c\:white:hover{color:#fff;}
-.fc-bs\:1_bd-c\:prim_scl\:1\.05:focus{box-shadow:0px 1px 2px rgba(0,0,0,0.10);border-color:#FCCD12;transform:scale(1.05);}
+.w\:25px{width:25px;}
+.m-t\:1npx{margin-top:-1px;}
+.sh\:0-1px-3px-000a15{box-shadow:0 1px 3px rgba(0,0,0,0.15);}
+.w\:150pc{width:150%;}
+.bd-t\:1px-sd-ccc{border-top:1px solid #ccc;}
+.w\:calc\(100pc-16px\){width:calc(100% - 16px);}
+.w\:calc\(100pc-5px\){width:calc(100% - 5px);}
+.h\,lh\:175px{height:175px;line-height:175px;}
+.ts\:bs{transition:box-shadow .45s cubic-bezier(0.23, 1, 0.32, 1);}
+.bd\:5px-sld-sec600{border:5px solid #edbe03;}
+.hv-scl\:1\.5:hover{transform:scale(1.5);}
 .l\,b\:0{left:0;bottom:0;}
 .ac-scl\:1\.3:active{transform:scale(1.3);}
 .bg\:grey200{background:#e0e0e0;}
@@ -628,6 +628,8 @@ input, button, select, option, textarea{font-size: 100%; font-family: inherit;}
 .sm-h\:calc\(100pc-250px\){height:calc(100% - 250px);}
 }
 @media only screen and (min-width: 768px) {
+.md-dp\:flx{display:flex;}
+.md-w\:100pc{width:100%;}
 .md-w\:65pc{width:65%;}
 .md-ai\:c{align-items:center;}
 .md-jc\:sb{justify-content:space-between;}
@@ -636,8 +638,6 @@ input, button, select, option, textarea{font-size: 100%; font-family: inherit;}
 .md-m-r\:48px{margin-right:48px;}
 .md-w\:calc\(35pc-24px\){width:calc(35% - 24px);}
 .md-m-l\:24px{margin-left:24px;}
-.md-dp\:flx{display:flex;}
-.md-w\:100pc{width:100%;}
 .md-fs\:14px_lh\:1\.3{font-size:14px;line-height:1.3;}
 .md-p-l\:70px{padding-left:70px;}
 .md-p-l\:0{padding-left:0;}
@@ -660,6 +660,7 @@ input, button, select, option, textarea{font-size: 100%; font-family: inherit;}
 }
 @media only screen and (min-width: 1024px) {
 .lg-p-l\:280px{padding-left:280px;}
+.lg-w\:calc\(100pc-280px\){width:calc(100% - 280px);}
 .lg-h\:calc\(100vh-80px\){height:calc(100vh - 80px);}
 .lg-dp\:ib{display:inline-block;}
 .lg-l\:0{left:0;}
@@ -674,7 +675,6 @@ input, button, select, option, textarea{font-size: 100%; font-family: inherit;}
 .lg-m-b\:0{margin-bottom:0;}
 .lg-fs\:100pc{font-size:100%;}
 .lg-dp\:n{display:none;}
-.lg-w\:calc\(100pc-280px\){width:calc(100% - 280px);}
 }
 @media only screen and (min-width: 1280px) {
 .xl-w\:360px{width:360px;}
@@ -687,10 +687,10 @@ input, button, select, option, textarea{font-size: 100%; font-family: inherit;}
 .xl-mnh\:250px{min-height:250px;}
 }
 @media only screen and (max-width: 767px) {
+.mdx-m-t\:24px{margin-top:24px;}
 .mdx-flxd\:col{flex-direction:column;}
 .mdx-m-b\:24px{margin-bottom:24px;}
 .mdx-m-b\:48px{margin-bottom:48px;}
-.mdx-m-t\:24px{margin-top:24px;}
 .mdx-dp\:n{display:none;}
 .mdx-p-b\:0{padding-bottom:0;}
 .mdx-w\:100pc-\!{width:100% !important;}
@@ -702,9 +702,9 @@ input, button, select, option, textarea{font-size: 100%; font-family: inherit;}
 .smx-r\:280npx{right:-280px;}
 }
 @media only screen and (max-width: 1023px) {
+.lgx-p-l\:70px{padding-left:70px;}
 .lgx-l\:70px{left:70px;}
 .lgx-l\:0px{left:0px;}
-.lgx-p-l\:70px{padding-left:70px;}
 }
 @keyframes spin{to { transform: rotate(360deg); }}
 @keyframes fadeIn{from { opacity: 0.2; } to { opacity: 1; }}
@@ -715,4 +715,4 @@ input, button, select, option, textarea{font-size: 100%; font-family: inherit;}
 @keyframes dash{to { stroke-dashoffset: 0; }}
 @keyframes marquee{0% { transform: translateX(0); } 100% { transform: translateX(-50%); }}
 @keyframes bounce{0% { transform: scale(1,1) translateY(0); } 10% { transform: scale(1.1,.9) translateY(0); } 30% { transform: scale(.9,1.1) translateY(-100px); } 50% { transform: scale(1.05,.95) translateY(0); } 57% { transform: scale(1,1) translateY(-7px); } 64% { transform: scale(1,1) translateY(0); } 100% { transform: scale(1,1) translateY(0); }}
- /** Incorrect classes btn-login btn-login background && `url(${background background && `url(${background profile-img ${isDeleteable && ${isEditable && ${i % 2 === 0 && black200 profile-img ${isDeleteable && ${isEditable && ${i % 2 === 0 && black200 profile-img profile-img profile-img ' + className `linear-gradient(${primDeg !isLoading ? !wrap ? children <div className="bg:white c:black">{children photo || logo || url ? <span style={{ `url(${photo || logo || url profile-img profile-img ' + className `linear-gradient(${primDeg !isLoading ? !wrap ? children <div className="bg:white c:black">{children photo || logo || url ? <span style={{ `url(${photo || logo || url profile-img disabled ? placeholder text ${open && ${!noBorder && disabled ? placeholder text ${open && ${!noBorder && ${!!index ${item.disabled && ${!!index ${item.disabled && data && "w:100pc bd-b:1px-sld-grey200" !props.noHead && props.fields && data.length > 0 && ( <div className="dp:tr bd-t:1px-sd-blacka12"> {props.allowSelect && ( <div key="selectBox" title="Select item to delete" className="fw:600 w:44px"> <Checkbox onSelect={e => props.onSelect(data.map(item => item.id), selected.length >= data.length * 0.8) true true "h:60px lh:20px" + (value.color ? (value.color ? !cameraMode ? ( <div className="p:24px"> <div className={classNameInner(light) !cameraMode ? ( <div className="p:24px"> <div className={classNameInner(light) "ta:c br:4px" isChecked && <Icon className="ps:ab c:white" icon="check" /> data && "w:100pc bd-b:1px-sld-grey200" !props.noHead && props.fields && data.length > 0 && ( <div className="dp:tr bd-t:1px-sd-blacka12"> {props.allowSelect && ( <div key="selectBox" title="Select item to delete" className="fw:600 w:44px"> <Checkbox onSelect={e => props.onSelect(data.map(item => item.id), selected.length >= data.length * 0.8) true true "h:60px lh:20px" + (value.color ? (value.color ? super(props) this.state = { true fa-2x fa-2x fa-2x fa-2x super(props) this.state = { true fa-2x fa-2x fa-2x fa-2x "ta:c br:4px" isChecked && <Icon className="ps:ab c:white" icon="check" /> ' + className ' + className `calc(100% / 7)` `calc(100% / 7)` */
+ /** Incorrect classes btn-login btn-login background && `url(${background background && `url(${background profile-img ${isDeleteable && ${isEditable && ${i % 2 === 0 && black200 profile-img ${isDeleteable && ${isEditable && ${i % 2 === 0 && black200 profile-img profile-img profile-img profile-img ' + className `linear-gradient(${primDeg !isLoading ? !wrap ? children <div className="bg:white c:black">{children photo || logo || url ? <span style={{ `url(${photo || logo || url profile-img profile-img ' + className `linear-gradient(${primDeg !isLoading ? !wrap ? children <div className="bg:white c:black">{children photo || logo || url ? <span style={{ `url(${photo || logo || url disabled ? placeholder text ${open && disabled ? placeholder text ${open && ${!noBorder && ${!noBorder && ${!!index ${item.disabled && ${!!index ${item.disabled && data && "w:100pc bd-b:1px-sld-grey200" !props.noHead && props.fields && data.length > 0 && ( <div className="dp:tr bd-t:1px-sd-blacka12"> {props.allowSelect && ( <div key="selectBox" title="Select item to delete" className="fw:600 w:44px"> <Checkbox onSelect={e => props.onSelect(data.map(item => item.id), selected.length >= data.length * 0.8) true true "h:60px lh:20px" + (value.color ? (value.color ? data && "w:100pc bd-b:1px-sld-grey200" !props.noHead && props.fields && data.length > 0 && ( <div className="dp:tr bd-t:1px-sd-blacka12"> {props.allowSelect && ( <div key="selectBox" title="Select item to delete" className="fw:600 w:44px"> <Checkbox onSelect={e => props.onSelect(data.map(item => item.id), selected.length >= data.length * 0.8) true true "h:60px lh:20px" + (value.color ? (value.color ? !cameraMode ? ( <div className="p:24px"> <div className={classNameInner(light) !cameraMode ? ( <div className="p:24px"> <div className={classNameInner(light) isChecked && <Icon className="ps:ab c:white" icon="check" /> "ta:c br:4px" "ta:c br:4px" isChecked && <Icon className="ps:ab c:white" icon="check" /> super(props) this.state = { true fa-2x fa-2x fa-2x fa-2x super(props) this.state = { true fa-2x fa-2x fa-2x fa-2x ' + className ' + className `calc(100% / 7)` `calc(100% / 7)` */

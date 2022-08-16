@@ -2,11 +2,11 @@ import styled from 'styled-components'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 export default props => {
-
+  console.log("props.icon", props.icon)
   return (
     props.type === 'clik'
       ? <Img {...props} src={`/static/imgs/${props.icon}.svg`} />
-      : <FontAwesomeIcon {...props} alt={props.alt} icon={[ (props.solid ? 'fas' : 'fal'), props.icon]} solid={(props.solid?.toString())} />
+      : <FontAwesomeIcon {...props} alt={props.alt} icon={props.icon} />
   )
 
 }
