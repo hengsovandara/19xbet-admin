@@ -1,8 +1,8 @@
-const HASURA_URL = process.env.HASURA_URL || '139.59.108.49'
-const NODE_API = process.env.NODE_API || 'http://139.59.108.49/api'
+const HASURA_URL = process.env.HASURA_URL || '165.22.61.154:8080'
+const NODE_API = process.env.NODE_API || 'http://165.22.61.154:8081/api'
 
-export const GQL_URL = 'http://' + HASURA_URL + '/graphql/v1alpha1/graphql'
-export const WSS_URL = 'ws://' + HASURA_URL + '/graphql/v1alpha1/graphql'
+export const GQL_URL = 'http://' + HASURA_URL + '/v1alpha1/graphql'
+export const WSS_URL = 'ws://' + HASURA_URL + '/v1alpha1/graphql'
 
 // ENDPOINTS
 export const endpoints = {
@@ -36,13 +36,13 @@ export const firebase = {
 export function getRoutes() {
   return {
     index: { link: '/', title: 'Dashboard', icon: 'home' },
-    management: { link: '/management', title: 'ការគ្រប់គ្រង', icon: 'tasks' },
-    consumers: { link: '/consumers', title: 'គ្រប់គ្រងអតិថិជន', icon: 'user-friends', roles: ['admin', 'manager'] },
+    // management: { link: '/management', title: 'ការគ្រប់គ្រង', icon: 'tasks' },
+    // consumers: { link: '/consumers', title: 'គ្រប់គ្រងអតិថិជន', icon: 'user-friends', roles: ['admin', 'manager'] },
     staff: { link: '/staff', title: 'គ្រប់គ្រងបុគ្គលិក', icon: 'users', roles: ['admin', 'manager'] },
     website: { link: '/website', title: 'គេហទំព័រ', icon: 'window-alt', roles: ['admin', 'manager'] },
     promotions: { link: '/promotions', title: 'ប្រម៉ូសិន', icon: 'ad', roles: ['admin', 'manager'] },
-    news: { link: '/news', title: 'ព័តមាន', icon: 'futbol', roles: ['admin', 'manager'] },
-    reports: { link: '/reports', title: 'របាយការណ៍', icon: 'file-invoice-dollar', roles: ['admin'] },
+    // news: { link: '/news', title: 'ព័តមាន', icon: 'futbol', roles: ['admin', 'manager'] },
+    // reports: { link: '/reports', title: 'របាយការណ៍', icon: 'file-invoice-dollar', roles: ['admin'] },
     login: { link: '/login', title: 'Sign In', hide: true }
   }
 }

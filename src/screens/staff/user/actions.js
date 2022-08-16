@@ -2,11 +2,11 @@ import { setDate } from 'clik/libs'
 
 const actions = ({ act, store, action, handle, cookies, route }) => ({
   USER_USER_FETCH: async id => {
-    const query = `{ Staffs(where: { id: { _eq: "${id}"} }) {
+    const query = `{ staffs(where: { id: { _eq: "${id}"} }) {
       id role name email photo createdAt phoneNumber
     } }`
 
-    const { Staffs: [user] } = await act('GQL', { query })
+    const { staffs: [user] } = await act('GQL', { query })
 
     return !!Object.keys(user || {}).length && { ...user, createdAt: setDate(user.createdAt)} || {}
   },
@@ -21,9 +21,9 @@ const actions = ({ act, store, action, handle, cookies, route }) => ({
 
     delete body["pin"]
     const query = `
-      mutation($values: [Staffs_insert_input!]!){
-        insert_Staffs(objects: $values on_conflict: {
-          constraint: Staff_pkey
+      mutation($values: [staffs_insert_input!]!){
+        insert_staffs(objects: $values on_conflict: {
+          constraint: staffs_pkey
           update_columns: [name email photo role]
         }){
           returning{ role name email photo createdAt id phoneNumber }
@@ -37,7 +37,7 @@ const actions = ({ act, store, action, handle, cookies, route }) => ({
   USER_CHANGE_PIN: async ( body = {} ) => {
     const query = `
       mutation{
-        update_Credentials(where:{ staffId: { _eq: "${body.id}"}} _set: { password: "${body.pin}"}){
+        update_credentials(where:{ staffId: { _eq: "${body.id}"}} _set: { password: "${body.pin}"}){
           affected_rows
         }
       }
@@ -51,7 +51,7 @@ const actions = ({ act, store, action, handle, cookies, route }) => ({
       return Promise.reject('Missing User ID.')
 
     const query = `
-      mutation{ delete_Staffs(where: { id: { _eq: "${userId}"}}){ affected_rows } }
+      mutation{ delete_staffs(where: { id: { _eq: "${userId}"}}){ affected_rows } }
     `
 
     return act('GQL', { query }).then(() => route.set('/staff'))

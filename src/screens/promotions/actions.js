@@ -16,11 +16,11 @@ const actions = ({ act, store, action, handle, cookies, route }) => ({
 
     const data = await act('GQL', {
       query: `query {
-        Promotions(order_by: { createdAt: desc } ${condition}) {
+        promotions(order_by: { createdAt: desc } ${condition}) {
           id title content imageUrl createdAt
         }
       }`
-    }).then(({Promotions}) => Promotions)
+    }).then(({promotions}) => promotions)
     return store.set({ promotions: data, loading: null })
   },
 
@@ -30,9 +30,9 @@ const actions = ({ act, store, action, handle, cookies, route }) => ({
 
     const data = await act('GQL', {
       query: `query {
-        Promotions_by_pk(id: "${id}"){ id title content imageUrl createdAt }
+        promotions_by_pk(id: "${id}"){ id title content imageUrl createdAt }
       }`
-    }).then(({Promotions_by_pk}) => Promotions_by_pk)
+    }).then(({promotions_by_pk}) => promotions_by_pk)
 
     return store.set({ promotion: data, ready: true })
   },
@@ -50,14 +50,14 @@ const actions = ({ act, store, action, handle, cookies, route }) => ({
       }
       
       data = await act('GQL', {
-        query: `mutation($values: [Promotions_insert_input!]!){
-          insert_Promotions(
+        query: `mutation($values: [promotions_insert_input!]!){
+          insert_promotions(
             objects: $values
-            on_conflict: { constraint: Promotions_pkey update_columns: [content imageUrl title staffId]}
+            on_conflict: { constraint: promotions_pkey update_columns: [content imageUrl title staffId]}
           ){ returning { id title content imageUrl createdAt } }
         }`,
         variables: { values: {...data, staffId: user.id} }
-      }).then(({insert_Promotions: { returning }}) => returning)
+      }).then(({insert_promotions: { returning }}) => returning)
       handle.loading()
       onDone()
       return
@@ -89,10 +89,10 @@ const actions = ({ act, store, action, handle, cookies, route }) => ({
     
       data = await act('GQL', {
         query: `mutation{
-          delete_Promotions( where: { id: { _in: ${JSON.stringify(ids)}}}
+          delete_promotions( where: { id: { _in: ${JSON.stringify(ids)}}}
           ){ affected_rows }
         }`
-      }).then(({delete_Promotions: { affected_rows }}) => affected_rows)
+      }).then(({delete_promotions: { affected_rows }}) => affected_rows)
 
       handle.loading(false)
       onDone()

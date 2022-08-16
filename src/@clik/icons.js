@@ -1,8 +1,8 @@
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { fas } from '@fortawesome/pro-solid-svg-icons'
-import { fal } from '@fortawesome/pro-light-svg-icons'
+// import { library } from '@fortawesome/fontawesome-svg-core'
+// import { fas } from '@fortawesome/pro-solid-svg-icons'
+// import { fal } from '@fortawesome/pro-light-svg-icons'
 
-library.add(fas, fal)
+// library.add(fas, fal)
 
 /** Install pro 
   npm config set "@fortawesome:registry" https://npm.fontawesome.com/

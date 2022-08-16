@@ -16,11 +16,11 @@ export default ({ act, store, action, handle, cookies, route }) => ({
 
     const data = await act('GQL', { 
       query: `query {
-        Staffs(order_by: { createdAt: desc } ${condition}) {
+        staffs(order_by: { createdAt: desc } ${condition}) {
           role name email photo createdAt id phoneNumber
         }
       }`
-    }).then(({Staffs}) => Staffs)
+    }).then(({staffs}) => staffs)
 
     return act('STAFF_SET', data, condition)
   },
@@ -34,7 +34,7 @@ export default ({ act, store, action, handle, cookies, route }) => ({
   },
 
   USER_CREATE: async body => {
-    if(!body.role || !body.email || !body.phoneNumber || !body.name){
+    if(!body.role || !body.phoneNumber || !body.name){
       return Promise.reject('Please input all fields.')
     }
 
@@ -53,8 +53,8 @@ export default ({ act, store, action, handle, cookies, route }) => ({
 
     return act("GQL", {
       query: `
-        mutation($values: [Credentials_insert_input!]!){
-          insert_Credentials(objects: $values){
+        mutation($values: [credentials_insert_input!]!){
+          insert_credentials(objects: $values){
             returning{ staff {role name email photo createdAt id phoneNumber} }
           }
         }

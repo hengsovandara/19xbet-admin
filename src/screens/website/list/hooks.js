@@ -11,14 +11,11 @@ export const actions = ({ act, store, handle }) => ({
     console.log("DASHBOARD_FETCH")
     return act('GQL', {
       query: `{
-        dashboards: Dashboards{
+        dashboards{
           id index banner
         }
-        categories: Categories(order_by: { name: asc_nulls_last }){
-          id banner name
-        }
-        informations: Informations{
-          id twitter email facebook phoneNumbers youtube
+        informations{
+          id phoneNumbers facebook announcement guidelineUrl promotionUrl
         }
       }`
     }).then(data => act('DASHBOARD_SET', data))
@@ -27,23 +24,23 @@ export const actions = ({ act, store, handle }) => ({
   DASHBOARD_SET: (results) => {
     handle.loading(false)
 
-    if(!!results)
-      results['categories'] = results['categories'] && results['categories'].reduce((obj, result) => {
-        if (obj && obj[result.name] && !!obj[result.name].length )
-          obj[result.name] = obj[result.name].concat([result])
-        else
-          obj[result.name] = [result]
-        return obj
-      }, {}) || {}
+    // if(!!results)
+    //   results['categories'] = results['categories'] && results['categories'].reduce((obj, result) => {
+    //     if (obj && obj[result.name] && !!obj[result.name].length )
+    //       obj[result.name] = obj[result.name].concat([result])
+    //     else
+    //       obj[result.name] = [result]
+    //     return obj
+    //   }, {}) || {}
     return store.set({ ...results, loading: null })
   },
 
   DASHBOARD_DELETE: data => {
     const query = `mutation{
-      delete_Dashboards(where: { id: { _eq: "${data.id}"}}){ affected_rows }
+      delete_dashboards(where: { id: { _eq: "${data.id}"}}){ affected_rows }
     }`
 
-    return act("GQL", { query }).then(({delete_Dashboards: { affected_rows }}) => {
+    return act("GQL", { query }).then(({delete_dashboards: { affected_rows }}) => {
       if(affected_rows > 0)
         return act('DASHBOARD_FETCH')
 
@@ -61,10 +58,10 @@ export const actions = ({ act, store, handle }) => ({
       storage.child(fileName).getDownloadURL()
         .then(async (url) => {
           const query = `
-            mutation{ insert_Dashboards(objects: { banner: "${url}"}){ affected_rows } }
+            mutation{ insert_dashboards(objects: { banner: "${url}"}){ affected_rows } }
           `
 
-          return act("GQL", { query }).then(({insert_Dashboards: { affected_rows }}) => {
+          return act("GQL", { query }).then(({insert_dashboards: { affected_rows }}) => {
             if(affected_rows > 0)
               return act('DASHBOARD_FETCH')
       
@@ -77,23 +74,23 @@ export const actions = ({ act, store, handle }) => ({
   INFORMATION_FETCH: async () => {
     console.log("INFORMATION_FETCH")
     return act('GQL', {
-      query: `{ Informations{ id twitter email facebook phoneNumbers youtube  }
+      query: `{ informations{ id phoneNumbers facebook announcement guidelineUrl promotionUrl  }
       }`
-    }).then(({Informations }) => act('INFORMATION_SET', Informations)).catch(console.log)
+    }).then(({informations }) => act('INFORMATION_SET', informations)).catch(console.log)
   },
 
   INFORMATION_UPDATE: async (data) => {
     handle.loading(true)
     return act('GQL', {
-      query: `mutation($data: Informations_set_input){
-        update_Informations(where: { id: { _eq: ${data.id}}} _set: $data){
+      query: `mutation($data: informations_set_input){
+        update_informations(where: { id: { _eq: "${data.id}"}} _set: $data){
           returning{
-            id twitter email facebook phoneNumbers youtube 
+            id phoneNumbers facebook announcement guidelineUrl promotionUrl
           }
         }
       }`,
       variables: { data }
-    }).then(({update_Informations: { returning }}) => act('INFORMATION_SET', returning))
+    }).then(({update_informations: { returning }}) => act('INFORMATION_SET', returning))
   },
 
   INFORMATION_SET: (informations = []) => {

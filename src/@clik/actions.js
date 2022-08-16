@@ -32,25 +32,25 @@ const Act = ({ config, act, route, store, cookies, handle }) => ({
   },
   USER_FETCH: async (token = cookies.get('token')) => {
     const result = token && await act('GQL', {
-      query: `query { Staffs( where: { credential: { sessions: { token: {_eq: "${token}"}} }}) { id role name photo phoneNumber email } }`
+      query: `query { staffs( where: { credential: { sessions: { token: {_eq: "${token}"}} }}) { id role name photo phoneNumber email } }`
     })
-    const [user = {}] = result && result.Staffs || []
+    const [user = {}] = result && result.staffs || []
     return user
   },
   ENUMS_FETCH: async () => {
-    const enums = await act('GQL', {
-      query: `query { 
-        transaction_types: enum_transaction_types{ id value description } 
-        transaction_methods: enum_transaction_methods{ id value description } 
-      }`
-    }) || {}
-    Object.keys(enums).map(enumKey => {
-      enums[enumKey] = {
-        byId: enums[enumKey].reduce((acc, value) => { acc[value.id] = value; return acc },{}),
-        byList: enums[enumKey]
-      }
-    })
-    return enums
+    // const enums = await act('GQL', {
+    //   query: `query { 
+    //     transaction_types: enum_transaction_types{ id value description } 
+    //     transaction_methods: enum_transaction_methods{ id value description } 
+    //   }`
+    // }) || {}
+    // Object.keys(enums).map(enumKey => {
+    //   enums[enumKey] = {
+    //     byId: enums[enumKey].reduce((acc, value) => { acc[value.id] = value; return acc },{}),
+    //     byList: enums[enumKey]
+    //   }
+    // })
+    return []
   },
   APP_SOCKET_CHECK: async () => {
     if(store.get().socket.readyState !== 1) {
@@ -112,13 +112,13 @@ const Act = ({ config, act, route, store, cookies, handle }) => ({
     return url
   },
   USERS_FETCH: user => act('GQL', {
-    query: `query { Staffs(where: { role: { _neq: "admin" } }) { id role name photo phoneNumber email } }`
-  }).then(({ Staffs }) => { console.log({Staffs}); return Staffs}),
+    query: `query { staffs(where: { role: { _neq: "admin" } }) { id role name photo phoneNumber email } }`
+  }).then(({ staffs }) => { console.log({staffs}); return staffs}),
   USER_UPDATE: async function ({ file, id }) {
     const url = await act('APP_FILE_UPLOAD', file)
     const { update_Users: { returning: [user] } } = await act('GQL', {
       query: `
-        mutation($values: Users_set_input, $id: uuid) {
+        mutation($values: users_set_input, $id: uuid) {
           update_Users( _set: $values, where: { id: { _eq: $id } } ){
             returning { id role name photo }
           }
@@ -129,46 +129,6 @@ const Act = ({ config, act, route, store, cookies, handle }) => ({
 
     return user && store.set({ ...store.get('user'), ...user })
   },
-  STATS_SUB: user => Promise.all([
-    act('SUB', {
-      id: 'unassignedConsumersCount',
-      query: `subscription { Consumers_aggregate(where: { _and: [{ status: {_eq: 2} }, {_or: [
-        { _not: {assignments: {}}},
-        { _not: {assignments: { finishedAt: { _is_null: true}}}}
-      ]} ]}) { aggregate { count } } }`,
-      action: ({ aggregate: { count } }) => store.get('counts').unassignedConsumers !== count && store.set({ counts: { ...store.get('counts'), unassignedConsumers: count }})
-    }),
-    act('SUB', {
-      id: 'requestedConsumersCount',
-      query: `subscription { Consumers_aggregate(where: { _and: [{ status: {_eq: 3} }, {_or: [
-        { _not: {assignments: {}}},
-        { _not: {assignments: { finishedAt: { _is_null: true}}}}
-      ]} ]}) { aggregate { count } } }`,
-      action: ({ aggregate: { count } }) => store.get('counts').requestedConsumers !== count && store.set({ counts: { ...store.get('counts'), requestedConsumers: count }})
-    }),
-    act('SUB', {
-      id: 'assignedAssignmentsCount',
-      query: `subscription { Assignments_aggregate(where: { _and: [{finishedAt: {_is_null: true}}, { userId: {_eq: "${user.id}"}}, { consumer: { status: {_eq: 2} }} ]}) { aggregate { count } } }`,
-      action: ({ aggregate: { count } }) => store.get('counts').assignedAssignments !== count && store.set({ counts: { ...store.get('counts'), assignedAssignments: count }})
-    }),
-    act('SUB', {
-      id: 'teamedAssignmentsCount',
-      query: `subscription { Assignments_aggregate(where: {userId: {_is_null: true}, role: {_eq: "${user.role}"}}) { aggregate { count } } }`,
-      action: ({ aggregate: { count } }) => store.get('counts').teamedAssignments !== count && store.set({ counts: { ...store.get('counts'), teamedAssignments: count }})
-    }),
-    act('SUB', {
-      id: 'processingAssignmentsCount',
-      query: `subscription { Assignments_aggregate(where: { userId: {_is_null: false} finishedAt: {_is_null: true}}) { aggregate { count } } }`,
-      action: ({ aggregate: { count } }) => store.get('counts').processingAssignments !== count && store.set({ counts: { ...store.get('counts'), processingAssignments: count }})
-    })
-  ]),
-  STATS_UNSUB: () => Promise.all([
-    act('UNSUB', { id: 'unassignedConsumersCount' }),
-    act('UNSUB', { id: 'requestedConsumersCount' }),
-    act('UNSUB', { id: 'assignedAssignmentsCount' }),
-    act('UNSUB', { id: 'teamedAssignmentsCount' }),
-    act('UNSUB', { id: 'processingAssignmentsCount' })
-  ]),
   STATS_FETCH: () => [{}, [
     {
       label: 'assignments',

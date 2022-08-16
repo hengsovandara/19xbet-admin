@@ -16,13 +16,13 @@ const List = ({ query }) => {
       href: { query: { step: 'dashboard' } },
       component: () => <Dashboard { ...query} />
     },
-    {
-      title: 'categories',
-      key: 'categories',
-      active: step === 'categories',
-      href: { query: { step: 'categories' } },
-      component: () => <Category { ...query} />
-    },
+    // {
+    //   title: 'categories',
+    //   key: 'categories',
+    //   active: step === 'categories',
+    //   href: { query: { step: 'categories' } },
+    //   component: () => <Category { ...query} />
+    // },
     {
       title: 'information',
       key: 'information',

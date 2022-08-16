@@ -65,10 +65,10 @@ function getFields(data) {
   if(!data)
     return []
   return [
-    { name: 'email', altValue: data.email, allowEmpty: true, label: 'Email', placeholder: 'Enter email', type: 'text', lightgray: true, width: '100%', light: true, className: 'm-b:24px' },
     { name: 'facebook', altValue: data.facebook, allowEmpty: true, label: 'Facebook', placeholder: 'Enter Facebook link', type: 'text', lightgray: true, light: true, width: '100%', className: 'm-b:24px' },
-    { name: 'youtube', altValue: data.youtube, allowEmpty: true, label: 'Youtube', placeholder: 'Enter Youtube link', type: 'text', lightgray: true, width: '100%', light: true, className: 'm-b:24px' },
-    { name: 'twitter', altValue: data.twitter, allowEmpty: true, label: 'Twitter', placeholder: 'Enter Twitter link', type: 'text', lightgray: true, width: '100%',  light: true, className: 'm-b:24px' },
+    { name: 'announcement', altValue: data.announcement, allowEmpty: true, label: 'Announcement', placeholder: 'Enter announcement', type: 'text', lightgray: true, width: '100%', light: true, className: 'm-b:24px' },
+    { name: 'guidelineUrl', altValue: data.guidelineUrl, allowEmpty: true, label: 'Guideline Url', placeholder: 'Enter Guideline Url', type: 'text', lightgray: true, width: '100%', light: true, className: 'm-b:24px' },
+    { name: 'promotionUrl', altValue: data.promotionUrl, allowEmpty: true, label: 'Promotion Url', placeholder: 'Enter Promotion Url', type: 'text', lightgray: true, width: '100%',  light: true, className: 'm-b:24px' },
     ...(!!data?.phoneNumbers && data?.phoneNumbers?.map((phoneNumber, index) => ({
       name: 'phoneNumbers', altValue: phoneNumber, ...(index === 0 && {label: 'Phone Numbers'}), allowEmpty: false, placeholder: 'Enter Phone Numbers', type: 'text', lightgray: true, width: '100%', light: true, className: 'm-b:10px', index
     })) || [{}])
