@@ -24,13 +24,13 @@ export const endpoints = {
 }
 
 export const firebase = {
-  // databaseURL: "https://casa79-admin.firebaseio.com",
-  apiKey: "AIzaSyCc6odlmpDKvfocsPfsGVkYNmfUoJAprXc",
-  authDomain: "mwin-admin-a60ad.firebaseapp.com",
-  projectId: "mwin-admin-a60ad",
-  storageBucket: "mwin-admin-a60ad.appspot.com",
-  messagingSenderId: "572080238922",
-  // measurementId: "G-BR2R8J5LF3"
+  apiKey: "AIzaSyC3HRDZqta_5vIl3eprwtlisaoB5F4wrTQ",
+  authDomain: "xbet-client.firebaseapp.com",
+  projectId: "xbet-client",
+  storageBucket: "xbet-client.appspot.com",
+  messagingSenderId: "178374313428",
+  appId: "1:178374313428:web:1dd13535fea68964714241",
+  measurementId: "G-JJXKCWN0PW"
 }
 
 export function getRoutes() {
@@ -41,7 +41,7 @@ export function getRoutes() {
     staff: { link: '/staff', title: 'គ្រប់គ្រងបុគ្គលិក', icon: 'users', roles: ['admin', 'manager'] },
     website: { link: '/website', title: 'គេហទំព័រ', icon: 'futbol', roles: ['admin', 'manager'] },
     promotions: { link: '/promotions', title: 'ប្រម៉ូសិន', icon: 'ad', roles: ['admin', 'manager'] },
-    // news: { link: '/news', title: 'ព័តមាន', icon: 'futbol', roles: ['admin', 'manager'] },
+    news: { link: '/news', title: 'ព័តមាន', icon: 'futbol', roles: ['admin', 'manager'] },
     // reports: { link: '/reports', title: 'របាយការណ៍', icon: 'file-invoice-dollar', roles: ['admin'] },
     login: { link: '/login', title: 'Sign In', hide: true }
   }

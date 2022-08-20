@@ -26,10 +26,10 @@ export const UserForm = ({ type, title, action, data, onClose, onSubmit, loginUs
 
 function getFields(type, data, roles, loginUser) {
   if(type === 'user') {
-    roles = [{ value: "admin", value: "staff"}]
+    roles = [{ value: "admin"}]
     const disabledRole = ['associate', 'compliance'].includes(loginUser.role)
     return [
-      { disabled: disabledRole, name: 'role', altValue: data.role, allowEmpty: true, label: 'Role', placeholder: 'Select role', options: roles, type: 'select', lightgray: true, width: '100%', className: 'm-b:24px' },
+      { disabled: disabledRole, name: 'role', altValue: data.role, allowEmpty: true, label: 'Role', placeholder: 'Select role', options: [{ value: "admin"}], type: 'select', lightgray: true, width: '100%', className: 'm-b:24px' },
       { name: 'name', altValue: data.name, allowEmpty: true, label: 'Name', placeholder: 'Enter name', type: 'text', lightgray: true, light: true, width: '100%', className: 'm-b:24px' },
       { name: 'email', altValue: data.email, allowEmpty: true, label: 'Email', placeholder: 'Enter email', type: 'text', lightgray: true, width: '100%', light: true, className: 'm-b:24px' },
       { name: 'phoneNumber', altValue: data.phoneNumber, allowEmpty: true, label: 'Phone Number', placeholder: 'Enter phone number', type: 'text', lightgray: true, width: '100%',  light: true, className: 'm-b:24px' },

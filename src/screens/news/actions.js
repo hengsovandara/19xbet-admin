@@ -16,18 +16,18 @@ const actions = ({ act, store, action, handle, cookies, route }) => ({
 
     const data = await act('GQL', {
       query: `query {
-        News(limit: ${limit} offset: ${offset} order_by: { createdAt: desc } ${condition}) {
+        news(limit: ${limit} offset: ${offset} order_by: { createdAt: desc } ${condition}) {
           id title content imageUrl createdAt staff { id name photo }
         }
       }`
-    }).then(({News}) => News)
+    }).then(({news}) => news)
 
     return act('NEWS_SET', data, condition)
   },
 
   NEWS_SET: async (data, condition) => {
-    const newsCount = await act('GQL', { query: `{ News_aggregate(${condition}) { aggregate { count } } }` })
-    .then(({ News_aggregate: { aggregate: { count }}}) => count)
+    const newsCount = await act('GQL', { query: `{ news_aggregate(${condition}) { aggregate { count } } }` })
+    .then(({ news_aggregate: { aggregate: { count }}}) => count)
 
     const news = data && data.map(item => ({
       ...item,
@@ -42,9 +42,9 @@ const actions = ({ act, store, action, handle, cookies, route }) => ({
 
     const data = await act('GQL', {
       query: `query {
-        News_by_pk(id: "${id}"){ id title content imageUrl createdAt }
+        news_by_pk(id: "${id}"){ id title content imageUrl createdAt }
       }`
-    }).then(({News_by_pk}) => News_by_pk)
+    }).then(({news_by_pk}) => news_by_pk)
 
     return store.set({ article: data, ready: true })
   },
@@ -62,14 +62,14 @@ const actions = ({ act, store, action, handle, cookies, route }) => ({
       }
       
       data = await act('GQL', {
-        query: `mutation($values: [News_insert_input!]!){
-          insert_News(
+        query: `mutation($values: [news_insert_input!]!){
+          insert_news(
             objects: $values
-            on_conflict: { constraint: News_pkey update_columns: [content imageUrl title staffId]}
+            on_conflict: { constraint: news_pkey update_columns: [content imageUrl title staffId]}
           ){ returning { id title content imageUrl createdAt } }
         }`,
         variables: { values: {...data, staffId: user.id} }
-      }).then(({insert_News: { returning }}) => returning)
+      }).then(({insert_news: { returning }}) => returning)
       handle.loading()
       onDone()
       return
@@ -101,10 +101,10 @@ const actions = ({ act, store, action, handle, cookies, route }) => ({
     
       data = await act('GQL', {
         query: `mutation{
-          delete_News( where: { id: { _in: ${JSON.stringify(ids)}}}
+          delete_news( where: { id: { _in: ${JSON.stringify(ids)}}}
           ){ affected_rows }
         }`
-      }).then(({delete_News: { affected_rows }}) => affected_rows)
+      }).then(({delete_news: { affected_rows }}) => affected_rows)
 
       handle.loading(false)
       onDone()

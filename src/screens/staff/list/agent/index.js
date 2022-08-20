@@ -28,7 +28,7 @@ const Staff = ({ page, keywords, status = null }) => {
   return ready && <>
     { isAdding && <UserForm
         type='user'
-        roles={enums.role}
+        roles={[{ value: "admin"}]}
         loginUser={user}
         data={formValues}
         title="Account Information"

@@ -4,10 +4,13 @@ importScripts('https://www.gstatic.com/firebasejs/7.22.0/firebase-messaging.js')
 
 if (!firebase.apps.length) {
   firebase.initializeApp({
-    projectId: "casa79-admin",
-    apiKey: 'AIzaSyBcYDVBNMP0ZZeQPO7XKmMcXQ5qffVXEoU',
-    messagingSenderId: '511327533280',
-    appId: "1:511327533280:web:84c11632cb6c42c0e1b885",
+    apiKey: "AIzaSyC3HRDZqta_5vIl3eprwtlisaoB5F4wrTQ",
+    authDomain: "xbet-client.firebaseapp.com",
+    projectId: "xbet-client",
+    storageBucket: "xbet-client.appspot.com",
+    messagingSenderId: "178374313428",
+    appId: "1:178374313428:web:1dd13535fea68964714241",
+    measurementId: "G-JJXKCWN0PW"
   });
 
   const messaging = firebase.messaging()
